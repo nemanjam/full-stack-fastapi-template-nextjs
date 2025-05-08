@@ -1,0 +1,61 @@
+```ts
+
+
+// endpoints
+POST /api/register          // Registracija Korisnika
+POST /api/login             // Prijava Korisnika
+POST /api/sites             // Kreiranje Novog Markdown Sadržaja
+GET /api/sites/:id          // Učitavanje Markdown Sadržaja
+PUT /api/sites/:id          // Ažuriranje Markdown Sadržaja
+DELETE /api/sites/:id       // Brisanje Markdown Sadržaja
+GET /api/sites              // Dohvatanje Liste Svi Web Sajtova Korisnika
+GET /api/sites/search       // Pretraga i Filtriranje Web Sajtova
+
+// file system za md fajlove
+/user_files/
+  /user1/
+    /site1/
+      page1.md
+      page2.md
+    /site2/
+      page1.md
+  /user2/
+    /site1/
+      page1.md
+
+// render .md files next.js
+npm install next-mdx-remote @mdx-js/react
+npm install react-markdown
+incremental static regeneration kad updatuje website - next.js api endpoint
+// .mdx custom components
+npm install @next/mdx @mdx-js/loader @mdx-js/react
+
+------------
+povuce 1 github repo for md or my local files 
+samo 1 link od github repoa, kreira navbar i ruter 
+github api or files
+login with github, google
+------------
+mdx custom components - navbar, maybe all h1, h2...
+publish to gh-pages - write permission, no google login, or app account, too much about github api
+// dilemmas
+1. host md files or gh-pages?
+2. md editor on site or git pull?
+3. custom md css themes?
+4. my component library or global css sindresorhus/github-markdown-css
+5. admin buttons or panel
+6. what in database?
+--------
+// research
+next.js 15 new features
+fastApi boilerplate, auth
+review this https://github.com/MaxLeiter/Drift
+talk with chatGpt
+--------
+// features
+list all websites
+export - build app to host gh-pages or anywhere, nextjs app per each website, packages turborepo
+just copy app subfolder, css and package.json with next.js and build
+download source and dist
+add form to set app url
+```
