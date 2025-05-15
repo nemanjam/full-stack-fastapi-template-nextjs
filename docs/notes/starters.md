@@ -24,11 +24,21 @@ https://github.com/saasykits/nextjs-sessionauth-template
 
 // turborepo filter
 https://vercel.com/templates?type=monorepos
+// multi-tenant filter
+https://vercel.com/templates?type=multi-tenant-apps
 
 // turborepo packages and apps, vitest, biome no eslint, next.js 15, tailwind 4, storybook with all components, clerk auth junk, 
 // for monorepo and tests, storybook, for reference
 // sta ovo kreira zapravo?
 npx next-forge@latest init
 https://github.com/haydenbleasel/next-forge
+
+
+// from bookmarks, un-reviewed, todo
+https://github.com/timlrx/tailwind-nextjs-starter-blog
+https://github.com/Skolaczk/next-starter
+https://github.com/NextJSTemplates/solid-nextjs
+https://github.com/radix-ui/themes
+
 ```
 
