@@ -34,11 +34,14 @@ npx next-forge@latest init
 https://github.com/haydenbleasel/next-forge
 
 
-// from bookmarks, un-reviewed, todo
+// todo: from bookmarks, un-reviewed
 https://github.com/timlrx/tailwind-nextjs-starter-blog
 https://github.com/Skolaczk/next-starter
 https://github.com/NextJSTemplates/solid-nextjs
 https://github.com/radix-ui/themes
+
+
+// todo: fastApi starter
 
 ```
 
