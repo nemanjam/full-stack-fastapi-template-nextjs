@@ -45,6 +45,7 @@ publish to gh-pages - write permission, no google login, or app account, too muc
 4. my component library or global css sindresorhus/github-markdown-css
 5. admin buttons or panel
 6. what in database?
+7. monorepo or not?
 --------
 // research
 next.js 15 new features
