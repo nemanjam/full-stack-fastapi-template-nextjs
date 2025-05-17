@@ -46,6 +46,7 @@ publish to gh-pages - write permission, no google login, or app account, too muc
 5. admin buttons or panel
 6. what in database?
 7. monorepo or not? // TO, glavno
+8. shadcn or tailwind?
 --------
 // research
 next.js 15 new features
