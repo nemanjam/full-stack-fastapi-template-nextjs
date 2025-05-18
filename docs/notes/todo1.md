@@ -60,4 +60,7 @@ export - build app to host gh-pages or anywhere, nextjs app per each website, pa
 just copy app subfolder, css and package.json with next.js and build
 download source and dist
 add form to set app url
+
+------------
+set up Docker and Github Actions preview deployment first
 ```

@@ -60,7 +60,7 @@ https://nextjstemplates.com/starter
 // shadcn starter - component library
 pnpm dlx shadcn@latest init
 
-// todo: fastApi starter
+// todo: fastApi starter // to
 
 ```
 
