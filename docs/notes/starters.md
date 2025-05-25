@@ -62,5 +62,15 @@ pnpm dlx shadcn@latest init
 
 // todo: fastApi starter // to
 
+// fastapi starters
+
+// reddit, big project, bloat, bad
+https://github.com/definableai/definable.backend
+
+// lightweight, probably
+https://github.com/testdrivenio/fastapi-sqlmodel-alembic
+
+
+
 ```
 
