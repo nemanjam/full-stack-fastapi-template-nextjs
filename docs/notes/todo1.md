@@ -62,7 +62,7 @@ download source and dist
 add form to set app url
 
 ------------
-set up Docker and Github Actions preview deployment first
-set up pyenv
-set up separate frontend and backend with Dockerfiles and docker-compose.yml, easy to find separate next.js and fastapi examples
+1. set up pyenv and venv
+2. set up separate frontend and backend with Dockerfiles and docker-compose.yml, easy to find separate next.js and fastapi examples
+3. set up Docker and Github Actions preview deployment first
 ```

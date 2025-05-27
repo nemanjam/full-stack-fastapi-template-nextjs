@@ -2,8 +2,10 @@
 // next 14, tailwind 3, jest
 https://github.com/theodorusclarence/ts-nextjs-tailwind-starter
 
+// vercel templates
 // vercel fastapi template, next.js 13, minimal, no docker
 https://github.com/vercel-labs/ai-sdk-preview-python-streaming
+https://github.com/digitros/nextjs-fastapi
 
 // multi-tenant, subdomains demo, only minimal subdomain logic // this
 // next.js 15, shadcn, cva, tailwind 4
@@ -82,5 +84,13 @@ nikakve prednosti monorepo nema, 2 separate apps deployed
 container moze da tera samo 1 proces, inace mora hack uvicorn and next start
 docker-compose.yml with frontend and backend services
 easy to find separate next.js and fastapi examples
+
+// lightweight, full stack react, flask, docker
+https://gitlab.com/testdriven/flask-react-auth
+
+
+// not bad, comprehensive, full stack, docker, github actions, outdated next.js
+https://github.com/evroon/bracket
+
 ```
 
