@@ -62,15 +62,25 @@ pnpm dlx shadcn@latest init
 
 // todo: fastApi starter // to
 
-// fastapi starters
+/*-------------------------------- fastapi starters ------------------------------*/
 
-// reddit, big project, bloat, bad
-https://github.com/definableai/definable.backend
+// also has @hey-api/openapi-ts, lose, ne moze bez docker
+https://github.com/fastapi/full-stack-fastapi-template
+
 
 // lightweight, probably
 https://github.com/testdrivenio/fastapi-sqlmodel-alembic
 
+// openapi types, @hey-api/openapi-ts
+pydantic types -> schema.json -> typescript types
+moze i http client, not just types
+https://github.com/vintasoftware/nextjs-fastapi-template
 
-
+// good turborepo, next 14, fastapi
+https://github.com/cording12/next-fast-turbo
+nikakve prednosti monorepo nema, 2 separate apps deployed
+container moze da tera samo 1 proces, inace mora hack uvicorn and next start
+docker-compose.yml with frontend and backend services
+easy to find separate next.js and fastapi examples
 ```
 
