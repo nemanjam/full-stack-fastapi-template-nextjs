@@ -66,4 +66,6 @@ add form to set app url
 2. find fastapi starter with auth
 3. set up separate frontend and backend with Dockerfiles and docker-compose.yml, easy to find separate next.js and fastapi examples
 4. set up Docker and Github Actions preview deployment first
+merge https://github.com/tiangolo/full-stack-fastapi-postgresql and https://github.dev/benavlabs/SQLModel-boilerplate
+
 ```
