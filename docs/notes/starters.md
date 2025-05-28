@@ -67,8 +67,11 @@ pnpm dlx shadcn@latest init
 /*-------------------------------- fastapi starters ------------------------------*/
 
 // also has @hey-api/openapi-ts, lose, ne moze bez docker
+has auth, emails, uv, user and item models, github actions
 https://github.com/fastapi/full-stack-fastapi-template
 
+// excellent structure, only fastcrud drawback
+https://github.dev/benavlabs/SQLModel-boilerplate
 
 // lightweight, probably
 https://github.com/testdrivenio/fastapi-sqlmodel-alembic
@@ -89,7 +92,7 @@ easy to find separate next.js and fastapi examples
 https://gitlab.com/testdriven/flask-react-auth
 
 
-// not bad, comprehensive, full stack, docker, github actions, outdated next.js
+// not bad, comprehensive, full stack, docker, github actions, real world, 1.2k stars, outdated next.js
 https://github.com/evroon/bracket
 
 ```
