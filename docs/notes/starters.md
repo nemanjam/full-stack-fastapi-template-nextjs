@@ -95,5 +95,12 @@ https://gitlab.com/testdriven/flask-react-auth
 // not bad, comprehensive, full stack, docker, github actions, real world, 1.2k stars, outdated next.js
 https://github.com/evroon/bracket
 
+// todo
+// reddit
+https://github.com/Saas-Starter-Kit/fastapi_starter
+// next.js
+https://github.com/Saas-Starter-Kit/Saas-Kit-prisma
+
+
 ```
 
