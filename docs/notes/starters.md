@@ -91,16 +91,27 @@ easy to find separate next.js and fastapi examples
 // lightweight, full stack react, flask, docker
 https://gitlab.com/testdriven/flask-react-auth
 
-
 // not bad, comprehensive, full stack, docker, github actions, real world, 1.2k stars, outdated next.js
 https://github.com/evroon/bracket
 
-// todo
+-----
+// 7. june
+
+// not bad structure, auth, no sqlmodel, no github actions
+https://github.com/MahmudJewel/fastapi-starter-boilerplate
+
+// todo list crud, sqlalchemy, docker, no auth, no migrations, no github actions
+https://github.com/testdrivenio/fastapi-crud-async
+
 // reddit
+// not good, too minimal, sqlalchemy todo list crud
 https://github.com/Saas-Starter-Kit/fastapi_starter
-// next.js
+// next.js, bad, bloat, prisma models, services layers
 https://github.com/Saas-Starter-Kit/Saas-Kit-prisma
 
+
+// this next
+merge https://github.com/tiangolo/full-stack-fastapi-postgresql and https://github.dev/benavlabs/SQLModel-boilerplate
 
 ```
 
