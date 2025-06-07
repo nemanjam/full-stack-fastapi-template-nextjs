@@ -113,5 +113,15 @@ https://github.com/Saas-Starter-Kit/Saas-Kit-prisma
 // this next
 merge https://github.com/tiangolo/full-stack-fastapi-postgresql and https://github.dev/benavlabs/SQLModel-boilerplate
 
+// todo:
+
+1. remove docker
+2. extract app
+3. add run scripts
+4. merge with benavlabs/SQLModel-boilerplate
+5. add minimal docker
+6. reuse github actions
+7. add next.js, multitenant, docker
+
 ```
 
