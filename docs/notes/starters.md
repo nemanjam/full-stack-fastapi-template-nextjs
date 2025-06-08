@@ -123,5 +123,16 @@ merge https://github.com/tiangolo/full-stack-fastapi-postgresql and https://gith
 6. reuse github actions
 7. add next.js, multitenant, docker
 
+-------------
+// to review:
+// not bad, based on tiangolo starter, uv commands
+https://github.com/stevephary/fastapi-base
+// aws, too simple, no d-c.yml
+https://github.com/ferdinandbracho/bp_fastAPI-sqlalchemy-alembic-docker_uv
+// next.js synchronous, big but too simple
+https://github.com/manjurulhoque/edu-pulse
+// very big project
+https://github.com/definableai/definable.backend
+
 ```
 
