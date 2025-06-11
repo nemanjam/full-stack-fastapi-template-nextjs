@@ -1,0 +1,16 @@
+# python-generated files
+__pycache__
+app.egg-info
+*.pyc
+.mypy_cache
+
+# tests
+.coverage
+htmlcov
+.cache
+
+# virtual environments
+.venv
+
+# environment variables
+.env
