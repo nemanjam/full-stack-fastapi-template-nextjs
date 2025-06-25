@@ -47,6 +47,9 @@ publish to gh-pages - write permission, no google login, or app account, too muc
 6. what in database?
 7. monorepo or not? // TO, glavno
 8. shadcn or tailwind?
+9. which auth? tianlgolo has only user/pass; github only for gh-pages and to export/import app 
+10. login in next.js lucia and just token in fastapi, or github login in fastapi?
+11. define and write down functionality clearly to know what you are building
 --------
 // research
 next.js 15 new features
@@ -56,7 +59,7 @@ talk with chatGpt
 --------
 // features
 list all websites
-export - build app to host gh-pages or anywhere, nextjs app per each website, packages turborepo
+export - build app to host gh-pages or anywhere, nextjs app per each website, packages turborepo // this
 just copy app subfolder, css and package.json with next.js and build
 download source and dist
 add form to set app url
