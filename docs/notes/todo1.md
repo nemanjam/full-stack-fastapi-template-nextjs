@@ -68,4 +68,11 @@ add form to set app url
 4. set up Docker and Github Actions preview deployment first
 merge https://github.com/tiangolo/full-stack-fastapi-postgresql and https://github.dev/benavlabs/SQLModel-boilerplate
 
+
+-------------
+    run backend locally and in docker
+add tiangolo frontend so it can map
+review tiangolo backend code, merge with benavlabs/SQLModel-boilerplate
+add github actions, deploy to vps
+test dev and prod sh scripts
 ```

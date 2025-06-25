@@ -1,6 +1,6 @@
 # Githubcities
 
-## Local development setup
+## Local setup dev
 
 ```bash
 # Navigate to project root
@@ -53,7 +53,7 @@ http://localhost:8090
 http://localhost:1080
 ```
 
-## Docker setup
+## Docker setup dev
 
 ```bash
 # Create a virtual environment
@@ -73,4 +73,7 @@ docker compose run containername --rm alembic head
 
 # Start all services
 docker compose up
+
+# In Docker backend available on 8080, not 8000
+http://localhost:8080/docs
 ```
