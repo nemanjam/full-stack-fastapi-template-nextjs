@@ -1,3 +1,5 @@
+import logging
+
 from datetime import timedelta
 from typing import Annotated, Any
 
@@ -19,6 +21,9 @@ from app.utils import (
     verify_password_reset_token,
 )
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 router = APIRouter(tags=["login"])
 
 # http://localhost:8000/api/v1/login/github
@@ -29,15 +34,30 @@ async def login_github(request: Request):
 
 # http://localhost:8000/api/v1/auth/github
 @router.get("/auth/github")
-async def auth_github(request: Request):
+async def auth_github(request: Request, session: SessionDep):
     token = await security.oauth.github.authorize_access_token(request)
     user_info = await security.oauth.github.get("user", token=token)
     profile = user_info.json()
-    # At this point, you have GitHub user info. You can:
-    # - lookup or create a user in your DB
-    # - create a JWT access token
-    # - return or redirect to frontend with token
-    return {"github_profile": profile}
+
+    # Get primary email
+    emails = await security.oauth.github.get("user/emails", token=token)
+    primary_email = next((e["email"] for e in emails.json() if e["primary"]), None)
+
+    logger.info(f"Primary GitHub email: {primary_email}")
+
+    # Reuse logic
+    user = crud.authenticate_github(
+        session=session,
+        github_id=profile["id"],
+        profile=profile,
+        email=primary_email,
+    )
+
+    # Issue JWT token
+    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    token = security.create_access_token(user.id, expires_delta=access_token_expires)
+
+    return {"access_token": token, "token_type": "bearer"}
 
 
 @router.post("/login/access-token")

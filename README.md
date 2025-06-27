@@ -6,8 +6,8 @@
 # Navigate to project root
 cd ~/Desktop/githubcities
 
-# Run Postgres database
-docker compose up -d
+# Run just Postgres database service
+docker compose up -d db
 
 # Navigate to backend folder
 cd ./backend
@@ -20,6 +20,9 @@ source .venv/bin/activate
 
 # Sync and install dependencies
 uv sync
+
+# If changed models generate migration
+$ alembic revision --autogenerate -m "e.g. Add column last_name to User model"
 
 # Run database migrations
 alembic upgrade head

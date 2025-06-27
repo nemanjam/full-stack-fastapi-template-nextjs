@@ -78,4 +78,11 @@ add tiangolo frontend so it can map
 review tiangolo backend code, merge with benavlabs/SQLModel-boilerplate
 add github actions, deploy to vps
 test dev and prod sh scripts
+
+
+
+----------------
+// practical
+create constants file
+create single logger util
 ```
