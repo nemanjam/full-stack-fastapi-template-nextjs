@@ -1,6 +1,8 @@
 from datetime import timedelta
 from typing import Annotated, Any
 
+from starlette.requests import Request
+
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
@@ -9,7 +11,6 @@ from app import crud
 from app.api.deps import CurrentUser, SessionDep, get_current_active_superuser
 from app.core import security
 from app.core.config import settings
-from app.core.security import get_password_hash
 from app.models import Message, NewPassword, Token, UserPublic
 from app.utils import (
     generate_password_reset_token,
@@ -19,6 +20,24 @@ from app.utils import (
 )
 
 router = APIRouter(tags=["login"])
+
+# http://localhost:8000/api/v1/login/github
+@router.get("/login/github")
+async def login_github(request: Request):
+    redirect_uri = request.url_for("auth_github")
+    return await security.oauth.github.authorize_redirect(request, redirect_uri)
+
+# http://localhost:8000/api/v1/auth/github
+@router.get("/auth/github")
+async def auth_github(request: Request):
+    token = await security.oauth.github.authorize_access_token(request)
+    user_info = await security.oauth.github.get("user", token=token)
+    profile = user_info.json()
+    # At this point, you have GitHub user info. You can:
+    # - lookup or create a user in your DB
+    # - create a JWT access token
+    # - return or redirect to frontend with token
+    return {"github_profile": profile}
 
 
 @router.post("/login/access-token")
@@ -91,7 +110,7 @@ def reset_password(session: SessionDep, body: NewPassword) -> Message:
         )
     elif not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
-    hashed_password = get_password_hash(password=body.new_password)
+    hashed_password = security.get_password_hash(password=body.new_password)
     user.hashed_password = hashed_password
     session.add(user)
     session.commit()
