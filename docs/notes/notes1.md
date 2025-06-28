@@ -15,6 +15,6 @@ url: jdbc:postgresql://localhost:5432/app
 user: postgres
 password: password
 
-
+scripts folders in root and in /backend
 
 ```

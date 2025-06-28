@@ -24,7 +24,11 @@ uv sync
 # If changed models generate migration
 $ alembic revision --autogenerate -m "e.g. Add column last_name to User model"
 
-# Run database migrations
+# Await db, run migrations and seed
+cd backend/
+bash scripts/prestart.sh
+
+# Run just database migrations
 alembic upgrade head
 
 # Start the FastAPI development server

@@ -3,16 +3,19 @@
   "files.exclude": {
     "**/.venv": true,
     "**/.ruff_cache": true,
+    "**/.mypy_cache": true,
     "**/__pycache__": true
   },
   "search.exclude": {
     "**/.venv": true,
     "**/.ruff_cache": true,
+    "**/.mypy_cache": true,
     "**/__pycache__": true
   },
   "files.watcherExclude": {
     "**/.venv/**": true,
     "**/.ruff_cache/**": true,
+    "**/.mypy_cache/**": true,
     "**/__pycache__/**": true
   },
   // python
