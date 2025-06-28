@@ -2,10 +2,10 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import jwt
+from authlib.integrations.starlette_client import OAuth
 from passlib.context import CryptContext
 
 from app.core.config import settings
-from authlib.integrations.starlette_client import OAuth
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -38,9 +38,11 @@ GITHUB_OAUTH_CONFIG = {
     "client_kwargs": {"scope": "user:email"},
 }
 
+
 def create_oauth() -> OAuth:
     oauth = OAuth()
     oauth.register(**GITHUB_OAUTH_CONFIG)
     return oauth
+
 
 oauth = create_oauth()

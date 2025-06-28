@@ -46,7 +46,9 @@ def authenticate(*, session: Session, email: str, password: str) -> User | None:
     return db_user
 
 
-def authenticate_github(*, session: Session, github_id: int, profile: dict, email: str | None) -> User:
+def authenticate_github(
+    *, session: Session, github_id: int, profile: dict, email: str | None
+) -> User:
     user = session.exec(select(User).where(User.github_id == github_id)).first()
 
     if not user:
@@ -54,7 +56,7 @@ def authenticate_github(*, session: Session, github_id: int, profile: dict, emai
             github_id=github_id,
             github_login=profile.get("login"),
             github_avatar_url=profile.get("avatar_url"),
-            email=email or f"{github_id}@github.local", # Todo: check this
+            email=email or f"{github_id}@github.local",  # Todo: check this
             is_active=True,
         )
         session.add(user)

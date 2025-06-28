@@ -1,13 +1,11 @@
 import logging
-
 from datetime import timedelta
 from typing import Annotated, Any
-
-from starlette.requests import Request
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
+from starlette.requests import Request
 
 from app import crud
 from app.api.deps import CurrentUser, SessionDep, get_current_active_superuser
@@ -26,15 +24,17 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["login"])
 
+
 # http://localhost:8000/api/v1/login/github
 @router.get("/login/github")
 async def login_github(request: Request):
     redirect_uri = request.url_for("auth_github")
     return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
+
 # http://localhost:8000/api/v1/auth/github
 @router.get("/auth/github")
-async def auth_github(request: Request, session: SessionDep):
+async def auth_github(request: Request, session: SessionDep) -> Token:
     token = await security.oauth.github.authorize_access_token(request)
     user_info = await security.oauth.github.get("user", token=token)
     profile = user_info.json()
@@ -45,7 +45,6 @@ async def auth_github(request: Request, session: SessionDep):
 
     logger.info(f"Primary GitHub email: {primary_email}")
 
-    # Reuse logic
     user = crud.authenticate_github(
         session=session,
         github_id=profile["id"],
@@ -55,9 +54,11 @@ async def auth_github(request: Request, session: SessionDep):
 
     # Issue JWT token
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    token = security.create_access_token(user.id, expires_delta=access_token_expires)
-
-    return {"access_token": token, "token_type": "bearer"}
+    return Token(
+        access_token=security.create_access_token(
+            user.id, expires_delta=access_token_expires
+        )
+    )
 
 
 @router.post("/login/access-token")

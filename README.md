@@ -29,6 +29,15 @@ alembic upgrade head
 
 # Start the FastAPI development server
 uvicorn app.main:app --reload
+
+# Run pre-commit manually
+uv run pre-commit run --all-files
+
+# Lint and format
+# Must run from /backend folder
+cd backend/
+bash scripts/lint.sh
+bash scripts/format.sh
 ```
 
 ## Development URLs

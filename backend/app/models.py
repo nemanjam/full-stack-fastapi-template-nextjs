@@ -10,13 +10,12 @@ class UserBase(SQLModel):
     email: EmailStr = Field(unique=True, index=True, max_length=255)
     # GitHub only
     github_id: int | None = Field(default=None, unique=True, index=True)
-    github_login: str | None = Field(default=None, index=True) # username
+    github_login: str | None = Field(default=None, index=True)  # username
     github_avatar_url: str | None = None
 
     is_active: bool = True
     is_superuser: bool = False
     full_name: str | None = Field(default=None, max_length=255)
-
 
 
 # Properties to receive via API on creation
@@ -49,7 +48,7 @@ class UpdatePassword(SQLModel):
 # Database model, database table inferred from class name
 class User(UserBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    hashed_password: str | None = None # Password login
+    hashed_password: str | None = None  # Password login
     items: list["Item"] = Relationship(back_populates="owner", cascade_delete=True)
 
 

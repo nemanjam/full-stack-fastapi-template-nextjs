@@ -31,8 +31,8 @@ incremental static regeneration kad updatuje website - next.js api endpoint
 npm install @next/mdx @mdx-js/loader @mdx-js/react
 
 ------------
-povuce 1 github repo for md or my local files 
-samo 1 link od github repoa, kreira navbar i ruter 
+povuce 1 github repo for md or my local files
+samo 1 link od github repoa, kreira navbar i ruter
 github api or files
 login with github, google
 ------------
@@ -47,7 +47,7 @@ publish to gh-pages - write permission, no google login, or app account, too muc
 6. what in database?
 7. monorepo or not? // TO, glavno
 8. shadcn or tailwind?
-9. which auth? tianlgolo has only user/pass; github only for gh-pages and to export/import app 
+9. which auth? tianlgolo has only user/pass; github only for gh-pages and to export/import app
 10. login in next.js lucia and just token in fastapi, or github login in fastapi?
 11. define and write down functionality clearly to know what you are building
 --------

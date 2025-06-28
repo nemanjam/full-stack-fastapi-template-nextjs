@@ -39,7 +39,7 @@ https://github.com/s3rius/FastAPI-template
 // another from linkedin
 https://github.com/igormagalhaesr/FastAPI-boilerplate
 // sve preuzeto iz tiangolo
-kopira samo app folder u Dockerfile, ne postavlja PYTHONPATH 
+kopira samo app folder u Dockerfile, ne postavlja PYTHONPATH
 COPY ./src/app /code/app
 ----
 models - tip za bazu
@@ -48,9 +48,9 @@ poziva samo sa gen tipovima, nema args
 CRUDUser = CRUDBase[User, UserInDB, UserUpdateDB]
 ------
 https://github.dev/benavlabs/SQLModel-boilerplate
-fastcrud package - najveca mana 
+fastcrud package - najveca mana
 kompletan primer, auth, testovi, kvalitetna struktura
-poetry 
+poetry
 -------
 // dobar zapravo, kubernetes
 https://github.com/Kludex/fastapi-microservices

@@ -29,7 +29,7 @@ https://vercel.com/templates?type=monorepos
 // multi-tenant filter
 https://vercel.com/templates?type=multi-tenant-apps
 
-// turborepo packages and apps, vitest, biome no eslint, next.js 15, tailwind 4, storybook with all components, clerk auth junk, 
+// turborepo packages and apps, vitest, biome no eslint, next.js 15, tailwind 4, storybook with all components, clerk auth junk,
 // for monorepo and tests, storybook, for reference
 // sta ovo kreira zapravo? // ne radi
 npx next-forge@latest init
@@ -39,7 +39,7 @@ https://github.com/haydenbleasel/next-forge
 // second day
 
 // tailwind 4, next.js 15, eslint 9 ok, contentlayer2 - njegov content collections
-// like astro, remark, rehype 
+// like astro, remark, rehype
 // messy structure, useless // to
 https://github.com/timlrx/tailwind-nextjs-starter-blog
 
@@ -135,4 +135,3 @@ https://github.com/manjurulhoque/edu-pulse
 https://github.com/definableai/definable.backend
 
 ```
-

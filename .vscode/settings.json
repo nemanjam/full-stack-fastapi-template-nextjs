@@ -1,0 +1,29 @@
+{
+  // exclude folders
+  "files.exclude": {
+    "**/.venv": true,
+    "**/.ruff_cache": true,
+    "**/__pycache__": true
+  },
+  "search.exclude": {
+    "**/.venv": true,
+    "**/.ruff_cache": true,
+    "**/__pycache__": true
+  },
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/.ruff_cache/**": true,
+    "**/__pycache__/**": true
+  },
+  // python
+  "python.defaultInterpreterPath": "./backend/.venv/bin/python",
+  // formtting
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      // "source.organizeImports": "explicit" // orders differently, must disable
+    }
+  }
+}
