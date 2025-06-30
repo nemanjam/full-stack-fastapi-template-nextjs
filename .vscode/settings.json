@@ -4,20 +4,24 @@
     "**/.venv": true,
     "**/.ruff_cache": true,
     "**/.mypy_cache": true,
-    "**/__pycache__": true
+    "**/__pycache__": true,
+    "**/.turbo": true
   },
   "search.exclude": {
     "**/.venv": true,
     "**/.ruff_cache": true,
     "**/.mypy_cache": true,
-    "**/__pycache__": true
+    "**/__pycache__": true,
+    "**/.turbo": true
   },
   "files.watcherExclude": {
     "**/.venv/**": true,
     "**/.ruff_cache/**": true,
     "**/.mypy_cache/**": true,
-    "**/__pycache__/**": true
+    "**/__pycache__/**": true,
+    "**/.turbo/**": true
   },
+
   // python
   "python.defaultInterpreterPath": "./backend/.venv/bin/python",
   // formtting
@@ -28,5 +32,8 @@
       "source.fixAll": "explicit",
       // "source.organizeImports": "explicit" // orders differently, must disable
     }
-  }
+  },
+
+  // next.js
+  "tailwindCSS.experimental.configFile": "frontend/packages/ui/src/styles/globals.css"
 }

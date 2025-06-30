@@ -21,7 +21,7 @@ https://github.com/Blazity/next-enterprise
 // shadcn, drizzle postgres, login user/pass
 https://github.com/nextjs/saas-starter
 
-// lucia drizzle user/pass, shadcn, server actions, trpc
+// lucia drizzle user/pass, shadcn, server actions, trpc // dobar zapravo
 https://github.com/saasykits/nextjs-sessionauth-template
 
 // turborepo filter
@@ -115,9 +115,9 @@ merge https://github.com/tiangolo/full-stack-fastapi-postgresql and https://gith
 
 // todo:
 
-1. remove docker
-2. extract app
-3. add run scripts
+    1. remove docker
+    2. extract app
+    3. add run scripts
 4. merge with benavlabs/SQLModel-boilerplate
 5. add minimal docker
 6. reuse github actions
@@ -133,5 +133,21 @@ https://github.com/ferdinandbracho/bp_fastAPI-sqlalchemy-alembic-docker_uv
 https://github.com/manjurulhoque/edu-pulse
 // very big project
 https://github.com/definableai/definable.backend
+
+----------------------------
+----------------------------
+// final, next.js
+
+
+// not bad next.js, tailwind 3
+https://github.com/saasykits/nextjs-sessionauth-template
+
+// full stack, openapi client
+https://github.com/vintasoftware/nextjs-fastapi-template
+
+// fastapi, can be useful maybe
+https://github.com/MahmudJewel/fastapi-starter-boilerplate
+// google login
+https://github.com/MahmudJewel/fastapi-production-boilerplate
 
 ```
