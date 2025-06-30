@@ -86,4 +86,12 @@ choose next.js project
 create constants file
 create single logger util
 fix lint password optional type
+
+// next.js
+update dependencies
+multi-tenant config https://github.com/vercel/platforms
+css vars colors
+    Dockerfile
+github actions
+
 ```

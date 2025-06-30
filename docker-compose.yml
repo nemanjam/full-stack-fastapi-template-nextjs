@@ -2,6 +2,19 @@ name: githubcities
 
 services:
 
+  # Todo: improve frontend and test it
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    networks:
+      - default
+
   backend:
     build:
       context: ./backend
@@ -17,7 +30,8 @@ services:
       - .env
     depends_on:
       - db
-
+    networks:
+      - default
   db:
     image: postgres:17.5-alpine3.22
     restart: unless-stopped
@@ -38,6 +52,8 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - app-db-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - default
 
 volumes:
   app-db-data:
