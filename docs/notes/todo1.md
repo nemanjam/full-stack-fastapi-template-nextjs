@@ -93,5 +93,10 @@ multi-tenant config https://github.com/vercel/platforms
 css vars colors
     Dockerfile
 github actions
-
+migrate auth ui from tiangolo
+testing
+openapi client generation
+metadata in pages
+typescript folder aliases for prettier sort import
+setup prettier for parent folder, root
 ```

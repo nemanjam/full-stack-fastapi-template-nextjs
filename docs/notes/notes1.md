@@ -20,4 +20,18 @@ scripts folders in root and in /backend
 # openapi.json is available on this url
 http://localhost:8000/api/v1/openapi.json
 
+# routes/pages
+
+# auth
+'/login'
+'/recover-password'
+'/reset-password'
+'/signup'
+
+# root
+'/'
+'/admin'
+'/items'
+'/settings'
+
 ```

@@ -22,12 +22,13 @@
     "**/.turbo/**": true
   },
 
+    "editor.formatOnSave": true,
+
   // python
   "python.defaultInterpreterPath": "./backend/.venv/bin/python",
-  // formtting
+  // formatting
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
       // "source.organizeImports": "explicit" // orders differently, must disable
@@ -35,5 +36,33 @@
   },
 
   // next.js
-  "tailwindCSS.experimental.configFile": "frontend/packages/ui/src/styles/globals.css"
+
+  // Point to the local TypeScript version
+  "typescript.tsdk": "frontend/node_modules/typescript/lib",
+
+  // Enable workspace TypeScript version (not VSCode's built-in)
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "prettier.configPath": "./frontend/.prettierrc.js",
+  "prettier.ignorePath": "./frontend/.prettierignore",
+
+  "tailwindCSS.experimental.configFile": "frontend/packages/ui/src/styles/globals.css",
+  "cSpell.words": []
+
 }
