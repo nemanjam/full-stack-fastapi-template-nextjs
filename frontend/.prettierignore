@@ -10,6 +10,8 @@ node_modules
 .next
 build
 
-docs
+# ignore backend, ruff formats there
 backend
+
+docs
 openapi.json

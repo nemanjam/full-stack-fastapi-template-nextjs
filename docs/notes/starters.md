@@ -150,4 +150,8 @@ https://github.com/MahmudJewel/fastapi-starter-boilerplate
 // google login
 https://github.com/MahmudJewel/fastapi-production-boilerplate
 
+
+// todo
+https://github.com/moinulmoin/chadnext
+
 ```

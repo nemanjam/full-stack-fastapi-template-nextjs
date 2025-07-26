@@ -98,5 +98,5 @@ testing
 openapi client generation
 metadata in pages
 typescript folder aliases for prettier sort import
-setup prettier for parent folder, root
+setup prettier for parent folder, root, pogledaj biome tiangolo kako je raspodeljen ruff i biome
 ```

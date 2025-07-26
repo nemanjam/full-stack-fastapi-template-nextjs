@@ -34,4 +34,11 @@ http://localhost:8000/api/v1/openapi.json
 '/items'
 '/settings'
 
+----------
+prettier formats all files, /backend in prettierignore
+ruff formats /backend
+---
+docker-compose.yml special name, disabled format by containers extension
+----
+cant format (.json) in folder above node_modules
 ```
