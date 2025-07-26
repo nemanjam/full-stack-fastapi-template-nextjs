@@ -12,34 +12,45 @@ module.exports = {
   importOrder: [
     '<BUILTIN_MODULES>',
     '',
+
     '^(react/(.*)$)|^(react$)',
     '^(next/(.*)$)|^(next$)',
     '',
+
     '<THIRD_PARTY_MODULES>',
     '',
 
-    // Todo: set up ts aliases for this project
+    // workspace, Todo: fails sorting
+    '^@workspace/ui',
+    '',
 
-    // frontend
-    '^@/app',
-    '^@/components/ui',
+    // web
+    '^@/lib',
     '^@/components',
     '^@/hooks',
+    '^@/app',
     '',
-    // backend
-    '^@/modules/parser',
-    '^@/modules',
-    '^@/libs',
-    '^@/utils',
-    '^@/constants',
-    '^@/data',
-    '^@/config',
-    '^[./]', // all relative imports
+
+    // possible future aliases
+    // '^@/modules',
+    // '^@/libs',
+    // '^@/utils',
+    // '^@/constants',
+    // '^@/data',
+    // '^@/config',
+
+    // all relative imports
+    '^[./]',
     '',
+
+    // types
     '^@/types',
     '<TYPES>',
     '<TYPES>^[.]',
     '',
+
+    // assets and styles
+    // Todo: ends with .css, .png, .jpg, etc.
     '^@/assets',
     '^@/styles',
   ],

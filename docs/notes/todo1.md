@@ -97,6 +97,7 @@ migrate auth ui from tiangolo
 testing
 openapi client generation
 metadata in pages
-typescript folder aliases for prettier sort import
+    typescript folder aliases for prettier sort import
 setup prettier for parent folder, root, pogledaj biome tiangolo kako je raspodeljen ruff i biome
+prettier ignores parent of node_modules
 ```
