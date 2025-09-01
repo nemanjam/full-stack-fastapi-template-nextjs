@@ -11,7 +11,6 @@ FROM base AS builder
 RUN apk update
 RUN apk add --no-cache libc6-compat
 
-RUN pnpm -v
 RUN npm install -g pnpm
 RUN pnpm -v
 
