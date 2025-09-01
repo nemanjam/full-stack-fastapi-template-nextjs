@@ -51,6 +51,7 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
+        # todo: set relative path
       - app-db-data:/var/lib/postgresql/data/pgdata
     networks:
       - default

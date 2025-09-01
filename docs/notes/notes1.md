@@ -41,4 +41,8 @@ ruff formats /backend
 docker-compose.yml special name, disabled format by containers extension
 ----
 cant format (.json) in folder above node_modules
+------------------
+# standalone server.js path fro monorepo
+githubcities/frontend/apps/web/.next/standalone/apps/web/server.js
+
 ```

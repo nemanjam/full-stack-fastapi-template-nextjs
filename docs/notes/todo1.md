@@ -100,4 +100,11 @@ metadata in pages
     typescript folder aliases for prettier sort import
 setup prettier for parent folder, root, pogledaj biome tiangolo kako je raspodeljen ruff i biome
 prettier ignores parent of node_modules
+
+---------------
+add semversioning for both frontend and backend images
+common.yml reusable workflow part, print commit hash...
+decide weather to use static next.js with output: "standalone" or next.js api and ssr too
+cp and standalone scripts in apps/web call from frontend, turbo
+
 ```
