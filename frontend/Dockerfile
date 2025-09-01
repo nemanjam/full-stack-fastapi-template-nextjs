@@ -75,6 +75,9 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 
+# bind Next.js to public network
+ENV HOSTNAME="0.0.0.0"
+
 # server.js exists for output: 'standalone' in next.config.js
 # still supports SSR and API routes
 CMD ["node", "apps/web/server.js"]
