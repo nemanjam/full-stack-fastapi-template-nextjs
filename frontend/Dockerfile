@@ -20,6 +20,8 @@ RUN turbo prune web --docker
 FROM base AS installer
 RUN apk update
 RUN apk add --no-cache libc6-compat
+RUN npm install -g pnpm
+
 WORKDIR /app
 
 # First install the dependencies (as they change less often)
