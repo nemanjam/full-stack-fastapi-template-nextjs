@@ -61,9 +61,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           # src dir
-          context: ./
+          context: ./backend
           # Dockerfile dir
-          file: ./docker/Dockerfile
+          file: ./backend/Dockerfile
           # cant use matrix, must pass platforms like this
           platforms: linux/amd64,linux/arm64
           progress: plain

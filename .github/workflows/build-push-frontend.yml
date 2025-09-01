@@ -63,7 +63,7 @@ jobs:
           # src dir
           context: ./frontend
           # Dockerfile dir
-          file: ./Dockerfile
+          file: ./frontend/Dockerfile
           # cant use matrix, must pass platforms like this
           platforms: linux/amd64,linux/arm64
           progress: plain
