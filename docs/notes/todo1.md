@@ -106,5 +106,5 @@ add semversioning for both frontend and backend images
 common.yml reusable workflow part, print commit hash...
 decide weather to use static next.js with output: "standalone" or next.js api and ssr too
 cp and standalone scripts in apps/web call from frontend, turbo
-
+turbo and docker cache maybe, and article
 ```
