@@ -10,11 +10,18 @@ FROM base AS builder
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk update
 RUN apk add --no-cache libc6-compat
-RUN npm install -g pnpm turbo
+
+# installs pnpm correctly
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN corepack enable
+RUN corepack prepare pnpm@10.12.4 --activate
 
 # Set working directory
 WORKDIR /app
 
+RUN pnpm add -g turbo
 COPY . .
 RUN turbo prune web --docker
 
@@ -22,7 +29,12 @@ RUN turbo prune web --docker
 FROM base AS installer
 RUN apk update
 RUN apk add --no-cache libc6-compat
-RUN npm install -g pnpm turbo
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN corepack enable
+RUN corepack prepare pnpm@10.12.4 --activate
 
 WORKDIR /app
 
@@ -32,6 +44,9 @@ RUN pnpm install --frozen-lockfile
 
 # Build the project
 COPY --from=builder /app/out/full/ .
+
+# todo: use these args
+# ARG_SITE_URL_ARM64, ARG_SITE_URL_AMD64
 
 # Uncomment and use build args to enable remote caching
 # ARG TURBO_TEAM
