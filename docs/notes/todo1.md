@@ -107,4 +107,10 @@ common.yml reusable workflow part, print commit hash...
 decide weather to use static next.js with output: "standalone" or next.js api and ssr too
 cp and standalone scripts in apps/web call from frontend, turbo
 turbo and docker cache maybe, and article
+
+------
+docker-compose.yml database migration, bind mount, env files, env vars Dockerfile NEXT_PUBLIC_, SITE_URL..., migrate healthchecks
+use .env (common and docker-compose.yml), .env.frontend, .env.backend and database containers
+extract and reuse workflows checkout, qemu
+
 ```
