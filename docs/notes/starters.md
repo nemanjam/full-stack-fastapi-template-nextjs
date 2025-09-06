@@ -153,5 +153,7 @@ https://github.com/MahmudJewel/fastapi-production-boilerplate
 
 // todo
 https://github.com/moinulmoin/chadnext
+https://github.com/deveshshrestha20/FastAPI_Project_Starter
+
 
 ```

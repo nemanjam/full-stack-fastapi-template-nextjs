@@ -112,5 +112,5 @@ turbo and docker cache maybe, and article
 docker-compose.yml database migration, bind mount, env files, env vars Dockerfile NEXT_PUBLIC_, SITE_URL..., migrate healthchecks
 use .env (common and docker-compose.yml), .env.frontend, .env.backend and database containers
 extract and reuse workflows checkout, qemu
-
+backend container 500mb ram
 ```
