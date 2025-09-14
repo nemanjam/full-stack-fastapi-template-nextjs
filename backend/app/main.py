@@ -6,6 +6,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.api.main import api_router
 from app.core.config import settings
+from app.utils import log_settings
 
 
 def custom_generate_unique_id(route: APIRoute) -> str:
@@ -35,3 +36,5 @@ if settings.all_cors_origins:
 app.add_middleware(SessionMiddleware, secret_key=settings.SESSION_SECRET_KEY)
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+log_settings(settings)

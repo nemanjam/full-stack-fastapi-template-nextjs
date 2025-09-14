@@ -58,6 +58,23 @@ services:
     networks:
       - default
 
+  adminer:
+    image: adminer:5.4.0-standalone
+    container_name: githubcities-adminer
+    restart: unless-stopped
+    depends_on:
+      - database
+    environment:
+      - ADMINER_DESIGN=nette
+    # no networks, no ports
+    network_mode: host
+    #
+    # must use database:5432, 5433:5432 mapping does not apply
+    # ports:
+    #   - 8080:8080
+    # networks:
+    #   - default
+
 networks:
   default:
     driver: bridge
