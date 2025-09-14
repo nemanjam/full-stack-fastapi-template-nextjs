@@ -104,7 +104,7 @@ prettier ignores parent of node_modules
 ---------------
 add semversioning for both frontend and backend images
 common.yml reusable workflow part, print commit hash...
-decide weather to use static next.js with output: "standalone" or next.js api and ssr too
+    decide weather to use static next.js with output: "standalone" or next.js api and ssr too
 cp and standalone scripts in apps/web call from frontend, turbo
 turbo and docker cache maybe, and article
 
@@ -113,4 +113,9 @@ docker-compose.yml database migration, bind mount, env files, env vars Dockerfil
 use .env (common and docker-compose.yml), .env.frontend, .env.backend and database containers
 extract and reuse workflows checkout, qemu
 backend container 500mb ram
+
+----------
+implement ui for existing login and set up workflow on that example
+run backend, database, frontend locally in dev, only db in docker
+
 ```

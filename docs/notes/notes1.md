@@ -45,4 +45,7 @@ cant format (.json) in folder above node_modules
 # standalone server.js path fro monorepo
 githubcities/frontend/apps/web/.next/standalone/apps/web/server.js
 SITE_URL can be different (env var) in each environment, but must be prefixed with NEXT_PUBLIC_* not to be inlined during build for static site
+-------
+dev and prod docker-compose.yml and folder structure must match
+
 ```
