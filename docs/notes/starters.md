@@ -156,5 +156,10 @@ https://github.com/moinulmoin/chadnext
 https://github.com/deveshshrestha20/FastAPI_Project_Starter
 // github gists clone
 https://github.com/MaxLeiter/Drift
+// next.js starter, review this
+https://github.com/midday-ai/v1
+https://www.reddit.com/r/nextjs/comments/1hg7f4p/what_are_the_best_opensource_codebases_showcasing/
+// this is the one actually
+https://github.com/maybe-finance/maybe
 
 ```
