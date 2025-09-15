@@ -113,9 +113,10 @@ docker-compose.yml database migration, bind mount, env files, env vars Dockerfil
 use .env (common and docker-compose.yml), .env.frontend, .env.backend and database containers
 extract and reuse workflows checkout, qemu
 backend container 500mb ram
-
+dependantbot yaml, semver
 ----------
 implement ui for existing login and set up workflow on that example
-run backend, database, frontend locally in dev, only db in docker
+    run backend, database, frontend locally in dev, only db in docker
+run frontend, backend in docker locally
 
 ```

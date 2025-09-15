@@ -65,7 +65,7 @@ services:
     depends_on:
       - database
     environment:
-      - ADMINER_DESIGN=nette
+      - ADMINER_DESIGN=nicu
     # no networks, no ports
     network_mode: host
     #
