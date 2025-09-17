@@ -1,7 +1,11 @@
 import { ReactNode } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { useRouter } from 'next/navigation';
 
+import Navbar from '@/components/Common/Navbar';
+import Sidebar from '@/components/Common/Sidebar';
 import { Providers } from '@/components/providers';
+import { isLoggedIn } from '@/hooks/useAuth';
 
 // "exports": in packages/ui/package.json
 import '@workspace/ui/globals.css';
@@ -21,10 +25,20 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const router = useRouter();
+
+  if (!isLoggedIn()) router.push('/login');
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          <div className="flex flex-1">
+            <Sidebar />
+            <main className="flex flex-col flex-1">{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );

@@ -118,5 +118,7 @@ dependantbot yaml, semver
 implement ui for existing login and set up workflow on that example
     run backend, database, frontend locally in dev, only db in docker
 run frontend, backend in docker locally
-
+change client components and hooks to server, e.g. router, react-query - provider, client, ssr
+generate client types
+ts path aliases and sort imports config
 ```

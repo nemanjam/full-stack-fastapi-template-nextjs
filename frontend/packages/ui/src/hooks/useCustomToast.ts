@@ -1,25 +1,25 @@
-"use client"
+'use client';
 
-import { toaster } from "@/components/ui/toaster"
+import { toaster } from '@workspace/ui/components/tiangolo-ui/toaster';
 
 const useCustomToast = () => {
   const showSuccessToast = (description: string) => {
     toaster.create({
-      title: "Success!",
+      title: 'Success!',
       description,
-      type: "success",
-    })
-  }
+      type: 'success',
+    });
+  };
 
   const showErrorToast = (description: string) => {
     toaster.create({
-      title: "Something went wrong!",
+      title: 'Something went wrong!',
       description,
-      type: "error",
-    })
-  }
+      type: 'error',
+    });
+  };
 
-  return { showSuccessToast, showErrorToast }
-}
+  return { showSuccessToast, showErrorToast };
+};
 
-export default useCustomToast
+export default useCustomToast;
