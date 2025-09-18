@@ -1,112 +1,128 @@
-"use client"
+'use client';
 
-import { AbsoluteCenter, Menu as ChakraMenu, Portal } from "@chakra-ui/react"
-import * as React from "react"
-import { LuCheck, LuChevronRight } from "react-icons/lu"
+import * as React from 'react';
 
-interface MenuContentProps extends ChakraMenu.ContentProps {
-  portalled?: boolean
-  portalRef?: React.RefObject<HTMLElement>
+import { LuCheck, LuChevronRight } from 'react-icons/lu';
+
+interface MenuContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  portalled?: boolean;
+  portalRef?: React.RefObject<HTMLElement>;
 }
 
-export const MenuContent = React.forwardRef<HTMLDivElement, MenuContentProps>(
-  function MenuContent(props, ref) {
-    const { portalled = true, portalRef, ...rest } = props
-    return (
-      <Portal disabled={!portalled} container={portalRef}>
-        <ChakraMenu.Positioner>
-          <ChakraMenu.Content ref={ref} {...rest} />
-        </ChakraMenu.Positioner>
-      </Portal>
-    )
-  },
-)
-
-export const MenuArrow = React.forwardRef<
-  HTMLDivElement,
-  ChakraMenu.ArrowProps
->(function MenuArrow(props, ref) {
+export const MenuContent = React.forwardRef<HTMLDivElement, MenuContentProps>(function MenuContent(
+  { children, ...rest },
+  ref
+) {
   return (
-    <ChakraMenu.Arrow ref={ref} {...props}>
-      <ChakraMenu.ArrowTip />
-    </ChakraMenu.Arrow>
-  )
-})
+    <div
+      ref={ref}
+      className={`absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50 ${rest.className ?? ''}`}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+});
 
 export const MenuCheckboxItem = React.forwardRef<
   HTMLDivElement,
-  ChakraMenu.CheckboxItemProps
->(function MenuCheckboxItem(props, ref) {
+  React.HTMLAttributes<HTMLDivElement>
+>(function MenuCheckboxItem({ children, ...rest }, ref) {
   return (
-    <ChakraMenu.CheckboxItem ps="8" ref={ref} {...props}>
-      <AbsoluteCenter axis="horizontal" insetStart="4" asChild>
-        <ChakraMenu.ItemIndicator>
-          <LuCheck />
-        </ChakraMenu.ItemIndicator>
-      </AbsoluteCenter>
-      {props.children}
-    </ChakraMenu.CheckboxItem>
-  )
-})
+    <div
+      ref={ref}
+      className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100 ${rest.className ?? ''}`}
+      {...rest}
+    >
+      <span className="flex items-center justify-center w-4 h-4 mr-2">
+        <LuCheck />
+      </span>
+      {children}
+    </div>
+  );
+});
 
-export const MenuRadioItem = React.forwardRef<
-  HTMLDivElement,
-  ChakraMenu.RadioItemProps
->(function MenuRadioItem(props, ref) {
-  const { children, ...rest } = props
-  return (
-    <ChakraMenu.RadioItem ps="8" ref={ref} {...rest}>
-      <AbsoluteCenter axis="horizontal" insetStart="4" asChild>
-        <ChakraMenu.ItemIndicator>
+export const MenuRadioItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  function MenuRadioItem({ children, ...rest }, ref) {
+    return (
+      <div
+        ref={ref}
+        className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100 ${rest.className ?? ''}`}
+        {...rest}
+      >
+        <span className="flex items-center justify-center w-4 h-4 mr-2">
           <LuCheck />
-        </ChakraMenu.ItemIndicator>
-      </AbsoluteCenter>
-      <ChakraMenu.ItemText>{children}</ChakraMenu.ItemText>
-    </ChakraMenu.RadioItem>
-  )
-})
+        </span>
+        <span>{children}</span>
+      </div>
+    );
+  }
+);
 
 export const MenuItemGroup = React.forwardRef<
   HTMLDivElement,
-  ChakraMenu.ItemGroupProps
->(function MenuItemGroup(props, ref) {
-  const { title, children, ...rest } = props
+  React.HTMLAttributes<HTMLDivElement> & { title?: string }
+>(function MenuItemGroup({ title, children, ...rest }, ref) {
   return (
-    <ChakraMenu.ItemGroup ref={ref} {...rest}>
+    <div ref={ref} {...rest}>
       {title && (
-        <ChakraMenu.ItemGroupLabel userSelect="none">
-          {title}
-        </ChakraMenu.ItemGroupLabel>
+        <div className="px-4 py-2 text-xs text-gray-500 select-none font-semibold">{title}</div>
       )}
       {children}
-    </ChakraMenu.ItemGroup>
-  )
-})
+    </div>
+  );
+});
 
-export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
-  startIcon?: React.ReactNode
+export interface MenuTriggerItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  startIcon?: React.ReactNode;
 }
 
-export const MenuTriggerItem = React.forwardRef<
-  HTMLDivElement,
-  MenuTriggerItemProps
->(function MenuTriggerItem(props, ref) {
-  const { startIcon, children, ...rest } = props
+export const MenuTriggerItem = React.forwardRef<HTMLDivElement, MenuTriggerItemProps>(
+  function MenuTriggerItem({ startIcon, children, ...rest }, ref) {
+    return (
+      <div
+        ref={ref}
+        className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100 ${rest.className ?? ''}`}
+        {...rest}
+      >
+        {startIcon}
+        {children}
+        <LuChevronRight />
+      </div>
+    );
+  }
+);
+
+export const MenuRoot = ({ children }: { children: React.ReactNode }) => (
+  <div className="relative">{children}</div>
+);
+export const MenuSeparator = () => <div className="my-1 border-t border-gray-200" />;
+export interface MenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  closeOnSelect?: boolean;
+  value?: string;
+}
+
+export const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(function MenuItem(
+  { children, closeOnSelect, value, ...rest },
+  ref
+) {
+  // You can use closeOnSelect and value for custom logic if needed
   return (
-    <ChakraMenu.TriggerItem ref={ref} {...rest}>
-      {startIcon}
+    <div
+      ref={ref}
+      data-close-on-select={closeOnSelect}
+      data-value={value}
+      className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100 ${rest.className ?? ''}`}
+      {...rest}
+    >
       {children}
-      <LuChevronRight />
-    </ChakraMenu.TriggerItem>
-  )
-})
-
-export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup
-export const MenuContextTrigger = ChakraMenu.ContextTrigger
-export const MenuRoot = ChakraMenu.Root
-export const MenuSeparator = ChakraMenu.Separator
-
-export const MenuItem = ChakraMenu.Item
-export const MenuItemText = ChakraMenu.ItemText
-export const MenuItemCommand = ChakraMenu.ItemCommand
-export const MenuTrigger = ChakraMenu.Trigger
+    </div>
+  );
+});
+export const MenuItemText = ({ children }: { children: React.ReactNode }) => (
+  <span>{children}</span>
+);
+export const MenuItemCommand = ({ children }: { children: React.ReactNode }) => (
+  <span className="ml-auto text-xs text-gray-400">{children}</span>
+);
+export const MenuTrigger = ({ children }: { children: React.ReactNode }) => <>{children}</>;

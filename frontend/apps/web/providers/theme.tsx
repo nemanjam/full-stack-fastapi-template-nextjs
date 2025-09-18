@@ -2,11 +2,11 @@
 
 import { ReactNode } from 'react';
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ThemeProvider } from 'next-themes';
 
-export function Providers({ children }: { children: ReactNode }) {
+export function Theme({ children }: { children: ReactNode }) {
   return (
-    <NextThemesProvider
+    <ThemeProvider
       attribute="class"
       defaultTheme="system"
       enableSystem
@@ -14,6 +14,6 @@ export function Providers({ children }: { children: ReactNode }) {
       enableColorScheme
     >
       {children}
-    </NextThemesProvider>
+    </ThemeProvider>
   );
 }

@@ -1,11 +1,9 @@
-import { Box, Flex, IconButton, Text } from "@chakra-ui/react"
-import { useQueryClient } from "@tanstack/react-query"
-import { useState } from "react"
-import { FaBars } from "react-icons/fa"
-import { FiLogOut } from "react-icons/fi"
+import { useState } from 'react';
 
-import type { UserPublic } from "@/client"
-import useAuth from "@/hooks/useAuth"
+import { useQueryClient } from '@tanstack/react-query';
+import { FaBars } from 'react-icons/fa';
+import { FiLogOut } from 'react-icons/fi';
+
 import {
   DrawerBackdrop,
   DrawerBody,
@@ -13,65 +11,56 @@ import {
   DrawerContent,
   DrawerRoot,
   DrawerTrigger,
-} from "../ui/drawer"
-import SidebarItems from "./SidebarItems"
+} from '@workspace/ui/components/tiangolo-ui/drawer';
+
+import SidebarItems from '@/components/Common/SidebarItems';
+import useAuth from '@/hooks/useAuth';
+
+import type { UserPublic } from '@/client';
 
 const Sidebar = () => {
-  const queryClient = useQueryClient()
-  const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
-  const { logout } = useAuth()
-  const [open, setOpen] = useState(false)
+  const queryClient = useQueryClient();
+  const currentUser = queryClient.getQueryData<UserPublic>(['currentUser']);
+  const { logout } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
-    logout()
-  }
+    logout();
+  };
 
   return (
     <>
       {/* Mobile */}
-      <DrawerRoot
-        placement="start"
-        open={open}
-        onOpenChange={(e) => setOpen(e.open)}
-      >
+      <DrawerRoot placement="start" open={open} onOpenChange={(e) => setOpen(e.open)}>
         <DrawerBackdrop />
         <DrawerTrigger asChild>
-          <IconButton
-            variant="ghost"
-            color="inherit"
-            display={{ base: "flex", md: "none" }}
+          <button
             aria-label="Open Menu"
-            position="absolute"
-            zIndex="100"
-            m={4}
+            className="absolute z-[100] m-4 flex md:hidden bg-transparent text-inherit"
+            type="button"
           >
             <FaBars />
-          </IconButton>
+          </button>
         </DrawerTrigger>
-        <DrawerContent maxW="280px">
+        <DrawerContent className="max-w-[280px]">
           <DrawerCloseTrigger />
           <DrawerBody>
-            <Flex flexDir="column" justify="space-between">
-              <Box>
+            <div className="flex flex-col justify-between">
+              <div>
                 <SidebarItems />
-                <Flex
-                  as="button"
+                <button
                   onClick={handleLogout}
-                  alignItems="center"
-                  gap={4}
-                  px={4}
-                  py={2}
+                  className="flex items-center gap-4 px-4 py-2 w-full text-left hover:bg-gray-100"
+                  type="button"
                 >
                   <FiLogOut />
-                  <Text>Log Out</Text>
-                </Flex>
-              </Box>
+                  <span>Log Out</span>
+                </button>
+              </div>
               {currentUser?.email && (
-                <Text fontSize="sm" p={2}>
-                  Logged in as: {currentUser.email}
-                </Text>
+                <span className="text-sm p-2 block">Logged in as: {currentUser.email}</span>
               )}
-            </Flex>
+            </div>
           </DrawerBody>
           <DrawerCloseTrigger />
         </DrawerContent>
@@ -79,21 +68,13 @@ const Sidebar = () => {
 
       {/* Desktop */}
 
-      <Box
-        display={{ base: "none", md: "flex" }}
-        position="sticky"
-        bg="bg.subtle"
-        top={0}
-        minW="280px"
-        h="100vh"
-        p={4}
-      >
-        <Box w="100%">
+      <div className="hidden md:flex sticky top-0 min-w-[280px] h-screen p-4 bg-gray-50">
+        <div className="w-full">
           <SidebarItems />
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

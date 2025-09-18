@@ -121,4 +121,5 @@ run frontend, backend in docker locally
 change client components and hooks to server, e.g. router, react-query - provider, client, ssr
 generate client types
 ts path aliases and sort imports config
+replace chakra toast with shadcn toast
 ```

@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import UserMenu from './UserMenu';
-import Logo from '/assets/images/fastapi-logo.svg';
+
+import Logo from '@/assets/images/fastapi-logo.svg';
 
 const Navbar: FC = () => {
   return (

@@ -1,10 +1,13 @@
+'use client';
+
 import { ReactNode } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 
+// import Sidebar from '@/components/Common/Sidebar';
+import { Providers } from '@/providers';
+
 import Navbar from '@/components/Common/Navbar';
-import Sidebar from '@/components/Common/Sidebar';
-import { Providers } from '@/components/providers';
 import { isLoggedIn } from '@/hooks/useAuth';
 
 // "exports": in packages/ui/package.json
@@ -25,9 +28,9 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const router = useRouter();
+  // const router = useRouter();
 
-  if (!isLoggedIn()) router.push('/login');
+  // if (!isLoggedIn()) router.push('/login');
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -35,7 +38,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           <div className="flex flex-1">
-            <Sidebar />
+            {/* <Sidebar /> */}
             <main className="flex flex-col flex-1">{children}</main>
           </div>
         </Providers>
