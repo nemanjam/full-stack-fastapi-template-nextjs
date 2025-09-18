@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   // const router = useRouter();
 
-  // if (!isLoggedIn()) router.push('/login');
+  // if (!isLoggedIn()) router.push('/auth/login');
 
   return (
     <html lang="en" suppressHydrationWarning>

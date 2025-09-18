@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { LoginService, UsersService } from '@/client';
-import { handleError } from '@/utils';
+import { handleError, isClient } from '@/utils';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import type {
@@ -14,9 +14,7 @@ import type {
   UserRegister,
 } from '@/client';
 
-const isLoggedIn = () => {
-  return localStorage.getItem('access_token') !== null;
-};
+const isLoggedIn = () => isClient() && localStorage.getItem('access_token') !== null;
 
 const useAuth = () => {
   const [error, setError] = useState<string | null>(null);
