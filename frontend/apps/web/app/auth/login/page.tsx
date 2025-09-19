@@ -18,22 +18,23 @@ import { cn, emailPattern, passwordRules } from '@workspace/ui/lib/utils';
 import useAuth, { isLoggedIn } from '@/hooks/useAuth';
 
 import type { Body_login_login_access_token as AccessToken } from '@/client';
-import type { SubmitHandler } from 'react-hook-form';
+import type { SubmitHandler, UseFormProps } from 'react-hook-form';
+
+const defaultValues: AccessToken = {
+  username: '',
+  password: '',
+};
+
+const formOptions: UseFormProps<AccessToken> = { mode: 'onBlur', criteriaMode: 'all' };
 
 const LoginPage: FC = () => {
   const { loginMutation, error, resetError } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<AccessToken>({
-    mode: 'onBlur',
-    criteriaMode: 'all',
-    defaultValues: {
-      username: '',
-      password: '',
-    },
+
+  const { register, handleSubmit, formState } = useForm<AccessToken>({
+    ...formOptions,
+    defaultValues,
   });
+  const { errors, isSubmitting } = formState;
 
   const onSubmit: SubmitHandler<AccessToken> = async (data) => {
     if (isSubmitting) return;
@@ -47,6 +48,8 @@ const LoginPage: FC = () => {
     }
   };
 
+  // Todo: rewrite with ShadCN form https://ui.shadcn.com/docs/components/form
+
   return (
     <>
       <div className="flex min-h-screen items-center justify-center bg-background">
@@ -56,6 +59,7 @@ const LoginPage: FC = () => {
               <div className="flex flex-col items-center mb-4">
                 <Image src={Logo} alt="FastAPI logo" height={64} className="mb-2" />
               </div>
+
               <div className="space-y-2">
                 <Label htmlFor="username">Email</Label>
                 <div className="relative">
@@ -66,7 +70,7 @@ const LoginPage: FC = () => {
                     id="username"
                     type="email"
                     placeholder="Email"
-                    className={cn('pl-10', errors.username && 'border-red-500')}
+                    className={cn('pl-10', { 'border-red-500': errors.username })}
                     {...register('username', {
                       required: 'Username is required',
                       pattern: emailPattern,
@@ -77,6 +81,7 @@ const LoginPage: FC = () => {
                   <p className="text-xs text-red-500 mt-1">{errors.username.message}</p>
                 )}
               </div>
+
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
@@ -87,7 +92,7 @@ const LoginPage: FC = () => {
                     id="password"
                     type="password"
                     placeholder="Password"
-                    className={cn('pl-10', errors.password && 'border-red-500')}
+                    className={cn('pl-10', { 'border-red-500': errors.password })}
                     {...register('password', passwordRules())}
                   />
                 </div>
@@ -95,14 +100,19 @@ const LoginPage: FC = () => {
                   <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>
                 )}
               </div>
+
               {error && <p className="text-xs text-red-500 mt-2">{error}</p>}
+
               <Link href="/recover-password" className="text-xs text-blue-600 hover:underline">
                 Forgot Password?
               </Link>
+
               <Button type="submit" disabled={isSubmitting} className="w-full">
                 {isSubmitting ? 'Logging in...' : 'Log In'}
               </Button>
+
               <Separator />
+
               <div className="text-center text-sm">
                 Don't have an account?
                 <Link href="/signup" className="text-blue-600 hover:underline">
