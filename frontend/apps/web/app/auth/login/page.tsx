@@ -49,6 +49,7 @@ const LoginPage: FC = () => {
   };
 
   // Todo: rewrite with ShadCN form https://ui.shadcn.com/docs/components/form
+  // Todo: use server actions
 
   return (
     <>

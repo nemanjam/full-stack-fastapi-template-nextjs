@@ -124,5 +124,6 @@ ts path aliases and sort imports config
 replace chakra toast with shadcn toast
 ------
 rewrite with ShadCN form https://ui.shadcn.com/docs/components/form
+use server actions for forms
 
 ```
