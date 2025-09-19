@@ -10,13 +10,13 @@ interface MenuContentProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const MenuContent = React.forwardRef<HTMLDivElement, MenuContentProps>(function MenuContent(
-  { children, ...rest },
+  { children, className, ...rest },
   ref
 ) {
   return (
     <div
       ref={ref}
-      className={`absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50 ${rest.className ?? ''}`}
+      className={`absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50 p-2 ${className ?? ''}`}
       {...rest}
     >
       {children}
@@ -103,7 +103,7 @@ export interface MenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(function MenuItem(
-  { children, closeOnSelect, value, ...rest },
+  { children, closeOnSelect, value, className, ...rest },
   ref
 ) {
   // You can use closeOnSelect and value for custom logic if needed
@@ -112,7 +112,7 @@ export const MenuItem = React.forwardRef<HTMLDivElement, MenuItemProps>(function
       ref={ref}
       data-close-on-select={closeOnSelect}
       data-value={value}
-      className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100 ${rest.className ?? ''}`}
+      className={`flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-100 ${className ?? ''}`}
       {...rest}
     >
       {children}

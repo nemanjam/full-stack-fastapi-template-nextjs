@@ -27,7 +27,7 @@ const UserMenu = () => {
           <MenuTrigger>
             <button
               data-testid="user-menu"
-              className="flex items-center gap-2 px-4 py-2 rounded bg-blue-600 text-white max-w-[150px] truncate hover:bg-blue-700"
+              className="flex items-center gap-2 px-4 py-2 rounded bg-teal-600 text-white max-w-[150px] truncate hover:bg-teal-700"
               type="button"
             >
               <FaUserAstronaut fontSize="18" />
@@ -37,21 +37,13 @@ const UserMenu = () => {
 
           <MenuContent>
             <Link href="settings">
-              <MenuItem
-                closeOnSelect
-                value="user-settings"
-                className="flex items-center gap-2 py-2 cursor-pointer"
-              >
+              <MenuItem closeOnSelect value="user-settings">
                 <FiUser fontSize="18px" />
                 <span className="flex-1">My Profile</span>
               </MenuItem>
             </Link>
 
-            <MenuItem
-              value="logout"
-              onClick={handleLogout}
-              className="flex items-center gap-2 py-2 cursor-pointer"
-            >
+            <MenuItem value="logout" onClick={handleLogout}>
               <FiLogOut />
               <span>Log Out</span>
             </MenuItem>
