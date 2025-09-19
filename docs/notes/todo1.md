@@ -125,5 +125,6 @@ replace chakra toast with shadcn toast
 ------
 rewrite with ShadCN form https://ui.shadcn.com/docs/components/form
 use server actions for forms
-
+test "generate-client": "openapi-ts",
+replicated .env in frontend/apps/web for next.js app
 ```
