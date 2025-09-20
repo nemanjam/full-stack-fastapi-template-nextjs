@@ -49,6 +49,7 @@ lerna-debug.log*
 dist-ssr
 *.local
 openapi.json
+openapi-ts-*.log
 
 # Editor directories and files
 .idea
