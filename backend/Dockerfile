@@ -40,5 +40,8 @@ COPY ./app /app/app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync
 
+
 # 8000 uvicorn default port
-CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
+# CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
+
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
