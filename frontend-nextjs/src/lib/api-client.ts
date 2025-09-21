@@ -3,9 +3,7 @@ import type { ClientOptions } from '@/client/types.gen'
 import * as sdk from '@/client/sdk.gen'
 
 // Create a configured client instance that points to the FastAPI backend
-const apiClient = createClient(createConfig<ClientOptions>({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-}))
+const apiClient = createClient(createConfig<ClientOptions>({ baseURL: process.env.NEXT_PUBLIC_API_URL }))
 
 // Export configured API functions
 export const loginLoginAccessToken = <ThrowOnError extends boolean = false>(
