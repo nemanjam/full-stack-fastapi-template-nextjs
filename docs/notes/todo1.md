@@ -127,4 +127,9 @@ rewrite with ShadCN form https://ui.shadcn.com/docs/components/form
 use server actions for forms
 test "generate-client": "openapi-ts",
 replicated .env in frontend/apps/web for next.js app
+-----
+monorepo, eslint 9, tailwind css, typescript, prettier, turbo
+multitenant, 2 or more apps, dashboard, website
+semversioning packages, docker, tag milestones, deploy tag
+
 ```
