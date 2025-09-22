@@ -1,11 +1,12 @@
 import { createClient, createConfig } from '@/client/client';
 import * as sdk from '@/client/sdk.gen';
+import { PROCESS_ENV } from '@/config/process-env';
 
 import type { ClientOptions } from '@/client/types.gen';
 
 // Create a configured client instance that points to the FastAPI backend
 const apiClient = createClient(
-  createConfig<ClientOptions>({ baseURL: process.env.NEXT_PUBLIC_API_URL })
+  createConfig<ClientOptions>({ baseURL: PROCESS_ENV.NEXT_PUBLIC_API_URL })
 );
 
 // Export configured API functions

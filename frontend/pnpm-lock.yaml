@@ -50,6 +50,9 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      object-treeify:
+        specifier: ^5.0.1
+        version: 5.0.1
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -62,6 +65,9 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@19.1.1)
+      zod:
+        specifier: ^4.1.11
+        version: 4.1.11
     devDependencies:
       '@hey-api/openapi-ts':
         specifier: ^0.83.1
@@ -2764,6 +2770,10 @@ packages:
   object-keys@1.1.1:
     resolution: {integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==}
     engines: {node: '>= 0.4'}
+
+  object-treeify@5.0.1:
+    resolution: {integrity: sha512-aDGtugyvfo11wpiectzpyikBzV2iBhyp9Z8xnRE6Z67VH+wbmkLzCh7bC6rfi7RzgEVprKYf0GeqksHrMobdJg==}
+    engines: {node: '>= 20'}
 
   object.assign@4.1.7:
     resolution: {integrity: sha512-nK28WOo+QIjBkDduTINE4JkF/UJJKyf2EJxvJKfblDpyg0Q+pkOHNTL0Qwy6NP6FhE/EnzV73BxxqcJaXY9anw==}
@@ -6180,6 +6190,8 @@ snapshots:
   object-inspect@1.13.4: {}
 
   object-keys@1.1.1: {}
+
+  object-treeify@5.0.1: {}
 
   object.assign@4.1.7:
     dependencies:
