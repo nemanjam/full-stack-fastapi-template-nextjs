@@ -42,7 +42,8 @@ services:
       retries: 5
       start_period: 30s
       timeout: 10s
-    user: '${MY_UID}:${MY_GID}'
+    # postgres user 999:999 must own the volume
+    # user: '${MY_UID}:${MY_GID}'
     ports:
       - '${POSTGRES_PORT}:5432'
     env_file:
