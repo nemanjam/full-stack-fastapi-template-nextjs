@@ -1,7 +1,10 @@
+# Debian image, not Alpine
 FROM python:3.12.10
 
-# RUN apk update  # don't update, breaks
-RUN apk add --no-cache tree
+RUN apt-get update && \
+    apt-get install -y tree && \
+    # must be in the same layer as apt-get update
+    rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED=1
 
