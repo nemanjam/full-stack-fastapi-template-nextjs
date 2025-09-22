@@ -3,7 +3,7 @@ name: Deploy Docker backend
 on:
   workflow_run:
     workflows:
-      - 'Build and push Docker backend'
+      - 'Build and push Docker backend - disabled'
     types:
       - completed
 
