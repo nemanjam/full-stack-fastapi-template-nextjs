@@ -1,5 +1,8 @@
 FROM python:3.12.10
 
+RUN apk update
+RUN apk add --no-cache tree
+
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /backend/
