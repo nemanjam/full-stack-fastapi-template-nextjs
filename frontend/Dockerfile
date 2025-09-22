@@ -1,4 +1,4 @@
-FROM node:24.7.0-alpine AS base
+FROM node:24.7.0-alpine3.22 AS base
 
 # from here
 # https://github.com/vercel/turborepo/blob/main/examples/with-docker/apps/web/Dockerfile
