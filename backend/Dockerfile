@@ -43,5 +43,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 # 8000 uvicorn default port
 # CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
+# ENTRYPOINT ["/app/scripts/entrypoint.sh"]
 
-ENTRYPOINT ["/app/scripts/entrypoint.sh"]
+CMD ["sh", "-c", "/app/scripts/prestart.sh && fastapi run --workers 4 app/main.py"]
