@@ -133,4 +133,5 @@ multitenant, 2 or more apps, dashboard, website
 semversioning packages, docker, tag milestones, deploy tag
 log env vars on frontend, must log to see what is runtime, what buildtime
 NEXT_PUBLIC_API_URL set at runtime, page must use ssr
+alpine python image
 ```

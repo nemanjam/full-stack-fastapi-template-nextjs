@@ -3,7 +3,7 @@ name: Deploy Docker frontend
 on:
   workflow_run:
     workflows:
-      - 'Build and push Docker frontend - disabled'
+      - 'Build and push Docker frontend'
     types:
       - completed
 
