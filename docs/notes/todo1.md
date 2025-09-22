@@ -109,29 +109,35 @@ cp and standalone scripts in apps/web call from frontend, turbo
 turbo and docker cache maybe, and article
 
 ------
-docker-compose.yml database migration, bind mount, env files, env vars Dockerfile NEXT_PUBLIC_, SITE_URL..., migrate healthchecks
+    docker-compose.yml database migration, bind mount, env files, env vars Dockerfile NEXT_PUBLIC_, SITE_URL...
+migrate healthchecks
 use .env (common and docker-compose.yml), .env.frontend, .env.backend and database containers
-extract and reuse workflows checkout, qemu
-backend container 500mb ram
+    extract and reuse workflows checkout, qemu
+backend container 500mb ram, alpine
 dependantbot yaml, semver
 ----------
-implement ui for existing login and set up workflow on that example
+    implement ui for existing login and set up workflow on that example
     run backend, database, frontend locally in dev, only db in docker
 run frontend, backend in docker locally
-change client components and hooks to server, e.g. router, react-query - provider, client, ssr
-generate client types
+convert client components and hooks to server, e.g. router, react-query - provider, client, ssr
+    generate client types
 ts path aliases and sort imports config
-replace chakra toast with shadcn toast
+    replace chakra toast with shadcn toast
 ------
-rewrite with ShadCN form https://ui.shadcn.com/docs/components/form
+rewrite with react-hook-form, remove state and onChange, use ShadCN form https://ui.shadcn.com/docs/components/form
 use server actions for forms
-test "generate-client": "openapi-ts",
+    test "generate-client": "openapi-ts"
 replicated .env in frontend/apps/web for next.js app
 -----
 monorepo, eslint 9, tailwind css, typescript, prettier, turbo
+clean up ssr csr components, break into small files, tailwind color vars
 multitenant, 2 or more apps, dashboard, website
 semversioning packages, docker, tag milestones, deploy tag
-log env vars on frontend, must log to see what is runtime, what buildtime
+    log env vars on frontend, must log to see what is runtime, what buildtime
 NEXT_PUBLIC_API_URL set at runtime, page must use ssr
-alpine python image
+    alpine python image
+tests
+update dependencies
+migrate axios to react query, provider, ssr
+
 ```
