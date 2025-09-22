@@ -23,7 +23,7 @@ services:
     container_name: githubcities-backend
     restart: unless-stopped
     volumes:
-      - ./app/alembic:/app/app/alembic # not tested
+      - ./app/alembic:/backend/app/alembic # ! must match Dockerfile WORKDIR
     ports:
       - 8000:8000
     env_file:
