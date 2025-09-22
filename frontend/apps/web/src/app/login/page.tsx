@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader } from '@workspace/ui/components/ui/card'
 import { Input } from '@workspace/ui/components/ui/input';
 import { Label } from '@workspace/ui/components/ui/label';
 
-import { loginLoginAccessToken } from '@/lib/api-client';
+import ApiClient from '@/lib/api-client';
 import { isAuthenticated } from '@/lib/auth';
 
 import type { BodyLoginLoginAccessToken } from '@/lib/api-client';
@@ -45,7 +45,7 @@ export default function LoginPage() {
         grant_type: 'password',
       };
 
-      const response = await loginLoginAccessToken({
+      const response = await ApiClient.loginLoginAccessToken({
         body: loginData,
       });
 

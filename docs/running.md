@@ -39,7 +39,7 @@ cd ./backend
 
 # Needs activated venv and Python dependencies
 
-# Await db, run migrations and seed (must have .env)
+# Await db, run migrations and seed (must have .env), reminder: MUST rerun after delete db in dev
 bash scripts/prestart.sh
 
 # Run just database migrations

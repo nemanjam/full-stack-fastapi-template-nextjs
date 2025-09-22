@@ -20,12 +20,7 @@ import { Label } from '@workspace/ui/components/ui/label';
 import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/ui/tabs';
 
-import {
-  usersDeleteUserMe,
-  usersReadUserMe,
-  usersUpdatePasswordMe,
-  usersUpdateUserMe,
-} from '@/lib/api-client';
+import ApiClient from '@/lib/api-client';
 
 import type { UpdatePassword, UserPublic, UserUpdate } from '@/client/types.gen';
 
@@ -91,7 +86,7 @@ export default function SettingsPage() {
       updateState({ loading: true, error: null });
       const token = getAuthToken();
 
-      const response = await usersReadUserMe({
+      const response = await ApiClient.usersReadUserMe({
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -131,7 +126,7 @@ export default function SettingsPage() {
         email: profileData.email,
       };
 
-      const response = await usersUpdateUserMe({
+      const response = await ApiClient.usersUpdateUserMe({
         body: userData,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -177,7 +172,7 @@ export default function SettingsPage() {
         new_password: passwordData.new_password,
       };
 
-      await usersUpdatePasswordMe({
+      await ApiClient.usersUpdatePasswordMe({
         body: passwordUpdateData,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -202,7 +197,7 @@ export default function SettingsPage() {
       updateState({ error: null, success: null });
       const token = getAuthToken();
 
-      await usersDeleteUserMe({
+      await ApiClient.usersDeleteUserMe({
         headers: { Authorization: `Bearer ${token}` },
       });
 

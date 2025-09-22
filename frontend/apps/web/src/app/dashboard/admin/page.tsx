@@ -56,13 +56,7 @@ import {
   TableRow,
 } from '@workspace/ui/components/ui/table';
 
-import {
-  usersCreateUser,
-  usersDeleteUser,
-  usersReadUserMe,
-  usersReadUsers,
-  usersUpdateUser,
-} from '@/lib/api-client';
+import ApiClient from '@/lib/api-client';
 
 import type { UserCreate, UserPublic, UserUpdate } from '@/client/types.gen';
 
@@ -123,7 +117,7 @@ export default function AdminPage() {
   const fetchCurrentUser = async () => {
     try {
       const token = getAuthToken();
-      const response = await usersReadUserMe({
+      const response = await ApiClient.usersReadUserMe({
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data) {
@@ -139,7 +133,7 @@ export default function AdminPage() {
       updateState({ loading: true, error: null });
       const token = getAuthToken();
 
-      const response = await usersReadUsers({
+      const response = await ApiClient.usersReadUsers({
         query: {
           skip: (page - 1) * PER_PAGE,
           limit: PER_PAGE,
@@ -192,7 +186,7 @@ export default function AdminPage() {
         is_superuser: formData.is_superuser,
       };
 
-      await usersCreateUser({
+      await ApiClient.usersCreateUser({
         body: userData,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -226,7 +220,7 @@ export default function AdminPage() {
         is_superuser: formData.is_superuser,
       };
 
-      await usersUpdateUser({
+      await ApiClient.usersUpdateUser({
         path: { user_id: editingUser.id.toString() },
         body: userData,
         headers: { Authorization: `Bearer ${token}` },
@@ -263,7 +257,7 @@ export default function AdminPage() {
       updateState({ error: null, success: null });
       const token = getAuthToken();
 
-      await usersDeleteUser({
+      await ApiClient.usersDeleteUser({
         path: { user_id: user.id.toString() },
         headers: { Authorization: `Bearer ${token}` },
       });

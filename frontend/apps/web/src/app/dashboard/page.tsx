@@ -18,12 +18,7 @@ import { Badge } from '@workspace/ui/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
 import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 
-import {
-  itemsReadItems,
-  usersReadUserMe,
-  usersReadUsers,
-  utilsHealthCheck,
-} from '@/lib/api-client';
+import ApiClient from '@/lib/api-client';
 
 import type { ItemPublic, UserPublic } from '@/lib/api-client';
 
@@ -61,16 +56,16 @@ export default function DashboardPage() {
         // Fetch data in parallel
         const [usersResponse, itemsResponse, currentUserResponse, healthResponse] =
           await Promise.allSettled([
-            usersReadUsers({
+            ApiClient.usersReadUsers({
               headers: { Authorization: `Bearer ${token}` },
             }),
-            itemsReadItems({
+            ApiClient.itemsReadItems({
               headers: { Authorization: `Bearer ${token}` },
             }),
-            usersReadUserMe({
+            ApiClient.usersReadUserMe({
               headers: { Authorization: `Bearer ${token}` },
             }),
-            utilsHealthCheck(),
+            ApiClient.utilsHealthCheck(),
           ]);
 
         const data: DashboardData = {

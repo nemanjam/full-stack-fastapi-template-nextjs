@@ -43,12 +43,7 @@ import {
 } from '@workspace/ui/components/ui/table';
 import { Textarea } from '@workspace/ui/components/ui/textarea';
 
-import {
-  itemsCreateItem,
-  itemsDeleteItem,
-  itemsReadItems,
-  itemsUpdateItem,
-} from '@/lib/api-client';
+import ApiClient from '@/lib/api-client';
 
 import type { ItemCreate, ItemPublic, ItemUpdate } from '@/client/types.gen';
 
@@ -101,7 +96,7 @@ export default function ItemsPage() {
       updateState({ loading: true, error: null });
       const token = getAuthToken();
 
-      const response = await itemsReadItems({
+      const response = await ApiClient.itemsReadItems({
         query: {
           skip: (page - 1) * PER_PAGE,
           limit: PER_PAGE,
@@ -146,7 +141,7 @@ export default function ItemsPage() {
         description: formData.description || undefined,
       };
 
-      await itemsCreateItem({
+      await ApiClient.itemsCreateItem({
         body: itemData,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -179,7 +174,7 @@ export default function ItemsPage() {
         description: formData.description || undefined,
       };
 
-      await itemsUpdateItem({
+      await ApiClient.itemsUpdateItem({
         path: { id: editingItem.id.toString() },
         body: itemData,
         headers: { Authorization: `Bearer ${token}` },
@@ -209,7 +204,7 @@ export default function ItemsPage() {
       updateState({ error: null, success: null });
       const token = getAuthToken();
 
-      await itemsDeleteItem({
+      await ApiClient.itemsDeleteItem({
         path: { id: item.id.toString() },
         headers: { Authorization: `Bearer ${token}` },
       });

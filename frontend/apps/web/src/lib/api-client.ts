@@ -4,108 +4,111 @@ import { PROCESS_ENV } from '@/config/process-env';
 
 import type { ClientOptions } from '@/client/types.gen';
 
-// Create a configured client instance that points to the FastAPI backend
-const apiClient = createClient(
-  createConfig<ClientOptions>({ baseURL: PROCESS_ENV.NEXT_PUBLIC_API_URL })
-);
+export default class ApiClient {
+  private static client = createClient(
+    createConfig<ClientOptions>({ baseURL: PROCESS_ENV.NEXT_PUBLIC_API_URL })
+  );
 
-// Export configured API functions
-export const loginLoginAccessToken = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.loginLoginAccessToken<ThrowOnError>>[0]
-) => {
-  return sdk.loginLoginAccessToken({ ...options, client: apiClient });
-};
+  // --- Auth ---
+  static loginLoginAccessToken<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.loginLoginAccessToken<ThrowOnError>>[0]
+  ) {
+    return sdk.loginLoginAccessToken({ ...options, client: this.client });
+  }
 
-export const usersReadUsers = <ThrowOnError extends boolean = false>(
-  options?: Parameters<typeof sdk.usersReadUsers<ThrowOnError>>[0]
-) => {
-  return sdk.usersReadUsers({ ...options, client: apiClient });
-};
+  // --- Users ---
+  static usersReadUsers<ThrowOnError extends boolean = false>(
+    options?: Parameters<typeof sdk.usersReadUsers<ThrowOnError>>[0]
+  ) {
+    return sdk.usersReadUsers({ ...options, client: this.client });
+  }
 
-export const usersReadUserMe = <ThrowOnError extends boolean = false>(
-  options?: Parameters<typeof sdk.usersReadUserMe<ThrowOnError>>[0]
-) => {
-  return sdk.usersReadUserMe({ ...options, client: apiClient });
-};
+  static usersReadUserMe<ThrowOnError extends boolean = false>(
+    options?: Parameters<typeof sdk.usersReadUserMe<ThrowOnError>>[0]
+  ) {
+    return sdk.usersReadUserMe({ ...options, client: this.client });
+  }
 
-export const itemsReadItems = <ThrowOnError extends boolean = false>(
-  options?: Parameters<typeof sdk.itemsReadItems<ThrowOnError>>[0]
-) => {
-  return sdk.itemsReadItems({ ...options, client: apiClient });
-};
+  static usersCreateUser<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.usersCreateUser<ThrowOnError>>[0]
+  ) {
+    return sdk.usersCreateUser({ ...options, client: this.client });
+  }
 
-export const itemsCreateItem = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.itemsCreateItem<ThrowOnError>>[0]
-) => {
-  return sdk.itemsCreateItem({ ...options, client: apiClient });
-};
+  static usersUpdateUser<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.usersUpdateUser<ThrowOnError>>[0]
+  ) {
+    return sdk.usersUpdateUser({ ...options, client: this.client });
+  }
 
-export const itemsUpdateItem = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.itemsUpdateItem<ThrowOnError>>[0]
-) => {
-  return sdk.itemsUpdateItem({ ...options, client: apiClient });
-};
+  static usersDeleteUser<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.usersDeleteUser<ThrowOnError>>[0]
+  ) {
+    return sdk.usersDeleteUser({ ...options, client: this.client });
+  }
 
-export const itemsDeleteItem = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.itemsDeleteItem<ThrowOnError>>[0]
-) => {
-  return sdk.itemsDeleteItem({ ...options, client: apiClient });
-};
+  static usersReadUserById<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.usersReadUserById<ThrowOnError>>[0]
+  ) {
+    return sdk.usersReadUserById({ ...options, client: this.client });
+  }
 
-export const itemsReadItem = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.itemsReadItem<ThrowOnError>>[0]
-) => {
-  return sdk.itemsReadItem({ ...options, client: apiClient });
-};
+  static usersUpdateUserMe<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.usersUpdateUserMe<ThrowOnError>>[0]
+  ) {
+    return sdk.usersUpdateUserMe({ ...options, client: this.client });
+  }
 
-// User management API functions
-export const usersCreateUser = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.usersCreateUser<ThrowOnError>>[0]
-) => {
-  return sdk.usersCreateUser({ ...options, client: apiClient });
-};
+  static usersUpdatePasswordMe<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.usersUpdatePasswordMe<ThrowOnError>>[0]
+  ) {
+    return sdk.usersUpdatePasswordMe({ ...options, client: this.client });
+  }
 
-export const usersUpdateUser = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.usersUpdateUser<ThrowOnError>>[0]
-) => {
-  return sdk.usersUpdateUser({ ...options, client: apiClient });
-};
+  static usersDeleteUserMe<ThrowOnError extends boolean = false>(
+    options?: Parameters<typeof sdk.usersDeleteUserMe<ThrowOnError>>[0]
+  ) {
+    return sdk.usersDeleteUserMe({ ...options, client: this.client });
+  }
 
-export const usersDeleteUser = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.usersDeleteUser<ThrowOnError>>[0]
-) => {
-  return sdk.usersDeleteUser({ ...options, client: apiClient });
-};
+  // --- Items ---
+  static itemsReadItems<ThrowOnError extends boolean = false>(
+    options?: Parameters<typeof sdk.itemsReadItems<ThrowOnError>>[0]
+  ) {
+    return sdk.itemsReadItems({ ...options, client: this.client });
+  }
 
-export const usersReadUserById = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.usersReadUserById<ThrowOnError>>[0]
-) => {
-  return sdk.usersReadUserById({ ...options, client: apiClient });
-};
+  static itemsCreateItem<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.itemsCreateItem<ThrowOnError>>[0]
+  ) {
+    return sdk.itemsCreateItem({ ...options, client: this.client });
+  }
 
-export const usersUpdateUserMe = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.usersUpdateUserMe<ThrowOnError>>[0]
-) => {
-  return sdk.usersUpdateUserMe({ ...options, client: apiClient });
-};
+  static itemsUpdateItem<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.itemsUpdateItem<ThrowOnError>>[0]
+  ) {
+    return sdk.itemsUpdateItem({ ...options, client: this.client });
+  }
 
-export const usersUpdatePasswordMe = <ThrowOnError extends boolean = false>(
-  options: Parameters<typeof sdk.usersUpdatePasswordMe<ThrowOnError>>[0]
-) => {
-  return sdk.usersUpdatePasswordMe({ ...options, client: apiClient });
-};
+  static itemsDeleteItem<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.itemsDeleteItem<ThrowOnError>>[0]
+  ) {
+    return sdk.itemsDeleteItem({ ...options, client: this.client });
+  }
 
-export const usersDeleteUserMe = <ThrowOnError extends boolean = false>(
-  options?: Parameters<typeof sdk.usersDeleteUserMe<ThrowOnError>>[0]
-) => {
-  return sdk.usersDeleteUserMe({ ...options, client: apiClient });
-};
+  static itemsReadItem<ThrowOnError extends boolean = false>(
+    options: Parameters<typeof sdk.itemsReadItem<ThrowOnError>>[0]
+  ) {
+    return sdk.itemsReadItem({ ...options, client: this.client });
+  }
 
-export const utilsHealthCheck = <ThrowOnError extends boolean = false>(
-  options?: Parameters<typeof sdk.utilsHealthCheck<ThrowOnError>>[0]
-) => {
-  return sdk.utilsHealthCheck({ ...options, client: apiClient });
-};
+  // --- Utils ---
+  static utilsHealthCheck<ThrowOnError extends boolean = false>(
+    options?: Parameters<typeof sdk.utilsHealthCheck<ThrowOnError>>[0]
+  ) {
+    return sdk.utilsHealthCheck({ ...options, client: this.client });
+  }
+}
 
 // Re-export types
 export * from '@/client/types.gen';
