@@ -22,8 +22,7 @@ services:
       dockerfile: Dockerfile
     container_name: githubcities-backend
     restart: unless-stopped
-    volumes:
-      - ./app/alembic:/backend/app/alembic # ! must match Dockerfile WORKDIR
+    # don't mount alembic as volume
     ports:
       - 8000:8000
     env_file:
