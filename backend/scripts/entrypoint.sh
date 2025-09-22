@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+pwd
+tree .
+
 # Run migrations and seed
-/app/scripts/prestart.sh
+./scripts/prestart.sh
 
 # Start FastAPI server
 # 8000 uvicorn default port
