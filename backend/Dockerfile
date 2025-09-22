@@ -1,33 +1,26 @@
-# Debian image, not Alpine
-FROM python:3.12.10
+FROM python:3.12.10-alpine3.22
 
-RUN apt-get update && \
-    apt-get install -y tree && \
-    # must be in the same layer as apt-get update
-    rm -rf /var/lib/apt/lists/*
+# Install dependencies (tree and bash)
+RUN apk update
+RUN apk add --no-cache tree bash
 
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /backend/
 
-# Install uv
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
+# Install uv from Astral
 COPY --from=ghcr.io/astral-sh/uv:0.5.11 /uv /uvx /bin/
 
-# Place executables in the environment at the front of the path
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
+# Put executables in front of PATH
 ENV PATH="/backend/.venv/bin:$PATH"
 
 # Compile bytecode
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
 ENV UV_COMPILE_BYTECODE=1
 
-# uv Cache
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#caching
+# uv cache mode
 ENV UV_LINK_MODE=copy
 
-# Install dependencies
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
+# Install project dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
@@ -36,17 +29,14 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 ENV PYTHONPATH=/backend
 
 COPY ./scripts /backend/scripts
-
 COPY ./pyproject.toml ./uv.lock ./alembic.ini /backend/
-
 COPY ./app /backend/app
 
 # Sync the project
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync
 
+# Set entrypoint
+ENTRYPOINT ["scripts/entrypoint.sh"]
 
 # 8000 uvicorn default port
-# CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
-ENTRYPOINT ["scripts/entrypoint.sh"]
