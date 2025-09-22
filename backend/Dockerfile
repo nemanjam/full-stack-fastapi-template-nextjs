@@ -2,7 +2,7 @@ FROM python:3.12.10
 
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /app/
+WORKDIR /backend/
 
 # Install uv
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
@@ -10,7 +10,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.5.11 /uv /uvx /bin/
 
 # Place executables in the environment at the front of the path
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
-ENV PATH="/app/.venv/bin:$PATH"
+ENV PATH="/backend/.venv/bin:$PATH"
 
 # Compile bytecode
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
@@ -27,13 +27,13 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project
 
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/backend
 
-COPY ./scripts /app/scripts
+COPY ./scripts /backend/scripts
 
-COPY ./pyproject.toml ./uv.lock ./alembic.ini /app/
+COPY ./pyproject.toml ./uv.lock ./alembic.ini /backend/
 
-COPY ./app /app/app
+COPY ./app /backend/app
 
 # Sync the project
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
@@ -43,6 +43,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 # 8000 uvicorn default port
 # CMD ["fastapi", "run", "--workers", "4", "app/main.py"]
-# ENTRYPOINT ["/app/scripts/entrypoint.sh"]
+# ENTRYPOINT ["/backend/scripts/entrypoint.sh"]
 
-CMD ["sh", "-c", "/app/scripts/prestart.sh && fastapi run --workers 4 app/main.py"]
+CMD ["sh", "-c", "/backend/scripts/prestart.sh && fastapi run --workers 4 app/main.py"]
