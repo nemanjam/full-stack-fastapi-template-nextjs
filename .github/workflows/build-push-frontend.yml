@@ -14,6 +14,7 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}-frontend
+  NEXT_PUBLIC_SITE_URL: 'https://githubcities.arm1.nemanjamitic.com'
   NEXT_PUBLIC_API_URL: 'https://api.githubcities.arm1.nemanjamitic.com'
   # for pi?
 
@@ -68,6 +69,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           progress: plain
           build-args: |
+            "ARG_NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }}"
             "ARG_NEXT_PUBLIC_API_URL=${{ env.NEXT_PUBLIC_API_URL }}"
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
