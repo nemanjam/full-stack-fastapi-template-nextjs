@@ -92,8 +92,8 @@ update dependencies
 multi-tenant config https://github.com/vercel/platforms
 css vars colors
     Dockerfile
-github actions
-migrate auth ui from tiangolo
+    github actions
+    migrate auth ui from tiangolo
 testing
 openapi client generation
 metadata in pages

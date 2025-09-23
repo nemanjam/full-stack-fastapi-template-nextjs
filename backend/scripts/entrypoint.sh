@@ -9,4 +9,4 @@ tree .
 
 # Start FastAPI server
 # 8000 uvicorn default port
-exec fastapi run --workers 4 app/main.py
+exec fastapi run --workers 1 app/main.py
