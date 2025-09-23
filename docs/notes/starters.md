@@ -163,4 +163,15 @@ https://www.reddit.com/r/nextjs/comments/1hg7f4p/what_are_the_best_opensource_co
 // this is the one actually
 https://github.com/maybe-finance/maybe
 
+
+// todo, turborepo, to review
+https://github.com/search?q=shadcn%20turborepo&type=repositories
+https://github.com/dan5py/turborepo-shadcn-ui
+https://github.com/midday-ai/v1
+https://github.com/codersaadi/turborepo-shadcn
+https://github.com/henriqpohl/turborepo-shadcn-ui-tailwindcss
+https://github.com/arevalolance/design-system-template
+https://github.com/gmickel/turborepo-shadcn-nextjs
+https://github.com/linkb15/turborepo-shadcn-ui-tailwind-4
+
 ```

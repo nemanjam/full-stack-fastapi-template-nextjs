@@ -139,5 +139,7 @@ NEXT_PUBLIC_API_URL set at runtime, page must use ssr
 tests
 update dependencies
 migrate axios to react query, provider, ssr
-
+review turborepo examples, packages - eslint, prettier, typescript, tailwind, maybe biome
+remove github login
+break components and clean up, react hook form, react query, ssr layouts
 ```
