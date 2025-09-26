@@ -170,10 +170,15 @@ https://github.com/search?q=shadcn%20turborepo&type=repositories
 https://github.com/midday-ai/v1 // useless
 tailwind 3, biome, next 14, supabase function_
 server actions, next-safe-action for ts
-@t3-oss/env-nextjs - validating env vars, server, client, runtime // good point
+@t3-oss/env-nextjs - validating env vars with zod, server, client, runtime // good point
 not big, nothing special
 -----
-https://github.com/codersaadi/turborepo-shadcn
+https://github.com/codersaadi/turborepo-shadcn // not bad, big project
+tailwind 4, biome
+
+
+
+-----
 https://github.com/henriqpohl/turborepo-shadcn-ui-tailwindcss
 https://github.com/arevalolance/design-system-template
 https://github.com/gmickel/turborepo-shadcn-nextjs
