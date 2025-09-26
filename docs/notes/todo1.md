@@ -139,7 +139,8 @@ NEXT_PUBLIC_API_URL set at runtime, page must use ssr
 tests
 update dependencies
 migrate axios to react query, provider, ssr
-review turborepo examples, packages - eslint, prettier, typescript, tailwind, maybe biome
+review turborepo examples, packages - eslint, prettier, typescript, tailwind, maybe biome, multitenant config
 remove github login
 break components and clean up, react hook form, react query, ssr layouts
+clean up and separate env vars, frontend, backend DOMAIN, FRONTEND_HOST, ENVIRONMENT, PROJECT_NAME, STACK_NAME, SMTP_, SENTRY_DSN, DOCKER_IMAGE_BACKEND, GITHUB_CLIENT_ID
 ```

@@ -166,7 +166,6 @@ https://github.com/maybe-finance/maybe
 
 // todo, turborepo, to review
 https://github.com/search?q=shadcn%20turborepo&type=repositories
-https://github.com/dan5py/turborepo-shadcn-ui
 https://github.com/midday-ai/v1
 https://github.com/codersaadi/turborepo-shadcn
 https://github.com/henriqpohl/turborepo-shadcn-ui-tailwindcss
