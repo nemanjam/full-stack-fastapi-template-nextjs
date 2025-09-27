@@ -176,6 +176,5 @@ not big, nothing special
 https://github.com/codersaadi/turborepo-shadcn // mess, relative paths, big project
 tailwind 4, biome
 -----
-https://github.com/linkb15/turborepo-shadcn-ui-tailwind-4
 
 ```
