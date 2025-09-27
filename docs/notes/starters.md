@@ -173,15 +173,9 @@ server actions, next-safe-action for ts
 @t3-oss/env-nextjs - validating env vars with zod, server, client, runtime // good point
 not big, nothing special
 -----
-https://github.com/codersaadi/turborepo-shadcn // not bad, big project
+https://github.com/codersaadi/turborepo-shadcn // mess, relative paths, big project
 tailwind 4, biome
-
-
-
 -----
-https://github.com/henriqpohl/turborepo-shadcn-ui-tailwindcss
-https://github.com/arevalolance/design-system-template
-https://github.com/gmickel/turborepo-shadcn-nextjs
 https://github.com/linkb15/turborepo-shadcn-ui-tailwind-4
 
 ```

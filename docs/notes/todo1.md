@@ -143,4 +143,5 @@ review turborepo examples, packages - eslint, prettier, typescript, tailwind, ma
 remove github login
 break components and clean up, react hook form, react query, ssr layouts
 clean up and separate env vars, frontend, backend DOMAIN, FRONTEND_HOST, ENVIRONMENT, PROJECT_NAME, STACK_NAME, SMTP_, SENTRY_DSN, DOCKER_IMAGE_BACKEND, GITHUB_CLIENT_ID
+constants folder, routes file
 ```
