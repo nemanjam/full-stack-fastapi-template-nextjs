@@ -16,8 +16,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.89.0",
     "@workspace/ui": "workspace:*",
+    "@tanstack/react-query": "^5.89.0",
     "axios": "^1.12.2",
     "framer-motion": "12.23.16",
     "lucide-react": "^0.544.0",

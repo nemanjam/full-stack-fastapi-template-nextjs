@@ -48,4 +48,8 @@ SITE_URL can be different (env var) in each environment, but must be prefixed wi
 -------
 dev and prod docker-compose.yml and folder structure must match
 
+--------------
+prettier in frontend root, not in package
+format imports aliases in different packages
+project root without formatting for now
 ```

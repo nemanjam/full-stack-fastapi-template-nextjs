@@ -20,26 +20,22 @@ module.exports = {
     '<THIRD_PARTY_MODULES>',
     '',
 
-    // workspace, Todo: fails sorting
-    '^@workspace/ui',
+    // packages
+    '^@workspace/ui', // Todo: fails sorting
     '',
 
-    // web
+    // app
     '^@/lib',
+    '^@/app',
     '^@/components',
     '^@/hooks',
-    '^@/app',
-    '',
+    '^@/client',
+    '^@/schemas',
+    '^@/utils',
+    '^@/constants',
+    '^@/config',
 
-    // possible future aliases
-    // '^@/modules',
-    // '^@/libs',
-    // '^@/utils',
-    // '^@/constants',
-    // '^@/data',
-    // '^@/config',
-
-    // all relative imports
+    // relative
     '^[./]',
     '',
 
@@ -50,7 +46,6 @@ module.exports = {
     '',
 
     // assets and styles
-    // Todo: ends with .css, .png, .jpg, etc.
     '^@/assets',
     '^@/styles',
   ],

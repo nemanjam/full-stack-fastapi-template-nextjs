@@ -1,19 +1,20 @@
-"use client"
+'use client';
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { isAuthenticated } from "@/lib/auth"
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+import { isAuthenticated } from '@/lib/auth';
 
 export default function HomePage() {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     if (isAuthenticated()) {
-      router.push("/dashboard")
+      router.push('/dashboard');
     } else {
-      router.push("/login")
+      router.push('/login');
     }
-  }, [router])
+  }, [router]);
 
   // Show loading state while redirecting
   return (
@@ -23,5 +24,5 @@ export default function HomePage() {
         <p className="mt-2 text-gray-600">Redirecting...</p>
       </div>
     </div>
-  )
+  );
 }
