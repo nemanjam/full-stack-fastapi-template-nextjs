@@ -3,8 +3,6 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      // "@workspace/ui/*": ["../../packages/ui/src/*"],
-
       "@/lib/*": ["lib/*"],
       "@/app/*": ["app/*"],
       "@/components/*": ["components/*"],
