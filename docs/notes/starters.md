@@ -176,5 +176,6 @@ not big, nothing special
 https://github.com/codersaadi/turborepo-shadcn // mess, relative paths, big project
 tailwind 4, biome
 -----
-
+https://github.com/vercel/turborepo/blob/main/examples/with-tailwind/packages/ui/package.json
+ui package has build step, tsc and tailwind
 ```

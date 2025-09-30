@@ -52,4 +52,18 @@ dev and prod docker-compose.yml and folder structure must match
 prettier in frontend root, not in package
 format imports aliases in different packages
 project root without formatting for now
+------
+exports is paths mapping for imports from @workspace/ui
+exported as source, without build to dist and transpile
+"exports": {
+// . is @workspace/ui
+"./globals.css": "./src/styles/globals.css",
+}
+@workspace/ui - package
+@workspace/ui/src/styles/globals.css to @workspace/ui/globals.css
+import '@workspace/ui/globals.css';
+import { useIsMobile } from '@workspace/ui/hooks/use-mobile'; // without .ts
+
+
+-----
 ```

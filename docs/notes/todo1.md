@@ -144,6 +144,8 @@ remove github login
 break components and clean up, react hook form, react query, ssr layouts
 clean up and separate env vars, frontend, backend DOMAIN, FRONTEND_HOST, ENVIRONMENT, PROJECT_NAME, STACK_NAME, SMTP_, SENTRY_DSN, DOCKER_IMAGE_BACKEND, GITHUB_CLIENT_ID
 constants folder, routes file
+----
 formatting in project root, separate prettier and ruff, ignore folders
-
+import from ui package, not relative path
+set up build for all packages, turbo, complex, ui is used as source currently, exports
 ```
