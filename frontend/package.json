@@ -5,7 +5,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "standalone": "node apps/web/.next/standalone/apps/web/server.js",
+    "standalone": "turbo run standalone --filter web",
     "lint": "turbo lint",
     "upg": "find . -name package.json -not -path '*/node_modules/*' -not -path '*/.next/*' -execdir pnpm up --latest \\;",
     "clean": "rm -f pnpm-lock.yaml && find . -type d -name node_modules -prune -exec rm -rf '{}' +",

@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import type React from 'react';
 
-import '@workspace/ui/globals.css';
+import '@workspace/ui/main.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

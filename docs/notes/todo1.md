@@ -150,5 +150,5 @@ import from ui package, not relative path
 set up build for all packages, turbo, complex, ui is used as source currently, exports
 review workspace packages building and turborepo in examples
 https://github.com/vercel/turborepo/blob/main/examples/
-
+its tailwind 4 already
 ```

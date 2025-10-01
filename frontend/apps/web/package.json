@@ -8,9 +8,8 @@
     "build": "next build",
     "start": "next start",
     "generate-client": "openapi-ts",
+    "standalone": "pnpm cp && node .next/standalone/apps/web/server.js",
     "cp": "cp -r public .next/standalone/apps/web/ && cp -r .next/static .next/standalone/apps/web/.next/",
-    "standalone": "node .next/standalone/apps/web/server.js",
-    "prod": "pnpm build && pnpm cp && pnpm standalone",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit"
@@ -31,7 +30,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
-    "@workspace/eslint-config": "workspace:^",
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "@hey-api/openapi-ts": "^0.83.1",
     "@types/node": "^24.4.0",

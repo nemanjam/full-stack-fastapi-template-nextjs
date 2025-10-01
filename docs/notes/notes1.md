@@ -63,7 +63,8 @@ exported as source, without build to dist and transpile
 @workspace/ui/src/styles/globals.css to @workspace/ui/globals.css
 import '@workspace/ui/globals.css';
 import { useIsMobile } from '@workspace/ui/hooks/use-mobile'; // without .ts
-
-
+-----
+// reminder
+must copy static and public folders for standalone node server.js
 -----
 ```
