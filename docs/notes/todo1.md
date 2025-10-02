@@ -151,4 +151,6 @@ set up build for all packages, turbo, complex, ui is used as source currently, e
 review workspace packages building and turborepo in examples
 https://github.com/vercel/turborepo/blob/main/examples/
 its tailwind 4 already
+fix git staging lag vs code, watch some complex folder
+commit message and version in footer
 ```
