@@ -129,7 +129,7 @@ use server actions for forms
     test "generate-client": "openapi-ts"
 replicated .env in frontend/apps/web for next.js app
 -----
-monorepo, eslint 9, tailwind css, typescript, prettier, turbo
+        monorepo, eslint 9, tailwind css, typescript, prettier, turbo
 clean up ssr csr components, break into small files, tailwind color vars
 multitenant, 2 or more apps, dashboard, website
 semversioning packages, docker, tag milestones, deploy tag
@@ -139,18 +139,20 @@ NEXT_PUBLIC_API_URL set at runtime, page must use ssr
 tests
 update dependencies
 migrate axios to react query, provider, ssr
-review turborepo examples, packages - eslint, prettier, typescript, tailwind, maybe biome, multitenant config
+        review turborepo examples, packages - eslint, prettier, typescript, tailwind, maybe biome
+multitenant config
 remove github login
 break components and clean up, react hook form, react query, ssr layouts
 clean up and separate env vars, frontend, backend DOMAIN, FRONTEND_HOST, ENVIRONMENT, PROJECT_NAME, STACK_NAME, SMTP_, SENTRY_DSN, DOCKER_IMAGE_BACKEND, GITHUB_CLIENT_ID
 constants folder, routes file
 ----
 formatting in project root, separate prettier and ruff, ignore folders
-import from ui package, not relative path
+        import from ui package, not relative path
 set up build for all packages, turbo, complex, ui is used as source currently, exports
 review workspace packages building and turborepo in examples
 https://github.com/vercel/turborepo/blob/main/examples/
 its tailwind 4 already
 fix git staging lag vs code, watch some complex folder
 commit message and version in footer
+
 ```
