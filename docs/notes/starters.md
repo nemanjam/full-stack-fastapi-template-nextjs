@@ -178,4 +178,8 @@ tailwind 4, biome
 -----
 https://github.com/vercel/turborepo/blob/main/examples/with-tailwind/packages/ui/package.json
 ui package has build step, tsc and tailwind
+-----
+// Todo:
+next.js dashboard, forms
+https://github.com/silicondeck/shadcn-dashboard-landing-template
 ```
