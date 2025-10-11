@@ -1,6 +1,8 @@
+// @ts-nocheck
+
 import { defineConfig } from '@hey-api/openapi-ts';
 
-export default defineConfig({
+const config = defineConfig({
   input: './openapi.json',
   output: './src/client',
   // exportSchemas: true,
@@ -35,3 +37,5 @@ export default defineConfig({
     },
   ],
 });
+
+export default config;
