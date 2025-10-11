@@ -182,4 +182,7 @@ ui package has build step, tsc and tailwind
 // Todo:
 next.js dashboard, forms
 https://github.com/silicondeck/shadcn-dashboard-landing-template
+
+// Todo: review
+https://github.com/launch-ui/launch-ui
 ```
