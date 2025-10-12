@@ -185,4 +185,11 @@ https://github.com/silicondeck/shadcn-dashboard-landing-template
 
 // Todo: review
 https://github.com/launch-ui/launch-ui
+
+// Todo: review, full stack
+claude code bloat, big project
+https://github.com/UllrAI/SaaS-Starter
+
+// forms tutorial
+https://ui.shadcn.com/docs/forms/react-hook-form
 ```
