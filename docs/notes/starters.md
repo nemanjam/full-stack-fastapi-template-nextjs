@@ -157,11 +157,14 @@ https://github.com/moinulmoin/chadnext
 https://github.com/deveshshrestha20/FastAPI_Project_Starter
 // github gists clone
 https://github.com/MaxLeiter/Drift
-// next.js starter, review this
+// next.js starter, review this, no shadcn, bun, turbo, cursor, junk
 https://github.com/midday-ai/v1
 https://www.reddit.com/r/nextjs/comments/1hg7f4p/what_are_the_best_opensource_codebases_showcasing/
-// this is the one actually
+// this is the one actually, ruby, no next.js
 https://github.com/maybe-finance/maybe
+// this one is next.js
+// nx, next.js 13
+https://github.com/maybe-finance/maybe-archive
 
 
 // todo, turborepo, to review
@@ -192,4 +195,7 @@ https://github.com/UllrAI/SaaS-Starter
 
 // forms tutorial
 https://ui.shadcn.com/docs/forms/react-hook-form
+
+// Todo, Next.js part
+https://github.com/allipiopereira/turborepo-bun-next-expo
 ```
