@@ -1,8 +1,8 @@
+// because of state
 'use client';
 
 import { useEffect, useState } from 'react';
 
-import { motion } from 'framer-motion';
 import {
   Activity,
   AlertCircle,
@@ -14,10 +14,9 @@ import {
 } from 'lucide-react';
 
 import CardSmall from '@workspace/ui/components/card-small';
+import List from '@workspace/ui/components/list';
 import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Badge } from '@workspace/ui/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
-import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 
 import ApiClient from '@/lib/api-client';
 
@@ -94,6 +93,8 @@ export default function DashboardPage() {
   }, []);
 
   const { data, isLoading, error } = state;
+
+  console.log('data', data);
 
   if (error) {
     return (
@@ -183,216 +184,125 @@ export default function DashboardPage() {
       {/* Recent Activity and System Status */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Users */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Users className="h-5 w-5" />
-                <span>Recent Users</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {isLoading ? (
-                <div className="space-y-3">
-                  {[...Array(3)].map((_, i) => (
-                    <div key={i} className="flex items-center space-x-3">
-                      <Skeleton className="h-8 w-8 rounded-full" />
-                      <div className="space-y-1 flex-1">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-3 w-24" />
-                      </div>
-                      <Skeleton className="h-3 w-16" />
-                    </div>
-                  ))}
-                </div>
-              ) : data?.users.length ? (
-                <div className="space-y-4">
-                  {data.users.slice(0, 5).map((user) => (
-                    <div key={user.id} className="flex items-center space-x-4">
-                      <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-medium">
-                          {(user.full_name || user.email).charAt(0).toUpperCase()}
-                        </span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                          {user.full_name || user.email}
-                        </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                          {user.email}
-                        </p>
-                      </div>
-                      <Badge variant={user.is_active ? 'default' : 'secondary'}>
-                        {user.is_active ? 'Active' : 'Inactive'}
-                      </Badge>
-                    </div>
-                  ))}
-                  {data.users.length === 0 && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
-                      No users found
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
-                  No users found
+        <List
+          title="Recent Users"
+          icon={Users}
+          isLoading={isLoading}
+          items={(data?.users ?? []).map((user) => ({
+            icon: (
+              <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-medium">
+                  {(user.full_name || user.email).charAt(0).toUpperCase()}
+                </span>
+              </div>
+            ),
+            content: (
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                  {user.full_name || user.email}
                 </p>
-              )}
-            </CardContent>
-          </Card>
-        </motion.div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
+              </div>
+            ),
+            status: (
+              <Badge variant={user.is_active ? 'default' : 'secondary'}>
+                {user.is_active ? 'Active' : 'Inactive'}
+              </Badge>
+            ),
+          }))}
+        />
 
         {/* Recent Items */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Package className="h-5 w-5" />
-                <span>Recent Items</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {isLoading ? (
-                <div className="space-y-3">
-                  {[...Array(3)].map((_, i) => (
-                    <div key={i} className="flex items-center space-x-3">
-                      <Skeleton className="h-8 w-8 rounded" />
-                      <div className="space-y-1 flex-1">
-                        <Skeleton className="h-4 w-32" />
-                        <Skeleton className="h-3 w-48" />
-                      </div>
-                      <Skeleton className="h-3 w-16" />
-                    </div>
-                  ))}
-                </div>
-              ) : data?.items.length ? (
-                <div className="space-y-4">
-                  {data.items.slice(0, 5).map((item) => (
-                    <div key={item.id} className="flex items-center space-x-4">
-                      <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                        <Package className="h-4 w-4 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                          {item.title}
-                        </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                          {item.description || 'No description'}
-                        </p>
-                      </div>
-                      <div className="text-xs text-gray-400">ID: {item.id}</div>
-                    </div>
-                  ))}
-                  {data.items.length === 0 && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
-                      No items found
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
-                  No items found
+        <List
+          title="Recent Items"
+          icon={Package}
+          isLoading={isLoading}
+          items={(data?.items ?? []).map((item) => ({
+            icon: (
+              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                <Package className="h-4 w-4 text-white" />
+              </div>
+            ),
+            content: (
+              <>
+                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                  {item.title}
                 </p>
-              )}
-            </CardContent>
-          </Card>
-        </motion.div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                  {item.description || 'No description'}
+                </p>
+              </>
+            ),
+            status: <div className="text-xs text-gray-400">ID: {item.id}</div>,
+          }))}
+        />
       </div>
 
       {/* System Status */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-      >
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Settings className="h-5 w-5" />
-              <span>System Status</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {isLoading ? (
-              <div className="space-y-3">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <Skeleton className="h-3 w-3 rounded-full" />
-                      <Skeleton className="h-4 w-24" />
-                    </div>
-                    <div className="text-right">
-                      <Skeleton className="h-4 w-16" />
-                      <Skeleton className="h-3 w-12 mt-1" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    {data?.systemHealth ? (
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    ) : (
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    )}
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      API Server
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <div
-                      className={`text-sm ${data?.systemHealth ? 'text-green-600' : 'text-red-600'}`}
-                    >
-                      {data?.systemHealth ? 'Online' : 'Offline'}
-                    </div>
-                    <div className="text-xs text-gray-400">
-                      {data?.systemHealth ? 'Responding' : 'Not responding'}
-                    </div>
-                  </div>
+      <List
+        title="System Status"
+        icon={Settings}
+        isLoading={isLoading}
+        // Todo: fix this hardcoded array
+        items={[
+          {
+            icon: (
+              <>
+                {data?.systemHealth ? (
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                ) : (
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                )}
+              </>
+            ),
+            content: (
+              <span className="text-sm font-medium text-gray-900 dark:text-white">API Server</span>
+            ),
+            status: (
+              <div className="text-right">
+                <div
+                  className={`text-sm ${data?.systemHealth ? 'text-green-600' : 'text-red-600'}`}
+                >
+                  {data?.systemHealth ? 'Online' : 'Offline'}
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      Authentication
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-green-600">Active</div>
-                    <div className="text-xs text-gray-400">Token valid</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      Data Loading
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-blue-600">Complete</div>
-                    <div className="text-xs text-gray-400">
-                      {data?.users.length || 0} users, {data?.items.length || 0} items
-                    </div>
-                  </div>
+                <div className="text-xs text-gray-400">
+                  {data?.systemHealth ? 'Responding' : 'Not responding'}
                 </div>
               </div>
-            )}
-          </CardContent>
-        </Card>
-      </motion.div>
+            ),
+          },
+          {
+            icon: <div className="w-3 h-3 bg-green-500 rounded-full"></div>,
+            content: (
+              <span className="text-sm font-medium text-gray-900 dark:text-white">
+                Authentication
+              </span>
+            ),
+            status: (
+              <div className="text-right">
+                <div className="text-sm text-green-600">Active</div>
+                <div className="text-xs text-gray-400">Token valid</div>
+              </div>
+            ),
+          },
+          {
+            icon: <div className="w-3 h-3 bg-blue-500 rounded-full"></div>,
+            content: (
+              <span className="text-sm font-medium text-gray-900 dark:text-white">
+                Data Loading
+              </span>
+            ),
+            status: (
+              <div className="text-right">
+                <div className="text-sm text-blue-600">Complete</div>
+                <div className="text-xs text-gray-400">
+                  {data?.users.length || 0} users, {data?.items.length || 0} items
+                </div>
+              </div>
+            ),
+          },
+        ]}
+      />
     </div>
   );
 }
