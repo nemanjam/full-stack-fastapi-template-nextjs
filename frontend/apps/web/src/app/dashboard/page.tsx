@@ -13,6 +13,7 @@ import {
   XCircle,
 } from 'lucide-react';
 
+import CardSmall from '@workspace/ui/components/card-small';
 import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Badge } from '@workspace/ui/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
@@ -31,21 +32,21 @@ interface DashboardData {
 
 interface DashboardState {
   data: DashboardData | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
 }
 
 export default function DashboardPage() {
   const [state, setState] = useState<DashboardState>({
     data: null,
-    loading: true,
+    isLoading: true,
     error: null,
   });
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        setState((prev) => ({ ...prev, loading: true, error: null }));
+        setState((prev) => ({ ...prev, isLoading: true, error: null }));
 
         // Get auth token from localStorage
         const token = localStorage.getItem('access_token');
@@ -78,12 +79,12 @@ export default function DashboardPage() {
           systemHealth: healthResponse.status === 'fulfilled',
         };
 
-        setState({ data, loading: false, error: null });
+        setState({ data, isLoading: false, error: null });
       } catch (error) {
         console.error('Dashboard data fetch error:', error);
         setState({
           data: null,
-          loading: false,
+          isLoading: false,
           error: error instanceof Error ? error.message : 'Failed to load dashboard data',
         });
       }
@@ -92,7 +93,7 @@ export default function DashboardPage() {
     fetchDashboardData();
   }, []);
 
-  const { data, loading, error } = state;
+  const { data, isLoading, error } = state;
 
   if (error) {
     return (
@@ -120,115 +121,63 @@ export default function DashboardPage() {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total Users */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0 }}
-        >
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                Total Users
-              </CardTitle>
-              <Users className="h-4 w-4 text-gray-400" />
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <Skeleton className="h-8 w-16" />
-              ) : (
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {data?.users.length || 0}
-                </div>
-              )}
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Registered users</p>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <CardSmall
+          isLoading={isLoading}
+          title="Total Users"
+          icon={Users}
+          content={
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              {data?.users.length ?? 0}
+            </div>
+          }
+          status="Registered users"
+        />
 
         {/* Total Items */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                Total Items
-              </CardTitle>
-              <Package className="h-4 w-4 text-gray-400" />
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <Skeleton className="h-8 w-16" />
-              ) : (
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {data?.items.length || 0}
-                </div>
-              )}
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Items in database</p>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <CardSmall
+          isLoading={isLoading}
+          title="Total Items"
+          icon={Package}
+          content={
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              {data?.items.length ?? 0}
+            </div>
+          }
+          status="Items in database"
+        />
 
         {/* Active User */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                Current User
-              </CardTitle>
-              <Activity className="h-4 w-4 text-gray-400" />
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <Skeleton className="h-8 w-24" />
-              ) : (
-                <div className="text-lg font-semibold text-gray-900 dark:text-white truncate">
-                  {data?.currentUser?.full_name || data?.currentUser?.email || 'Unknown'}
-                </div>
-              )}
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Logged in user</p>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <CardSmall
+          isLoading={isLoading}
+          title="Current User"
+          icon={Activity}
+          content={
+            <div className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+              {data?.currentUser?.full_name ?? data?.currentUser?.email ?? 'Unknown'}
+            </div>
+          }
+          status="Logged in user"
+        />
 
         {/* System Health */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                System Health
-              </CardTitle>
-              <Settings className="h-4 w-4 text-gray-400" />
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <Skeleton className="h-8 w-20" />
+        <CardSmall
+          isLoading={isLoading}
+          title="System Health"
+          icon={Settings}
+          content={
+            <div className="flex items-center space-x-2">
+              {data?.systemHealth ? (
+                <CheckCircle className="h-6 w-6 text-green-500" />
               ) : (
-                <div className="flex items-center space-x-2">
-                  {data?.systemHealth ? (
-                    <CheckCircle className="h-6 w-6 text-green-500" />
-                  ) : (
-                    <XCircle className="h-6 w-6 text-red-500" />
-                  )}
-                  <span className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {data?.systemHealth ? 'Healthy' : 'Issues'}
-                  </span>
-                </div>
+                <XCircle className="h-6 w-6 text-red-500" />
               )}
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">API status</p>
-            </CardContent>
-          </Card>
-        </motion.div>
+              <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                {data?.systemHealth ? 'Healthy' : 'Issues'}
+              </span>
+            </div>
+          }
+          status="API status"
+        />
       </div>
 
       {/* Recent Activity and System Status */}
@@ -247,7 +196,7 @@ export default function DashboardPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {loading ? (
+              {isLoading ? (
                 <div className="space-y-3">
                   {[...Array(3)].map((_, i) => (
                     <div key={i} className="flex items-center space-x-3">
@@ -311,7 +260,7 @@ export default function DashboardPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {loading ? (
+              {isLoading ? (
                 <div className="space-y-3">
                   {[...Array(3)].map((_, i) => (
                     <div key={i} className="flex items-center space-x-3">
@@ -372,7 +321,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {loading ? (
+            {isLoading ? (
               <div className="space-y-3">
                 {[...Array(3)].map((_, i) => (
                   <div key={i} className="flex items-center justify-between">
