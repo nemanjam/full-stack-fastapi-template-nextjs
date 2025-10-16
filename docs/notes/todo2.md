@@ -7,4 +7,6 @@ handle runtime env vars for multiple envs, arm1, opi, rpi, mpc and deploy
 runtime env vars - must use ssr components
 github actions deploy with tailscale
 react-query for fetching or ssr
+card list fix flex full height
+cva css for components
 ```

@@ -67,4 +67,10 @@ import { useIsMobile } from '@workspace/ui/hooks/use-mobile'; // without .ts
 // reminder
 must copy static and public folders for standalone node server.js
 -----
+// desktop markdown editor
+https://typora.io/
+-----
+can import .mdx in next.js page
+import Privacy from "./privacy.mdx";
+// https://github.com/shadcnblocks/mainline-nextjs-template/blob/master/src/app/privacy/page.tsx
 ```

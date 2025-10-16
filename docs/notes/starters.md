@@ -198,4 +198,17 @@ https://ui.shadcn.com/docs/forms/react-hook-form
 
 // Todo, Next.js part
 https://github.com/allipiopereira/turborepo-bun-next-expo
+
+// Todo:
+// very clean, good form examples with next-safe-action
+https://github.com/shadcnblocks/mainline-nextjs-template
+metadata, font, themes
+https://github.com/shadcnblocks/mainline-nextjs-template/blob/master/src/app/layout.tsx
+-----
+// astro
+https://github.com/shadcnblocks
+-----
+// nothing, few components, style tag, useless
+https://github.com/akash3444/homeguardian-shadcn-landing-page
+
 ```
