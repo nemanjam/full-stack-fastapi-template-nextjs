@@ -120,7 +120,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
         {/* Total Users */}
         <CardSmall
           isLoading={isLoading}
@@ -182,7 +182,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Recent Activity and System Status */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         {/* Recent Users */}
         <List
           title="Recent Users"
@@ -233,7 +233,7 @@ export default function DashboardPage() {
                 </p>
               </>
             ),
-            status: <div className="text-xs text-gray-400">ID: {item.id}</div>,
+            status: <div className="text-xs text-gray-400 flex-1 truncate">ID: {item.id}</div>,
           }))}
         />
       </div>
