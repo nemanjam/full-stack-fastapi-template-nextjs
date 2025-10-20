@@ -9,6 +9,7 @@ github actions deploy with tailscale
 react-query for fetching or ssr
 card list fix flex full height
 cva css for components
+frontend tests, vitest, playwright
 --------
 client components because of localStorage auth
 const token = localStorage.getItem('access_token');
@@ -24,4 +25,8 @@ https://github.com/fastapi/full-stack-fastapi-template/discussions/1564
 fix python formatting, 2 newlines between functions, 1 new lines ..., installed "charliermarsh.ruff" extension
 keep backend tests running correctly
 migrate cookie logic in frontend
+tiangolo already uses react-query, its replaced with axios in next.js project
+frontend has no tests, next.js deleted them, original has only playwright e2e, no unit tests
+------
+forward cookie from client on each request, instead of localStorage token
 ```

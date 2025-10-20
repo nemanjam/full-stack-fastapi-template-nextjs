@@ -73,4 +73,8 @@ https://typora.io/
 can import .mdx in next.js page
 import Privacy from "./privacy.mdx";
 // https://github.com/shadcnblocks/mainline-nextjs-template/blob/master/src/app/privacy/page.tsx
+------
+user session is checked with current_user: CurrentUser dependency in backend/app/api/deps.py
+cookie is checked with CookieDep = Annotated[str, Depends(cookie_scheme)] dependency
+jwt is created in create_access_token() and cookies is set in set_auth_cookie() in backend/app/core/security.py
 ```

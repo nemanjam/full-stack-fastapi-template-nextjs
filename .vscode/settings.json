@@ -5,6 +5,8 @@
     "**/.ruff_cache": true,
     "**/.mypy_cache": true,
     "**/__pycache__": true,
+    "**/node_modules": true,
+    "**/.next": true,
     "**/.turbo": true
   },
   "search.exclude": {
@@ -12,6 +14,8 @@
     "**/.ruff_cache": true,
     "**/.mypy_cache": true,
     "**/__pycache__": true,
+    "**/node_modules": true,
+    "**/.next": true,
     "**/.turbo": true
   },
   "files.watcherExclude": {
@@ -19,7 +23,9 @@
     "**/.ruff_cache/**": true,
     "**/.mypy_cache/**": true,
     "**/__pycache__/**": true,
-    "**/.turbo/**": true
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.turbo": true
   },
 
   "editor.formatOnSave": true,
