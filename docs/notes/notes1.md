@@ -77,4 +77,8 @@ import Privacy from "./privacy.mdx";
 user session is checked with current_user: CurrentUser dependency in backend/app/api/deps.py
 cookie is checked with CookieDep = Annotated[str, Depends(cookie_scheme)] dependency
 jwt is created in create_access_token() and cookies is set in set_auth_cookie() in backend/app/core/security.py
+----
+python debugger vs code
+rewrite from localStorage to cookie (server only js)
+frontend/apps/web/src/lib/auth.ts
 ```
