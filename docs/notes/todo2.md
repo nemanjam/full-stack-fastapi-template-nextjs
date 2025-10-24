@@ -29,4 +29,6 @@ tiangolo already uses react-query, its replaced with axios in next.js project
 frontend has no tests, next.js deleted them, original has only playwright e2e, no unit tests
 ------
 forward cookie from client on each request, instead of localStorage token
+setup react query and regenerate client
+setup error logger
 ```

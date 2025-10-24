@@ -29,18 +29,18 @@ def get_superuser_auth_cookies(client: TestClient) -> dict[str, str]:
 def extract_cookies(
     response: JSONResponse | httpx._models.Response | Response,
 ) -> dict[str, str]:
-    cookie_prefix = f"{settings.AUTH_COOKIE_NAME}="
+    cookie_prefix = f"{settings.AUTH_COOKIE}="
     if isinstance(response, httpx._models.Response):
         # Handle httpx Response
-        cookie_value = response.cookies.get(settings.AUTH_COOKIE_NAME)
+        cookie_value = response.cookies.get(settings.AUTH_COOKIE)
         if cookie_value:
-            return {settings.AUTH_COOKIE_NAME: cookie_value}
+            return {settings.AUTH_COOKIE: cookie_value}
     else:
         # Handle Starlette Response
         cookie_header = response.headers.get("Set-Cookie")
         if cookie_header and cookie_prefix in cookie_header:
             cookie_value = cookie_header.split(cookie_prefix)[1].split(";")[0]
             if cookie_value:
-                return {settings.AUTH_COOKIE_NAME: cookie_value}
+                return {settings.AUTH_COOKIE: cookie_value}
 
     raise AssertionError("Cookie value not found")

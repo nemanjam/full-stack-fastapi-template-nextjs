@@ -29,7 +29,7 @@ def set_auth_cookie(subject: str | Any, expires_delta: timedelta) -> JSONRespons
     access_token = create_access_token(subject, expires_delta)
     response = JSONResponse(content={"message": "Login successful"})
     response.set_cookie(
-        key=settings.AUTH_COOKIE_NAME,
+        key=settings.AUTH_COOKIE,
         value=access_token,
         httponly=True,
         max_age=3600,
@@ -44,7 +44,7 @@ def set_auth_cookie(subject: str | Any, expires_delta: timedelta) -> JSONRespons
 def delete_auth_cookie() -> JSONResponse:
     response = JSONResponse(content={"message": "Logout successful"})
     response.delete_cookie(
-        key=settings.AUTH_COOKIE_NAME,
+        key=settings.AUTH_COOKIE,
         path="/",
         domain=None,
         httponly=True,

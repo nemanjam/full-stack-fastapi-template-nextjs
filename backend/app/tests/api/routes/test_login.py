@@ -23,7 +23,7 @@ def test_get_auth_cookie(client: TestClient) -> None:
     assert r.status_code == 200
     assert r.json()["message"] == "Login successful"
 
-    cookie_prefix = f"{settings.AUTH_COOKIE_NAME}="
+    cookie_prefix = f"{settings.AUTH_COOKIE}="
     cookie_header = r.headers.get("Set-Cookie")
     assert cookie_prefix in cookie_header
 
