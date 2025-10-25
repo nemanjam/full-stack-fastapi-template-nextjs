@@ -31,4 +31,10 @@ frontend has no tests, next.js deleted them, original has only playwright e2e, n
 forward cookie from client on each request, instead of localStorage token
 setup react query and regenerate client
 setup error logger
+forward cookie in verifySession()
+simply call const me = ApiClient.usersReadUserMe() ?
+client next.js and react-query plugin
+https://heyapi.dev/openapi-ts/clients/next-js
+https://heyapi.dev/openapi-ts/plugins/tanstack-query
+fix format script and turbo
 ```
