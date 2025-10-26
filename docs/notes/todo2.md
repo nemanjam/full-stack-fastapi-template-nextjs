@@ -43,6 +43,14 @@ find react-query client with server components tutorial
 react-query only for client side events, e.g. infinite scroll
 server state management lib for client
 analyze existing react-query openapi client in tiangolo
-
+----
 use only next-client and for client calls use next-client in react-query fetch data function_
+use next-client in queryFn in react-query for client fetching and thats it // final
+const { data: user } = useQuery<UserPublic | null, Error>({
+    queryKey: ["currentUser"],
+    queryFn: UsersService.readUserMe,
+    enabled: isLoggedIn(),
+})
+
+do i need to pass token as header from cookie?
 ```
