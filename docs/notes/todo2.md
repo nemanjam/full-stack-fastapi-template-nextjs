@@ -33,8 +33,16 @@ setup react query and regenerate client
 setup error logger
 forward cookie in verifySession()
 simply call const me = ApiClient.usersReadUserMe() ?
-client next.js and react-query plugin
+client next.js and react-query plugin // better next.js that uses fetch options for ssr
 https://heyapi.dev/openapi-ts/clients/next-js
 https://heyapi.dev/openapi-ts/plugins/tanstack-query
 fix format script and turbo
+// which client
+https://chatgpt.com/s/t_68fde3f3aac481918ed11203317d902a
+find react-query client with server components tutorial
+react-query only for client side events, e.g. infinite scroll
+server state management lib for client
+analyze existing react-query openapi client in tiangolo
+
+use only next-client and for client calls use next-client in react-query fetch data function_
 ```
