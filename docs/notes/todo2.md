@@ -53,4 +53,9 @@ const { data: user } = useQuery<UserPublic | null, Error>({
 })
 
 do i need to pass token as header from cookie?
+----
+server actions
+https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/nextjs-frontend/components/actions/items-action.ts
+simple client.setConfig({ baseURL }) call, axios client, "@hey-api/openapi-ts": "^0.60.1",
+https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/nextjs-frontend/lib/clientConfig.ts
 ```
