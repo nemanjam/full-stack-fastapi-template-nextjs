@@ -55,7 +55,7 @@ alembic revision --autogenerate -m "e.g. Add column last_name to User model"
 ## Frontend
 
 ```bash
-# From project root
+# From project root, with activated backend/ venv, fix this
 cd ~/Desktop/githubcities
 
 # Generate client (needs activated venv)

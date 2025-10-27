@@ -16,6 +16,3 @@ cd frontend/apps/web
 
 # Generate client
 pnpm run generate-client
-
-# Format client
-pnpm exec prettier --write ./client

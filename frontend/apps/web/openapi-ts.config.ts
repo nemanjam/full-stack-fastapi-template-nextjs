@@ -25,7 +25,8 @@ const config: HeyApiConfig = defineConfig({
     },
     {
       name: '@hey-api/client-next',
-      runtimeConfigPath: './src/lib/hey-api.ts', // sets NEXT_PUBLIC_API_URL, auth...
+      // relative from src/client/ folder
+      runtimeConfigPath: '../lib/hey-api.ts', // sets NEXT_PUBLIC_API_URL, auth...
     },
   ],
 });

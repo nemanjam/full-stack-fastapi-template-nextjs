@@ -61,4 +61,6 @@ https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/nextjs-fronte
 validate env vars with createEnv t3
 // client-next config example
 https://github.dev/hey-api/openapi-ts/tree/main/examples/openapi-ts-next
+bash scripts/generate-client.sh is in root but must use activated backend venv
+
 ```
