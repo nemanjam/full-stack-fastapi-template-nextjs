@@ -62,5 +62,7 @@ validate env vars with createEnv t3
 // client-next config example
 https://github.dev/hey-api/openapi-ts/tree/main/examples/openapi-ts-next
 bash scripts/generate-client.sh is in root but must use activated backend venv
-
+in root because it uses both frontend and backend
+-----
+build docker scripts
 ```
