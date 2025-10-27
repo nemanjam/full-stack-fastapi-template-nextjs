@@ -1,38 +1,31 @@
-// @ts-nocheck
-
 import { defineConfig } from '@hey-api/openapi-ts';
 
-const config = defineConfig({
+// import { methodNameBuilder } from '@/lib/hey-api';
+
+type HeyApiConfig = ReturnType<typeof defineConfig>;
+
+const config: HeyApiConfig = defineConfig({
   input: './openapi.json',
-  output: './src/client',
-  exportSchemas: true, // backend model types
+  output: {
+    format: 'prettier',
+    lint: 'eslint',
+    path: './src/client',
+  },
+  exportSchemas: true, // backend models types
   plugins: [
-    '@hey-api/client-axios',
-    // '@hey-api/client-next',
+    // order matters
+    {
+      name: '@hey-api/typescript',
+      enums: 'javascript', // const objects instead of enums
+    },
+    '@hey-api/schemas', // default json, req.body, '{"username":"abc","password":"123"}'
     {
       name: '@hey-api/sdk',
-      asClass: false, // 'true' doesn't allow tree-shaking
-      operationId: true,
-      methodNameBuilder: (operation) => {
-        // fallback if name is undefined
-        let name = operation.name as string;
-        const service = operation.service as string;
-
-        // Remove service prefix from name, UserLogin -> Login
-        if (service && name.toLowerCase().startsWith(service.toLowerCase())) {
-          name = name.slice(service.length);
-        }
-
-        // Remove invalid characters and convert to camelCase
-        name = name
-          // handle hyphens, underscores, spaces
-          .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''))
-          // remove any remaining invalid characters
-          .replace(/[^a-zA-Z0-9]/g, '');
-
-        // lowercase first character
-        return name.charAt(0).toLowerCase() + name.slice(1);
-      },
+      asClass: true, // PetService.addPet(), 'true' doesn't allow tree-shaking
+    },
+    {
+      name: '@hey-api/client-next',
+      runtimeConfigPath: './src/lib/hey-api.ts', // sets NEXT_PUBLIC_API_URL, auth...
     },
   ],
 });

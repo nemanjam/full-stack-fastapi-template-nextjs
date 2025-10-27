@@ -58,4 +58,7 @@ server actions
 https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/nextjs-frontend/components/actions/items-action.ts
 simple client.setConfig({ baseURL }) call, axios client, "@hey-api/openapi-ts": "^0.60.1",
 https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/nextjs-frontend/lib/clientConfig.ts
+validate env vars with createEnv t3
+// client-next config example
+https://github.dev/hey-api/openapi-ts/tree/main/examples/openapi-ts-next
 ```
