@@ -53,6 +53,7 @@ const { data: user } = useQuery<UserPublic | null, Error>({
 })
 
 do i need to pass token as header from cookie?
+must configure react-query for client fetching with client-next queryFn
 ----
 server actions
 https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/nextjs-frontend/components/actions/items-action.ts

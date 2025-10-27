@@ -95,13 +95,13 @@ export type Options<
   meta?: Record<string, unknown>;
 };
 
-export class Login {
+export class LoginService {
   /**
    * Login Access Token
    *
    * OAuth2-compatible token login: get an access token for future requests (sent in an HTTP-only cookie)
    */
-  public static loginLoginAccessToken<ThrowOnError extends boolean = false>(
+  public static loginAccessToken<ThrowOnError extends boolean = false>(
     options: Options<LoginLoginAccessTokenData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -124,7 +124,7 @@ export class Login {
    *
    * Test access token
    */
-  public static loginTestToken<ThrowOnError extends boolean = false>(
+  public static testToken<ThrowOnError extends boolean = false>(
     options?: Options<LoginTestTokenData, ThrowOnError>
   ) {
     return (options?.client ?? client).post<LoginTestTokenResponses, unknown, ThrowOnError>({
@@ -145,7 +145,7 @@ export class Login {
    *
    * Password Recovery
    */
-  public static loginRecoverPassword<ThrowOnError extends boolean = false>(
+  public static recoverPassword<ThrowOnError extends boolean = false>(
     options: Options<LoginRecoverPasswordData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -163,7 +163,7 @@ export class Login {
    *
    * Reset password
    */
-  public static loginResetPassword<ThrowOnError extends boolean = false>(
+  public static resetPassword<ThrowOnError extends boolean = false>(
     options: Options<LoginResetPasswordData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -185,7 +185,7 @@ export class Login {
    *
    * HTML Content for Password Recovery
    */
-  public static loginRecoverPasswordHtmlContent<ThrowOnError extends boolean = false>(
+  public static recoverPasswordHtmlContent<ThrowOnError extends boolean = false>(
     options: Options<LoginRecoverPasswordHtmlContentData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -210,7 +210,7 @@ export class Login {
    *
    * Delete the HTTP-only cookie during logout
    */
-  public static loginLogout<ThrowOnError extends boolean = false>(
+  public static logout<ThrowOnError extends boolean = false>(
     options?: Options<LoginLogoutData, ThrowOnError>
   ) {
     return (options?.client ?? client).post<LoginLogoutResponses, unknown, ThrowOnError>({
@@ -229,7 +229,7 @@ export class Login {
   /**
    * Login Github
    */
-  public static loginLoginGithub<ThrowOnError extends boolean = false>(
+  public static loginGithub<ThrowOnError extends boolean = false>(
     options?: Options<LoginLoginGithubData, ThrowOnError>
   ) {
     return (options?.client ?? client).get<LoginLoginGithubResponses, unknown, ThrowOnError>({
@@ -241,7 +241,7 @@ export class Login {
   /**
    * Auth Github
    */
-  public static loginAuthGithub<ThrowOnError extends boolean = false>(
+  public static authGithub<ThrowOnError extends boolean = false>(
     options?: Options<LoginAuthGithubData, ThrowOnError>
   ) {
     return (options?.client ?? client).get<LoginAuthGithubResponses, unknown, ThrowOnError>({
@@ -251,13 +251,13 @@ export class Login {
   }
 }
 
-export class Users {
+export class UsersService {
   /**
    * Read Users
    *
    * Retrieve users.
    */
-  public static usersReadUsers<ThrowOnError extends boolean = false>(
+  public static readUsers<ThrowOnError extends boolean = false>(
     options?: Options<UsersReadUsersData, ThrowOnError>
   ) {
     return (options?.client ?? client).get<
@@ -282,7 +282,7 @@ export class Users {
    *
    * Create new user.
    */
-  public static usersCreateUser<ThrowOnError extends boolean = false>(
+  public static createUser<ThrowOnError extends boolean = false>(
     options: Options<UsersCreateUserData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -311,7 +311,7 @@ export class Users {
    *
    * Delete own user.
    */
-  public static usersDeleteUserMe<ThrowOnError extends boolean = false>(
+  public static deleteUserMe<ThrowOnError extends boolean = false>(
     options?: Options<UsersDeleteUserMeData, ThrowOnError>
   ) {
     return (options?.client ?? client).delete<UsersDeleteUserMeResponses, unknown, ThrowOnError>({
@@ -332,7 +332,7 @@ export class Users {
    *
    * Get current user.
    */
-  public static usersReadUserMe<ThrowOnError extends boolean = false>(
+  public static readUserMe<ThrowOnError extends boolean = false>(
     options?: Options<UsersReadUserMeData, ThrowOnError>
   ) {
     return (options?.client ?? client).get<UsersReadUserMeResponses, unknown, ThrowOnError>({
@@ -353,7 +353,7 @@ export class Users {
    *
    * Update own user.
    */
-  public static usersUpdateUserMe<ThrowOnError extends boolean = false>(
+  public static updateUserMe<ThrowOnError extends boolean = false>(
     options: Options<UsersUpdateUserMeData, ThrowOnError>
   ) {
     return (options.client ?? client).patch<
@@ -382,7 +382,7 @@ export class Users {
    *
    * Update own password.
    */
-  public static usersUpdatePasswordMe<ThrowOnError extends boolean = false>(
+  public static updatePasswordMe<ThrowOnError extends boolean = false>(
     options: Options<UsersUpdatePasswordMeData, ThrowOnError>
   ) {
     return (options.client ?? client).patch<
@@ -411,7 +411,7 @@ export class Users {
    *
    * Create new user without the need to be logged in.
    */
-  public static usersRegisterUser<ThrowOnError extends boolean = false>(
+  public static registerUser<ThrowOnError extends boolean = false>(
     options: Options<UsersRegisterUserData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -433,7 +433,7 @@ export class Users {
    *
    * Delete a user.
    */
-  public static usersDeleteUser<ThrowOnError extends boolean = false>(
+  public static deleteUser<ThrowOnError extends boolean = false>(
     options: Options<UsersDeleteUserData, ThrowOnError>
   ) {
     return (options.client ?? client).delete<
@@ -458,7 +458,7 @@ export class Users {
    *
    * Get a specific user by id.
    */
-  public static usersReadUserById<ThrowOnError extends boolean = false>(
+  public static readUserById<ThrowOnError extends boolean = false>(
     options: Options<UsersReadUserByIdData, ThrowOnError>
   ) {
     return (options.client ?? client).get<
@@ -483,7 +483,7 @@ export class Users {
    *
    * Update a user.
    */
-  public static usersUpdateUser<ThrowOnError extends boolean = false>(
+  public static updateUser<ThrowOnError extends boolean = false>(
     options: Options<UsersUpdateUserData, ThrowOnError>
   ) {
     return (options.client ?? client).patch<
@@ -508,13 +508,13 @@ export class Users {
   }
 }
 
-export class Utils {
+export class UtilsService {
   /**
    * Test Email
    *
    * Test emails.
    */
-  public static utilsTestEmail<ThrowOnError extends boolean = false>(
+  public static testEmail<ThrowOnError extends boolean = false>(
     options: Options<UtilsTestEmailData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -537,7 +537,7 @@ export class Utils {
   /**
    * Health Check
    */
-  public static utilsHealthCheck<ThrowOnError extends boolean = false>(
+  public static healthCheck<ThrowOnError extends boolean = false>(
     options?: Options<UtilsHealthCheckData, ThrowOnError>
   ) {
     return (options?.client ?? client).get<UtilsHealthCheckResponses, unknown, ThrowOnError>({
@@ -547,13 +547,13 @@ export class Utils {
   }
 }
 
-export class Items {
+export class ItemsService {
   /**
    * Read Items
    *
    * Retrieve items.
    */
-  public static itemsReadItems<ThrowOnError extends boolean = false>(
+  public static readItems<ThrowOnError extends boolean = false>(
     options?: Options<ItemsReadItemsData, ThrowOnError>
   ) {
     return (options?.client ?? client).get<
@@ -578,7 +578,7 @@ export class Items {
    *
    * Create new item.
    */
-  public static itemsCreateItem<ThrowOnError extends boolean = false>(
+  public static createItem<ThrowOnError extends boolean = false>(
     options: Options<ItemsCreateItemData, ThrowOnError>
   ) {
     return (options.client ?? client).post<
@@ -607,7 +607,7 @@ export class Items {
    *
    * Delete an item.
    */
-  public static itemsDeleteItem<ThrowOnError extends boolean = false>(
+  public static deleteItem<ThrowOnError extends boolean = false>(
     options: Options<ItemsDeleteItemData, ThrowOnError>
   ) {
     return (options.client ?? client).delete<
@@ -632,7 +632,7 @@ export class Items {
    *
    * Get item by ID.
    */
-  public static itemsReadItem<ThrowOnError extends boolean = false>(
+  public static readItem<ThrowOnError extends boolean = false>(
     options: Options<ItemsReadItemData, ThrowOnError>
   ) {
     return (options.client ?? client).get<
@@ -657,7 +657,7 @@ export class Items {
    *
    * Update an item.
    */
-  public static itemsUpdateItem<ThrowOnError extends boolean = false>(
+  public static updateItem<ThrowOnError extends boolean = false>(
     options: Options<ItemsUpdateItemData, ThrowOnError>
   ) {
     return (options.client ?? client).put<
@@ -682,13 +682,13 @@ export class Items {
   }
 }
 
-export class Private {
+export class PrivateService {
   /**
    * Create User
    *
    * Create a new user.
    */
-  public static privateCreateUser<ThrowOnError extends boolean = false>(
+  public static createUser<ThrowOnError extends boolean = false>(
     options: Options<PrivateCreateUserData, ThrowOnError>
   ) {
     return (options.client ?? client).post<

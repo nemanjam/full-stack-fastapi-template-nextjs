@@ -1,11 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { isAuthenticated } from '@/lib/auth';
 
-export default function HomePage() {
+// Must be client component to show loader before redirect
+// Todo: rethink this
+
+const HomePage: FC = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -25,4 +28,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

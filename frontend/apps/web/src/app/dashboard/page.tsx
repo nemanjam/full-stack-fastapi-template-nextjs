@@ -1,7 +1,7 @@
 // because of state
 'use client';
 
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import {
   Activity,
@@ -19,8 +19,12 @@ import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Badge } from '@workspace/ui/components/ui/badge';
 
 import ApiClient from '@/lib/api-client';
+import { UsersService } from '@/client/sdk.gen';
 
 import type { ItemPublic, UserPublic } from '@/lib/api-client';
+
+// import { getPetById } from '@/src/client/sdk.gen';
+// import type { Pet } from '@/src/client/types.gen';
 
 interface DashboardData {
   users: UserPublic[];
@@ -35,12 +39,14 @@ interface DashboardState {
   error: string | null;
 }
 
-export default function DashboardPage() {
+const DashboardPage: FC = () => {
   const [state, setState] = useState<DashboardState>({
     data: null,
     isLoading: true,
     error: null,
   });
+
+  // UsersService.usersReadUserMe({});
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -305,4 +311,6 @@ export default function DashboardPage() {
       />
     </div>
   );
-}
+};
+
+export default DashboardPage;
