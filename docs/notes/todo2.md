@@ -66,4 +66,5 @@ bash scripts/generate-client.sh is in root but must use activated backend venv
 in root because it uses both frontend and backend
 -----
 build docker scripts
+implement login so i can generate cookie and test client calls
 ```
