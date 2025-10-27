@@ -58,10 +58,11 @@ const config: HeyApiConfig = defineConfig({
     format: 'prettier',
     lint: 'eslint',
     path: './src/client',
+    importFileExtension: null,
   },
   exportSchemas: true, // backend models types
   plugins: [
-    // order matters
+    // Note: order matters
     {
       name: '@hey-api/typescript',
       enums: 'javascript', // const objects instead of enums
@@ -77,7 +78,7 @@ const config: HeyApiConfig = defineConfig({
     {
       name: '@hey-api/client-next',
       // relative from src/client/ folder
-      runtimeConfigPath: '../lib/hey-api.ts', // sets NEXT_PUBLIC_API_URL, auth...
+      runtimeConfigPath: '../lib/hey-api', // sets NEXT_PUBLIC_API_URL, auth...
     },
   ],
 });

@@ -19,7 +19,6 @@ import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Badge } from '@workspace/ui/components/ui/badge';
 
 import ApiClient from '@/lib/api-client';
-import { UsersService } from '@/client/sdk.gen';
 
 import type { ItemPublic, UserPublic } from '@/lib/api-client';
 
@@ -45,8 +44,6 @@ const DashboardPage: FC = () => {
     isLoading: true,
     error: null,
   });
-
-  // UsersService.usersReadUserMe({});
 
   useEffect(() => {
     const fetchDashboardData = async () => {

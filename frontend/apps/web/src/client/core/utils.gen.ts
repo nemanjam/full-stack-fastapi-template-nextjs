@@ -3,10 +3,10 @@ import {
   serializeArrayParam,
   serializeObjectParam,
   serializePrimitiveParam,
-} from './pathSerializer.gen.js';
+} from './pathSerializer.gen';
 
-import type { BodySerializer, QuerySerializer } from './bodySerializer.gen.js';
-import type { ArraySeparatorStyle } from './pathSerializer.gen.js';
+import type { BodySerializer, QuerySerializer } from './bodySerializer.gen';
+import type { ArraySeparatorStyle } from './pathSerializer.gen';
 
 export interface PathSerializer {
   path: Record<string, unknown>;

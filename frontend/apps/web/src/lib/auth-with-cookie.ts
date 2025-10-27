@@ -1,5 +1,7 @@
 /**
- * Authentication utility functions
+ * Authentication utility functions.
+ * Server only, because of http-only cookie.
+ * import { cookies } from 'next/headers';
  */
 
 import 'server-only';
@@ -7,7 +9,7 @@ import 'server-only';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import ApiClient from '@/lib/api-client';
+import { UsersService } from '@/client/sdk.gen';
 import { AUTH_COOKIE } from '@/constants/auth';
 import { ROUTES } from '@/constants/routes';
 
@@ -15,31 +17,24 @@ import type { Session } from '@/types/auth';
 
 const { LOGIN } = ROUTES;
 
-// Todo: implement for refreshing session
-// export const updateSession = async (): Promise<void> => {};
+export const isAuthenticated = async (): Promise<boolean> => {
+  const { data: me } = await UsersService.readUserMe();
+  console.log('me', me);
+
+  const isAuth = Boolean(me?.id && me?.email);
+
+  return isAuth;
+};
 
 export const verifySession = async (): Promise<Session | null> => {
   const requestCookies = await cookies();
   const authCookie = requestCookies.get(AUTH_COOKIE)?.value;
 
-  try {
-    // Todo: regenerate client to use cookie
-    // Must not decrypt JWT, but reuse python endpoint
-    const response = await ApiClient.usersReadUserMe({
-      authCookie, // forward cookie from request
-    });
-
-    // Don't redirect here
-    if (!response.data) return null;
-
-    const me = response.data;
-
-    return { isAuth: true, id: me.id, email: me.email };
-  } catch (error) {
-    // Todo: use proper logger
-    console.error('Fetch me error:', error);
-    return null;
-  }
+  // Todo: regenerate client to use cookie
+  // Must not decrypt JWT, but reuse python endpoint
+  // const response = await ApiClient.usersReadUserMe({
+  //   authCookie, // forward cookie from request
+  // });
 };
 
 export const deleteSession = async (): Promise<void> => {
@@ -47,3 +42,6 @@ export const deleteSession = async (): Promise<void> => {
   requestCookies.delete(AUTH_COOKIE);
   redirect(LOGIN);
 };
+
+// Todo: implement for refreshing session
+// export const updateSession = async (): Promise<void> => {};

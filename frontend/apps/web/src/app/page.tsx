@@ -1,23 +1,24 @@
-'use client';
+import { FC } from 'react';
 
-import { FC, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
-import { isAuthenticated } from '@/lib/auth';
+// import { isAuthenticated } from '@/lib/auth-with-cookie';
+import { UsersService } from '@/client/sdk.gen';
 
 // Must be client component to show loader before redirect
 // Todo: rethink this
 
-const HomePage: FC = () => {
-  const router = useRouter();
+const isAuthenticated = async (): Promise<boolean> => {
+  const { data: me } = await UsersService.readUserMe();
+  console.log('me', me);
 
-  useEffect(() => {
-    if (isAuthenticated()) {
-      router.push('/dashboard');
-    } else {
-      router.push('/login');
-    }
-  }, [router]);
+  const isAuth = Boolean(me?.id && me?.email);
+
+  return isAuth;
+};
+
+const HomePage: FC = async () => {
+  const isAuth = await isAuthenticated();
+
+  if (!isAuth) return <div>Not authenticated</div>;
 
   // Show loading state while redirecting
   return (
