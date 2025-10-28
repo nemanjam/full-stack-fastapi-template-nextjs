@@ -27,6 +27,7 @@ module.exports = {
     // app
     '^@/lib',
     '^@/app',
+    '^@/actions',
     '^@/components',
     '^@/hooks',
     '^@/client',

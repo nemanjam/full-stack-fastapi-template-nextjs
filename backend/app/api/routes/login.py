@@ -30,6 +30,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter(tags=["login"])
 
 
+# Todo: maybe rename to login_access_cookie
 @router.post("/login/access-token")
 def login_access_token(
     session: SessionDep, form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
