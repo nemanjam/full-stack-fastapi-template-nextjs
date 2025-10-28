@@ -70,4 +70,7 @@ implement login so i can generate cookie and test client calls
 form server actions but it hits fastApi?
 rename LoginService.loginAccessToken on backend to LoginService.loginAccessCookie
 no react-query for forms, but server actions
+server action needs to forward cookie from response
+maybe better login direct call without server action
+
 ```

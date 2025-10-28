@@ -2,10 +2,11 @@
 
 import { FC, useActionState } from 'react';
 
-import { loginAction } from '@/actions/login';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
+import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Button } from '@workspace/ui/components/ui/button';
 import {
   Form,
@@ -18,7 +19,9 @@ import {
 } from '@workspace/ui/components/ui/form';
 import { Input } from '@workspace/ui/components/ui/input';
 
+import { loginAction } from '@/actions/login';
 import { loginFormSchema } from '@/schemas/forms';
+import { getErrorMessage } from '@/utils/error';
 
 import type { LoginFormValues } from '@/types/forms';
 
@@ -70,6 +73,21 @@ const FormLogin: FC = () => {
             </FormItem>
           )}
         />
+
+        {/* Display general server errors */}
+        {state && 'error' in state && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>{getErrorMessage(state.error)}</AlertDescription>
+          </Alert>
+        )}
+
+        {/* Display success state */}
+        {state && 'data' in state && (
+          <div className="text-sm font-medium text-green-600">Login successful!</div>
+        )}
+
+        <pre>{JSON.stringify(state, null, 2)}</pre>
 
         <Button type="submit" disabled={isPending}>
           {isPending ? 'Logging in...' : 'Submit'}

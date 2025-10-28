@@ -1,13 +1,12 @@
-// export const handleError = (err: ApiError) => {
-//   const { showErrorToast } = useCustomToast();
-//   const errDetail = (err.body as any)?.detail;
-//   let errorMessage = errDetail || 'Something went wrong.';
-//   if (Array.isArray(errDetail) && errDetail.length > 0) {
-//     errorMessage = errDetail[0].msg;
-//   }
-//   showErrorToast(errorMessage);
-// };
+export const getErrorMessage = (error: any): string => {
+  const errorDetail = error.body?.detail;
+  let errorMessage = errorDetail || 'Something went wrong.';
 
-// Look at tiangolo-starter frontend/src/client/core/ApiError.ts
+  if (Array.isArray(errorDetail) && errorDetail.length > 0) {
+    errorMessage = errorDetail[0].msg;
+  }
+
+  return errorMessage;
+};
 
 // Todo: server and client error handlers (loggers)
