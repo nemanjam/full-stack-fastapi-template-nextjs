@@ -1,10 +1,9 @@
 'use client';
 
-import { FC, useTransition } from 'react';
+import { FC, useActionState } from 'react';
 
 import { loginAction } from '@/actions/login';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFormState } from 'react-dom';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@workspace/ui/components/ui/button';
@@ -20,7 +19,6 @@ import {
 import { Input } from '@workspace/ui/components/ui/input';
 
 import { loginFormSchema } from '@/schemas/forms';
-import { objectToFormData } from '@/utils/form';
 
 import type { LoginFormValues } from '@/types/forms';
 
@@ -34,25 +32,11 @@ const resolver = zodResolver(loginFormSchema);
 const FormLogin: FC = () => {
   const form = useForm<LoginFormValues>({ resolver, defaultValues });
 
-  const [actionResponse, formAction] = useFormState(loginAction, initialActionResponse);
-  const [isPending, startTransition] = useTransition();
-
-  // ! fix this: in React 19 changed to import { useActionState } from 'react';
-  // const [state, submit, isPending] = useFormState<typeof loginAction, FormData>(
-  //   loginAction,
-  //   {} as ReturnType<typeof loginAction> // initial state matches output type
-  // );
-
-  const onSubmit = (data: LoginFormValues) => {
-    console.log('data', data);
-
-    const formData = objectToFormData(data);
-    startTransition(() => formAction(formData));
-  };
+  const [state, formAction, isPending] = useActionState(loginAction, null);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form action={formAction} className="space-y-8">
         <FormField
           control={form.control}
           name="username"
@@ -60,14 +44,36 @@ const FormLogin: FC = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="admin@example.com" {...field} />
               </FormControl>
               <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input
+                  type="password"
+                  placeholder="Enter your password"
+                  {...field}
+                  disabled={isPending}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" disabled={isPending}>
+          {isPending ? 'Logging in...' : 'Submit'}
+        </Button>
       </form>
     </Form>
   );
