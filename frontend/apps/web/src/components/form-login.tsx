@@ -40,7 +40,6 @@ const FormLogin: FC = () => {
   const form = useForm<LoginFormValues>({ resolver, defaultValues });
 
   // Note: only one union branch should be possible
-  // 3 states, initial, success, error
   const initialState: ApiResult = { data: undefined };
 
   const [state, formAction, isPending] = useActionState(loginAction, initialState);
@@ -68,7 +67,7 @@ const FormLogin: FC = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="admin@example.com" {...field} />
+                <Input placeholder="admin@example.com" {...field} disabled={isPending} />
               </FormControl>
               <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />

@@ -81,4 +81,5 @@ const isSuccess = isSuccessApiResult(state);
 3 states, initial, success, error
 both isSuccess === false and isError === false  => initial state
 set correct host for forwarded cookie, for cors
+ts ignore any
 ```
