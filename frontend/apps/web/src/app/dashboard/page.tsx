@@ -1,7 +1,4 @@
-// because of state
-'use client';
-
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import {
   Activity,
@@ -19,24 +16,34 @@ import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Badge } from '@workspace/ui/components/ui/badge';
 
 import ApiClient from '@/lib/api-client';
+import { ItemsService, UsersService, UtilsService } from '@/client/sdk.gen';
 
-import type { ItemPublic, UserPublic } from '@/lib/api-client';
-
-// import { getPetById } from '@/src/client/sdk.gen';
-// import type { Pet } from '@/src/client/types.gen';
-
-interface DashboardData {
-  users: UserPublic[];
-  items: ItemPublic[];
-  currentUser: UserPublic | null;
-  systemHealth: boolean;
+function getSettledData<T>(result: PromiseSettledResult<{ data?: T }>): T | undefined {
+  return result.status === 'fulfilled' ? result.value.data : undefined;
 }
 
-interface DashboardState {
-  data: DashboardData | null;
-  isLoading: boolean;
-  error: string | null;
-}
+const fethDashboardData = async () => {
+  const meUser = await UsersService.readUserMe().catch(() => null);
+
+  if (!meUser) throw new Error('Unauthorized');
+
+  //In parallel
+  const [usersResult, itemsResult, healthResult] = await Promise.allSettled([
+    UsersService.readUsers(),
+    ItemsService.readItems(),
+    UtilsService.healthCheck(),
+  ]);
+
+  const users =
+    usersResult.status === 'fulfilled' && usersResult.value ? (usersResult.value.data ?? []) : [];
+
+  const items =
+    itemsResult.status === 'fulfilled' && itemsResult.value ? (itemsResult.value.data ?? []) : [];
+
+  const systemHealth = healthResult.status === 'fulfilled' && !!healthResult.value;
+
+  return { users, items, currentUser: meUser, systemHealth };
+};
 
 const DashboardPage: FC = () => {
   const [state, setState] = useState<DashboardState>({
@@ -96,8 +103,6 @@ const DashboardPage: FC = () => {
   }, []);
 
   const { data, isLoading, error } = state;
-
-  console.log('data', data);
 
   if (error) {
     return (
