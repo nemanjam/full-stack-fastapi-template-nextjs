@@ -1,27 +1,24 @@
 'use server';
 
 import { LoginService } from '@/client/sdk.gen';
+import { forwardCookiesFromResponse } from '@/utils/actions';
 
-type Body = Parameters<typeof LoginService.loginAccessToken>[0]['body'];
-type Response = Omit<Awaited<ReturnType<typeof LoginService.loginAccessToken>>, 'response'>;
+import { ApiResult } from '@/types/api';
+
+export type LoginBody = Parameters<typeof LoginService.loginAccessToken>[0]['body'];
 
 /**
- * Reuses FastApi types from client.
- * Just forwards, doesn't validate.
+ * Reuses FastApi types from client. Just forwards, doesn't validate.
  */
 export const loginAction = async (
-  prevState: Response | null,
+  _prevState: ApiResult,
   formData: FormData
-): Promise<Response> => {
-  const body = Object.fromEntries(formData) as Body;
-  const response = await LoginService.loginAccessToken({ body });
+): Promise<ApiResult> => {
+  const body = Object.fromEntries(formData) as LoginBody;
+  const apiResponse = await LoginService.loginAccessToken({ body });
 
-  const { response: _, ...result } = response;
-
-  // Todo: must forward cookie from response
-  // Maybe better login direct call without server action
+  const { response, ...result } = apiResponse;
+  await forwardCookiesFromResponse(response);
 
   return result;
 };
-
-// Todo: define correct return type

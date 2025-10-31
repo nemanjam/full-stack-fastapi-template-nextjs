@@ -72,5 +72,13 @@ rename LoginService.loginAccessToken on backend to LoginService.loginAccessCooki
 no react-query for forms, but server actions
 server action needs to forward cookie from response
 maybe better login direct call without server action
-
+---------
+always use default ThrowOnError = false variant, LoginService.loginAccessToken<false>
+so no exception and error prop is returned, for ApiResponse
+ApiResponse union type 1 branch possible, must work for isError and isSuccess utils
+const isError = isErrorApiResult(state);
+const isSuccess = isSuccessApiResult(state);
+3 states, initial, success, error
+both isSuccess === false and isError === false  => initial state
+set correct host for forwarded cookie, for cors
 ```
