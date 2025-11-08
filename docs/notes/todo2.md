@@ -82,4 +82,11 @@ const isSuccess = isSuccessApiResult(state);
 both isSuccess === false and isError === false  => initial state
 set correct host for forwarded cookie, for cors
 ts ignore any
+read about parallel fetch and loading and error handling in server component
+-----
+loading.tsx, error.tsx, not-found.tsx
+Promise.all or Promise.allSettled
+skeletons for loading, 404 page design
+isLoading optional prop on Card components, andle loading and errors with Suspense and ErrorBoundary wrappers
+nested components folder dashboard/cards
 ```

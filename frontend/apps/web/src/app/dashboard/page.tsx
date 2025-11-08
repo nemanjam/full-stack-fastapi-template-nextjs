@@ -15,13 +15,12 @@ import List from '@workspace/ui/components/list';
 import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 import { Badge } from '@workspace/ui/components/ui/badge';
 
-import ApiClient from '@/lib/api-client';
-import { ItemsService, UsersService, UtilsService } from '@/client/sdk.gen';
+import CardCurrentUser from '@/components/card-current-user';
+import CardTotalUsers from '@/components/card-total-users';
 
-function getSettledData<T>(result: PromiseSettledResult<{ data?: T }>): T | undefined {
-  return result.status === 'fulfilled' ? result.value.data : undefined;
-}
+// import { ItemsService, UsersService, UtilsService } from '@/client/sdk.gen';
 
+/*
 const fethDashboardData = async () => {
   const meUser = await UsersService.readUserMe().catch(() => null);
 
@@ -44,64 +43,14 @@ const fethDashboardData = async () => {
 
   return { users, items, currentUser: meUser, systemHealth };
 };
+*/
 
 const DashboardPage: FC = () => {
-  const [state, setState] = useState<DashboardState>({
+  const state = {
     data: null,
     isLoading: true,
     error: null,
-  });
-
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        setState((prev) => ({ ...prev, isLoading: true, error: null }));
-
-        // Get auth token from localStorage
-        const token = localStorage.getItem('access_token');
-        if (!token) {
-          throw new Error('No authentication token found');
-        }
-
-        // Fetch data in parallel
-        const [usersResponse, itemsResponse, currentUserResponse, healthResponse] =
-          await Promise.allSettled([
-            ApiClient.usersReadUsers({
-              headers: { Authorization: `Bearer ${token}` },
-            }),
-            ApiClient.itemsReadItems({
-              headers: { Authorization: `Bearer ${token}` },
-            }),
-            ApiClient.usersReadUserMe({
-              headers: { Authorization: `Bearer ${token}` },
-            }),
-            ApiClient.utilsHealthCheck(),
-          ]);
-
-        const data: DashboardData = {
-          users: usersResponse.status === 'fulfilled' ? usersResponse.value.data?.data || [] : [],
-          items: itemsResponse.status === 'fulfilled' ? itemsResponse.value.data?.data || [] : [],
-          currentUser:
-            currentUserResponse.status === 'fulfilled'
-              ? currentUserResponse.value.data || null
-              : null,
-          systemHealth: healthResponse.status === 'fulfilled',
-        };
-
-        setState({ data, isLoading: false, error: null });
-      } catch (error) {
-        console.error('Dashboard data fetch error:', error);
-        setState({
-          data: null,
-          isLoading: false,
-          error: error instanceof Error ? error.message : 'Failed to load dashboard data',
-        });
-      }
-    };
-
-    fetchDashboardData();
-  }, []);
-
+  };
   const { data, isLoading, error } = state;
 
   if (error) {
@@ -130,7 +79,8 @@ const DashboardPage: FC = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
         {/* Total Users */}
-        <CardSmall
+        <CardTotalUsers />
+        {/* <CardSmall
           isLoading={isLoading}
           title="Total Users"
           icon={Users}
@@ -140,7 +90,7 @@ const DashboardPage: FC = () => {
             </div>
           }
           status="Registered users"
-        />
+        /> */}
 
         {/* Total Items */}
         <CardSmall
@@ -156,7 +106,8 @@ const DashboardPage: FC = () => {
         />
 
         {/* Active User */}
-        <CardSmall
+        <CardCurrentUser />
+        {/* <CardSmall
           isLoading={isLoading}
           title="Current User"
           icon={Activity}
@@ -166,7 +117,7 @@ const DashboardPage: FC = () => {
             </div>
           }
           status="Logged in user"
-        />
+        /> */}
 
         {/* System Health */}
         <CardSmall

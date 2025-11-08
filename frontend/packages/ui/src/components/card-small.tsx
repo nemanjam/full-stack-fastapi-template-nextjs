@@ -8,7 +8,8 @@ export interface Props {
   icon: ElementType;
   content: ReactNode;
   status: string;
-  isLoading: boolean;
+  /** Must be optional for Suspense. */
+  isLoading?: boolean;
 }
 
 const CardSmall: FC<Props> = ({ title, icon: Icon, content, status, isLoading }) => (
