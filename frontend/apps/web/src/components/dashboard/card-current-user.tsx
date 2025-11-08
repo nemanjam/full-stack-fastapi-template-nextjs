@@ -9,8 +9,7 @@ import { UsersService } from '@/client/sdk.gen';
 const CardCurrentUser: FC = async () => {
   // Note: called on server, must send auth_cookie (runtime client config)
   const result = await UsersService.readUserMe();
-
-  const { data: currentUser, error: _ } = result;
+  const currentUser = result.data ?? { full_name: undefined, email: undefined };
 
   // Todo: handle error
   // if(error) throw error.detail;
@@ -18,13 +17,13 @@ const CardCurrentUser: FC = async () => {
   return (
     <CardSmall
       title="Current User"
+      status="Logged in user"
       icon={Activity}
       content={
         <div className="text-lg font-semibold text-gray-900 dark:text-white truncate">
-          {currentUser?.full_name ?? currentUser?.email ?? 'Unknown'}
+          {currentUser.full_name ?? currentUser.email ?? 'Unknown'}
         </div>
       }
-      status="Logged in user"
     />
   );
 };

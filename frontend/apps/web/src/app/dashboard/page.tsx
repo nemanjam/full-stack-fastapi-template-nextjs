@@ -1,269 +1,31 @@
 import { FC } from 'react';
 
-import {
-  Activity,
-  AlertCircle,
-  CheckCircle,
-  Package,
-  Settings,
-  Users,
-  XCircle,
-} from 'lucide-react';
+import CardCurrentUser from '@/components/dashboard/card-current-user';
+import CardSystemHealth from '@/components/dashboard/card-system-health';
+import CardTotalItems from '@/components/dashboard/card-total-items';
+import CardTotalUsers from '@/components/dashboard/card-total-users';
+import ListRecentItems from '@/components/dashboard/list-recent-items';
+import ListRecentUsers from '@/components/dashboard/list-recent-users';
+import ListSystemStatus from '@/components/dashboard/list-system-status';
+import WelcomeCurrentUser from '@/components/dashboard/welcome-current-user';
 
-import CardSmall from '@workspace/ui/components/card-small';
-import List from '@workspace/ui/components/list';
-import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
-import { Badge } from '@workspace/ui/components/ui/badge';
+const DashboardPage: FC = () => (
+  <div className="space-y-6">
+    <WelcomeCurrentUser />
 
-import CardCurrentUser from '@/components/card-current-user';
-import CardTotalUsers from '@/components/card-total-users';
-
-// import { ItemsService, UsersService, UtilsService } from '@/client/sdk.gen';
-
-/*
-const fethDashboardData = async () => {
-  const meUser = await UsersService.readUserMe().catch(() => null);
-
-  if (!meUser) throw new Error('Unauthorized');
-
-  //In parallel
-  const [usersResult, itemsResult, healthResult] = await Promise.allSettled([
-    UsersService.readUsers(),
-    ItemsService.readItems(),
-    UtilsService.healthCheck(),
-  ]);
-
-  const users =
-    usersResult.status === 'fulfilled' && usersResult.value ? (usersResult.value.data ?? []) : [];
-
-  const items =
-    itemsResult.status === 'fulfilled' && itemsResult.value ? (itemsResult.value.data ?? []) : [];
-
-  const systemHealth = healthResult.status === 'fulfilled' && !!healthResult.value;
-
-  return { users, items, currentUser: meUser, systemHealth };
-};
-*/
-
-const DashboardPage: FC = () => {
-  const state = {
-    data: null,
-    isLoading: true,
-    error: null,
-  };
-  const { data, isLoading, error } = state;
-
-  if (error) {
-    return (
-      <div className="space-y-6">
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">
-          {data?.currentUser
-            ? `Welcome back, ${data.currentUser.full_name || data.currentUser.email}!`
-            : 'Welcome back!'}{' '}
-          Here's what's happening with your application.
-        </p>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-        {/* Total Users */}
-        <CardTotalUsers />
-        {/* <CardSmall
-          isLoading={isLoading}
-          title="Total Users"
-          icon={Users}
-          content={
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
-              {data?.users.length ?? 0}
-            </div>
-          }
-          status="Registered users"
-        /> */}
-
-        {/* Total Items */}
-        <CardSmall
-          isLoading={isLoading}
-          title="Total Items"
-          icon={Package}
-          content={
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
-              {data?.items.length ?? 0}
-            </div>
-          }
-          status="Items in database"
-        />
-
-        {/* Active User */}
-        <CardCurrentUser />
-        {/* <CardSmall
-          isLoading={isLoading}
-          title="Current User"
-          icon={Activity}
-          content={
-            <div className="text-lg font-semibold text-gray-900 dark:text-white truncate">
-              {data?.currentUser?.full_name ?? data?.currentUser?.email ?? 'Unknown'}
-            </div>
-          }
-          status="Logged in user"
-        /> */}
-
-        {/* System Health */}
-        <CardSmall
-          isLoading={isLoading}
-          title="System Health"
-          icon={Settings}
-          content={
-            <div className="flex items-center space-x-2">
-              {data?.systemHealth ? (
-                <CheckCircle className="h-6 w-6 text-green-500" />
-              ) : (
-                <XCircle className="h-6 w-6 text-red-500" />
-              )}
-              <span className="text-lg font-semibold text-gray-900 dark:text-white">
-                {data?.systemHealth ? 'Healthy' : 'Issues'}
-              </span>
-            </div>
-          }
-          status="API status"
-        />
-      </div>
-
-      {/* Recent Activity and System Status */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-        {/* Recent Users */}
-        <List
-          title="Recent Users"
-          icon={Users}
-          isLoading={isLoading}
-          items={(data?.users ?? []).map((user) => ({
-            icon: (
-              <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-medium">
-                  {(user.full_name || user.email).charAt(0).toUpperCase()}
-                </span>
-              </div>
-            ),
-            content: (
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                  {user.full_name || user.email}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
-              </div>
-            ),
-            status: (
-              <Badge variant={user.is_active ? 'default' : 'secondary'}>
-                {user.is_active ? 'Active' : 'Inactive'}
-              </Badge>
-            ),
-          }))}
-        />
-
-        {/* Recent Items */}
-        <List
-          title="Recent Items"
-          icon={Package}
-          isLoading={isLoading}
-          items={(data?.items ?? []).map((item) => ({
-            icon: (
-              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                <Package className="h-4 w-4 text-white" />
-              </div>
-            ),
-            content: (
-              <>
-                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                  {item.title}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                  {item.description || 'No description'}
-                </p>
-              </>
-            ),
-            status: <div className="text-xs text-gray-400 flex-1 truncate">ID: {item.id}</div>,
-          }))}
-        />
-      </div>
-
-      {/* System Status */}
-      <List
-        title="System Status"
-        icon={Settings}
-        isLoading={isLoading}
-        // Todo: fix this hardcoded array
-        items={[
-          {
-            icon: (
-              <>
-                {data?.systemHealth ? (
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                ) : (
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                )}
-              </>
-            ),
-            content: (
-              <span className="text-sm font-medium text-gray-900 dark:text-white">API Server</span>
-            ),
-            status: (
-              <div className="text-right">
-                <div
-                  className={`text-sm ${data?.systemHealth ? 'text-green-600' : 'text-red-600'}`}
-                >
-                  {data?.systemHealth ? 'Online' : 'Offline'}
-                </div>
-                <div className="text-xs text-gray-400">
-                  {data?.systemHealth ? 'Responding' : 'Not responding'}
-                </div>
-              </div>
-            ),
-          },
-          {
-            icon: <div className="w-3 h-3 bg-green-500 rounded-full"></div>,
-            content: (
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
-                Authentication
-              </span>
-            ),
-            status: (
-              <div className="text-right">
-                <div className="text-sm text-green-600">Active</div>
-                <div className="text-xs text-gray-400">Token valid</div>
-              </div>
-            ),
-          },
-          {
-            icon: <div className="w-3 h-3 bg-blue-500 rounded-full"></div>,
-            content: (
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
-                Data Loading
-              </span>
-            ),
-            status: (
-              <div className="text-right">
-                <div className="text-sm text-blue-600">Complete</div>
-                <div className="text-xs text-gray-400">
-                  {data?.users.length || 0} users, {data?.items.length || 0} items
-                </div>
-              </div>
-            ),
-          },
-        ]}
-      />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+      <CardTotalUsers />
+      <CardTotalItems />
+      <CardCurrentUser />
+      <CardSystemHealth />
     </div>
-  );
-};
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+      <ListRecentUsers />
+      <ListRecentItems />
+    </div>
+    <ListSystemStatus />
+  </div>
+);
 
 export default DashboardPage;

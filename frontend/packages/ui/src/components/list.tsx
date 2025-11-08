@@ -6,8 +6,8 @@ import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 export interface Props {
   title: string;
   icon: ElementType;
-  isLoading: boolean;
   items: ListItemProps[];
+  isLoading?: boolean;
 }
 
 const List: FC<Props> = ({ title, icon: Icon, items, isLoading }) => (
