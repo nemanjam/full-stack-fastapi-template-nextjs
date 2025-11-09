@@ -1,7 +1,7 @@
 import { ElementType, FC, ReactNode } from 'react';
 
+import ListItemSkeleton from '@workspace/ui/components/skeletons/list';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
-import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 
 export interface Props {
   title: string;
@@ -52,18 +52,5 @@ export const ListItem: FC<ListItemProps> = ({ icon, content, status, isLoading }
       {status}
     </div>
   );
-
-const ListItemSkeleton: FC = () => (
-  <div className="flex items-center justify-between">
-    <div className="flex items-center space-x-3">
-      <Skeleton className="h-3 w-3 rounded-full" />
-      <Skeleton className="h-4 w-24" />
-    </div>
-    <div className="text-right">
-      <Skeleton className="h-4 w-16" />
-      <Skeleton className="h-3 w-12 mt-1" />
-    </div>
-  </div>
-);
 
 export default List;

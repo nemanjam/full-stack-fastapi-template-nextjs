@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 
+// import { waitMs } from '@/utils/wait';
 import { PROCESS_ENV } from '@/config/process-env';
 
 import type { CreateClientConfig } from '@/client/client.gen';
@@ -24,6 +25,9 @@ const fetchFn: typeof fetch = async (input, init = {}) => {
   // Note: must append auth_cookie like this or content-type header will break in server actions
   const headers = new Headers(init.headers);
   headers.append('Cookie', cookieHeader);
+
+  // test skeletons styling
+  // await waitMs(3000);
 
   const response = fetch(input, { ...init, headers });
 

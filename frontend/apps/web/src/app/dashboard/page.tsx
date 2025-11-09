@@ -1,5 +1,10 @@
 import { FC } from 'react';
 
+import CardSmallSkeleton from '@workspace/ui/components/skeletons/card-small';
+import ListSkeleton from '@workspace/ui/components/skeletons/list';
+import { Skeleton } from '@workspace/ui/components/ui/skeleton';
+
+import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
 import CardCurrentUser from '@/components/dashboard/card-current-user';
 import CardSystemHealth from '@/components/dashboard/card-system-health';
 import CardTotalItems from '@/components/dashboard/card-total-items';
@@ -9,22 +14,40 @@ import ListRecentUsers from '@/components/dashboard/list-recent-users';
 import ListSystemStatus from '@/components/dashboard/list-system-status';
 import WelcomeCurrentUser from '@/components/dashboard/welcome-current-user';
 
+// Todo: page should check auth first and display error.tsx or redirect
+
 const DashboardPage: FC = () => (
   <div className="space-y-6">
-    <WelcomeCurrentUser />
+    <ErrorBoundarySuspense fallback={<Skeleton className="h-12 w-full" />}>
+      <WelcomeCurrentUser />
+    </ErrorBoundarySuspense>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-      <CardTotalUsers />
-      <CardTotalItems />
-      <CardCurrentUser />
-      <CardSystemHealth />
+      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+        <CardTotalUsers />
+      </ErrorBoundarySuspense>
+      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+        <CardTotalItems />
+      </ErrorBoundarySuspense>
+      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+        <CardCurrentUser />
+      </ErrorBoundarySuspense>
+      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+        <CardSystemHealth />
+      </ErrorBoundarySuspense>
     </div>
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-      <ListRecentUsers />
-      <ListRecentItems />
+      <ErrorBoundarySuspense fallback={<ListSkeleton />}>
+        <ListRecentUsers />
+      </ErrorBoundarySuspense>
+      <ErrorBoundarySuspense fallback={<ListSkeleton />}>
+        <ListRecentItems />
+      </ErrorBoundarySuspense>
     </div>
-    <ListSystemStatus />
+    <ErrorBoundarySuspense fallback={<ListSkeleton count={3} />}>
+      <ListSystemStatus />
+    </ErrorBoundarySuspense>
   </div>
 );
 

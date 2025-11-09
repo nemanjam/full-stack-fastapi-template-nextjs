@@ -1,7 +1,7 @@
 import { ElementType, FC, ReactNode } from 'react';
 
+import CardSmallSkeleton from '@workspace/ui/components/skeletons/card-small';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
-import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 
 export interface Props {
   title: string;
@@ -26,7 +26,5 @@ const CardSmall: FC<Props> = ({ title, icon: Icon, content, status, isLoading })
     </CardContent>
   </Card>
 );
-
-const CardSmallSkeleton: FC = () => <Skeleton className="h-8 w-20" />;
 
 export default CardSmall;

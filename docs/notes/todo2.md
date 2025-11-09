@@ -90,4 +90,6 @@ skeletons for loading, 404 page design
 isLoading optional prop on Card components, andle loading and errors with Suspense and ErrorBoundary wrappers
 nested components folder dashboard/cards
 handle errors and loading in dashboard server components
+create Error classes
+page should check auth first and display error.tsx or redirect
 ```
