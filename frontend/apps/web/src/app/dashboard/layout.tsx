@@ -1,7 +1,7 @@
 import { SidebarProvider } from '@workspace/ui/components/ui/sidebar';
 
 import AppSidebar from '@/components/app-sidebar';
-import { DashboardHeader } from '@/components/dashboard-header';
+import DashboardHeader from '@/components/dashboard-header';
 
 import type { FC, ReactNode } from 'react';
 

@@ -55,7 +55,7 @@ const FormLogin: FC = () => {
     if (!isSuccess) return;
 
     const redirect = async () => {
-      await waitMs(2000);
+      await waitMs(500);
       router.push(DASHBOARD);
     };
 

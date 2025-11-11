@@ -87,9 +87,18 @@ read about parallel fetch and loading and error handling in server component
 loading.tsx, error.tsx, not-found.tsx
 Promise.all or Promise.allSettled
 skeletons for loading, 404 page design
-isLoading optional prop on Card components, andle loading and errors with Suspense and ErrorBoundary wrappers
+isLoading optional prop on Card components, handle loading and errors with Suspense and ErrorBoundary wrappers
 nested components folder dashboard/cards
 handle errors and loading in dashboard server components
 create Error classes
 page should check auth first and display error.tsx or redirect
+----
+make existing ui work, then refactor auth, error, loading
+add 404, 500 pages, styling
+improve docker, traefik deployment
+add no-monorepo branch
+fix tests
+add github auth and ui
+extract metadata as constants
+t3 env for env vars
 ```

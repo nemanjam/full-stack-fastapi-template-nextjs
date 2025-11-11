@@ -1,6 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import Link from 'next/link';
 
 import { LogOut, Settings, User } from 'lucide-react';
 
@@ -14,22 +15,18 @@ import {
 } from '@workspace/ui/components/ui/dropdown-menu';
 import { SidebarTrigger } from '@workspace/ui/components/ui/sidebar';
 
-import { clearAuthTokens } from '@/lib/auth';
+import { logoutAction } from '@/actions/logout';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { ROUTES } from '@/constants/routes';
 
-export function DashboardHeader() {
-  const router = useRouter();
+import type { FC } from 'react';
 
-  const handleLogout = () => {
-    // Clear authentication tokens/data
-    clearAuthTokens();
-    // Redirect to login page
-    router.push('/login');
-  };
+const { SETTINGS } = ROUTES;
 
-  const handleProfile = () => {
-    router.push('/dashboard/settings');
-  };
+const DashboardHeader: FC = () => {
+  const [isPending, startTransition] = useTransition();
+
+  const handleLogout = () => startTransition(() => logoutAction());
 
   return (
     <header className="flex h-16 items-center justify-between border-b bg-white dark:bg-slate-900 px-6">
@@ -37,6 +34,7 @@ export function DashboardHeader() {
         <SidebarTrigger />
       </div>
 
+      {/* Client components already */}
       <div className="flex items-center">
         <ThemeToggle />
         <DropdownMenu>
@@ -48,18 +46,29 @@ export function DashboardHeader() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56" align="end" forceMount>
-            <DropdownMenuItem onClick={handleProfile}>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Profile Settings</span>
-            </DropdownMenuItem>
+            <Link href={SETTINGS}>
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Profile Settings</span>
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>Log out</span>
+            <DropdownMenuItem asChild>
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={isPending}
+                className="flex w-full items-center"
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>{isPending ? 'Logging out...' : 'Logout'}</span>
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
     </header>
   );
-}
+};
+
+export default DashboardHeader;

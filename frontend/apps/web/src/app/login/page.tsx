@@ -1,8 +1,8 @@
-import { FC } from 'react';
-
 import { Card, CardContent, CardHeader } from '@workspace/ui/components/ui/card';
 
 import FormLogin from '@/components/form-login';
+
+import type { FC } from 'react';
 
 const LoginPage: FC = () => (
   <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
