@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, useActionState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,7 +13,6 @@ import { Button } from '@workspace/ui/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,9 +23,13 @@ import { Input } from '@workspace/ui/components/ui/input';
 import { loginAction } from '@/actions/login';
 import { loginFormSchema } from '@/schemas/forms';
 import { getApiErrorMessage, isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { waitMs } from '@/utils/wait';
+import { ROUTES } from '@/constants/routes';
 
 import { ApiResult } from '@/types/api';
 import type { LoginFormValues } from '@/types/forms';
+
+const { DASHBOARD, FORGOT_PASSWORD } = ROUTES;
 
 const defaultValues: LoginFormValues = {
   username: '', // Todo: rename to email
@@ -50,26 +54,26 @@ const FormLogin: FC = () => {
   useEffect(() => {
     if (!isSuccess) return;
 
-    const timer = setTimeout(() => {
-      // router.push('/dashboard');
-    }, 1000);
+    const redirect = async () => {
+      await waitMs(2000);
+      router.push(DASHBOARD);
+    };
 
-    return () => clearTimeout(timer);
+    redirect();
   }, [isSuccess, router]);
 
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-8">
+      <form action={formAction} className="space-y-6">
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="admin@example.com" {...field} disabled={isPending} />
               </FormControl>
-              <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -79,7 +83,7 @@ const FormLogin: FC = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="mb-2">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
@@ -94,6 +98,21 @@ const FormLogin: FC = () => {
           )}
         />
 
+        <p>
+          <Link
+            href={FORGOT_PASSWORD}
+            className="text-sm text-teal-600 hover:text-teal-700 hover:underline"
+          >
+            Forgot password?
+          </Link>
+        </p>
+
+        {isSuccess && (
+          <p className="text-sm font-medium text-green-600">
+            Login successful. Redirecting to dashboard...
+          </p>
+        )}
+
         {isError && (
           <Alert variant="destructive" className="mb-6">
             <AlertCircle className="h-4 w-4" />
@@ -101,11 +120,13 @@ const FormLogin: FC = () => {
           </Alert>
         )}
 
-        {isSuccess && <div className="text-sm font-medium text-green-600">Login successful!</div>}
+        {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
 
-        <pre>{JSON.stringify(state, null, 2)}</pre>
-
-        <Button type="submit" disabled={isPending}>
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="w-full h-12 bg-teal-600 hover:bg-teal-700 text-white font-medium"
+        >
           {isPending ? 'Logging in...' : 'Submit'}
         </Button>
       </form>

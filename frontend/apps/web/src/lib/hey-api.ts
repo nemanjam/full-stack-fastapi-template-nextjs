@@ -7,6 +7,8 @@ import type { CreateClientConfig } from '@/client/client.gen';
 
 const { NEXT_PUBLIC_API_URL } = PROCESS_ENV;
 
+// Todo: client with cookies can be used only on server, rethink this
+
 /** Runtime config */
 export const createClientConfig: CreateClientConfig = (config) => ({
   ...config,

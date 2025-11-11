@@ -18,10 +18,10 @@ import type { Session } from '@/types/auth';
 const { LOGIN } = ROUTES;
 
 export const isAuthenticated = async (): Promise<boolean> => {
-  const { data: me } = await UsersService.readUserMe();
-  console.log('me', me);
+  const { data: currentUser } = await UsersService.readUserMe();
+  console.log('currentUser', currentUser);
 
-  const isAuth = Boolean(me?.id && me?.email);
+  const isAuth = Boolean(currentUser?.id && currentUser?.email);
 
   return isAuth;
 };

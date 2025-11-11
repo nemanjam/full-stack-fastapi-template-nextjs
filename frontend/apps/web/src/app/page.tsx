@@ -1,24 +1,22 @@
-import { FC } from 'react';
+import { redirect } from 'next/navigation';
 
-// import { isAuthenticated } from '@/lib/auth-with-cookie';
 import { UsersService } from '@/client/sdk.gen';
+import { ROUTES } from '@/constants/routes';
+
+import type { FC } from 'react';
+
+const { LOGIN, DASHBOARD } = ROUTES;
 
 // Must be client component to show loader before redirect
+// hey-api client doesn't work on client with cookies
 // Todo: rethink this
 
-const isAuthenticated = async (): Promise<boolean> => {
-  const { data: me } = await UsersService.readUserMe();
-  console.log('me', me);
-
-  const isAuth = Boolean(me?.id && me?.email);
-
-  return isAuth;
-};
-
 const HomePage: FC = async () => {
-  const isAuth = await isAuthenticated();
+  const result = await UsersService.readUserMe();
+  const currentUser = result.data;
 
-  if (!isAuth) return <div>Not authenticated</div>;
+  const redirectUrl = currentUser ? DASHBOARD : LOGIN;
+  redirect(redirectUrl);
 
   // Show loading state while redirecting
   return (

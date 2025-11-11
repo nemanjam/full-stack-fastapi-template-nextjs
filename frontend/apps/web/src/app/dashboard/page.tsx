@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { redirect } from 'next/navigation';
 
 import CardSmallSkeleton from '@workspace/ui/components/skeletons/card-small';
 import ListSkeleton from '@workspace/ui/components/skeletons/list';
@@ -13,42 +13,53 @@ import ListRecentItems from '@/components/dashboard/list-recent-items';
 import ListRecentUsers from '@/components/dashboard/list-recent-users';
 import ListSystemStatus from '@/components/dashboard/list-system-status';
 import WelcomeCurrentUser from '@/components/dashboard/welcome-current-user';
+import { UsersService } from '@/client/sdk.gen';
+import { ROUTES } from '@/constants/routes';
 
-// Todo: page should check auth first and display error.tsx or redirect
+import type { FC } from 'react';
 
-const DashboardPage: FC = () => (
-  <div className="space-y-6">
-    <ErrorBoundarySuspense fallback={<Skeleton className="h-12 w-full" />}>
-      <WelcomeCurrentUser />
-    </ErrorBoundarySuspense>
+const { LOGIN } = ROUTES;
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
-        <CardTotalUsers />
+const DashboardPage: FC = async () => {
+  const result = await UsersService.readUserMe();
+
+  if (result.error) redirect(LOGIN);
+
+  const currentUser = result.data;
+
+  return (
+    <div className="space-y-6">
+      <ErrorBoundarySuspense fallback={<Skeleton className="h-12 w-full" />}>
+        <WelcomeCurrentUser currentUser={currentUser} />
       </ErrorBoundarySuspense>
-      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
-        <CardTotalItems />
-      </ErrorBoundarySuspense>
-      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
-        <CardCurrentUser />
-      </ErrorBoundarySuspense>
-      <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
-        <CardSystemHealth />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+        <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+          <CardTotalUsers />
+        </ErrorBoundarySuspense>
+        <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+          <CardTotalItems />
+        </ErrorBoundarySuspense>
+        <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+          <CardCurrentUser />
+        </ErrorBoundarySuspense>
+        <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+          <CardSystemHealth />
+        </ErrorBoundarySuspense>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <ErrorBoundarySuspense fallback={<ListSkeleton />}>
+          <ListRecentUsers />
+        </ErrorBoundarySuspense>
+        <ErrorBoundarySuspense fallback={<ListSkeleton />}>
+          <ListRecentItems />
+        </ErrorBoundarySuspense>
+      </div>
+      <ErrorBoundarySuspense fallback={<ListSkeleton count={3} />}>
+        <ListSystemStatus />
       </ErrorBoundarySuspense>
     </div>
-
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-      <ErrorBoundarySuspense fallback={<ListSkeleton />}>
-        <ListRecentUsers />
-      </ErrorBoundarySuspense>
-      <ErrorBoundarySuspense fallback={<ListSkeleton />}>
-        <ListRecentItems />
-      </ErrorBoundarySuspense>
-    </div>
-    <ErrorBoundarySuspense fallback={<ListSkeleton count={3} />}>
-      <ListSystemStatus />
-    </ErrorBoundarySuspense>
-  </div>
-);
-
+  );
+};
 export default DashboardPage;

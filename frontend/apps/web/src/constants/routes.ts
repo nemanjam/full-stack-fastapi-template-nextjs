@@ -3,7 +3,11 @@
 export const ROUTES = {
   HOME: '/',
   LOGIN: '/login/',
+  FORGOT_PASSWORD: '/forgot-password/',
   DASHBOARD: '/dashboard/',
+  ITEMS: '/dashboard/items/',
+  SETTINGS: '/dashboard/settings/',
+  ADMIN: '/dashboard/admin/',
   _404: '/404/',
   _500: '/500/',
   STATIC: {

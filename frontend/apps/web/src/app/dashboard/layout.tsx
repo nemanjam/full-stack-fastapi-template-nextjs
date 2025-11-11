@@ -1,17 +1,15 @@
-import { FC } from 'react';
-
 import { SidebarProvider } from '@workspace/ui/components/ui/sidebar';
 
-import { AppSidebar } from '@/components/app-sidebar';
+import AppSidebar from '@/components/app-sidebar';
 import { DashboardHeader } from '@/components/dashboard-header';
 
-import type React from 'react';
+import type { FC, ReactNode } from 'react';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const DashboardLayout: FC<Props> = ({ children }) => (
+const DashboardLayout: FC<Props> = async ({ children }) => (
   <SidebarProvider>
     <div className="flex min-h-screen w-full">
       <AppSidebar />
