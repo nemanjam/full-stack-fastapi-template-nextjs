@@ -11,8 +11,6 @@ const CardCurrentUser: FC = async () => {
   const result = await UsersService.readUserMe();
   const currentUser = result.data ?? { full_name: undefined, email: undefined };
 
-  console.log('result', result);
-
   // Todo: create Error classes
   // const result = await UsersService.readUserMe({ baseUrl: 'https://invalid.localhost' });
   if (result.error) throw new Error((result.error as any).detail);

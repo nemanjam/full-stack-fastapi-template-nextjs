@@ -1,6 +1,10 @@
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { UsersService } from '@/client/sdk.gen';
+import { waitMs } from '@/utils/wait';
 import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';
@@ -11,14 +15,24 @@ const { LOGIN, DASHBOARD } = ROUTES;
 // hey-api client doesn't work on client with cookies
 // Todo: rethink this
 
-const HomePage: FC = async () => {
-  const result = await UsersService.readUserMe();
-  const currentUser = result.data;
+const HomePage: FC = () => {
+  const router = useRouter();
 
-  const redirectUrl = currentUser ? DASHBOARD : LOGIN;
-  redirect(redirectUrl);
+  useEffect(() => {
+    const redirect = async () => {
+      // client side client, without cookies
+      const result = await UsersService.readUserMe();
+      const currentUser = result.data;
 
-  // Show loading state while redirecting
+      await waitMs(2000);
+
+      const redirectUrl = currentUser ? DASHBOARD : LOGIN;
+      router.push(redirectUrl);
+    };
+
+    redirect();
+  }, [router]);
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="text-center">

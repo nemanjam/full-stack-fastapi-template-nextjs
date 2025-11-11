@@ -1,23 +1,24 @@
-import { cookies } from 'next/headers';
+import { isServer } from '@/utils/runtime';
+import { PROCESS_ENV } from '@/config/process-env';
 
 // import { waitMs } from '@/utils/wait';
-import { PROCESS_ENV } from '@/config/process-env';
 
 import type { CreateClientConfig } from '@/client/client.gen';
 
 const { NEXT_PUBLIC_API_URL } = PROCESS_ENV;
 
-// Todo: client with cookies can be used only on server, rethink this
-
-/** Runtime config */
+/** Runtime config. Works both on server and in browser. */
 export const createClientConfig: CreateClientConfig = (config) => ({
   ...config,
   baseUrl: NEXT_PUBLIC_API_URL,
   credentials: 'include',
-  fetch: fetchFn,
+  ...(isServer() ? { fetch: serverFetch } : {}),
 });
 
-const fetchFn: typeof fetch = async (input, init = {}) => {
+const serverFetch: typeof fetch = async (input, init = {}) => {
+  // Note: Dynamic import to avoid bundling 'next/headers' on client
+  const { cookies } = await import('next/headers');
+
   const cookieStore = await cookies();
   const cookieHeader = cookieStore
     .getAll()
