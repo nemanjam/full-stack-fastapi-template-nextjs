@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useActionState } from 'react';
+import { FC, useActionState, useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
@@ -30,11 +30,12 @@ import type { UserUpdateFormValues } from '@/types/forms';
 interface Props {
   user: UserPublic;
   onSuccess: () => void;
+  onCancel: () => void;
 }
 
 const resolver = zodResolver(userUpdateSchema);
 
-const FormUserUpdate: FC<Props> = ({ user, onSuccess }) => {
+const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
   const initialState = { data: undefined };
   const [state, formAction, isPending] = useActionState(userUpdateAction, initialState);
 
@@ -47,10 +48,11 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess }) => {
 
   const form = useForm<UserUpdateFormValues>({ resolver, defaultValues });
 
-  // Close dialog on success
-  if (isSuccessApiResult(state)) {
-    onSuccess();
-  }
+  const isSuccess = isSuccessApiResult(state);
+
+  useEffect(() => {
+    if (isSuccess) onSuccess?.();
+  }, [isSuccess, onSuccess]);
 
   const isError = isErrorApiResult(state);
 
@@ -111,6 +113,10 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess }) => {
         )}
 
         <div className="flex justify-end space-x-2">
+          <Button type="button" variant="outline" onClick={onCancel} disabled={isPending}>
+            Cancel
+          </Button>
+
           <Button type="submit" disabled={isPending}>
             {isPending ? (
               <>

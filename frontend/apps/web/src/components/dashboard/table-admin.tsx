@@ -21,6 +21,7 @@ import {
 } from '@workspace/ui/components/ui/table';
 import { cn } from '@workspace/ui/lib/utils';
 
+import DialogUserUpdate from '@/components/dashboard/dialog-user-update';
 import DropdownUser from '@/components/dashboard/dropdown-user';
 import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
@@ -166,13 +167,16 @@ const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
   const totalPages = Math.ceil(totalUsers / PAGE_SIZE_TABLE);
 
   return (
-    <Card>
-      <TableAdminHeader title={`Users (${users.length})`} />
-      <CardContent>
-        <TableAdminContent currentUser={currentUser} users={users} />
-        <TableAdminPagination currentPage={currentPage} totalPages={totalPages} />
-      </CardContent>
-    </Card>
+    <>
+      <Card>
+        <TableAdminHeader title={`Users (${users.length})`} />
+        <CardContent>
+          <TableAdminContent currentUser={currentUser} users={users} />
+          <TableAdminPagination currentPage={currentPage} totalPages={totalPages} />
+        </CardContent>
+      </Card>
+      <DialogUserUpdate />
+    </>
   );
 };
 

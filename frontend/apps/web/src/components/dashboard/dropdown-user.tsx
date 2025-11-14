@@ -13,9 +13,12 @@ import {
 } from '@workspace/ui/components/ui/dropdown-menu';
 
 import { userDeleteAction } from '@/actions/user';
+import { EVENTS } from '@/constants/events';
 
 import type { UserPublic } from '@/client/types.gen';
 import type { FC } from 'react';
+
+const { DIALOG_USER_UPDATE_OPEN } = EVENTS;
 
 interface Props {
   currentUser: UserPublic | undefined;
@@ -25,7 +28,10 @@ interface Props {
 const DropdownUser: FC<Props> = ({ currentUser, user }) => {
   const [isPending, startTransition] = useTransition();
 
-  const openDialogUserUpdate = (user: UserPublic) => {};
+  const openDialogUserUpdate = (user: UserPublic) => {
+    const openEvent = new CustomEvent(DIALOG_USER_UPDATE_OPEN, { detail: user });
+    window.dispatchEvent(openEvent);
+  };
 
   const handleDeleteUser = (userId: string) => {
     startTransition(() => {
