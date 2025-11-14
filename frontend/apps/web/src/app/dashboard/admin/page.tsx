@@ -57,6 +57,7 @@ import {
 } from '@workspace/ui/components/ui/table';
 
 import ApiClient from '@/lib/api-client';
+import DashboardTitle from '@/components/dashboard-title';
 
 import type { UserCreate, UserPublic, UserUpdate } from '@/client/types.gen';
 
@@ -305,18 +306,16 @@ export default function AdminPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">
-            Manage users and their permissions across the application.
-          </p>
-        </div>
-        <Button onClick={openAddDialog} className="flex items-center space-x-2">
-          <Plus className="h-4 w-4" />
-          <span>Add User</span>
-        </Button>
-      </div>
+      <DashboardTitle
+        title="Admin Panel"
+        description="Manage users and their permissions across the application."
+        contentRight={
+          <Button onClick={openAddDialog} className="flex items-center space-x-2">
+            <Plus className="h-4 w-4" />
+            <span>Add User</span>
+          </Button>
+        }
+      />
 
       {/* Error/Success Messages */}
       {state.error && (

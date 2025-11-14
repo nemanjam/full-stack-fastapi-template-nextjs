@@ -5,6 +5,7 @@ import ListSkeleton from '@workspace/ui/components/skeletons/list';
 import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 
 import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
+import DashboardTitle from '@/components/dashboard-title';
 import CardCurrentUser from '@/components/dashboard/card-current-user';
 import CardSystemHealth from '@/components/dashboard/card-system-health';
 import CardTotalItems from '@/components/dashboard/card-total-items';
@@ -12,7 +13,6 @@ import CardTotalUsers from '@/components/dashboard/card-total-users';
 import ListRecentItems from '@/components/dashboard/list-recent-items';
 import ListRecentUsers from '@/components/dashboard/list-recent-users';
 import ListSystemStatus from '@/components/dashboard/list-system-status';
-import WelcomeCurrentUser from '@/components/dashboard/welcome-current-user';
 import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
 
@@ -27,10 +27,17 @@ const DashboardPage: FC = async () => {
 
   const currentUser = result.data;
 
+  const welcomeText = currentUser
+    ? `Welcome back, ${currentUser.full_name ?? currentUser.email}!`
+    : 'Welcome back!';
+
   return (
     <div className="space-y-6">
       <ErrorBoundarySuspense fallback={<Skeleton className="h-12 w-full" />}>
-        <WelcomeCurrentUser currentUser={currentUser} />
+        <DashboardTitle
+          title="Dashboard"
+          description={`${welcomeText} Here's what's happening with your application.`}
+        />
       </ErrorBoundarySuspense>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
@@ -62,4 +69,5 @@ const DashboardPage: FC = async () => {
     </div>
   );
 };
+
 export default DashboardPage;
