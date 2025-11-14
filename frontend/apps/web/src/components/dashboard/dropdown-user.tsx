@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@workspace/ui/components/ui/dropdown-menu';
 
-import { deleteUserAction } from '@/actions/user';
+import { userDeleteAction } from '@/actions/user';
 
 import type { UserPublic } from '@/client/types.gen';
 import type { FC } from 'react';
@@ -25,11 +25,11 @@ interface Props {
 const DropdownUser: FC<Props> = ({ currentUser, user }) => {
   const [isPending, startTransition] = useTransition();
 
-  const openUserEditDialog = (user: UserPublic) => {};
+  const openDialogUserUpdate = (user: UserPublic) => {};
 
   const handleDeleteUser = (userId: string) => {
     startTransition(() => {
-      deleteUserAction(userId);
+      userDeleteAction(userId);
     });
   };
 
@@ -43,7 +43,7 @@ const DropdownUser: FC<Props> = ({ currentUser, user }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => openUserEditDialog(user)} disabled={isPending}>
+        <DropdownMenuItem onClick={() => openDialogUserUpdate(user)} disabled={isPending}>
           <Edit className="mr-2 h-4 w-4" />
           Edit
         </DropdownMenuItem>
