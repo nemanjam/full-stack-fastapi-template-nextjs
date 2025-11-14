@@ -1,17 +1,8 @@
-import { Fragment } from 'react';
-
-import { Edit, MoreHorizontal, Shield, ShieldCheck, Trash2, Users } from 'lucide-react';
+import { Shield, ShieldCheck, Users } from 'lucide-react';
 
 import TableSkeleton from '@workspace/ui/components/skeletons/table';
 import { Badge } from '@workspace/ui/components/ui/badge';
-import { Button } from '@workspace/ui/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@workspace/ui/components/ui/dropdown-menu';
 import {
   Pagination,
   PaginationContent,
@@ -30,11 +21,12 @@ import {
 } from '@workspace/ui/components/ui/table';
 import { cn } from '@workspace/ui/lib/utils';
 
-import { Options, UsersService } from '@/client/sdk.gen';
+import DropdownUser from '@/components/dashboard/dropdown-user';
+import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 
-import type { UserPublic, UsersReadUsersData } from '@/client/types.gen';
+import type { UserPublic } from '@/client/types.gen';
 import type { FC } from 'react';
 
 const { PAGE_SIZE_TABLE } = CONFIG_CLIENT;
@@ -60,11 +52,6 @@ interface TableAdminContentProps {
 }
 
 const TableAdminContent: FC<TableAdminContentProps> = async ({ currentUser, users }) => {
-  // Todo: extract dropdown in client component
-  // Todo: server actions
-  const handleEditUser = (user: UserPublic) => {};
-  const handleDeleteUser = (user: UserPublic) => {};
-
   return (
     <Table>
       <TableHeader>
@@ -100,29 +87,7 @@ const TableAdminContent: FC<TableAdminContentProps> = async ({ currentUser, user
               </Badge>
             </TableCell>
             <TableCell className="text-right">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem
-                  // onClick={() => handleEditUser(user)}
-                  >
-                    <Edit className="mr-2 h-4 w-4" />
-                    Edit
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    // onClick={() => handleDeleteUser(user)}
-                    className="text-red-600"
-                    disabled={currentUser?.id === user.id}
-                  >
-                    <Trash2 className="mr-2 h-4 w-4" />
-                    Delete
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <DropdownUser currentUser={currentUser} user={user} />
             </TableCell>
           </TableRow>
         ))}
@@ -184,16 +149,14 @@ export interface TableAdminProps {
 }
 
 const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
-  const readUsersOptions: Options<UsersReadUsersData, false> = {
-    query: {
-      skip: (currentPage - 1) * PAGE_SIZE_TABLE,
-      limit: PAGE_SIZE_TABLE,
-    },
-  };
-
   const [currentUserResult, usersResult] = await Promise.all([
     UsersService.readUserMe(),
-    UsersService.readUsers(readUsersOptions),
+    UsersService.readUsers({
+      query: {
+        skip: (currentPage - 1) * PAGE_SIZE_TABLE,
+        limit: PAGE_SIZE_TABLE,
+      },
+    }),
   ]);
 
   const currentUser = currentUserResult.data;

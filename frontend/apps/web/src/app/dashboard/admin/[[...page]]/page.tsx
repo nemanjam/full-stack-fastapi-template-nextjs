@@ -11,8 +11,6 @@ const AdminPage: FC<Props> = async ({ params }) => {
 
   const currentPage = parseInt(page) || 1;
 
-  console.log('page', page, 'currentPage', currentPage);
-
   return <TableAdmin currentPage={currentPage} />;
 };
 

@@ -3,7 +3,7 @@
 import { LoginService } from '@/client/sdk.gen';
 import { forwardCookiesFromResponse } from '@/utils/actions';
 
-import { ApiResult } from '@/types/api';
+import type { ApiResult } from '@/types/api';
 
 type Body = Parameters<typeof LoginService.loginAccessToken>[0]['body'];
 
