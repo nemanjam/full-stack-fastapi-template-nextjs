@@ -100,6 +100,7 @@ add no-monorepo branch
 fix tests
 add github auth and ui
 extract metadata as constants
-t3 env for env vars
+t3 env for env vars https://github.com/t3-oss/t3-env
 skeleton, noData components
+create seed with many users and items for pagination
 ```

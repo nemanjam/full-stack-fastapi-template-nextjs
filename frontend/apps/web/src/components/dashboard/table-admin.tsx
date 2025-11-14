@@ -28,11 +28,18 @@ import {
   TableHeader,
   TableRow,
 } from '@workspace/ui/components/ui/table';
+import { cn } from '@workspace/ui/lib/utils';
 
 import { Options, UsersService } from '@/client/sdk.gen';
+import { ROUTES } from '@/constants/routes';
+import { CONFIG_CLIENT } from '@/config/client';
 
 import type { UserPublic, UsersReadUsersData } from '@/client/types.gen';
 import type { FC } from 'react';
+
+const { PAGE_SIZE_TABLE } = CONFIG_CLIENT;
+
+const { ADMIN } = ROUTES;
 
 interface TableAdminHeaderProps {
   title: string;
@@ -71,7 +78,7 @@ const TableAdminContent: FC<TableAdminContentProps> = async ({ currentUser, user
       </TableHeader>
       <TableBody>
         {users.map((user) => (
-          <Fragment key={user.id}>
+          <TableRow key={user.id}>
             <TableCell className="font-mono text-sm">{user.id}</TableCell>
             <TableCell className="font-medium">
               {user.full_name || <span className="italic text-gray-400">No name</span>}
@@ -100,12 +107,14 @@ const TableAdminContent: FC<TableAdminContentProps> = async ({ currentUser, user
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => handleEditUser(user)}>
+                  <DropdownMenuItem
+                  // onClick={() => handleEditUser(user)}
+                  >
                     <Edit className="mr-2 h-4 w-4" />
                     Edit
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={() => handleDeleteUser(user)}
+                    // onClick={() => handleDeleteUser(user)}
                     className="text-red-600"
                     disabled={currentUser?.id === user.id}
                   >
@@ -115,7 +124,7 @@ const TableAdminContent: FC<TableAdminContentProps> = async ({ currentUser, user
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>
-          </Fragment>
+          </TableRow>
         ))}
       </TableBody>
     </Table>
@@ -127,56 +136,48 @@ interface TableAdminPaginationProps {
   totalPages: number;
 }
 
-const TableAdminPagination: FC<TableAdminPaginationProps> = ({ currentPage = 1, totalPages }) => {
-  // Todo: route param for ssr dashboard/admin/[currentPage]/page.tsx
+const TableAdminPagination: FC<TableAdminPaginationProps> = ({ currentPage = 1, totalPages }) => (
+  <div className="flex justify-center mt-6">
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            href={`${ADMIN}${currentPage - 1}`}
+            className={cn('cursor-pointer', {
+              'cursor-default pointer-events-none opacity-50': currentPage <= 1,
+            })}
+            aria-disabled={currentPage <= 1}
+          />
+        </PaginationItem>
+        {[...Array(totalPages)].map((_, i) => {
+          const page = i + 1;
+          const isCurrentPage = page === currentPage;
 
-  // links?
-  const handlePrevious = () => currentPage > 1 && fetchUsers(currentPage - 1);
-  const handleNext = () => currentPage < totalPages && fetchUsers(currentPage + 1);
-
-  return (
-    <div className="flex justify-center mt-6">
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              onClick={handlePrevious}
-              className={currentPage <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
-            />
-          </PaginationItem>
-          {[...Array(totalPages)].map((_, i) => {
-            const page = i + 1;
-            if (page === currentPage) {
-              return (
-                <PaginationItem key={page}>
-                  <PaginationLink isActive>{page}</PaginationLink>
-                </PaginationItem>
-              );
-            }
-            return (
-              <PaginationItem key={page}>
-                <PaginationLink onClick={() => fetchUsers(page)} className="cursor-pointer">
-                  {page}
-                </PaginationLink>
-              </PaginationItem>
-            );
-          })}
-          <PaginationItem>
-            <PaginationNext
-              onClick={handleNext}
-              className={
-                currentPage >= totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'
-              }
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    </div>
-  );
-};
-
-// Todo: add to config constants
-const PER_PAGE = 3 as const;
+          return (
+            <PaginationItem key={page}>
+              <PaginationLink
+                href={`${ADMIN}${page}`}
+                isActive={isCurrentPage}
+                className={cn({ 'cursor-pointer': isCurrentPage })}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+        <PaginationItem>
+          <PaginationNext
+            href={`${ADMIN}${currentPage + 1}`}
+            className={cn('cursor-pointer', {
+              'cursor-default pointer-events-none opacity-50': currentPage >= totalPages,
+            })}
+            aria-disabled={currentPage >= totalPages}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  </div>
+);
 
 export interface TableAdminProps {
   currentPage: number;
@@ -185,8 +186,8 @@ export interface TableAdminProps {
 const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
   const readUsersOptions: Options<UsersReadUsersData, false> = {
     query: {
-      skip: (currentPage - 1) * PER_PAGE,
-      limit: PER_PAGE,
+      skip: (currentPage - 1) * PAGE_SIZE_TABLE,
+      limit: PAGE_SIZE_TABLE,
     },
   };
 
@@ -197,9 +198,9 @@ const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
 
   const currentUser = currentUserResult.data;
   const users = usersResult.data?.data ?? [];
-  const usersCount = usersResult.data?.count ?? 0; // total users, not page
+  const totalUsers = usersResult.data?.count ?? 0;
 
-  const totalPages = Math.ceil(usersCount / PER_PAGE);
+  const totalPages = Math.ceil(totalUsers / PAGE_SIZE_TABLE);
 
   return (
     <Card>
