@@ -23,7 +23,6 @@ import { Input } from '@workspace/ui/components/ui/input';
 import { loginAction } from '@/actions/login';
 import { loginFormSchema } from '@/schemas/forms';
 import { getApiErrorMessage, isErrorApiResult, isSuccessApiResult } from '@/utils/api';
-import { waitMs } from '@/utils/wait';
 import { ROUTES } from '@/constants/routes';
 
 import { ApiResult } from '@/types/api';
@@ -54,12 +53,7 @@ const FormLogin: FC = () => {
   useEffect(() => {
     if (!isSuccess) return;
 
-    const redirect = async () => {
-      await waitMs(500);
-      router.push(DASHBOARD);
-    };
-
-    redirect();
+    router.push(DASHBOARD);
   }, [isSuccess, router]);
 
   return (

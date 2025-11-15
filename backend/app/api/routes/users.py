@@ -42,6 +42,7 @@ def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
     count_statement = select(func.count()).select_from(User)
     count = session.exec(count_statement).one()
 
+    # Maybe add sorting
     statement = select(User).offset(skip).limit(limit)
     users = session.exec(statement).all()
 
