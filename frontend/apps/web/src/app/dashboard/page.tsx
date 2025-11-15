@@ -1,8 +1,5 @@
-import { redirect } from 'next/navigation';
-
 import CardSmallSkeleton from '@workspace/ui/components/skeletons/card-small';
 import ListSkeleton from '@workspace/ui/components/skeletons/list';
-import { Skeleton } from '@workspace/ui/components/ui/skeleton';
 
 import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
 import DashboardTitle from '@/components/dashboard-title';
@@ -14,16 +11,11 @@ import ListRecentItems from '@/components/dashboard/list-recent-items';
 import ListRecentUsers from '@/components/dashboard/list-recent-users';
 import ListSystemStatus from '@/components/dashboard/list-system-status';
 import { UsersService } from '@/client/sdk.gen';
-import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';
 
-const { LOGIN } = ROUTES;
-
 const DashboardPage: FC = async () => {
   const result = await UsersService.readUserMe();
-
-  if (result.error) redirect(LOGIN);
 
   const currentUser = result.data;
 
@@ -33,12 +25,10 @@ const DashboardPage: FC = async () => {
 
   return (
     <div className="space-y-6">
-      <ErrorBoundarySuspense fallback={<Skeleton className="h-12 w-full" />}>
-        <DashboardTitle
-          title="Dashboard"
-          description={`${welcomeText} Here's what's happening with your application.`}
-        />
-      </ErrorBoundarySuspense>
+      <DashboardTitle
+        title="Dashboard"
+        description={`${welcomeText} Here's what's happening with your application.`}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
         <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>

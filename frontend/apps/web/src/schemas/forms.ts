@@ -12,3 +12,10 @@ export const userUpdateSchema = z.object({
   is_superuser: z.boolean().optional(),
   user_id: z.string(),
 });
+
+export const userCreateSchema = z.object({
+  email: z.email(),
+  full_name: z.string().min(2),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters long' }),
+  is_superuser: z.boolean().optional(),
+});
