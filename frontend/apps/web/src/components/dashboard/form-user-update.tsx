@@ -95,11 +95,15 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
           render={({ field }) => (
             <FormItem className="flex items-center space-x-2">
               <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  disabled={isPending}
-                />
+                <div>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    disabled={isPending}
+                  />
+                  {/* Hidden input so FormData sees the value */}
+                  <input type="hidden" name={field.name} value={field.value ? 'on' : ''} />
+                </div>
               </FormControl>
               <Label>Administrator privileges</Label>
             </FormItem>

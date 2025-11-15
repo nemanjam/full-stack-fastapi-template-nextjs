@@ -32,8 +32,9 @@ def set_auth_cookie(subject: str | Any, expires_delta: timedelta) -> JSONRespons
         key=settings.AUTH_COOKIE,
         value=access_token,
         httponly=True,
-        max_age=3600,
-        expires=3600,
+        # Cookie expiration and JWT expiration match
+        max_age=expires_delta,
+        expires=expires_delta,
         samesite="lax",
         secure=is_prod,
         domain=None,

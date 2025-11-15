@@ -28,9 +28,14 @@ export const userUpdateAction = async (
   formData: FormData
 ): Promise<ApiResult> => {
   const user_id = formData.get('user_id') as string;
-  const body = Object.fromEntries(formData) as UserUpdate;
+  const bodyRaw = Object.fromEntries(formData) as Record<string, string>;
 
-  console.log('body', body);
+  const body = {
+    ...bodyRaw,
+    // convert 'on' = true, '' = false
+    // must have <input type="hidden" ...> for Switch
+    is_superuser: bodyRaw.is_superuser === 'on',
+  } as UserUpdate;
 
   const apiResponse = await UsersService.updateUser({
     path: { user_id },
@@ -48,8 +53,12 @@ export const userCreateAction = async (
   _prevState: ApiResult,
   formData: FormData
 ): Promise<ApiResult> => {
-  // Todo: fix this type
-  const body = Object.fromEntries(formData) as unknown as UserCreate;
+  const bodyRaw = Object.fromEntries(formData) as Record<string, string>;
+
+  const body = {
+    ...bodyRaw,
+    is_superuser: bodyRaw.is_superuser === 'on',
+  } as UserCreate;
 
   const apiResponse = await UsersService.createUser({
     body,
