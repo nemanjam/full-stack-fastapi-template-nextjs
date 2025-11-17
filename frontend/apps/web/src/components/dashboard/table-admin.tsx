@@ -1,6 +1,5 @@
 import { Shield, ShieldCheck, Users } from 'lucide-react';
 
-import TableSkeleton from '@workspace/ui/components/skeletons/table';
 import { Badge } from '@workspace/ui/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
 import {

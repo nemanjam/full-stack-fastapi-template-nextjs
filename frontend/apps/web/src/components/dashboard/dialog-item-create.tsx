@@ -13,14 +13,14 @@ import {
   DialogTitle,
 } from '@workspace/ui/components/ui/dialog';
 
-import FormUserCreate from '@/components/dashboard/form-user-create';
+import FormItemCreate from '@/components/dashboard/form-item-create';
 import { EVENTS } from '@/constants/events';
 
 import type { FC } from 'react';
 
-const { DIALOG_USER_CREATE_OPEN } = EVENTS;
+const { DIALOG_ITEM_CREATE_OPEN } = EVENTS;
 
-const DialogUserCreate: FC = () => {
+const DialogItemCreate: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -28,9 +28,9 @@ const DialogUserCreate: FC = () => {
       setIsOpen(true);
     };
 
-    window.addEventListener(DIALOG_USER_CREATE_OPEN, handleOpen as EventListener);
+    window.addEventListener(DIALOG_ITEM_CREATE_OPEN, handleOpen as EventListener);
 
-    return () => window.removeEventListener(DIALOG_USER_CREATE_OPEN, handleOpen as EventListener);
+    return () => window.removeEventListener(DIALOG_ITEM_CREATE_OPEN, handleOpen as EventListener);
   }, []);
 
   const close = () => setIsOpen(false);
@@ -39,30 +39,30 @@ const DialogUserCreate: FC = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New User</DialogTitle>
+          <DialogTitle>Create New Item</DialogTitle>
           <DialogDescription>
-            Create a new user account with email, name, and permissions.
+            Create a new item with a title and optional description.
           </DialogDescription>
         </DialogHeader>
 
-        <FormUserCreate onSuccess={close} onCancel={close} />
+        <FormItemCreate onSuccess={close} onCancel={close} />
       </DialogContent>
     </Dialog>
   );
 };
 
-export default DialogUserCreate;
+export default DialogItemCreate;
 
-export const DialogUserCreateButton: FC = () => {
-  const openDialogUserCreate = () => {
-    const openEvent = new CustomEvent(DIALOG_USER_CREATE_OPEN);
+export const DialogItemCreateButton: FC = () => {
+  const openDialogItemCreate = () => {
+    const openEvent = new CustomEvent(DIALOG_ITEM_CREATE_OPEN);
     window.dispatchEvent(openEvent);
   };
 
   return (
-    <Button onClick={openDialogUserCreate} className="flex items-center space-x-2">
+    <Button onClick={openDialogItemCreate} className="flex items-center space-x-2">
       <Plus className="h-4 w-4" />
-      <span>Create User</span>
+      <span>Create Item</span>
     </Button>
   );
 };

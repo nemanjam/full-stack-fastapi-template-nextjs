@@ -111,5 +111,12 @@ redirect to login on expired cookie
 fix sidebar jumping
 custom error (exception) classes
 understand Client options.throwOnError handling
-lint, unused imports
+lint, unused imports, tests
+use class-variance-authority in ui
+toaster on login success
+tag existing docker image for backup deploy
+prettier like ruff, 1 newline lines, 2 newlines functions
+handle max page for user and item with 404
+sort by updatedAt
+uuid truncate in table maybe, responsive table
 ```
