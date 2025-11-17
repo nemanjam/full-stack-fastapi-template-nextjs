@@ -119,4 +119,5 @@ prettier like ruff, 1 newline lines, 2 newlines functions
 handle max page for user and item with 404
 sort by updatedAt
 uuid truncate in table maybe, responsive table
+per page folder structure in dashboard
 ```

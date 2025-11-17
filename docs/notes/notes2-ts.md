@@ -35,5 +35,13 @@ const [currentUserResult, usersResult] = await Promise.all([
   UsersService.readUserMe(),
   Promise.reject(new Error("Forced readUsers error")),
 ]);
-
+-------------
+// number of lines in latest commit (or working tree if it has changes)
+git diff --shortstat HEAD
+git diff --stat HEAD
+// last 2
+git diff --shortstat HEAD~2..HEAD
+----
+diff - only lines
+show - author, date, message, lines
 ```
