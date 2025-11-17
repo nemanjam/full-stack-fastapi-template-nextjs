@@ -1,13 +1,17 @@
-import { FC } from 'react';
-
 import { Package } from 'lucide-react';
 
 import List from '@workspace/ui/components/list';
 
 import { ItemsService } from '@/client/sdk.gen';
+import { throwIfApiError } from '@/utils/error';
+
+import type { FC } from 'react';
 
 const ListRecentItems: FC = async () => {
   const result = await ItemsService.readItems();
+
+  throwIfApiError(result);
+
   const items = result.data?.data ?? [];
 
   return (

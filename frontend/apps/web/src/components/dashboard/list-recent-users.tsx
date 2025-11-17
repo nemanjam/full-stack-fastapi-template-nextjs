@@ -1,14 +1,18 @@
-import { FC } from 'react';
-
 import { Users } from 'lucide-react';
 
 import List from '@workspace/ui/components/list';
 import { Badge } from '@workspace/ui/components/ui/badge';
 
 import { UsersService } from '@/client/sdk.gen';
+import { throwIfApiError } from '@/utils/error';
+
+import type { FC } from 'react';
 
 const ListRecentUsers: FC = async () => {
   const result = await UsersService.readUsers();
+
+  throwIfApiError(result);
+
   const users = result.data?.data ?? [];
 
   return (

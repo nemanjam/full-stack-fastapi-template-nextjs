@@ -25,6 +25,7 @@ import DialogUserCreate from '@/components/dashboard/dialog-user-create';
 import DialogUserUpdate from '@/components/dashboard/dialog-user-update';
 import DropdownUser from '@/components/dashboard/dropdown-user';
 import { UsersService } from '@/client/sdk.gen';
+import { throwIfApiError } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 
@@ -160,6 +161,9 @@ const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
       },
     }),
   ]);
+
+  throwIfApiError(currentUserResult);
+  throwIfApiError(usersResult);
 
   const currentUser = currentUserResult.data;
   const users = usersResult.data?.data ?? [];

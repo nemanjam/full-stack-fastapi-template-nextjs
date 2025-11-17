@@ -22,7 +22,8 @@ import { Switch } from '@workspace/ui/components/ui/switch';
 
 import { userUpdateAction } from '@/actions/user';
 import { userUpdateSchema } from '@/schemas/forms';
-import { getApiErrorMessage, isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { getApiErrorMessage } from '@/utils/error';
 
 import type { UserPublic } from '@/client/types.gen';
 import type { UserUpdateFormValues } from '@/types/forms';

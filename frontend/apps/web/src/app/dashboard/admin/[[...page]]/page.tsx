@@ -1,3 +1,6 @@
+import TableSkeleton from '@workspace/ui/components/skeletons/table';
+
+import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
 import DashboardTitle from '@/components/dashboard-title';
 import { DialogUserCreateButton } from '@/components/dashboard/dialog-user-create';
 import TableAdmin from '@/components/dashboard/table-admin';
@@ -20,7 +23,9 @@ const AdminPage: FC<Props> = async ({ params }) => {
         description="Manage users and their permissions across the application."
         contentRight={<DialogUserCreateButton />}
       />
-      <TableAdmin currentPage={currentPage} />;
+      <ErrorBoundarySuspense fallback={<TableSkeleton />}>
+        <TableAdmin currentPage={currentPage} />
+      </ErrorBoundarySuspense>
     </div>
   );
 };

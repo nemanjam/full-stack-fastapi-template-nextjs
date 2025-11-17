@@ -22,7 +22,8 @@ import { Switch } from '@workspace/ui/components/ui/switch';
 
 import { userCreateAction } from '@/actions/user';
 import { userCreateSchema } from '@/schemas/forms';
-import { getApiErrorMessage, isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { getApiErrorMessage } from '@/utils/error';
 
 import type { UserCreateFormValues } from '@/types/forms';
 

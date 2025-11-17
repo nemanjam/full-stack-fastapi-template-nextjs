@@ -1,6 +1,6 @@
-import { FC } from 'react';
-
 import { Skeleton } from '@workspace/ui/components/ui/skeleton';
+
+import type { FC } from 'react';
 
 // Todo: improve paddings, props and responsiveness
 

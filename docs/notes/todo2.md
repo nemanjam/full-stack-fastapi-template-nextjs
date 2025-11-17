@@ -102,10 +102,14 @@ add github auth and ui
 extract metadata as constants
 t3 env for env vars https://github.com/t3-oss/t3-env
 skeleton, noData components
-create seed with many users and items for pagination
+        create seed with many users and items for pagination
 consistent naming UserEditDialogAction - clean up perfectly
-mount DialogUserUpdate in a single place
+        mount DialogUserUpdate in a single place, event
 maybe add sorting in read_users() read_items()
 use sentence case in all text
 redirect to login on expired cookie
+fix sidebar jumping
+custom error (exception) classes
+understand Client options.throwOnError handling
+lint, unused imports
 ```

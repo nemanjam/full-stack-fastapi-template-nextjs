@@ -1,10 +1,11 @@
-import { FC } from 'react';
-
 import { Settings } from 'lucide-react';
 
 import List from '@workspace/ui/components/list';
 
 import { ItemsService, UsersService, UtilsService } from '@/client/sdk.gen';
+import { throwIfApiError } from '@/utils/error';
+
+import type { FC } from 'react';
 
 const ListSystemStatus: FC = async () => {
   const [systemResult, usersResult, itemsResult] = await Promise.all([
@@ -12,6 +13,10 @@ const ListSystemStatus: FC = async () => {
     UsersService.readUsers(),
     ItemsService.readItems(),
   ]);
+
+  throwIfApiError(systemResult);
+  throwIfApiError(usersResult);
+  throwIfApiError(itemsResult);
 
   const systemHealth = systemResult.data ?? false;
   const usersCount = usersResult.data?.count ?? 0;

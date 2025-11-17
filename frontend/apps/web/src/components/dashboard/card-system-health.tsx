@@ -1,13 +1,17 @@
-import { FC } from 'react';
-
 import { CheckCircle, Settings, XCircle } from 'lucide-react';
 
 import CardSmall from '@workspace/ui/components/card-small';
 
 import { UtilsService } from '@/client/sdk.gen';
+import { throwIfApiError } from '@/utils/error';
+
+import type { FC } from 'react';
 
 const CardSystemHealth: FC = async () => {
   const result = await UtilsService.healthCheck();
+
+  throwIfApiError(result);
+
   const systemHealth = result.data ?? false;
 
   return (

@@ -11,6 +11,7 @@ interface State {
   errorMessage?: string;
 }
 
+/** Can't catch async http errors. */
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -18,7 +19,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, errorMessage: error.message };
+    return { hasError: true, errorMessage: error.message }; // can't log promise
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
