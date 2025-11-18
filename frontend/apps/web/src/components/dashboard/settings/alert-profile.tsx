@@ -6,6 +6,7 @@ import { AlertCircle } from 'lucide-react';
 
 import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 
+import { waitMs } from '@/utils/wait';
 import { EVENTS } from '@/constants/events';
 
 import { AlertProfileUpdateEventArgs } from '@/types/events';
@@ -21,6 +22,14 @@ const AlertProfile: FC = () => {
     const handleShow = (event: CustomEvent<AlertProfileUpdateEventArgs>) => {
       setAlertArgs(event.detail);
       setIsShown(true);
+
+      // Note: to avoid async function so types can work
+      void (async () => {
+        await waitMs(3000);
+
+        setIsShown(false);
+        setAlertArgs(null);
+      })();
     };
 
     window.addEventListener(ALERT_PROFILE_UPDATE_SHOW, handleShow as EventListener);

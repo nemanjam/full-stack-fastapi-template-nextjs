@@ -1,4 +1,4 @@
 export interface AlertProfileUpdateEventArgs {
-  variant: 'destructive' | 'default';
+  variant: 'destructive' | 'success';
   message: string;
 }

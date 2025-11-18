@@ -33,15 +33,15 @@ const TabsUserSettings: FC<Props> = ({ user }) => {
       </TabsList>
 
       <TabsContent value="profile">
-        <TabProfile user={user} onSuccess={() => {}} />
+        <TabProfile user={user} />
       </TabsContent>
 
       <TabsContent value="password">
-        <TabPassword user={user} onSuccess={() => {}} />
+        <TabPassword user={user} />
       </TabsContent>
 
       <TabsContent value="danger">
-        <TabDeleteAccount userId={user.id} onSuccess={() => {}} />
+        <TabDeleteAccount userId={user.id} />
       </TabsContent>
     </Tabs>
   );
@@ -51,10 +51,9 @@ export default TabsUserSettings;
 
 interface TabProfileProps {
   user: UserPublic;
-  onSuccess: () => void;
 }
 
-const TabProfile: FC<TabProfileProps> = ({ user, onSuccess }) => {
+const TabProfile: FC<TabProfileProps> = ({ user }) => {
   return (
     <TabsContent value="profile">
       <Card>
@@ -62,7 +61,7 @@ const TabProfile: FC<TabProfileProps> = ({ user, onSuccess }) => {
           <CardTitle>Profile Information</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <FormProfileUpdate user={user} onSuccess={onSuccess} />
+          <FormProfileUpdate user={user} />
         </CardContent>
       </Card>
     </TabsContent>
@@ -71,10 +70,9 @@ const TabProfile: FC<TabProfileProps> = ({ user, onSuccess }) => {
 
 interface TabPasswordProps {
   user: UserPublic;
-  onSuccess: () => void;
 }
 
-const TabPassword: FC<TabPasswordProps> = ({ user, onSuccess }) => {
+const TabPassword: FC<TabPasswordProps> = ({ user }) => {
   return (
     <TabsContent value="profile">
       <Card>
@@ -82,7 +80,9 @@ const TabPassword: FC<TabPasswordProps> = ({ user, onSuccess }) => {
           <CardTitle>Change Password</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <FormPasswordUpdate user={user} onSuccess={onSuccess} />
+          {/*
+          <FormPasswordUpdate user={user} />
+        */}
         </CardContent>
       </Card>
     </TabsContent>
@@ -91,10 +91,9 @@ const TabPassword: FC<TabPasswordProps> = ({ user, onSuccess }) => {
 
 interface TabDeleteAccountProps {
   userId: string;
-  onSuccess: () => void;
 }
 
-const TabDeleteAccount: FC<TabDeleteAccountProps> = ({ userId, onSuccess }) => {
+const TabDeleteAccount: FC<TabDeleteAccountProps> = ({ userId }) => {
   return (
     <TabsContent value="profile">
       <Card>
@@ -102,7 +101,9 @@ const TabDeleteAccount: FC<TabDeleteAccountProps> = ({ userId, onSuccess }) => {
           <CardTitle>Danger Zone</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <DeleteAccountButton userId={userId} onSuccess={onSuccess} />
+          {/*
+          <DeleteAccountButton userId={userId} />
+           */}
         </CardContent>
       </Card>
     </TabsContent>

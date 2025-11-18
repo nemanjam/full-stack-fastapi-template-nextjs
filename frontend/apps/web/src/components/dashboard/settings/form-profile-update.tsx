@@ -31,7 +31,6 @@ import type { FC } from 'react';
 
 interface Props {
   user: UserPublic;
-  onSuccess: () => void;
 }
 const { ALERT_PROFILE_UPDATE_SHOW } = EVENTS;
 
@@ -63,7 +62,7 @@ const FormProfileUpdate: FC<Props> = ({ user }) => {
     switch (true) {
       case isSuccess:
         alertArgs = {
-          variant: 'default',
+          variant: 'success',
           message: 'Profile updated successfully',
         };
         break;
@@ -86,6 +85,8 @@ const FormProfileUpdate: FC<Props> = ({ user }) => {
   return (
     <Form {...form}>
       <form action={formAction} className="space-y-6">
+        <input type="hidden" {...form.register('user_id')} />
+
         <FormField
           control={form.control}
           name="full_name"
