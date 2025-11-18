@@ -1,9 +1,9 @@
 import TableSkeleton from '@workspace/ui/components/skeletons/table';
 
 import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
-import DashboardTitle from '@/components/dashboard-title';
-import { DialogUserCreateButton } from '@/components/dashboard/dialog-user-create';
-import TableAdmin from '@/components/dashboard/table-admin';
+import { DialogUserCreateButton } from '@/components/dashboard/admin/dialog-user-create';
+import TableAdmin from '@/components/dashboard/admin/table-admin';
+import DashboardTitle from '@/components/dashboard/common/dashboard-title';
 
 import type { FC } from 'react';
 

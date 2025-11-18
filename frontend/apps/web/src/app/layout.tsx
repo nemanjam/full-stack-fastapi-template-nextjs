@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google';
 
 import { Toaster } from '@workspace/ui/components/ui/toaster';
 
-import ThemeProvider from '@/components/theme-provider';
+import ThemeProvider from '@/components/common/theme-provider';
 
 import type { Metadata } from 'next';
 import type React from 'react';

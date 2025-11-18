@@ -15,7 +15,7 @@ import {
   SidebarMenuItem,
 } from '@workspace/ui/components/ui/sidebar';
 
-import WithIsActive from '@/components/common/with-is-active';
+import WithIsActive from '@/components/dashboard/layout/with-is-active';
 import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
 

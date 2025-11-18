@@ -2,8 +2,8 @@ import { redirect } from 'next/navigation';
 
 import { SidebarProvider } from '@workspace/ui/components/ui/sidebar';
 
-import AppSidebar from '@/components/app-sidebar';
-import DashboardHeader from '@/components/dashboard-header';
+import AppSidebar from '@/components/dashboard/layout/app-sidebar';
+import DashboardHeader from '@/components/dashboard/layout/dashboard-header';
 import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
 

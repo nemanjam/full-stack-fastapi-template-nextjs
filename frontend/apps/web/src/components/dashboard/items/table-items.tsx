@@ -19,12 +19,11 @@ import {
 } from '@workspace/ui/components/ui/table';
 import { cn } from '@workspace/ui/lib/utils';
 
-import DialogItemCreate from '@/components/dashboard/dialog-item-create';
-import DialogItemUpdate from '@/components/dashboard/dialog-item-update';
-import DropdownItem from '@/components/dashboard/dropdown-item';
+import DialogItemCreate from '@/components/dashboard/items/dialog-item-create';
+import DialogItemUpdate from '@/components/dashboard/items/dialog-item-update';
+import DropdownItem from '@/components/dashboard/items/dropdown-item';
 import { ItemsService } from '@/client/sdk.gen';
 import { throwIfApiError } from '@/utils/error';
-import { waitMs } from '@/utils/wait';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 

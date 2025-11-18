@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from '@workspace/ui/components/ui/dialog';
 
-import FormUserCreate from '@/components/dashboard/form-user-create';
+import FormUserCreate from '@/components/dashboard/admin/form-user-create';
 import { EVENTS } from '@/constants/events';
 
 import type { FC } from 'react';

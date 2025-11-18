@@ -20,9 +20,9 @@ import {
 } from '@workspace/ui/components/ui/table';
 import { cn } from '@workspace/ui/lib/utils';
 
-import DialogUserCreate from '@/components/dashboard/dialog-user-create';
-import DialogUserUpdate from '@/components/dashboard/dialog-user-update';
-import DropdownUser from '@/components/dashboard/dropdown-user';
+import DialogUserCreate from '@/components/dashboard/admin/dialog-user-create';
+import DialogUserUpdate from '@/components/dashboard/admin/dialog-user-update';
+import DropdownUser from '@/components/dashboard/admin/dropdown-user';
 import { UsersService } from '@/client/sdk.gen';
 import { throwIfApiError } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';

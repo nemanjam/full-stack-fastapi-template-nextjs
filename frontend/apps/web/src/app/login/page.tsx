@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@workspace/ui/components/ui/card';
 
-import FormLogin from '@/components/form-login';
+import FormLogin from '@/components/login/form-login';
 
 import type { FC } from 'react';
 

@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from '@workspace/ui/components/ui/dialog';
 
-import FormItemUpdate from '@/components/dashboard/form-item-update';
+import FormItemUpdate from '@/components/dashboard/items/form-item-update';
 import { EVENTS } from '@/constants/events';
 
 import type { ItemPublic } from '@/client/types.gen';

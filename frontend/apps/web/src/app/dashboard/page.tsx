@@ -2,14 +2,14 @@ import CardSmallSkeleton from '@workspace/ui/components/skeletons/card-small';
 import ListSkeleton from '@workspace/ui/components/skeletons/list';
 
 import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
-import DashboardTitle from '@/components/dashboard-title';
-import CardCurrentUser from '@/components/dashboard/card-current-user';
-import CardSystemHealth from '@/components/dashboard/card-system-health';
-import CardTotalItems from '@/components/dashboard/card-total-items';
-import CardTotalUsers from '@/components/dashboard/card-total-users';
-import ListRecentItems from '@/components/dashboard/list-recent-items';
-import ListRecentUsers from '@/components/dashboard/list-recent-users';
-import ListSystemStatus from '@/components/dashboard/list-system-status';
+import DashboardTitle from '@/components/dashboard/common/dashboard-title';
+import CardCurrentUser from '@/components/dashboard/home/card-current-user';
+import CardSystemHealth from '@/components/dashboard/home/card-system-health';
+import CardTotalItems from '@/components/dashboard/home/card-total-items';
+import CardTotalUsers from '@/components/dashboard/home/card-total-users';
+import ListRecentItems from '@/components/dashboard/home/list-recent-items';
+import ListRecentUsers from '@/components/dashboard/home/list-recent-users';
+import ListSystemStatus from '@/components/dashboard/home/list-system-status';
 import { UsersService } from '@/client/sdk.gen';
 
 import type { FC } from 'react';
