@@ -4,6 +4,7 @@ import {
   itemCreateSchema,
   itemUpdateSchema,
   loginFormSchema,
+  profileUpdateSchema,
   userCreateSchema,
   userUpdateSchema,
 } from '@/schemas/forms';
@@ -18,6 +19,10 @@ export type UserUpdateFormKeys = keyof UserUpdateFormValues;
 
 export type UserCreateFormValues = z.output<typeof userCreateSchema>;
 export type UserCreateFormKeys = keyof UserCreateFormValues;
+
+// profile
+export type ProfileUpdateFormValues = z.output<typeof profileUpdateSchema>;
+export type ProfileUpdateFormKeys = keyof ProfileUpdateFormValues;
 
 // item
 export type ItemUpdateFormValues = z.output<typeof itemUpdateSchema>;

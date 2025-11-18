@@ -23,6 +23,13 @@ export const userCreateSchema = z.object({
   is_superuser: z.boolean().optional(),
 });
 
+// profile
+export const profileUpdateSchema = z.object({
+  user_id: z.string(),
+  email: z.email(),
+  full_name: z.string().min(2),
+});
+
 // item
 export const itemUpdateSchema = z.object({
   id: z.string(),

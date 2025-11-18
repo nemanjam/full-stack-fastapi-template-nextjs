@@ -17,38 +17,34 @@ import {
   FormMessage,
 } from '@workspace/ui/components/ui/form';
 import { Input } from '@workspace/ui/components/ui/input';
-import { Label } from '@workspace/ui/components/ui/label';
-import { Switch } from '@workspace/ui/components/ui/switch';
 
-import { userUpdateAction } from '@/actions/user';
-import { userUpdateSchema } from '@/schemas/forms';
+import { profileUpdateAction } from '@/actions/profile';
+import { UserPublic } from '@/client/types.gen';
+import { profileUpdateSchema } from '@/schemas/forms';
 import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
 
-import type { UserPublic } from '@/client/types.gen';
-import type { UserUpdateFormValues } from '@/types/forms';
+import type { ProfileUpdateFormValues } from '@/types/forms';
 import type { FC } from 'react';
 
 interface Props {
   user: UserPublic;
   onSuccess: () => void;
-  onCancel: () => void;
 }
 
-const resolver = zodResolver(userUpdateSchema);
+const resolver = zodResolver(profileUpdateSchema);
 
-const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
+const FormProfileUpdate: FC<Props> = ({ user, onSuccess }) => {
   const initialState = { data: undefined };
-  const [state, formAction, isPending] = useActionState(userUpdateAction, initialState);
+  const [state, formAction, isPending] = useActionState(profileUpdateAction, initialState);
 
-  const defaultValues: UserUpdateFormValues = {
+  const defaultValues: ProfileUpdateFormValues = {
     user_id: user.id,
     email: user.email,
     full_name: user.full_name ?? '',
-    is_superuser: user.is_superuser,
   } as const;
 
-  const form = useForm<UserUpdateFormValues>({ resolver, defaultValues });
+  const form = useForm<ProfileUpdateFormValues>({ resolver, defaultValues });
 
   const isSuccess = isSuccessApiResult(state);
 
@@ -61,22 +57,6 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
   return (
     <Form {...form}>
       <form action={formAction} className="space-y-6">
-        <input type="hidden" {...form.register('user_id')} />
-
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email *</FormLabel>
-              <FormControl>
-                <Input {...field} disabled={isPending} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="full_name"
@@ -84,7 +64,7 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
             <FormItem>
               <FormLabel>Full Name *</FormLabel>
               <FormControl>
-                <Input {...field} disabled={isPending} />
+                <Input placeholder="Enter your full name..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,21 +73,14 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
 
         <FormField
           control={form.control}
-          name="is_superuser"
+          name="email"
           render={({ field }) => (
-            <FormItem className="flex items-center space-x-2">
+            <FormItem>
+              <FormLabel>Email Address *</FormLabel>
               <FormControl>
-                <div>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    disabled={isPending}
-                  />
-                  {/* Hidden input so FormData sees the value */}
-                  <input type="hidden" name={field.name} value={field.value ? 'on' : ''} />
-                </div>
+                <Input type="email" placeholder="Enter your email address..." {...field} />
               </FormControl>
-              <Label>Administrator privileges</Label>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -118,11 +91,7 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
           </Alert>
         )}
 
-        <div className="flex justify-end space-x-2">
-          <Button type="button" variant="outline" onClick={onCancel} disabled={isPending}>
-            Cancel
-          </Button>
-
+        <div className="flex justify-end">
           <Button type="submit" disabled={isPending}>
             {isPending ? (
               <>
@@ -130,7 +99,7 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
                 Updating...
               </>
             ) : (
-              'Update User'
+              'Update Profile'
             )}
           </Button>
         </div>
@@ -139,4 +108,4 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
   );
 };
 
-export default FormUserUpdate;
+export default FormProfileUpdate;
