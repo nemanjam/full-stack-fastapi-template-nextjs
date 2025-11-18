@@ -23,7 +23,9 @@ import { UserPublic } from '@/client/types.gen';
 import { profileUpdateSchema } from '@/schemas/forms';
 import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
+import { EVENTS } from '@/constants/events';
 
+import { AlertProfileUpdateEventArgs } from '@/types/events';
 import type { ProfileUpdateFormValues } from '@/types/forms';
 import type { FC } from 'react';
 
@@ -31,10 +33,11 @@ interface Props {
   user: UserPublic;
   onSuccess: () => void;
 }
+const { ALERT_PROFILE_UPDATE_SHOW } = EVENTS;
 
 const resolver = zodResolver(profileUpdateSchema);
 
-const FormProfileUpdate: FC<Props> = ({ user, onSuccess }) => {
+const FormProfileUpdate: FC<Props> = ({ user }) => {
   const initialState = { data: undefined };
   const [state, formAction, isPending] = useActionState(profileUpdateAction, initialState);
 
@@ -47,12 +50,38 @@ const FormProfileUpdate: FC<Props> = ({ user, onSuccess }) => {
   const form = useForm<ProfileUpdateFormValues>({ resolver, defaultValues });
 
   const isSuccess = isSuccessApiResult(state);
+  const isError = isErrorApiResult(state);
+
+  const showAlert = (alertArgs: AlertProfileUpdateEventArgs) => {
+    const showEvent = new CustomEvent(ALERT_PROFILE_UPDATE_SHOW, { detail: alertArgs });
+    window.dispatchEvent(showEvent);
+  };
 
   useEffect(() => {
-    if (isSuccess) onSuccess?.();
-  }, [isSuccess, onSuccess]);
+    let alertArgs: AlertProfileUpdateEventArgs | null = null;
 
-  const isError = isErrorApiResult(state);
+    switch (true) {
+      case isSuccess:
+        alertArgs = {
+          variant: 'default',
+          message: 'Profile updated successfully',
+        };
+        break;
+
+      case isError:
+        alertArgs = {
+          variant: 'destructive',
+          message: getApiErrorMessage(state.error),
+        };
+        break;
+
+      default:
+        alertArgs = null;
+        break;
+    }
+
+    if (alertArgs) showAlert(alertArgs);
+  }, [isSuccess, isError, state]);
 
   return (
     <Form {...form}>
@@ -84,12 +113,6 @@ const FormProfileUpdate: FC<Props> = ({ user, onSuccess }) => {
             </FormItem>
           )}
         />
-
-        {isError && (
-          <Alert variant="destructive">
-            <AlertDescription>{getApiErrorMessage(state.error)}</AlertDescription>
-          </Alert>
-        )}
 
         <div className="flex justify-end">
           <Button type="submit" disabled={isPending}>

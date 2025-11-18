@@ -4,6 +4,7 @@ import TableSkeleton from '@workspace/ui/components/skeletons/table';
 
 import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
 import DashboardTitle from '@/components/dashboard/common/dashboard-title';
+import AlertProfile from '@/components/dashboard/settings/alert-profile';
 import TabsUserSettings from '@/components/dashboard/settings/tabs-user-settings';
 import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
@@ -24,7 +25,7 @@ const SettingsPage: FC = async () => {
       <DashboardTitle
         title="User Settings"
         description="Manage your account settings and preferences."
-        contentRight={<div>Success Alert here, listens to success event</div>}
+        alert={<AlertProfile />}
       />
       <ErrorBoundarySuspense fallback={<TableSkeleton />}>
         <TabsUserSettings user={currentUser} />
