@@ -16,7 +16,7 @@ import {
 import { SidebarTrigger } from '@workspace/ui/components/ui/sidebar';
 
 import { logoutAction } from '@/actions/logout';
-import { ThemeToggle } from '@/components/theme-toggle';
+import ThemeToggle from '@/components/theme-toggle';
 import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';

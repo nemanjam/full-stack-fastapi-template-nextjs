@@ -22,7 +22,8 @@ import { Input } from '@workspace/ui/components/ui/input';
 
 import { loginAction } from '@/actions/login';
 import { loginFormSchema } from '@/schemas/forms';
-import { getApiErrorMessage, isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
+import { getApiErrorMessage } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 
 import { ApiResult } from '@/types/api';

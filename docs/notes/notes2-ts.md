@@ -36,9 +36,11 @@ const [currentUserResult, usersResult] = await Promise.all([
   Promise.reject(new Error("Forced readUsers error")),
 ]);
 -------------
-// number of lines in latest commit (or working tree if it has changes)
+// number of lines in working directory - uncommitted
 git diff --shortstat HEAD
 git diff --stat HEAD
+// in latest commit
+git diff --shortstat HEAD~..HEAD
 // last 2
 git diff --shortstat HEAD~2..HEAD
 ----
