@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 
 import { UsersService } from '@/client/sdk.gen';
 import { waitMs } from '@/utils/wait';
+import { DELAY } from '@/constants/delay';
 import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';
 
 const { LOGIN, DASHBOARD } = ROUTES;
+const { HOME_PAGE_REDIRECT } = DELAY;
 
 // Must be client component to show loader before redirect
 // hey-api client doesn't work on client with cookies
@@ -24,7 +26,7 @@ const HomePage: FC = () => {
       const result = await UsersService.readUserMe();
       const currentUser = result.data;
 
-      await waitMs(2000);
+      await waitMs(HOME_PAGE_REDIRECT);
 
       const redirectUrl = currentUser ? DASHBOARD : LOGIN;
       router.push(redirectUrl);

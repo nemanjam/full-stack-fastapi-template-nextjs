@@ -7,12 +7,14 @@ import { AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
 
 import { waitMs } from '@/utils/wait';
+import { DELAY } from '@/constants/delay';
 import { EVENTS } from '@/constants/events';
 
 import { AlertProfileUpdateEventArgs } from '@/types/events';
 import type { FC } from 'react';
 
 const { ALERT_PROFILE_UPDATE_SHOW } = EVENTS;
+const { ALERT_AUTO_HIDE } = DELAY;
 
 const AlertProfile: FC = () => {
   const [isShown, setIsShown] = useState(false);
@@ -25,7 +27,7 @@ const AlertProfile: FC = () => {
 
       // Note: to avoid async function so types can work
       void (async () => {
-        await waitMs(3000);
+        await waitMs(ALERT_AUTO_HIDE);
 
         setIsShown(false);
         setAlertArgs(null);
