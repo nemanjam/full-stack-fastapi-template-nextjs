@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
+import { startTransition, useActionState, useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
@@ -25,7 +25,7 @@ import { EVENTS } from '@/constants/events';
 
 import { AlertProfileUpdateEventArgs } from '@/types/events';
 import type { ProfilePasswordUpdateFormValues } from '@/types/forms';
-import type { FC } from 'react';
+import type { FC, FormEvent } from 'react';
 
 const { ALERT_PROFILE_UPDATE_SHOW } = EVENTS;
 
@@ -75,9 +75,23 @@ const FormPasswordUpdate: FC = () => {
     if (alertArgs) showAlert(alertArgs);
   }, [isSuccess, isError, state]);
 
+  const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    form.handleSubmit(() => {
+      const formElement = event.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      startTransition(() => {
+        formAction(formData);
+        form.reset();
+      });
+    })(event);
+  };
+
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-6">
+      <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <FormField
           control={form.control}
           name="current_password"

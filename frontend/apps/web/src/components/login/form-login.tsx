@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useActionState, useEffect } from 'react';
+import { startTransition, useActionState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -28,6 +28,7 @@ import { ROUTES } from '@/constants/routes';
 
 import { ApiResult } from '@/types/api';
 import type { LoginFormValues } from '@/types/forms';
+import type { FC, FormEvent } from 'react';
 
 const { DASHBOARD, FORGOT_PASSWORD } = ROUTES;
 
@@ -57,9 +58,23 @@ const FormLogin: FC = () => {
     router.push(DASHBOARD);
   }, [isSuccess, router]);
 
+  const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    form.handleSubmit(() => {
+      const formElement = event.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      startTransition(() => {
+        formAction(formData);
+        form.reset();
+      });
+    })(event);
+  };
+
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-6">
+      <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <FormField
           control={form.control}
           name="username"

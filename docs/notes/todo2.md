@@ -121,4 +121,6 @@ sort by updatedAt
 uuid truncate in table maybe, responsive table
 per page folder structure in dashboard
 remove unused auth and client files in lib
+extract constants on backend
+reuse znd extend zod schemas
 ```

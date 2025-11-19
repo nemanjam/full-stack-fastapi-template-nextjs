@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useActionState, useEffect } from 'react';
+import { startTransition, useActionState, useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
@@ -25,6 +25,7 @@ import { getApiErrorMessage } from '@/utils/error';
 
 import type { ItemPublic } from '@/client/types.gen';
 import type { ItemUpdateFormValues } from '@/types/forms';
+import type { FC, FormEvent } from 'react';
 
 interface Props {
   item: ItemPublic;
@@ -54,9 +55,23 @@ const FormItemUpdate: FC<Props> = ({ item, onSuccess, onCancel }) => {
 
   const isError = isErrorApiResult(state);
 
+  const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    form.handleSubmit(() => {
+      const formElement = event.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      startTransition(() => {
+        formAction(formData);
+        form.reset();
+      });
+    })(event);
+  };
+
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-6">
+      <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <input type="hidden" {...form.register('id')} />
 
         <FormField

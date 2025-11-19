@@ -1,9 +1,9 @@
 'use client';
 
-import { FC, useActionState, useEffect, useState } from 'react';
+import { startTransition, useActionState, useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 import { Alert, AlertDescription } from '@workspace/ui/components/ui/alert';
@@ -17,8 +17,6 @@ import {
   FormMessage,
 } from '@workspace/ui/components/ui/form';
 import { Input } from '@workspace/ui/components/ui/input';
-import { Label } from '@workspace/ui/components/ui/label';
-import { Switch } from '@workspace/ui/components/ui/switch';
 
 import { itemCreateAction } from '@/actions/item';
 import { itemCreateSchema } from '@/schemas/forms';
@@ -26,6 +24,7 @@ import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
 
 import type { ItemCreateFormValues } from '@/types/forms';
+import type { FC, FormEvent } from 'react';
 
 interface Props {
   onSuccess: () => void;
@@ -53,9 +52,23 @@ const FormItemCreate: FC<Props> = ({ onSuccess, onCancel }) => {
 
   const isError = isErrorApiResult(state);
 
+  const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    form.handleSubmit(() => {
+      const formElement = event.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      startTransition(() => {
+        formAction(formData);
+        form.reset();
+      });
+    })(event);
+  };
+
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-6">
+      <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <FormField
           control={form.control}
           name="title"

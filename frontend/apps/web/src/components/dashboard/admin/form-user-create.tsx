@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useActionState, useEffect, useState } from 'react';
+import { startTransition, useActionState, useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
@@ -26,6 +26,7 @@ import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
 
 import type { UserCreateFormValues } from '@/types/forms';
+import type { FC, FormEvent } from 'react';
 
 interface Props {
   onSuccess: () => void;
@@ -57,9 +58,23 @@ const FormUserCreate: FC<Props> = ({ onSuccess, onCancel }) => {
 
   const isError = isErrorApiResult(state);
 
+  const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    form.handleSubmit(() => {
+      const formElement = event.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      startTransition(() => {
+        formAction(formData);
+        form.reset();
+      });
+    })(event);
+  };
+
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-6">
+      <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <FormField
           control={form.control}
           name="email"

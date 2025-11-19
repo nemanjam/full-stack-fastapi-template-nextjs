@@ -46,4 +46,9 @@ git diff --shortstat HEAD~2..HEAD
 ----
 diff - only lines
 show - author, date, message, lines
+------------
+// idea for article RHF with server action before form submit
+validateAndSubmit() ...
+--------
+
 ```

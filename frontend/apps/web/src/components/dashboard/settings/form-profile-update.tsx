@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect } from 'react';
+import { startTransition, useActionState, useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
@@ -26,7 +26,7 @@ import { EVENTS } from '@/constants/events';
 
 import { AlertProfileUpdateEventArgs } from '@/types/events';
 import type { ProfileUpdateFormValues } from '@/types/forms';
-import type { FC } from 'react';
+import type { FC, FormEvent } from 'react';
 
 interface Props {
   user: UserPublic;
@@ -81,9 +81,23 @@ const FormProfileUpdate: FC<Props> = ({ user }) => {
     if (alertArgs) showAlert(alertArgs);
   }, [isSuccess, isError, state]);
 
+  const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    form.handleSubmit(() => {
+      const formElement = event.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      startTransition(() => {
+        formAction(formData);
+        form.reset();
+      });
+    })(event);
+  };
+
   return (
     <Form {...form}>
-      <form action={formAction} className="space-y-6">
+      <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <input type="hidden" {...form.register('user_id')} />
 
         <FormField
