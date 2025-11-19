@@ -45,7 +45,7 @@ export const profileUpdateSchema = z.object({
     .string()
     .min(1, { message: 'Email is required' })
     .pipe(z.email({ message: 'Invalid email address' })),
-  full_name: z.string().min(2),
+  full_name: z.string().min(2, { message: 'Full name must be at least 2 characters long' }),
 });
 
 export const profilePasswordUpdateSchema = z

@@ -65,10 +65,7 @@ const FormUserUpdate: FC<Props> = ({ user, onSuccess, onCancel }) => {
       const formElement = event.target as HTMLFormElement;
       const formData = new FormData(formElement);
 
-      startTransition(() => {
-        formAction(formData);
-        form.reset();
-      });
+      startTransition(() => formAction(formData));
     })(event);
   };
 

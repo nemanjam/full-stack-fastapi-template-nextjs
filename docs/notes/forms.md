@@ -30,4 +30,8 @@ form.handleSubmit(() => {
     });
 })(event);
 };
+----------
+// when to reset form after submit and when not
+Create user → reset after success
+Update user, login, register → DO NOT reset // anywhere with redirect
 ```

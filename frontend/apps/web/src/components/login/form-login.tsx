@@ -65,10 +65,7 @@ const FormLogin: FC = () => {
       const formElement = event.target as HTMLFormElement;
       const formData = new FormData(formElement);
 
-      startTransition(() => {
-        formAction(formData);
-        form.reset();
-      });
+      startTransition(() => formAction(formData));
     })(event);
   };
 
