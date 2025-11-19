@@ -30,6 +30,26 @@ export const profileUpdateSchema = z.object({
   full_name: z.string().min(2),
 });
 
+export const profilePasswordUpdateSchema = z
+  .object({
+    current_password: z.string().min(6, { message: 'Password must be at least 6 characters long' }),
+    new_password: z.string().min(6, { message: 'New password must be at least 6 characters long' }),
+    confirm_password: z
+      .string()
+      .min(6, { message: 'New password must be at least 6 characters long' }),
+  })
+  .refine(
+    (data) => {
+      console.log('data', data);
+
+      return data.new_password === data.confirm_password;
+    },
+    {
+      message: "Passwords don't match",
+      path: ['confirm_password'], // attach error to confirm_password field
+    }
+  );
+
 // item
 export const itemUpdateSchema = z.object({
   id: z.string(),

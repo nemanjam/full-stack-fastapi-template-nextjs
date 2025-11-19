@@ -5,6 +5,7 @@ import { AlertTriangle, Lock, User } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/ui/tabs';
 
+import FormPasswordUpdate from '@/components/dashboard/settings/form-password-update';
 import FormProfileUpdate from '@/components/dashboard/settings/form-profile-update';
 import { UserPublic } from '@/client/types.gen';
 
@@ -37,7 +38,7 @@ const TabsUserSettings: FC<Props> = ({ user }) => {
       </TabsContent>
 
       <TabsContent value="password">
-        <TabPassword user={user} />
+        <TabPassword />
       </TabsContent>
 
       <TabsContent value="danger">
@@ -55,39 +56,27 @@ interface TabProfileProps {
 
 const TabProfile: FC<TabProfileProps> = ({ user }) => {
   return (
-    <TabsContent value="profile">
-      <Card>
-        <CardHeader>
-          <CardTitle>Profile Information</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <FormProfileUpdate user={user} />
-        </CardContent>
-      </Card>
-    </TabsContent>
+    <Card>
+      <CardHeader>
+        <CardTitle>Profile Information</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <FormProfileUpdate user={user} />
+      </CardContent>
+    </Card>
   );
 };
 
-interface TabPasswordProps {
-  user: UserPublic;
-}
-
-const TabPassword: FC<TabPasswordProps> = ({ user }) => {
-  return (
-    <TabsContent value="profile">
-      <Card>
-        <CardHeader>
-          <CardTitle>Change Password</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/*
-          <FormPasswordUpdate user={user} />
-        */}
-        </CardContent>
-      </Card>
-    </TabsContent>
-  );
-};
+const TabPassword: FC = () => (
+  <Card>
+    <CardHeader>
+      <CardTitle>Change Password</CardTitle>
+    </CardHeader>
+    <CardContent className="space-y-4">
+      <FormPasswordUpdate />
+    </CardContent>
+  </Card>
+);
 
 interface TabDeleteAccountProps {
   userId: string;
@@ -95,17 +84,15 @@ interface TabDeleteAccountProps {
 
 const TabDeleteAccount: FC<TabDeleteAccountProps> = ({ userId }) => {
   return (
-    <TabsContent value="profile">
-      <Card>
-        <CardHeader>
-          <CardTitle>Danger Zone</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/*
-          <DeleteAccountButton userId={userId} />
+    <Card>
+      <CardHeader>
+        <CardTitle>Danger Zone</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {/*
+          <ButtonDeleteAccount userId={userId} />
            */}
-        </CardContent>
-      </Card>
-    </TabsContent>
+      </CardContent>
+    </Card>
   );
 };

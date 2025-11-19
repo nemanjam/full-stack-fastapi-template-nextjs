@@ -4,6 +4,7 @@ import {
   itemCreateSchema,
   itemUpdateSchema,
   loginFormSchema,
+  profilePasswordUpdateSchema,
   profileUpdateSchema,
   userCreateSchema,
   userUpdateSchema,
@@ -23,6 +24,9 @@ export type UserCreateFormKeys = keyof UserCreateFormValues;
 // profile
 export type ProfileUpdateFormValues = z.output<typeof profileUpdateSchema>;
 export type ProfileUpdateFormKeys = keyof ProfileUpdateFormValues;
+
+export type ProfilePasswordUpdateFormValues = z.output<typeof profilePasswordUpdateSchema>;
+export type ProfilePasswordUpdateFormKeys = keyof ProfilePasswordUpdateFormValues;
 
 // item
 export type ItemUpdateFormValues = z.output<typeof itemUpdateSchema>;

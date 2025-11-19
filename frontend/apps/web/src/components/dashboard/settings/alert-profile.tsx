@@ -21,17 +21,15 @@ const AlertProfile: FC = () => {
   const [alertArgs, setAlertArgs] = useState<AlertProfileUpdateEventArgs | null>(null);
 
   useEffect(() => {
+    // Note: must be sync function
     const handleShow = (event: CustomEvent<AlertProfileUpdateEventArgs>) => {
       setAlertArgs(event.detail);
       setIsShown(true);
 
-      // Note: to avoid async function so types can work
-      void (async () => {
-        await waitMs(ALERT_AUTO_HIDE);
-
+      waitMs(ALERT_AUTO_HIDE).then(() => {
         setIsShown(false);
         setAlertArgs(null);
-      })();
+      });
     };
 
     window.addEventListener(ALERT_PROFILE_UPDATE_SHOW, handleShow as EventListener);
