@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 
 import { ItemsService } from '@/client/sdk.gen';
-import { ItemCreate, ItemUpdate } from '@/client/types.gen';
 import { ROUTES } from '@/constants/routes';
 
+import type { ItemCreate, ItemUpdate } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 const { ITEMS } = ROUTES;

@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 
 import { UsersService } from '@/client/sdk.gen';
-import { UserCreate, UserUpdate } from '@/client/types.gen';
 import { ROUTES } from '@/constants/routes';
 
+import type { UserCreate, UserUpdate } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 const { ADMIN } = ROUTES;

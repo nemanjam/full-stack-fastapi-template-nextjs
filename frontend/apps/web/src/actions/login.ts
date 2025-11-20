@@ -1,9 +1,9 @@
 'use server';
 
 import { LoginService } from '@/client/sdk.gen';
-import { BodyLoginLoginAccessToken } from '@/client/types.gen';
 import { forwardCookiesFromResponse } from '@/utils/actions';
 
+import type { BodyLoginLoginAccessToken } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 /**

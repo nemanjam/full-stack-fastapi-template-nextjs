@@ -18,6 +18,7 @@ import {
 import { Input } from '@workspace/ui/components/ui/input';
 
 import { profilePasswordUpdateAction } from '@/actions/profile';
+import { UsersUpdatePasswordMeResponses } from '@/client/types.gen';
 import { profilePasswordUpdateSchema } from '@/schemas/forms';
 import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
@@ -61,7 +62,10 @@ const FormPasswordUpdate: FC = () => {
 
     switch (true) {
       case isSuccess:
-        alertArgs = { variant: 'success', message: 'Password updated successfully' };
+        alertArgs = {
+          variant: 'success',
+          message: (state.data as UsersUpdatePasswordMeResponses)[200].message,
+        };
         break;
 
       case isError:

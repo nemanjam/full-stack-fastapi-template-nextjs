@@ -18,13 +18,13 @@ import {
 import { Input } from '@workspace/ui/components/ui/input';
 
 import { profileUpdateAction } from '@/actions/profile';
-import { UserPublic } from '@/client/types.gen';
 import { profileUpdateSchema } from '@/schemas/forms';
 import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
 import { EVENTS } from '@/constants/events';
 
 import { AlertProfileUpdateEventArgs } from '@/types/events';
+import type { UserPublic } from '@/client/types.gen';
 import type { ProfileUpdateFormValues } from '@/types/forms';
 import type { FC, FormEvent } from 'react';
 

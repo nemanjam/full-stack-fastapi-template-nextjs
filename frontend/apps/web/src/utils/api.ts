@@ -1,5 +1,4 @@
-import { HttpValidationError } from '@/client/types.gen';
-
+import type { HttpValidationError } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 export const isErrorApiResult = (

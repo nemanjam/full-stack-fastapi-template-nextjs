@@ -5,10 +5,11 @@ import { AlertTriangle, Lock, User } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/ui/tabs';
 
+import ButtonProfileDelete from '@/components/dashboard/settings/button-profile-delete';
 import FormPasswordUpdate from '@/components/dashboard/settings/form-password-update';
 import FormProfileUpdate from '@/components/dashboard/settings/form-profile-update';
-import { UserPublic } from '@/client/types.gen';
 
+import type { UserPublic } from '@/client/types.gen';
 import type { FC } from 'react';
 
 interface Props {
@@ -42,7 +43,7 @@ const TabsUserSettings: FC<Props> = ({ user }) => {
       </TabsContent>
 
       <TabsContent value="danger">
-        <TabDeleteAccount userId={user.id} />
+        <TabDeleteAccount />
       </TabsContent>
     </Tabs>
   );
@@ -78,20 +79,14 @@ const TabPassword: FC = () => (
   </Card>
 );
 
-interface TabDeleteAccountProps {
-  userId: string;
-}
-
-const TabDeleteAccount: FC<TabDeleteAccountProps> = ({ userId }) => {
+const TabDeleteAccount: FC = () => {
   return (
     <Card>
       <CardHeader>
         <CardTitle>Danger Zone</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/*
-          <ButtonDeleteAccount userId={userId} />
-           */}
+        <ButtonProfileDelete />
       </CardContent>
     </Card>
   );

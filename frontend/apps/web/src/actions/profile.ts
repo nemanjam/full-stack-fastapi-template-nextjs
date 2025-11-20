@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 
 import { UsersService } from '@/client/sdk.gen';
-import { UpdatePassword, UserUpdate } from '@/client/types.gen';
 import { ROUTES } from '@/constants/routes';
 
+import type { UpdatePassword, UserUpdate } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 const { SETTINGS } = ROUTES;
@@ -41,6 +41,14 @@ export const profilePasswordUpdateAction = async (
   const { response: _, ...result } = apiResponse;
 
   revalidatePath(SETTINGS);
+
+  return result;
+};
+
+export const profileDeleteAction = async (): Promise<ApiResult> => {
+  const apiResponse = await UsersService.deleteUserMe();
+
+  const { response: _, ...result } = apiResponse;
 
   return result;
 };
