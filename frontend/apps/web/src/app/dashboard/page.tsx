@@ -53,6 +53,7 @@ const DashboardPage: FC = async () => {
           <ListRecentItems />
         </ErrorBoundarySuspense>
       </div>
+
       <ErrorBoundarySuspense fallback={<ListSkeleton count={3} />}>
         <ListSystemStatus />
       </ErrorBoundarySuspense>

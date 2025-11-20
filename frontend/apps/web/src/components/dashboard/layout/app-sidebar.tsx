@@ -61,18 +61,19 @@ const AppSidebar: FC = async () => {
             alt="FastAPI Logo"
             width={500}
             height={500}
-            className="w-40 h-auto"
+            className="w-40 h-8 object-contain"
           />
         </Link>
       </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
+                  {/* passes isActive prop */}
                   <WithIsActive url={item.url}>
-                    {/* passes isActive prop */}
                     <SidebarMenuButton
                       asChild
                       // isActive={pathname === item.url}
@@ -90,6 +91,7 @@ const AppSidebar: FC = async () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter className="p-6">
         {currentUser?.email && (
           <div className="text-sm text-gray-500 dark:text-gray-400">
