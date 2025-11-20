@@ -126,4 +126,11 @@ reuse znd extend zod schemas
 default_ sort by updatedAt in SQLModel
 add register form
 deploy original tiangolo template
+add success, warning vars in css vars theme
+admin and user roles, redirect for user in dashboard
+current dashboard only for admin, items and settings for user
+cursor pointer for tabs
+tabs skeleton // to
+extract backend messages as_ constants, maybe i18
+isr pooling ssr, multiple admins, maybe
 ```

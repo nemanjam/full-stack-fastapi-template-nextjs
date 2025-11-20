@@ -137,7 +137,7 @@ def delete_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
         )
     session.delete(current_user)
     session.commit()
-    return Message(message="User deleted successfully")
+    return Message(message="Account deleted successfully")
 
 
 @router.post("/signup", response_model=UserPublic)

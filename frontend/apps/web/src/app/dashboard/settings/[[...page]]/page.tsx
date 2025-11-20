@@ -1,8 +1,5 @@
 import { redirect } from 'next/navigation';
 
-import TableSkeleton from '@workspace/ui/components/skeletons/table';
-
-import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
 import DashboardTitle from '@/components/dashboard/common/dashboard-title';
 import AlertProfile from '@/components/dashboard/settings/alert-profile';
 import TabsUserSettings from '@/components/dashboard/settings/tabs-user-settings';
@@ -14,6 +11,7 @@ import type { FC } from 'react';
 const { LOGIN } = ROUTES;
 
 const SettingsPage: FC = async () => {
+  // Note: no fetching in child components, no Suspense
   const result = await UsersService.readUserMe();
 
   const currentUser = result.data;
@@ -27,9 +25,7 @@ const SettingsPage: FC = async () => {
         description="Manage your account settings and preferences."
         alert={<AlertProfile />}
       />
-      <ErrorBoundarySuspense fallback={<TableSkeleton />}>
-        <TabsUserSettings user={currentUser} />
-      </ErrorBoundarySuspense>
+      <TabsUserSettings user={currentUser} />
     </div>
   );
 };

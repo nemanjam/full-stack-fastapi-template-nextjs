@@ -50,5 +50,12 @@ show - author, date, message, lines
 // idea for article RHF with server action before form submit
 validateAndSubmit() ...
 --------
-
+export type UsersDeleteUserMeResponses = {
+  /**
+   * Successful Response
+   */
+  200: Message;
+};
+result.data is 200, tj. Message
+response.200 === response.data
 ```

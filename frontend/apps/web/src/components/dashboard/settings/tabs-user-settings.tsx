@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/componen
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/ui/tabs';
 
 import ButtonProfileDelete from '@/components/dashboard/settings/button-profile-delete';
+import DialogProfileDelete from '@/components/dashboard/settings/dialog-profile-delete';
 import FormPasswordUpdate from '@/components/dashboard/settings/form-password-update';
 import FormProfileUpdate from '@/components/dashboard/settings/form-profile-update';
 
@@ -18,34 +19,38 @@ interface Props {
 
 const TabsUserSettings: FC<Props> = ({ user }) => {
   return (
-    <Tabs defaultValue="profile" className="space-y-6">
-      <TabsList className="grid w-full grid-cols-3">
-        <TabsTrigger value="profile" className="flex items-center space-x-2">
-          <User className="h-4 w-4" />
-          <span>My Profile</span>
-        </TabsTrigger>
-        <TabsTrigger value="password" className="flex items-center space-x-2">
-          <Lock className="h-4 w-4" />
-          <span>Password</span>
-        </TabsTrigger>
-        <TabsTrigger value="danger" className="flex items-center space-x-2">
-          <AlertTriangle className="h-4 w-4" />
-          <span>Danger Zone</span>
-        </TabsTrigger>
-      </TabsList>
+    <>
+      <Tabs defaultValue="profile" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="profile" className="flex items-center space-x-2">
+            <User className="h-4 w-4" />
+            <span>My Profile</span>
+          </TabsTrigger>
+          <TabsTrigger value="password" className="flex items-center space-x-2">
+            <Lock className="h-4 w-4" />
+            <span>Password</span>
+          </TabsTrigger>
+          <TabsTrigger value="danger" className="flex items-center space-x-2">
+            <AlertTriangle className="h-4 w-4" />
+            <span>Danger Zone</span>
+          </TabsTrigger>
+        </TabsList>
 
-      <TabsContent value="profile">
-        <TabProfile user={user} />
-      </TabsContent>
+        <TabsContent value="profile">
+          <TabProfile user={user} />
+        </TabsContent>
 
-      <TabsContent value="password">
-        <TabPassword />
-      </TabsContent>
+        <TabsContent value="password">
+          <TabPassword />
+        </TabsContent>
 
-      <TabsContent value="danger">
-        <TabDeleteAccount />
-      </TabsContent>
-    </Tabs>
+        <TabsContent value="danger">
+          <TabDeleteAccount />
+        </TabsContent>
+      </Tabs>
+
+      <DialogProfileDelete />
+    </>
   );
 };
 

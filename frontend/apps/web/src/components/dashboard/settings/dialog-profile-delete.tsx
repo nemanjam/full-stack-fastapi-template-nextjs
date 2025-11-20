@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { Loader2 } from 'lucide-react';
 
@@ -16,19 +17,23 @@ import {
 } from '@workspace/ui/components/ui/dialog';
 
 import { profileDeleteAction } from '@/actions/profile';
-import { UsersDeleteUserMeResponses } from '@/client/types.gen';
+import { Message } from '@/client/types.gen';
 import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
 import { waitMs } from '@/utils/wait';
 import { DELAY } from '@/constants/delay';
 import { EVENTS } from '@/constants/events';
+import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';
 
 const { DIALOG_PROFILE_DELETE_OPEN } = EVENTS;
-const { DIALOG_AUTO_CLOSE } = DELAY;
+const { DELETE_PROFILE_REDIRECT } = DELAY;
+const { LOGIN } = ROUTES;
 
 const DialogProfileDelete: FC = () => {
+  const router = useRouter();
+
   const [isOpen, setIsOpen] = useState(false);
   const initialState = { data: undefined };
   const [state, formAction, isPending] = useActionState(profileDeleteAction, initialState);
@@ -50,13 +55,15 @@ const DialogProfileDelete: FC = () => {
   useEffect(() => {
     if (!isSuccess) return;
 
-    const closeDialog = async () => {
-      await waitMs(DIALOG_AUTO_CLOSE);
+    const closeDialogAndRedirect = async () => {
+      await waitMs(DELETE_PROFILE_REDIRECT);
       close();
+
+      router.push(LOGIN);
     };
 
-    closeDialog();
-  }, [isSuccess]);
+    closeDialogAndRedirect();
+  }, [isSuccess, router]);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -71,9 +78,7 @@ const DialogProfileDelete: FC = () => {
 
         {isSuccess && (
           <Alert variant="success">
-            <AlertDescription>
-              {(state.data as UsersDeleteUserMeResponses)[200].message}
-            </AlertDescription>
+            <AlertDescription>{`${(state.data as Message).message}. Redirecting...`}</AlertDescription>
           </Alert>
         )}
 
@@ -85,10 +90,15 @@ const DialogProfileDelete: FC = () => {
 
         <DialogFooter>
           <form action={formAction}>
-            <Button variant="outline" onClick={close} type="button">
+            <Button
+              variant="outline"
+              onClick={close}
+              type="button"
+              disabled={isPending || isSuccess}
+            >
               Cancel
             </Button>
-            <Button variant="destructive" type="submit">
+            <Button variant="destructive" type="submit" disabled={isPending || isSuccess}>
               {isPending ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Deleting...
