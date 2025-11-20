@@ -133,4 +133,7 @@ cursor pointer for tabs
 tabs skeleton // to
 extract backend messages as_ constants, maybe i18
 isr pooling ssr, multiple admins, maybe
+write truncate and reseed db script
+refactor sidebar
+ui for user and admin and redirects, roles on frontend
 ```
