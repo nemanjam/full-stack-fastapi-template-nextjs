@@ -136,4 +136,5 @@ isr pooling ssr, multiple admins, maybe
 write truncate and reseed db script
 refactor sidebar
 ui for user and admin and redirects, roles on frontend
+redirect from server component on non existing pages in pagination
 ```
