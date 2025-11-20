@@ -141,4 +141,8 @@ currentUser must fetch in page for protected routes, is_superuser redirect, midd
 colocate admin pages under /admin route segment and protect in middleware.ts
 fix cookie expiration
 dashboard-admin and dashboard-user
+no delete account for superuser
+admin vidi sve iteme, user samo njegove
+use all env vars from tiangolo
+add toasts
 ```
