@@ -29,20 +29,20 @@ import type { ProfileUpdateFormValues } from '@/types/forms';
 import type { FC, FormEvent } from 'react';
 
 interface Props {
-  user: UserPublic;
+  currentUser: UserPublic;
 }
 const { ALERT_PROFILE_UPDATE_SHOW } = EVENTS;
 
 const resolver = zodResolver(profileUpdateSchema);
 
-const FormProfileUpdate: FC<Props> = ({ user }) => {
+const FormProfileUpdate: FC<Props> = ({ currentUser }) => {
   const initialState = { data: undefined };
   const [state, formAction, isPending] = useActionState(profileUpdateAction, initialState);
 
   const defaultValues: ProfileUpdateFormValues = {
-    user_id: user.id,
-    email: user.email,
-    full_name: user.full_name ?? '',
+    user_id: currentUser.id,
+    email: currentUser.email,
+    full_name: currentUser.full_name ?? '',
   } as const;
 
   const form = useForm<ProfileUpdateFormValues>({ resolver, defaultValues });

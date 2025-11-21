@@ -14,10 +14,10 @@ import type { UserPublic } from '@/client/types.gen';
 import type { FC } from 'react';
 
 interface Props {
-  user: UserPublic;
+  currentUser: UserPublic;
 }
 
-const TabsUserSettings: FC<Props> = ({ user }) => {
+const TabsUserSettings: FC<Props> = ({ currentUser }) => {
   return (
     <>
       <Tabs defaultValue="profile" className="space-y-6">
@@ -30,23 +30,28 @@ const TabsUserSettings: FC<Props> = ({ user }) => {
             <Lock className="h-4 w-4" />
             <span>Password</span>
           </TabsTrigger>
-          <TabsTrigger value="danger" className="flex items-center space-x-2">
-            <AlertTriangle className="h-4 w-4" />
-            <span>Danger Zone</span>
-          </TabsTrigger>
+          {/* Admin can't delete account */}
+          {!currentUser.is_superuser && (
+            <TabsTrigger value="danger" className="flex items-center space-x-2">
+              <AlertTriangle className="h-4 w-4" />
+              <span>Danger Zone</span>
+            </TabsTrigger>
+          )}
         </TabsList>
 
         <TabsContent value="profile">
-          <TabProfile user={user} />
+          <TabProfile currentUser={currentUser} />
         </TabsContent>
 
         <TabsContent value="password">
           <TabPassword />
         </TabsContent>
 
-        <TabsContent value="danger">
-          <TabDeleteAccount />
-        </TabsContent>
+        {!currentUser.is_superuser && (
+          <TabsContent value="danger">
+            <TabDeleteAccount />
+          </TabsContent>
+        )}
       </Tabs>
 
       <DialogProfileDelete />
@@ -57,17 +62,17 @@ const TabsUserSettings: FC<Props> = ({ user }) => {
 export default TabsUserSettings;
 
 interface TabProfileProps {
-  user: UserPublic;
+  currentUser: UserPublic;
 }
 
-const TabProfile: FC<TabProfileProps> = ({ user }) => {
+const TabProfile: FC<TabProfileProps> = ({ currentUser }) => {
   return (
     <Card>
       <CardHeader>
         <CardTitle>Profile Information</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <FormProfileUpdate user={user} />
+        <FormProfileUpdate currentUser={currentUser} />
       </CardContent>
     </Card>
   );

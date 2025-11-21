@@ -135,12 +135,14 @@ extract backend messages as_ constants, maybe i18
 isr pooling ssr, multiple admins, maybe
 write truncate and reseed db script
 refactor sidebar
+-----
 ui for user and admin and redirects, roles on frontend
 redirect from server component on non existing pages in pagination
 currentUser must fetch in page for protected routes, is_superuser redirect, middleware?
 colocate admin pages under /admin route segment and protect in middleware.ts
-fix cookie expiration
 dashboard-admin and dashboard-user
+-----
+fix cookie expiration
 no delete account for superuser
 admin vidi sve iteme, user samo njegove
 use all env vars from tiangolo

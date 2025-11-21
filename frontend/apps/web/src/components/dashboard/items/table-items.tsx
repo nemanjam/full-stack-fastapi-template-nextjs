@@ -27,7 +27,7 @@ import { throwIfApiError } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 
-import type { ItemPublic } from '@/client/types.gen';
+import type { ItemPublic, ItemsPublic } from '@/client/types.gen';
 import type { FC } from 'react';
 
 const { PAGE_SIZE_TABLE } = CONFIG_CLIENT;
@@ -130,20 +130,12 @@ const TableItemsPagination: FC<TableItemsPaginationProps> = ({ currentPage = 1, 
 
 export interface TableItemsProps {
   currentPage: number;
+  items: ItemsPublic | undefined;
 }
 
-const TableItems: FC<TableItemsProps> = async ({ currentPage }) => {
-  const result = await ItemsService.readItems({
-    query: {
-      skip: (currentPage - 1) * PAGE_SIZE_TABLE,
-      limit: PAGE_SIZE_TABLE,
-    },
-  });
-
-  throwIfApiError(result);
-
-  const items = result.data?.data ?? [];
-  const totalItems = result.data?.count ?? 0;
+const TableItems: FC<TableItemsProps> = async ({ currentPage, items }) => {
+  const pageItems = items?.data ?? [];
+  const totalItems = items?.count ?? 0;
 
   const totalPages = Math.ceil(totalItems / PAGE_SIZE_TABLE);
 
@@ -152,7 +144,7 @@ const TableItems: FC<TableItemsProps> = async ({ currentPage }) => {
       <Card>
         <TableItemsHeader title={`Items (${totalItems})`} />
         <CardContent>
-          <TableItemsContent items={items} />
+          <TableItemsContent items={pageItems} />
           <TableItemsPagination currentPage={currentPage} totalPages={totalPages} />
         </CardContent>
       </Card>

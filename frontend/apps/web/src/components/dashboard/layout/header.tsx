@@ -23,7 +23,7 @@ import type { FC } from 'react';
 
 const { SETTINGS } = ROUTES;
 
-const DashboardHeader: FC = () => {
+const Header: FC = () => {
   const [isPending, startTransition] = useTransition();
 
   const handleLogout = () => startTransition(() => logoutAction());
@@ -71,4 +71,4 @@ const DashboardHeader: FC = () => {
   );
 };
 
-export default DashboardHeader;
+export default Header;

@@ -1,5 +1,6 @@
 import CardSmallSkeleton from '@workspace/ui/components/skeletons/card-small';
 import ListSkeleton from '@workspace/ui/components/skeletons/list';
+import { cn } from '@workspace/ui/lib/utils';
 
 import ErrorBoundarySuspense from '@/components/common/error-boundary-suspense';
 import DashboardTitle from '@/components/dashboard/common/dashboard-title';
@@ -16,8 +17,9 @@ import type { FC } from 'react';
 
 const DashboardPage: FC = async () => {
   const result = await UsersService.readUserMe();
-
   const currentUser = result.data;
+
+  const isSuperuser = currentUser?.is_superuser ?? false;
 
   const welcomeText = currentUser
     ? `Welcome back, ${currentUser.full_name ?? currentUser.email}!`
@@ -30,10 +32,17 @@ const DashboardPage: FC = async () => {
         description={`${welcomeText} Here's what's happening with your application.`}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-        <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
-          <CardTotalUsers />
-        </ErrorBoundarySuspense>
+      <div
+        className={cn('grid grid-cols-1 md:grid-cols-2 gap-6 items-start', {
+          'lg:grid-cols-4': isSuperuser,
+          'lg:grid-cols-3': !isSuperuser,
+        })}
+      >
+        {isSuperuser && (
+          <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
+            <CardTotalUsers />
+          </ErrorBoundarySuspense>
+        )}
         <ErrorBoundarySuspense fallback={<CardSmallSkeleton />}>
           <CardTotalItems />
         </ErrorBoundarySuspense>
@@ -45,18 +54,27 @@ const DashboardPage: FC = async () => {
         </ErrorBoundarySuspense>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-        <ErrorBoundarySuspense fallback={<ListSkeleton />}>
-          <ListRecentUsers />
-        </ErrorBoundarySuspense>
+      <div
+        className={cn('grid grid-cols-1 gap-6 items-start', {
+          'lg:grid-cols-2': isSuperuser,
+        })}
+      >
+        {isSuperuser && (
+          <ErrorBoundarySuspense fallback={<ListSkeleton />}>
+            <ListRecentUsers />
+          </ErrorBoundarySuspense>
+        )}
+
         <ErrorBoundarySuspense fallback={<ListSkeleton />}>
           <ListRecentItems />
         </ErrorBoundarySuspense>
       </div>
 
-      <ErrorBoundarySuspense fallback={<ListSkeleton count={3} />}>
-        <ListSystemStatus />
-      </ErrorBoundarySuspense>
+      {isSuperuser && (
+        <ErrorBoundarySuspense fallback={<ListSkeleton count={3} />}>
+          <ListSystemStatus />
+        </ErrorBoundarySuspense>
+      )}
     </div>
   );
 };

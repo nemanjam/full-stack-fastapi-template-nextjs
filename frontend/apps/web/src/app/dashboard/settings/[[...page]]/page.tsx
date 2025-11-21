@@ -13,7 +13,6 @@ const { LOGIN } = ROUTES;
 const SettingsPage: FC = async () => {
   // Note: no fetching in child components, no Suspense
   const result = await UsersService.readUserMe();
-
   const currentUser = result.data;
 
   if (!currentUser) redirect(LOGIN);
@@ -25,7 +24,7 @@ const SettingsPage: FC = async () => {
         description="Manage your account settings and preferences."
         alert={<AlertProfile />}
       />
-      <TabsUserSettings user={currentUser} />
+      <TabsUserSettings currentUser={currentUser} />
     </div>
   );
 };

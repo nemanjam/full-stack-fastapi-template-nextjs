@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Home, Package, Settings, Shield } from 'lucide-react';
 
 import {
-  Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -13,17 +12,22 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  Sidebar as UISidebar,
 } from '@workspace/ui/components/ui/sidebar';
 
 import WithIsActive from '@/components/dashboard/layout/with-is-active';
-import { UsersService } from '@/client/sdk.gen';
 import { ROUTES } from '@/constants/routes';
 
+import type { UserPublic } from '@/client/types.gen';
 import type { FC } from 'react';
 
 import fastApiLogo from '@/assets/images/fastapi-logo.svg';
 
 const { DASHBOARD, ITEMS, SETTINGS, ADMIN } = ROUTES;
+
+interface Props {
+  currentUser: UserPublic;
+}
 
 const menuItems = [
   {
@@ -48,12 +52,14 @@ const menuItems = [
   },
 ] as const;
 
-const AppSidebar: FC = async () => {
-  const result = await UsersService.readUserMe();
-  const currentUser = result.data;
+const Sidebar: FC<Props> = async ({ currentUser }) => {
+  // Hide admin menu item from regular user
+  const filteredMenuItems = menuItems.filter(
+    (item) => !(!currentUser.is_superuser && item.url === ADMIN)
+  );
 
   return (
-    <Sidebar className="border-r bg-white dark:bg-slate-900">
+    <UISidebar className="border-r bg-white dark:bg-slate-900">
       <SidebarHeader className="p-6">
         <Link href={DASHBOARD} className="flex items-center space-x-3">
           <Image
@@ -70,7 +76,7 @@ const AppSidebar: FC = async () => {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
+              {filteredMenuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {/* passes isActive prop */}
                   <WithIsActive url={item.url}>
@@ -93,15 +99,15 @@ const AppSidebar: FC = async () => {
       </SidebarContent>
 
       <SidebarFooter className="p-6">
-        {currentUser?.email && (
+        {currentUser.email && (
           <div className="text-sm text-gray-500 dark:text-gray-400">
             <p>Logged in as:</p>
             <p className="font-medium">{currentUser.email}</p>
           </div>
         )}
       </SidebarFooter>
-    </Sidebar>
+    </UISidebar>
   );
 };
 
-export default AppSidebar;
+export default Sidebar;

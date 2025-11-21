@@ -28,7 +28,7 @@ import { throwIfApiError } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 
-import type { UserPublic } from '@/client/types.gen';
+import type { UserPublic, UsersPublic } from '@/client/types.gen';
 import type { FC } from 'react';
 
 const { PAGE_SIZE_TABLE } = CONFIG_CLIENT;
@@ -148,25 +148,13 @@ const TableAdminPagination: FC<TableAdminPaginationProps> = ({ currentPage = 1, 
 
 export interface TableAdminProps {
   currentPage: number;
+  currentUser: UserPublic;
+  users: UsersPublic | undefined;
 }
 
-const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
-  const [currentUserResult, usersResult] = await Promise.all([
-    UsersService.readUserMe(),
-    UsersService.readUsers({
-      query: {
-        skip: (currentPage - 1) * PAGE_SIZE_TABLE,
-        limit: PAGE_SIZE_TABLE,
-      },
-    }),
-  ]);
-
-  throwIfApiError(currentUserResult);
-  throwIfApiError(usersResult);
-
-  const currentUser = currentUserResult.data;
-  const users = usersResult.data?.data ?? [];
-  const totalUsers = usersResult.data?.count ?? 0;
+const TableAdmin: FC<TableAdminProps> = async ({ currentPage, currentUser, users }) => {
+  const pageUsers = users?.data ?? [];
+  const totalUsers = users?.count ?? 0;
 
   const totalPages = Math.ceil(totalUsers / PAGE_SIZE_TABLE);
 
@@ -175,7 +163,7 @@ const TableAdmin: FC<TableAdminProps> = async ({ currentPage }) => {
       <Card>
         <TableAdminHeader title={`Users (${totalUsers})`} />
         <CardContent>
-          <TableAdminContent currentUser={currentUser} users={users} />
+          <TableAdminContent currentUser={currentUser} users={pageUsers} />
           <TableAdminPagination currentPage={currentPage} totalPages={totalPages} />
         </CardContent>
       </Card>
