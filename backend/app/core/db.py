@@ -1,4 +1,5 @@
-from sqlmodel import Session, create_engine, select
+from sqlalchemy import text
+from sqlmodel import Session, SQLModel, create_engine
 
 from app import crud
 from app.core.config import settings
@@ -11,6 +12,9 @@ engine = create_engine(str(settings.SQLALCHEMY_DATABASE_URI))
 # otherwise, SQLModel might fail to initialize relationships properly
 # for more details: https://github.com/fastapi/full-stack-fastapi-template/issues/28
 
+USERS_COUNT = 10
+ITEMS_PER_USER = 10
+
 
 def init_db(session: Session) -> None:
     # Tables should be created with Alembic migrations
@@ -21,43 +25,56 @@ def init_db(session: Session) -> None:
     # This works because the models are already imported and registered from app.models
     # SQLModel.metadata.create_all(engine)
 
-    superuser: User | None = None
+    users: list[User] = []
 
-    # Create 10 users: superuser at i=0, regular users at i=1..9
-    for i in range(0, 10):
+    # Wipe everything
+    truncate_all_tables(session)
+
+    # Create N users: superuser at i=0, regular users at i=1..9
+    for i in range(0, USERS_COUNT):
         if i == 0:
             email = settings.FIRST_SUPERUSER
             password = settings.FIRST_SUPERUSER_PASSWORD
             is_super = True
+            full_name = "Admin Name"
         else:
             email = f"user{i}@example.com"
             password = settings.FIRST_SUPERUSER_PASSWORD
             is_super = False
-
-        # Skip if user exists
-        existing = session.exec(select(User).where(User.email == email)).first()
-        if existing:
-            if i == 0:
-                superuser = existing
-            continue
+            full_name = f"User{i} Name"
 
         user_in = UserCreate(
             email=email,
             password=password,
             is_superuser=is_super,
+            full_name=full_name,
         )
         created = crud.create_user(session=session, user_create=user_in)
+        users.append(created)
 
-        if i == 0:
-            superuser = created
-
-    # Create 10 items for the superuser
-    if superuser:
-        for i in range(1, 11):
+    # Create N items per each user
+    for user in users:
+        for i in range(1, 1 + ITEMS_PER_USER):
             item_in = ItemCreate(
                 title=f"Item {i}",
-                description=f"Seeded item number {i}",
+                description=f"Seeded item {i} for {user.email}",
             )
-            crud.create_item(session=session, item_in=item_in, owner_id=superuser.id)
+            crud.create_item(
+                session=session,
+                item_in=item_in,
+                owner_id=user.id,
+            )
 
+    session.commit()
+
+
+def truncate_all_tables(session: Session) -> None:
+    """
+    Truncate all SQLModel tables dynamically.
+    """
+    table_names = ", ".join(
+        f'"{table.name}"' for table in SQLModel.metadata.sorted_tables
+    )
+
+    session.exec(text(f"TRUNCATE TABLE {table_names} RESTART IDENTITY CASCADE;"))
     session.commit()
