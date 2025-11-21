@@ -110,41 +110,40 @@ use sentence case in all text
 redirect to login on expired cookie
 fix sidebar jumping
 custom error (exception) classes
-understand Client options.throwOnError handling
+understand Client options, throwOnError handling - rejected promise
 lint, unused imports, tests
 use class-variance-authority in ui
-toaster on login success
+toaster on login success, ssr?
 tag existing docker image for backup deploy
 prettier like ruff, 1 newline lines, 2 newlines functions
-handle max page for user and item with 404
+        handle max page for user and item with 404
 sort by updatedAt
-uuid truncate in table maybe, responsive table
-per page folder structure in dashboard
-remove unused auth and client files in lib
+        uuid truncate in table maybe, responsive table
+        per page folder structure in dashboard
+        remove unused auth and client files in lib
 extract constants on backend
-reuse znd extend zod schemas
+reuse and extend zod schemas
 default_ sort by updatedAt in SQLModel
-add register form
+add register form, user/pass and github
 deploy original tiangolo template // to
 add success, warning vars in css vars theme
-admin and user roles, redirect for user in dashboard
-current dashboard only for admin, items and settings for user
+        current dashboard only for admin, items and settings for user
 cursor pointer for tabs
-tabs skeleton // to
+        tabs skeleton // to
 extract backend messages as_ constants, maybe i18
 isr pooling ssr, multiple admins, maybe
-write truncate and reseed db script
-refactor sidebar
+        write truncate and reseed db script
+        refactor sidebar
 -----
-ui for user and admin and redirects, roles on frontend
-redirect from server component on non existing pages in pagination
-currentUser must fetch in page for protected routes, is_superuser redirect, middleware?
-colocate admin pages under /admin route segment and protect in middleware.ts
-dashboard-admin and dashboard-user
+        ui for user and admin and redirects, roles on frontend
+        redirect from server component on non existing pages in pagination
+        currentUser must fetch in page for protected routes, is_superuser redirect, middleware?
+        colocate admin pages under /admin route segment and protect in middleware.ts
+        dashboard-admin and dashboard-user
+        admin vidi sve iteme, user samo njegove
+        no delete account for superuser
 -----
 fix cookie expiration
-no delete account for superuser
-admin vidi sve iteme, user samo njegove
 use all env vars from tiangolo
 add toasts
 ```
