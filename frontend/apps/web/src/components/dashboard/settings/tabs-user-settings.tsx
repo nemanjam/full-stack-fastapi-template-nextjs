@@ -4,6 +4,7 @@ import { AlertTriangle, Lock, User } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/ui/tabs';
+import { cn } from '@workspace/ui/lib/utils';
 
 import ButtonProfileDelete from '@/components/dashboard/settings/button-profile-delete';
 import DialogProfileDelete from '@/components/dashboard/settings/dialog-profile-delete';
@@ -18,10 +19,17 @@ interface Props {
 }
 
 const TabsUserSettings: FC<Props> = ({ currentUser }) => {
+  const isSuperuser = currentUser?.is_superuser ?? false;
+
   return (
     <>
       <Tabs defaultValue="profile" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList
+          className={cn('grid w-full', {
+            'grid-cols-2': isSuperuser,
+            'grid-cols-3': !isSuperuser,
+          })}
+        >
           <TabsTrigger value="profile" className="flex items-center space-x-2">
             <User className="h-4 w-4" />
             <span>My Profile</span>
@@ -31,7 +39,7 @@ const TabsUserSettings: FC<Props> = ({ currentUser }) => {
             <span>Password</span>
           </TabsTrigger>
           {/* Admin can't delete account */}
-          {!currentUser.is_superuser && (
+          {!isSuperuser && (
             <TabsTrigger value="danger" className="flex items-center space-x-2">
               <AlertTriangle className="h-4 w-4" />
               <span>Danger Zone</span>
@@ -47,7 +55,7 @@ const TabsUserSettings: FC<Props> = ({ currentUser }) => {
           <TabPassword />
         </TabsContent>
 
-        {!currentUser.is_superuser && (
+        {!isSuperuser && (
           <TabsContent value="danger">
             <TabDeleteAccount />
           </TabsContent>

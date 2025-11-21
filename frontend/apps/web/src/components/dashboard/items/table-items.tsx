@@ -143,7 +143,7 @@ const TableItems: FC<TableItemsProps> = async ({ currentPage, items }) => {
     <>
       <Card>
         <TableItemsHeader title={`Items (${totalItems})`} />
-        <CardContent>
+        <CardContent data-card-content="data-card-content">
           <TableItemsContent items={pageItems} />
           <TableItemsPagination currentPage={currentPage} totalPages={totalPages} />
         </CardContent>
