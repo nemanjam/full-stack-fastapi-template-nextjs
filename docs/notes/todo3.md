@@ -7,5 +7,5 @@ table horizontal scroll shadcn import { ScrollArea } from "@/components/ui/scrol
 add register form, user/pass and github
 extract metadata as constants
 fix backend tests, add frontend vitest unit, playwright e2e
-
+git tags to docker images
 ```
