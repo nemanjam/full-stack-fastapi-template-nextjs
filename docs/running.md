@@ -23,6 +23,9 @@ uvicorn app.main:app --reload
 
 # Automatic Interactive Docs (Swagger UI)
 http://localhost:8000/docs
+
+# Run backend tests (cd ./backend)
+bash ./scripts/test.sh
 ```
 
 ## Database
@@ -52,7 +55,7 @@ alembic revision --autogenerate -m "e.g. Add column last_name to User model"
 ## Frontend
 
 ```bash
-# From project root
+# From project root, with activated backend/ venv, fix this
 cd ~/Desktop/githubcities
 
 # Generate client (needs activated venv)

@@ -1,2 +1,19 @@
-node_modules
-dist
+# Frontend image, frontend/.dockerignore
+
+# Monorepo
+
+# Node.js
+**/node_modules/
+**/.next/
+**/.turbo/
+**/dist/
+
+# Env vars
+**/.env
+**/.env*.local
+
+# Tests
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/playwright/.cache/

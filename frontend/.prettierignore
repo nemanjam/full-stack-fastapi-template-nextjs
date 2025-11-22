@@ -1,17 +1,19 @@
-cache
-.cache
-package-lock.json
-package-lock.yaml
-public
-CHANGELOG.md
-.yarn
-dist
-node_modules
-.next
-build
+# Node.js
+**/node_modules/
+**/.next/
+**/.turbo/
+**/dist/
+**/package-lock.json
+**/package-lock.yaml
+**/public
 
-# ignore backend, ruff formats there
-backend
+# Ignore backend, ruff formats there
+# Includes all Python
+backend/
 
-docs
-openapi.json
+# Docs
+docs/
+**/CHANGELOG.md
+
+# Other
+**/openapi.json

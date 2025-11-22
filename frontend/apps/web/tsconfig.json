@@ -5,6 +5,7 @@
     "paths": {
       "@/lib/*": ["lib/*"],
       "@/app/*": ["app/*"],
+      "@/actions/*": ["actions/*"],
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
       "@/client/*": ["client/*"],

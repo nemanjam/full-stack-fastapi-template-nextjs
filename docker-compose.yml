@@ -69,6 +69,8 @@ services:
       - ADMINER_DESIGN=nicu
     # no networks, no ports
     network_mode: host
+    # change default port
+    command: php -S 0.0.0.0:8083 -t /var/www/html
     #
     # must use database:5432, 5433:5432 mapping does not apply
     # ports:

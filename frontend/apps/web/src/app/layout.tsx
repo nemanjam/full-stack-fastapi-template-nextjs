@@ -2,14 +2,18 @@ import { Inter } from 'next/font/google';
 
 import { Toaster } from '@workspace/ui/components/ui/toaster';
 
-import { ThemeProvider } from '@/components/theme-provider';
+import ThemeProvider from '@/components/common/theme-provider';
 
 import type { Metadata } from 'next';
 import type React from 'react';
 
 import '@workspace/ui/main.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import { FC, ReactNode } from 'react';
+
+const fontInter = Inter({ subsets: ['latin'] });
+
+// Todo:  extract metadata as constants
 
 export const metadata: Metadata = {
   title: 'Full Stack FastAPI Project',
@@ -21,20 +25,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+interface Props {
+  children: ReactNode;
 }
+
+const RootLayout: FC<Props> = ({ children }) => (
+  <html lang="en" suppressHydrationWarning>
+    <body className={fontInter.className}>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        {/* Slot with server components */}
+        {children}
+        <Toaster />
+      </ThemeProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;

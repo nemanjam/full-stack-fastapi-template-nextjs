@@ -38,6 +38,8 @@ https://github.com/s3rius/FastAPI-template
 // two similar with arq
 // another from linkedin
 https://github.com/igormagalhaesr/FastAPI-boilerplate
+// renamed to:
+https://github.com/benavlabs/FastAPI-boilerplate
 // sve preuzeto iz tiangolo
 kopira samo app folder u Dockerfile, ne postavlja PYTHONPATH
 COPY ./src/app /code/app

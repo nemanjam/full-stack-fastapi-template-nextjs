@@ -1,8 +1,16 @@
+# Backend image, backend/.dockerignore
+
+# Not monorepo
+
 # Python
-__pycache__
+.venv/
+__pycache__/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
 app.egg-info
 *.pyc
-.mypy_cache
+
+# Tests
 .coverage
 htmlcov
-.venv

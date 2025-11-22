@@ -22,7 +22,7 @@
     --accent-foreground: var(--var-color-slate-800);
 
     --destructive: var(--var-color-red-600);
-    --destructive-foreground: var(--var-color-red-600);
+    --destructive-foreground: var(--var-color-slate-50);
 
     --border: var(--var-color-slate-200);
     --input: var(--var-color-slate-200);
@@ -69,7 +69,7 @@
     --accent-foreground: var(--var-color-slate-50);
 
     --destructive: var(--var-color-red-700);
-    --destructive-foreground: var(--var-color-red-500);
+    --destructive-foreground: var(--var-color-slate-50);
 
     --border: var(--var-color-slate-800);
     --input: var(--var-color-slate-800);

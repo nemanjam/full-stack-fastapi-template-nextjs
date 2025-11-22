@@ -3,20 +3,38 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { isAuthenticated } from '@/lib/auth';
+import { UsersService } from '@/client/sdk.gen';
+import { waitMs } from '@/utils/wait';
+import { DELAY } from '@/constants/delay';
+import { ROUTES } from '@/constants/routes';
 
-export default function HomePage() {
+import type { FC } from 'react';
+
+const { LOGIN, DASHBOARD } = ROUTES;
+const { HOME_PAGE_REDIRECT } = DELAY;
+
+// Must be client component to show loader before redirect
+// hey-api client doesn't work on client with cookies
+// Todo: rethink this
+
+const HomePage: FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (isAuthenticated()) {
-      router.push('/dashboard');
-    } else {
-      router.push('/login');
-    }
+    const redirect = async () => {
+      // client side client, without cookies
+      const result = await UsersService.readUserMe();
+      const currentUser = result.data;
+
+      await waitMs(HOME_PAGE_REDIRECT);
+
+      const redirectUrl = currentUser ? DASHBOARD : LOGIN;
+      router.push(redirectUrl);
+    };
+
+    redirect();
   }, [router]);
 
-  // Show loading state while redirecting
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="text-center">
@@ -25,4 +43,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

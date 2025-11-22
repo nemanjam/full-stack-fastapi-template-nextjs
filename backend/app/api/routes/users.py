@@ -42,6 +42,7 @@ def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
     count_statement = select(func.count()).select_from(User)
     count = session.exec(count_statement).one()
 
+    # Maybe add sorting
     statement = select(User).offset(skip).limit(limit)
     users = session.exec(statement).all()
 
@@ -136,7 +137,7 @@ def delete_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
         )
     session.delete(current_user)
     session.commit()
-    return Message(message="User deleted successfully")
+    return Message(message="Account deleted successfully")
 
 
 @router.post("/signup", response_model=UserPublic)
