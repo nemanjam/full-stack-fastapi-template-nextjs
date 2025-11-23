@@ -91,7 +91,7 @@
   "prettier.configPath": "./frontend/.prettierrc.js",
   "prettier.ignorePath": "./frontend/.prettierignore",
 
-  "tailwindCSS.experimental.configFile": "frontend/packages/ui/src/styles/main.css",
+  "tailwindCSS.experimental.configFile": "frontend/packages/ui/src/styles/global.css",
   "cSpell.words": [
     "oklch"
   ]

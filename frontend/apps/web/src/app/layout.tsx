@@ -4,26 +4,17 @@ import { Toaster } from '@workspace/ui/components/ui/toaster';
 
 import ThemeProvider from '@/components/common/theme-provider';
 
-import type { Metadata } from 'next';
 import type React from 'react';
 
-import '@workspace/ui/main.css';
+import '@workspace/ui/global.css';
 
-import { FC, ReactNode } from 'react';
+import { METADATA } from '@/constants/metadata';
+
+import type { FC, ReactNode } from 'react';
 
 const fontInter = Inter({ subsets: ['latin'] });
 
-// Todo:  extract metadata as constants
-
-export const metadata: Metadata = {
-  title: 'Full Stack FastAPI Project',
-  description: 'A modern full-stack web application built with FastAPI and Next.js',
-  icons: {
-    icon: '/assets/images/favicon.png',
-    shortcut: '/assets/images/favicon.png',
-    apple: '/assets/images/favicon.png',
-  },
-};
+export const metadata = METADATA;
 
 interface Props {
   children: ReactNode;

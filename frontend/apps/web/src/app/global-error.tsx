@@ -10,7 +10,7 @@ import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';
 
-import '@/styles/globals.css';
+import '@workspace/ui/global.css';
 
 interface Props {
   error: Error & { digest?: string };
@@ -20,6 +20,8 @@ interface Props {
 const { HOME } = ROUTES;
 
 // Todo: improve design
+
+// Note: global-error.tsx, global-not-found.tsx define own html and body tags, and need to import global.css from UI package
 
 const GlobalError: FC<Props> = ({ error, reset }) => (
   <html>

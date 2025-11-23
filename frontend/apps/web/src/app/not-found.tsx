@@ -11,7 +11,7 @@ import type { FC } from 'react';
 const { HOME } = ROUTES;
 
 const NotFound: FC = () => (
-  <div className="flex-1 flex flex-col justify-center items-center">
+  <div className="min-h-screen w-full flex-1 flex flex-col justify-center items-center">
     <div className="space-y-4 text-center">
       <div className="flex justify-center">
         <Bird className="size-24 text-muted-foreground" />

@@ -8,5 +8,5 @@ add register form, user/pass and github
 extract metadata as constants
 fix backend tests, add frontend vitest unit, playwright e2e
 git tags to docker images
-rename to full-stack-fastapi-template-nextjs
+rename to full-stack-fastapi-template-nextjs, fsftn
 ```
