@@ -33,8 +33,8 @@ import type { FC, FormEvent } from 'react';
 const { DASHBOARD, FORGOT_PASSWORD } = ROUTES;
 
 const defaultValues: LoginFormValues = {
-  username: '', // Todo: rename to email
-  password: '',
+  username: 'admin@example.com', // Todo: rename to email
+  password: 'password',
 } as const;
 
 const resolver = zodResolver(loginFormSchema);

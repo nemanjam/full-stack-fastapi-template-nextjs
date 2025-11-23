@@ -32,13 +32,14 @@ Unstable, work in progress.
 - [ ] Unit tests with Vitest, Testing Library
 - [ ] Tag Docker images
 - [ ] API sort params
+- [ ] Support emails, Sentry from the original repo
 - [ ] no-monorepo branch
 - [ ] Env vars with [t3-oss/t3-env](https://github.com/t3-oss/t3-env)
 - [ ] Runtime only env vars, reusable build
 - [ ] Versioning with [changesets/changesets](https://github.com/changesets/changesets) or [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
 - [ ] API internationalization
 - [ ] Update Python
-- [ ] Open graph, SEO
+- [ ] Open graph, SEO, analytics
 - [ ] Tailscale Github Actions
 - [ ] Integration tests frontend and backend
 
