@@ -2,6 +2,8 @@
 
 Next.js v16 fork of the official [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) template. Server components, server actions, HttpOnly cookie auth, ShadcnUI with TailwindCSS v4, simplified local development environment and Docker production.
 
+Unstable, work in progress.
+
 ## Credits
 
 - The original repository: [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
@@ -10,11 +12,30 @@ Next.js v16 fork of the official [fastapi/full-stack-fastapi-template](https://g
 
 ## Features
 
-- Todo
+- [x] Next.js v16, server components
+- [x] React Hook Form and server actions for forms
+- [x] HttpOnly cookie auth, enables SSR
+- [x] Hey Api with client-next
+- [x] Suspense, error boundaries
+- [x] Turborepo monorepo, TailwindCSS v4, ShadcnUI
+- [x] Validated env vars with Zod
 
-## Raodmap
+## Todo
 
-- Todo
+- [] Register page, Github login
+- [] Migrate Playwright tests
+- [] Unit tests with Vitest, Testing Library
+- [] Tag Docker images
+- [] API sort params
+- [] no-monorepo branch
+- [] Env vars with [t3-oss/t3-env](https://github.com/t3-oss/t3-env)
+- [] Runtime only env vars, reusable build
+- [] Versioning with [changesets/changesets](https://github.com/changesets/changesets) or [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
+- [] API internationalization
+- [] Update Python
+- [] Open graph, SEO
+- [] Tailscale Github Actions
+- [] Integration tests frontend and backend
 
 ## Installation and running
 
