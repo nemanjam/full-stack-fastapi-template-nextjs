@@ -22,20 +22,20 @@ Unstable, work in progress.
 
 ## Todo
 
-- [] Register page, Github login
-- [] Migrate Playwright tests
-- [] Unit tests with Vitest, Testing Library
-- [] Tag Docker images
-- [] API sort params
-- [] no-monorepo branch
-- [] Env vars with [t3-oss/t3-env](https://github.com/t3-oss/t3-env)
-- [] Runtime only env vars, reusable build
-- [] Versioning with [changesets/changesets](https://github.com/changesets/changesets) or [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
-- [] API internationalization
-- [] Update Python
-- [] Open graph, SEO
-- [] Tailscale Github Actions
-- [] Integration tests frontend and backend
+- [ ] Register page, Github login
+- [ ] Migrate Playwright tests
+- [ ] Unit tests with Vitest, Testing Library
+- [ ] Tag Docker images
+- [ ] API sort params
+- [ ] no-monorepo branch
+- [ ] Env vars with [t3-oss/t3-env](https://github.com/t3-oss/t3-env)
+- [ ] Runtime only env vars, reusable build
+- [ ] Versioning with [changesets/changesets](https://github.com/changesets/changesets) or [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
+- [ ] API internationalization
+- [ ] Update Python
+- [ ] Open graph, SEO
+- [ ] Tailscale Github Actions
+- [ ] Integration tests frontend and backend
 
 ## Installation and running
 
