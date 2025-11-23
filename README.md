@@ -23,6 +23,7 @@ Unstable, work in progress.
 - [x] Suspense, error boundaries
 - [x] Turborepo monorepo, TailwindCSS v4, ShadcnUI
 - [x] Validated env vars with Zod
+- [x] Simple local dev environment, simplified Docker production
 
 ## Todo
 
