@@ -211,4 +211,6 @@ https://github.com/shadcnblocks
 // nothing, few components, style tag, useless
 https://github.com/akash3444/homeguardian-shadcn-landing-page
 
+// Todo: review, backend only
+https://github.com/eslam5464/Fastapi-Template
 ```
