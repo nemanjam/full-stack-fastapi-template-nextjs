@@ -4,7 +4,7 @@
 
 ```bash
 # From project root
-cd ~/Desktop/githubcities
+cd ~/Desktop/full-stack-fastapi-template-nextjs
 
 # Run just Postgres database service
 docker compose up -d db
@@ -61,7 +61,7 @@ uv run pre-commit run --all-files
 
 ```bash
 # From project root
-cd ~/Desktop/githubcities
+cd ~/Desktop/full-stack-fastapi-template-nextjs
 
 # Generate client
 bash scripts/generate-client.sh

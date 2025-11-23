@@ -14,8 +14,8 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}-backend
-  # SITE_URL_ARM64: 'https://githubcities.arm1.nemanjamitic.com'
-  # SITE_URL_AMD64: 'https://githubcities.local.nemanjamitic.com'
+  # SITE_URL_ARM64: 'https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
+  # SITE_URL_AMD64: 'https://full-stack-fastapi-template-nextjs.local.nemanjamitic.com'
 
 jobs:
   build:

@@ -1,4 +1,4 @@
-name: githubcities
+name: full-stack-fastapi-template-nextjs
 
 services:
 
@@ -7,7 +7,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: githubcities-frontend
+    container_name: full-stack-fastapi-template-nextjs-frontend
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -20,7 +20,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: githubcities-backend
+    container_name: full-stack-fastapi-template-nextjs-backend
     restart: unless-stopped
     # don't mount alembic as volume
     ports:
@@ -34,7 +34,7 @@ services:
 
   database:
     image: postgres:17.5-alpine3.22
-    container_name: githubcities-database
+    container_name: full-stack-fastapi-template-nextjs-database
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
@@ -61,7 +61,7 @@ services:
 
   adminer:
     image: adminer:5.4.0-standalone
-    container_name: githubcities-adminer
+    container_name: full-stack-fastapi-template-nextjs-adminer
     restart: unless-stopped
     depends_on:
       - database

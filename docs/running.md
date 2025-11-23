@@ -32,7 +32,7 @@ bash ./scripts/test.sh
 
 ```bash
 # From project root
-cd ~/Desktop/githubcities
+cd ~/Desktop/full-stack-fastapi-template-nextjs
 
 # Run just Postgres database service
 docker compose up -d database adminer
@@ -56,7 +56,7 @@ alembic revision --autogenerate -m "e.g. Add column last_name to User model"
 
 ```bash
 # From project root, with activated backend/ venv, fix this
-cd ~/Desktop/githubcities
+cd ~/Desktop/full-stack-fastapi-template-nextjs
 
 # Generate client (needs activated venv)
 bash scripts/generate-client.sh

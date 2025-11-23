@@ -15,7 +15,7 @@
 2. hey-api Next.js, FastApi next-client, react-query-client
 3. Tailscale Github Actions
 
-## Githubcities
+## Full stack FastAPI template Next.js
 
 1. needed FastApi endpoints
 2. copy Next.js apps, multitenant
