@@ -10,4 +10,5 @@ fix backend tests, add frontend vitest unit, playwright e2e
 git tags to docker images
 rename to full-stack-fastapi-template-nextjs, Full stack FastAPI template Next.js
 update readme
+pre-commit hook yaml file messes up staging files for commit `.pre-commit-config.yaml`
 ```
