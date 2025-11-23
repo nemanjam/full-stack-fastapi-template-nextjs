@@ -34,7 +34,7 @@ interface TableSkeletonProps {
 
 export const TableSkeleton: FC<TableSkeletonProps> = ({ count = 5, showHeader = true }) => {
   return (
-    <div className="space-y-8 border shadow-sm bg-white rounded-md p-4">
+    <div className="space-y-8 border shadow-sm rounded-md p-4">
       {showHeader && <TableHeaderSkeleton className="" />}
       {Array.from({ length: count }).map((_, i) => (
         <TableRowSkeleton key={i} />
