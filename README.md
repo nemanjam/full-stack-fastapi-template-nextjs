@@ -4,6 +4,10 @@ Next.js v16 fork of the official [fastapi/full-stack-fastapi-template](https://g
 
 Unstable, work in progress.
 
+## Demo
+
+- **[https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
+
 ## Credits
 
 - The original repository: [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
