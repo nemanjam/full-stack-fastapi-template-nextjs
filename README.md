@@ -6,7 +6,7 @@ Unstable, work in progress.
 
 ## Demo
 
-- **[https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
+**[https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
 
 ## Credits
 
