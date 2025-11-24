@@ -213,4 +213,9 @@ https://github.com/akash3444/homeguardian-shadcn-landing-page
 
 // Todo: review, backend only
 https://github.com/eslam5464/Fastapi-Template
+
+// Todo: review this again, vercel official
+// example how to deploy fastapi to vercel
+no database, no code to deploy to vercel, rewriting open-ai stream to vercel ai-sdk stream
+https://github.com/vercel-labs/ai-sdk-preview-python-streaming/
 ```
