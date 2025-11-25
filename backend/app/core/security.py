@@ -63,6 +63,9 @@ def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
 
 
+# ------------------------ GitHub OAuth ---------------------------
+
+
 GITHUB_OAUTH_CONFIG = {
     "name": "github",
     "client_id": settings.GITHUB_CLIENT_ID,

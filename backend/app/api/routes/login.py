@@ -139,6 +139,9 @@ def logout() -> JSONResponse:
     return security.delete_auth_cookie()
 
 
+# ------------------------ GitHub OAuth ---------------------------
+
+
 # Todo: remove Github maybe
 # http://localhost:8000/api/v1/login/github
 @router.get("/login/github")
