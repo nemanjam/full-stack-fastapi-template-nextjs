@@ -17,9 +17,15 @@ refresh token - not present, password reset and emails
 fix backend tests, add frontend vitest unit, playwright e2e
 add register form, user/pass and github
 GITHUB login should be on login page
-
-
-
+------
+unify env vars
+frontend NEXT_PUBLIC_SITE_URL and FRONTEND_HOST 
+backend NEXT_PUBLIC_API_URL and DOMAIN
+-------
+handle profile password form for Github user
+user avatar
+use same columns for both password user and OAuth user, just add 'provider' column
+before testing github login check if database is connected, volume path renamed githubcities
 ---------
 git checkout -b feat/register-page
 ```

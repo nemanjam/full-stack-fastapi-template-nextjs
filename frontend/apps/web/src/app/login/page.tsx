@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from '@workspace/ui/components/ui/card';
 
+import ButtonGithubLogin from '@/components/auth/button-github-login';
 import FormLogin from '@/components/auth/form-login';
 
 import type { FC } from 'react';
@@ -16,7 +17,8 @@ const LoginPage: FC = () => (
         </div>
         <span className="ml-3 text-2xl font-bold text-teal-600">FastAPI</span>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-8">
+        <ButtonGithubLogin />
         <FormLogin />
       </CardContent>
     </Card>
