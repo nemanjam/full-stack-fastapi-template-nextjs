@@ -15,7 +15,7 @@ import {
 } from '@workspace/ui/components/ui/dropdown-menu';
 import { SidebarTrigger } from '@workspace/ui/components/ui/sidebar';
 
-import { logoutAction } from '@/actions/logout';
+import { logoutAction } from '@/actions/auth';
 import ThemeToggle from '@/components/dashboard/layout/theme-toggle';
 import { ROUTES } from '@/constants/routes';
 

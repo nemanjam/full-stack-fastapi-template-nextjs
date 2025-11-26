@@ -20,34 +20,34 @@ import {
 } from '@workspace/ui/components/ui/form';
 import { Input } from '@workspace/ui/components/ui/input';
 
-import { loginAction } from '@/actions/login';
-import { loginFormSchema } from '@/schemas/forms';
+import { registerAction } from '@/actions/auth';
+import { registerFormSchema } from '@/schemas/forms';
 import { isErrorApiResult, isSuccessApiResult } from '@/utils/api';
 import { getApiErrorMessage } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 
 import { ApiResult } from '@/types/api';
-import type { LoginFormValues } from '@/types/forms';
+import type { RegisterFormValues } from '@/types/forms';
 import type { FC, FormEvent } from 'react';
 
-const { DASHBOARD, FORGOT_PASSWORD } = ROUTES;
+const { LOGIN } = ROUTES;
 
-const defaultValues: LoginFormValues = {
-  username: 'admin@example.com', // Todo: rename to email
-  password: 'password',
+const defaultValues: RegisterFormValues = {
+  email: '',
+  full_name: '',
+  password: '',
+  confirm_password: '',
 } as const;
 
-const resolver = zodResolver(loginFormSchema);
+const resolver = zodResolver(registerFormSchema);
 
-const FormLogin: FC = () => {
+const FormRegister: FC = () => {
   const router = useRouter();
+  const form = useForm<RegisterFormValues>({ resolver, defaultValues });
 
-  const form = useForm<LoginFormValues>({ resolver, defaultValues });
-
-  // Note: only one union branch should be possible
   const initialState: ApiResult = { data: undefined };
 
-  const [state, formAction, isPending] = useActionState(loginAction, initialState);
+  const [state, formAction, isPending] = useActionState(registerAction, initialState);
 
   const isError = isErrorApiResult(state);
   const isSuccess = isSuccessApiResult(state);
@@ -55,7 +55,7 @@ const FormLogin: FC = () => {
   useEffect(() => {
     if (!isSuccess) return;
 
-    router.push(DASHBOARD);
+    router.push(LOGIN);
   }, [isSuccess, router]);
 
   const validateAndSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -74,12 +74,26 @@ const FormLogin: FC = () => {
       <form action={formAction} onSubmit={validateAndSubmit} className="space-y-6">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="admin@example.com" {...field} disabled={isPending} />
+                <Input placeholder="you@example.com" {...field} disabled={isPending} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="full_name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Full Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your name" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,12 +104,12 @@ const FormLogin: FC = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="mb-2">
+            <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="Choose a password"
                   {...field}
                   disabled={isPending}
                 />
@@ -105,18 +119,28 @@ const FormLogin: FC = () => {
           )}
         />
 
-        <p>
-          <Link
-            href={FORGOT_PASSWORD}
-            className="text-sm text-teal-600 hover:text-teal-700 hover:underline"
-          >
-            Forgot password?
-          </Link>
-        </p>
+        <FormField
+          control={form.control}
+          name="confirm_password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Confirm password</FormLabel>
+              <FormControl>
+                <Input
+                  type="password"
+                  placeholder="Confirm password"
+                  {...field}
+                  disabled={isPending}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         {isSuccess && (
           <p className="text-sm font-medium text-green-600">
-            Login successful. Redirecting to dashboard...
+            Registration successful. Redirecting...
           </p>
         )}
 
@@ -127,18 +151,23 @@ const FormLogin: FC = () => {
           </Alert>
         )}
 
-        {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
+        <p className="text-sm">
+          Already have an account?{' '}
+          <Link href={LOGIN} className="text-teal-600 hover:text-teal-700 hover:underline">
+            Log in
+          </Link>
+        </p>
 
         <Button
           type="submit"
           disabled={isPending}
-          className="w-full h-12 bg-teal-600 hover:bg-teal-700 text-white font-medium"
+          className="w-full h-12 bg-teal-600 hover:bg-teal-700 font-medium"
         >
-          {isPending ? 'Logging in...' : 'Submit'}
+          {isPending ? 'Registering...' : 'Create Account'}
         </Button>
       </form>
     </Form>
   );
 };
 
-export default FormLogin;
+export default FormRegister;

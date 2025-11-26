@@ -6,6 +6,7 @@ import {
   loginFormSchema,
   profilePasswordUpdateSchema,
   profileUpdateSchema,
+  registerFormSchema,
   userCreateSchema,
   userUpdateSchema,
 } from '@/schemas/forms';
@@ -13,6 +14,10 @@ import {
 // login
 export type LoginFormValues = z.output<typeof loginFormSchema>;
 export type LoginFormKeys = keyof LoginFormValues;
+
+// register
+export type RegisterFormValues = z.output<typeof registerFormSchema>;
+export type RegisterFormKeys = keyof RegisterFormValues;
 
 // user
 export type UserUpdateFormValues = z.output<typeof userUpdateSchema>;

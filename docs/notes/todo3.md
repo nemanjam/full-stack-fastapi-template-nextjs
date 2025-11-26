@@ -16,4 +16,10 @@ refresh token - not present, password reset and emails
 -------
 fix backend tests, add frontend vitest unit, playwright e2e
 add register form, user/pass and github
+GITHUB login should be on login page
+
+
+
+---------
+git checkout -b feat/register-page
 ```
