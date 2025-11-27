@@ -3,7 +3,7 @@ from datetime import timedelta
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from starlette.requests import Request
 
@@ -30,7 +30,6 @@ logger = logging.getLogger(__name__)
 router = APIRouter(tags=["login"])
 
 
-# Todo: maybe rename to login_access_cookie
 @router.post("/login/access-token")
 def login_access_token(
     session: SessionDep, form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
@@ -45,8 +44,11 @@ def login_access_token(
         raise HTTPException(status_code=400, detail="Incorrect email or password")
     elif not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    return security.set_auth_cookie(user.id, access_token_expires)
+    
+    access_token_expires = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
+    response = JSONResponse(content={"message": "Login successful"})
+
+    return security.set_auth_cookie(user.id, access_token_expires, response)
 
 
 @router.post("/login/test-token", response_model=UserPublic)
@@ -141,40 +143,48 @@ def logout() -> JSONResponse:
 
 # ------------------------ GitHub OAuth ---------------------------
 
-
-# Todo: remove Github maybe
-# http://localhost:8000/api/v1/login/github
 @router.get("/login/github")
 async def login_github(request: Request):
+    """
+    Redirect to GitHub login page
+    Must initiate OAuth flow from backend
+    """
     redirect_uri = request.url_for("auth_github")
     return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
 
-# Todo: must use cookie
-# http://localhost:8000/api/v1/auth/github
+
 @router.get("/auth/github")
-async def auth_github(request: Request, session: SessionDep) -> Token:
+async def auth_github(request: Request, session: SessionDep) -> RedirectResponse:
+    """
+    GitHub OAuth callback, GitHub will call this endpoint
+    """
+    # Exchange code for access token
     token = await security.oauth.github.authorize_access_token(request)
+
+    # Get user profile GitHub API
     user_info = await security.oauth.github.get("user", token=token)
     profile = user_info.json()
 
-    # Get primary email
+    # Get primary email GitHub API
     emails = await security.oauth.github.get("user/emails", token=token)
     primary_email = next((e["email"] for e in emails.json() if e["primary"]), None)
 
     logger.info(f"Primary GitHub email: {primary_email}")
-
+    
+    # Authenticate or create user
     user = crud.authenticate_github(
         session=session,
-        github_id=profile["id"],
+        primary_email=primary_email,
         profile=profile,
-        email=primary_email,
     )
 
-    # Issue JWT token
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    return Token(
-        access_token=security.create_access_token(
-            user.id, expires_delta=access_token_expires
-        )
-    )
+    # Backend must redirect to absolute FRONTEND url
+    redirect_url = f"{settings.NEXT_PUBLIC_SITE_URL}/dashboard"
+    response = RedirectResponse(url=redirect_url, status_code=302)
+
+    # Set JWT in HttpOnly cookie
+    access_token_expires = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
+    response = security.set_auth_cookie(user.id, access_token_expires, response)
+
+    return response

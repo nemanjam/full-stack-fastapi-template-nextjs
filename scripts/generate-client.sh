@@ -32,3 +32,5 @@ cd frontend/apps/web
 
 # Generate client
 pnpm run generate-client
+
+# @hey-api will overwrite by default, no need for manual delete

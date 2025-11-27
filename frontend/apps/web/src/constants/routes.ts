@@ -3,6 +3,7 @@
 export const ROUTES = {
   HOME: '/',
   LOGIN: '/login/',
+  REGISTER: '/register/',
   FORGOT_PASSWORD: '/forgot-password/',
   DASHBOARD: '/dashboard/',
   ITEMS: '/dashboard/items/',
@@ -14,7 +15,15 @@ export const ROUTES = {
     IMAGES: '/images/',
     FAVICONS: '/images/favicons/',
   },
+  /**
+   * API_V1_STR = /api/v1
+   *
+   * MUST point to backend, must use absolute URL
+   *
+   * @example: `${PROCESS_ENV.NEXT_PUBLIC_API_URL}${GITHUB_LOGIN}`
+   */
   API: {
-    OG_IMAGES: '/api/open-graph/',
+    LOGIN_GITHUB: '/api/v1/login/github/',
+    OG_IMAGES: '/api/v1/open-graph/',
   },
 } as const;

@@ -143,7 +143,13 @@ isr pooling ssr, multiple admins, maybe
         admin vidi sve iteme, user samo njegove
         no delete account for superuser
 -----
-fix cookie expiration
+fix cookie expiration - must be in seconds
+response.set_cookie(
+    # Cookie expiration and JWT expiration match
+    # ! Cookie expiration must be in seconds
+    max_age=int(expires_delta.total_seconds()),
+    expires=int(expires_delta.total_seconds()),
+)
 use all env vars from tiangolo
 add toasts
 ```

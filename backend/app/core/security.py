@@ -3,7 +3,7 @@ from typing import Any
 
 import jwt
 from authlib.integrations.starlette_client import OAuth
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from passlib.context import CryptContext
 
 from app.core.config import settings
@@ -25,16 +25,16 @@ def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
     return encoded_jwt
 
 
-def set_auth_cookie(subject: str | Any, expires_delta: timedelta) -> JSONResponse:
+def set_auth_cookie(subject: str | Any, expires_delta: timedelta, response: Response) -> Response:
     access_token = create_access_token(subject, expires_delta)
-    response = JSONResponse(content={"message": "Login successful"})
     response.set_cookie(
         key=settings.AUTH_COOKIE,
         value=access_token,
         httponly=True,
         # Cookie expiration and JWT expiration match
-        max_age=expires_delta,
-        expires=expires_delta,
+        # ! Cookie expiration must be in seconds
+        max_age=int(expires_delta.total_seconds()),
+        expires=int(expires_delta.total_seconds()),
         samesite="lax",
         secure=is_prod,
         domain=None,

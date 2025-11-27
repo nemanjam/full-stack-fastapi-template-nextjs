@@ -122,3 +122,10 @@ cd backend
 rm -rf .venv
 uv venv
 ```
+
+unify env vars
+frontend NEXT_PUBLIC_SITE_URL and FRONTEND_HOST 
+backend NEXT_PUBLIC_API_URL and DOMAIN
+-----
+DOMAIN is only used in Traefik in original repo, can be deleted, backend doesn't use it
+

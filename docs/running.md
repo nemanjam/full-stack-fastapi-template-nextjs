@@ -45,7 +45,7 @@ cd ./backend
 # Await db, run migrations and seed (must have .env), reminder: MUST rerun after delete db in dev
 bash scripts/prestart.sh
 
-# Run just database migrations
+# Apply just database migrations
 alembic upgrade head
 
 # If changed models generate migration

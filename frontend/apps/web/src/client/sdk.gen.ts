@@ -152,10 +152,7 @@ export class LoginService {
       LoginRecoverPasswordResponses,
       LoginRecoverPasswordErrors,
       ThrowOnError
-    >({
-      url: '/api/v1/password-recovery/{email}',
-      ...options,
-    });
+    >({ url: '/api/v1/password-recovery/{email}', ...options });
   }
 
   /**
@@ -228,6 +225,9 @@ export class LoginService {
 
   /**
    * Login Github
+   *
+   * Redirect to GitHub login page
+   * Must initiate OAuth flow from backend
    */
   public static loginGithub<ThrowOnError extends boolean = false>(
     options?: Options<LoginLoginGithubData, ThrowOnError>
@@ -240,6 +240,8 @@ export class LoginService {
 
   /**
    * Auth Github
+   *
+   * GitHub OAuth callback, GitHub will call this endpoint
    */
   public static authGithub<ThrowOnError extends boolean = false>(
     options?: Options<LoginAuthGithubData, ThrowOnError>
@@ -298,6 +300,28 @@ export class UsersService {
         },
       ],
       url: '/api/v1/users/',
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+    });
+  }
+
+  /**
+   * Register User
+   *
+   * Create new user without the need to be logged in.
+   */
+  public static registerUser<ThrowOnError extends boolean = false>(
+    options: Options<UsersRegisterUserData, ThrowOnError>
+  ) {
+    return (options.client ?? client).post<
+      UsersRegisterUserResponses,
+      UsersRegisterUserErrors,
+      ThrowOnError
+    >({
+      url: '/api/v1/users/signup',
       ...options,
       headers: {
         'Content-Type': 'application/json',
@@ -398,28 +422,6 @@ export class UsersService {
         },
       ],
       url: '/api/v1/users/me/password',
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-    });
-  }
-
-  /**
-   * Register User
-   *
-   * Create new user without the need to be logged in.
-   */
-  public static registerUser<ThrowOnError extends boolean = false>(
-    options: Options<UsersRegisterUserData, ThrowOnError>
-  ) {
-    return (options.client ?? client).post<
-      UsersRegisterUserResponses,
-      UsersRegisterUserErrors,
-      ThrowOnError
-    >({
-      url: '/api/v1/users/signup',
       ...options,
       headers: {
         'Content-Type': 'application/json',
