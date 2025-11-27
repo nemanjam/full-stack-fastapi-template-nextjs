@@ -18,8 +18,8 @@ import type {
   ItemsUpdateItemData,
   ItemsUpdateItemErrors,
   ItemsUpdateItemResponses,
-  LoginAuthGithubData,
-  LoginAuthGithubResponses,
+  LoginAuthGithubCallbackData,
+  LoginAuthGithubCallbackResponses,
   LoginLoginAccessTokenData,
   LoginLoginAccessTokenErrors,
   LoginLoginAccessTokenResponses,
@@ -239,17 +239,16 @@ export class LoginService {
   }
 
   /**
-   * Auth Github
+   * Auth Github Callback
    *
    * GitHub OAuth callback, GitHub will call this endpoint
    */
-  public static authGithub<ThrowOnError extends boolean = false>(
-    options?: Options<LoginAuthGithubData, ThrowOnError>
+  public static authGithubCallback<ThrowOnError extends boolean = false>(
+    options?: Options<LoginAuthGithubCallbackData, ThrowOnError>
   ) {
-    return (options?.client ?? client).get<LoginAuthGithubResponses, unknown, ThrowOnError>({
-      url: '/api/v1/auth/github',
-      ...options,
-    });
+    return (options?.client ?? client).get<LoginAuthGithubCallbackResponses, unknown, ThrowOnError>(
+      { url: '/api/v1/auth/github/callback', ...options }
+    );
   }
 }
 

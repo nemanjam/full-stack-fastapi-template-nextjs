@@ -493,14 +493,14 @@ export type LoginLoginGithubResponses = {
   200: unknown;
 };
 
-export type LoginAuthGithubData = {
+export type LoginAuthGithubCallbackData = {
   body?: never;
   path?: never;
   query?: never;
-  url: '/api/v1/auth/github';
+  url: '/api/v1/auth/github/callback';
 };
 
-export type LoginAuthGithubResponses = {
+export type LoginAuthGithubCallbackResponses = {
   /**
    * Successful Response
    */

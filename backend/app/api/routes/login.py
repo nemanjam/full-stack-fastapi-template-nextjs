@@ -151,7 +151,7 @@ async def login_github(request: Request):
     Redirect to GitHub login page
     Must initiate OAuth flow from backend
     """
-    redirect_uri = request.url_for("auth_github")  # matches function name
+    redirect_uri = request.url_for("auth_github_callback")  # matches function name
 
     # rewrite to https in production
     if is_prod:
@@ -162,8 +162,10 @@ async def login_github(request: Request):
     return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
 
-@router.get("/auth/github")
-async def auth_github(request: Request, session: SessionDep) -> RedirectResponse:
+@router.get("/auth/github/callback")
+async def auth_github_callback(
+    request: Request, session: SessionDep
+) -> RedirectResponse:
     """
     GitHub OAuth callback, GitHub will call this endpoint
     """
