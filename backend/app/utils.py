@@ -154,5 +154,6 @@ def get_root_domain(site_url: str) -> str | None:
     parts = hostname.split(".")
     if len(parts) >= 2:
         root_domain = ".".join(parts[-2:])
-        return f".{root_domain}"
+        return root_domain
+
     return hostname
