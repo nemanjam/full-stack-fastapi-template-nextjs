@@ -34,4 +34,5 @@ BACKEND_CORS_ORIGINS="...https://full-stack-fastapi-template-nextjs.rpi.nemanjam
 git checkout -b feat/register-page
 ---------
 regular user cant edit his profile name, fix permissions
+update env files in rpi and opi
 ```
