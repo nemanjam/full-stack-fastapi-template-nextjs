@@ -39,4 +39,14 @@ make 4 oauth apps for redirect url, local, arm, rpi, opi
 http://localhost:8000/api/v1/auth/github
 ------
 extract utils, constants, models, logging in backend
+
+------
+i build container with single url, runtime env vars arent applies
+// .github/workflows/build-push-frontend.yml
+env:
+  IMAGE_NAME: ${{ github.event.repository.name }}-frontend
+  NEXT_PUBLIC_SITE_URL: 'https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
+  NEXT_PUBLIC_API_URL: 'https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
+  # for pi?
+next.js should serve this api endpoint, its frontend runtime config
 ```
