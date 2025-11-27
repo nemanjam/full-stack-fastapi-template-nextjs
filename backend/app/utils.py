@@ -133,3 +133,6 @@ def log_settings(settings: BaseModel) -> None:
     logger.info("=== Settings values ===")
     for field, value in settings.model_dump().items():
         logger.info(f"{field}: {value}")
+
+
+is_prod = settings.ENVIRONMENT == "production"

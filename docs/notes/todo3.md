@@ -35,4 +35,6 @@ git checkout -b feat/register-page
 ---------
 regular user cant edit his profile name, fix permissions
 update env files in rpi and opi
+make 4 oauth apps for redirect url, local, arm, rpi, opi
+http://localhost:8000/api/v1/auth/github
 ```

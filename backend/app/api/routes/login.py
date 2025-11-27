@@ -16,10 +16,11 @@ from app.api.deps import (
 )
 from app.core import security
 from app.core.config import settings
-from app.models import Message, NewPassword, Token, UserPublic
+from app.models import Message, NewPassword, UserPublic
 from app.utils import (
     generate_password_reset_token,
     generate_reset_password_email,
+    is_prod,
     send_email,
     verify_password_reset_token,
 )
@@ -44,7 +45,7 @@ def login_access_token(
         raise HTTPException(status_code=400, detail="Incorrect email or password")
     elif not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
-    
+
     access_token_expires = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
     response = JSONResponse(content={"message": "Login successful"})
 
@@ -143,15 +144,17 @@ def logout() -> JSONResponse:
 
 # ------------------------ GitHub OAuth ---------------------------
 
+
 @router.get("/login/github")
 async def login_github(request: Request):
     """
     Redirect to GitHub login page
     Must initiate OAuth flow from backend
     """
-    redirect_uri = request.url_for("auth_github")
-    return await security.oauth.github.authorize_redirect(request, redirect_uri)
+    scheme = "https" if is_prod else "http"
 
+    redirect_uri = request.url_for("auth_github", _scheme=scheme)
+    return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
 
 @router.get("/auth/github")
@@ -171,7 +174,7 @@ async def auth_github(request: Request, session: SessionDep) -> RedirectResponse
     primary_email = next((e["email"] for e in emails.json() if e["primary"]), None)
 
     logger.info(f"Primary GitHub email: {primary_email}")
-    
+
     # Authenticate or create user
     user = crud.authenticate_github(
         session=session,

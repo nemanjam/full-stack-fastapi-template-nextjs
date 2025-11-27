@@ -7,11 +7,11 @@ from fastapi.responses import JSONResponse, Response
 from passlib.context import CryptContext
 
 from app.core.config import settings
+from app.utils import is_prod
 
 # Note:
 # The secure flag on cookies ensures they're only sent over encrypted HTTPS connections.
 # For local development (HTTP) set it to False.
-is_prod = settings.ENVIRONMENT == "production"
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -25,7 +25,9 @@ def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
     return encoded_jwt
 
 
-def set_auth_cookie(subject: str | Any, expires_delta: timedelta, response: Response) -> Response:
+def set_auth_cookie(
+    subject: str | Any, expires_delta: timedelta, response: Response
+) -> Response:
     access_token = create_access_token(subject, expires_delta)
     response.set_cookie(
         key=settings.AUTH_COOKIE,
