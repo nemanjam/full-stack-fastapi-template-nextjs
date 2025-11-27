@@ -155,7 +155,7 @@ async def login_github(request: Request):
 
     # rewrite to https in production
     if is_prod:
-        redirect_uri = redirect_uri.replace("http://", "https://")
+        redirect_uri = redirect_uri.replace(scheme="https")
 
     logger.info(f"redirect_uri: {redirect_uri}")
 
