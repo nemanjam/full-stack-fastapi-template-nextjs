@@ -157,8 +157,6 @@ async def login_github(request: Request):
     if is_prod:
         redirect_uri = redirect_uri.replace(scheme="https")
 
-    logger.info(f"redirect_uri: {redirect_uri}")
-
     return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
 

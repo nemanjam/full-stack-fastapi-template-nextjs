@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 import emails  # type: ignore
 import jwt
@@ -136,3 +137,22 @@ def log_settings(settings: BaseModel) -> None:
 
 
 is_prod = settings.ENVIRONMENT == "production"
+
+
+def get_root_domain(site_url: str) -> str | None:
+    """
+    Calculate root domain from frontend URL.
+    Used for auth cookie domain.
+    Returns None for localhost (dev), or '.example.com' for prod.
+    """
+    parsed = urlparse(site_url)
+    hostname = parsed.hostname
+
+    if hostname in ("localhost", "127.0.0.1") or hostname.endswith(".localhost"):
+        return None  # don't set domain in dev
+
+    parts = hostname.split(".")
+    if len(parts) >= 2:
+        root_domain = ".".join(parts[-2:])
+        return f".{root_domain}"
+    return hostname

@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -7,7 +8,10 @@ from fastapi.responses import JSONResponse, Response
 from passlib.context import CryptContext
 
 from app.core.config import settings
-from app.utils import is_prod
+from app.utils import get_root_domain, is_prod
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Note:
 # The secure flag on cookies ensures they're only sent over encrypted HTTPS connections.
@@ -30,6 +34,9 @@ def set_auth_cookie(
 ) -> Response:
     access_token = create_access_token(subject, expires_delta)
     samesite = "none" if is_prod else "lax"
+    domain = f".{get_root_domain(settings.NEXT_PUBLIC_SITE_URL)}" if is_prod else None
+
+    logger.info(f"domain: {domain}")
 
     response.set_cookie(
         key=settings.AUTH_COOKIE,
@@ -41,7 +48,7 @@ def set_auth_cookie(
         expires=int(expires_delta.total_seconds()),
         samesite=samesite,
         secure=is_prod,
-        domain=None,
+        domain=domain,
     )
     return response
 
