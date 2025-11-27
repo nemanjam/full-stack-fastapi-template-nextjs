@@ -20,11 +20,13 @@ const { NEXT_PUBLIC_API_URL } = PROCESS_ENV;
 const { LOGIN_GITHUB } = ROUTES.API;
 
 // Note: BROWSER (<a/> or <Link />) must call this API url, not http client or server
-const absoluteApiUrl = `${NEXT_PUBLIC_API_URL}${LOGIN_GITHUB}`;
+const _absoluteApiUrl = `${NEXT_PUBLIC_API_URL}${LOGIN_GITHUB}`;
 
 const ButtonGithubLogin: FC<Props> = async ({ className }) => {
   // For runtime env vars
   await connection();
+
+  const absoluteApiUrl = `${process.env.NEXT_PUBLIC_API_URL}${LOGIN_GITHUB}`;
 
   return (
     <Button
