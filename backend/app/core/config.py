@@ -37,10 +37,9 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = secrets.token_urlsafe(32)
     SESSION_SECRET_KEY: str = secrets.token_urlsafe(32)
     # Cookie expiration and JWT expiration match
-    # 60 minutes * 24 hours * 8 days = 8 days
-    # Todo: change to hours
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
-    FRONTEND_HOST: str = "http://localhost:5173"
+    # 24 hours * 8 days = 192 hours
+    ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 8
+    NEXT_PUBLIC_SITE_URL: str = "http://localhost:3000"
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
 
     # my
@@ -55,7 +54,7 @@ class Settings(BaseSettings):
     @property
     def all_cors_origins(self) -> list[str]:
         return [str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS] + [
-            self.FRONTEND_HOST
+            self.NEXT_PUBLIC_SITE_URL
         ]
 
     PROJECT_NAME: str

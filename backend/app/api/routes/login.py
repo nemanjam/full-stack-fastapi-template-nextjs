@@ -45,7 +45,7 @@ def login_access_token(
     elif not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
     
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
     response = JSONResponse(content={"message": "Login successful"})
 
     return security.set_auth_cookie(user.id, access_token_expires, response)
@@ -183,11 +183,11 @@ async def auth_github(request: Request, session: SessionDep) -> RedirectResponse
     )
 
     # Backend must redirect to absolute FRONTEND url
-    redirect_url = f"{settings.FRONTEND_HOST}/dashboard"
+    redirect_url = f"{settings.NEXT_PUBLIC_SITE_URL}/dashboard"
     response = RedirectResponse(url=redirect_url, status_code=302)
 
     # Set JWT in HttpOnly cookie
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
     response = security.set_auth_cookie(user.id, access_token_expires, response)
 
     return response

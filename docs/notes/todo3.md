@@ -18,14 +18,18 @@ fix backend tests, add frontend vitest unit, playwright e2e
 add register form, user/pass and github
 GITHUB login should be on login page
 ------
-unify env vars
-frontend NEXT_PUBLIC_SITE_URL and FRONTEND_HOST 
-backend NEXT_PUBLIC_API_URL and DOMAIN
+        unify env vars
+        frontend NEXT_PUBLIC_SITE_URL and FRONTEND_HOST 
+        backend NEXT_PUBLIC_API_URL and DOMAIN
 -------
 handle profile password form for Github user
 user avatar
 use same columns for both password user and OAuth user, just add 'provider' column
 before testing github login check if database is connected, volume path renamed githubcities
+---------
+this should fix rpi and opi login
+BACKEND_CORS_ORIGINS="...https://full-stack-fastapi-template-nextjs.rpi.nemanjamitic.com,https://full-stack-fastapi-template-nextjs.opi.nemanjamitic.com"
+
 ---------
 git checkout -b feat/register-page
 ```
