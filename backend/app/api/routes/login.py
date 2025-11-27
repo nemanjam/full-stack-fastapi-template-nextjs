@@ -153,11 +153,11 @@ async def login_github(request: Request):
     """
     scheme = "https" if is_prod else "http"
 
-    redirect_uri = request.url_for("auth_github", _scheme=scheme)
+    redirect_uri = request.url_for("github_callback", _scheme=scheme)
     return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
 
-@router.get("/auth/github")
+@router.get("/auth/github", name="github_callback")
 async def auth_github(request: Request, session: SessionDep) -> RedirectResponse:
     """
     GitHub OAuth callback, GitHub will call this endpoint
