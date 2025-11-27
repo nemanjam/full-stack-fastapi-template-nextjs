@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -9,9 +8,6 @@ from passlib.context import CryptContext
 
 from app.core.config import settings
 from app.utils import get_root_domain, is_prod
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Note:
 # The secure flag on cookies ensures they're only sent over encrypted HTTPS connections.
@@ -32,20 +28,26 @@ def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
 def set_auth_cookie(
     subject: str | Any, expires_delta: timedelta, response: Response
 ) -> Response:
+    # Cookie expiration and JWT expiration match
+    # Note: cookie expiration must be in seconds
+    expires_in_seconds = int(expires_delta.total_seconds())
     access_token = create_access_token(subject, expires_delta)
-    samesite = "none" if is_prod else "lax"
-    domain = f".{get_root_domain(settings.NEXT_PUBLIC_SITE_URL)}" if is_prod else None
 
-    logger.info(f"domain: {domain}")
+    # prod="none", dev="lax"
+    samesite = "none" if is_prod else "lax"
+
+    # Note: important for cross-site cookies in prod to succeed
+    # example.com and api.example.com
+    # prod=".example.com", dev=None
+    root_domain = get_root_domain(settings.NEXT_PUBLIC_SITE_URL)
+    domain = f".{root_domain}" if is_prod else None
 
     response.set_cookie(
         key=settings.AUTH_COOKIE,
         value=access_token,
         httponly=True,
-        # Cookie expiration and JWT expiration match
-        # ! Cookie expiration must be in seconds
-        max_age=int(expires_delta.total_seconds()),
-        expires=int(expires_delta.total_seconds()),
+        max_age=expires_in_seconds,
+        expires=expires_in_seconds,
         samesite=samesite,
         secure=is_prod,
         domain=domain,

@@ -149,7 +149,7 @@ def get_root_domain(site_url: str) -> str | None:
     hostname = parsed.hostname
 
     if hostname in ("localhost", "127.0.0.1") or hostname.endswith(".localhost"):
-        return None  # don't set domain in dev
+        return None
 
     parts = hostname.split(".")
     if len(parts) >= 2:
