@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from typing import Any
+from urllib.parse import urlparse
 
 import jwt
 from authlib.integrations.starlette_client import OAuth
@@ -7,7 +8,7 @@ from fastapi.responses import JSONResponse, Response
 from passlib.context import CryptContext
 
 from app.core.config import settings
-from app.utils import get_root_domain, is_prod
+from app.utils import is_prod
 
 # Note:
 # The secure flag on cookies ensures they're only sent over encrypted HTTPS connections.
@@ -33,14 +34,17 @@ def set_auth_cookie(
     expires_in_seconds = int(expires_delta.total_seconds())
     access_token = create_access_token(subject, expires_delta)
 
-    # prod="none", dev="lax"
-    samesite = "none" if is_prod else "lax"
+    # Dev defaults
+    samesite = "lax"
+    domain = None
 
-    # Note: important for cross-site cookies in prod to succeed
-    # example.com and api.example.com
-    # prod=".example.com", dev=None
-    root_domain = get_root_domain(settings.NEXT_PUBLIC_SITE_URL)
-    domain = f".{root_domain}" if is_prod else None
+    # Prod overrides
+    if is_prod:
+        samesite = "none"
+        # Note: important for cross-site cookies in prod to succeed, api.example.com and example.com
+        # Exact frontend domain with full subdomain
+        parsed = urlparse(settings.NEXT_PUBLIC_SITE_URL)
+        domain = parsed.hostname
 
     response.set_cookie(
         key=settings.AUTH_COOKIE,
