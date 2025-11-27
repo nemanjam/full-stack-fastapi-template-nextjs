@@ -14,8 +14,8 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}-frontend
-  # NEXT_PUBLIC_SITE_URL: 'https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
-  # NEXT_PUBLIC_API_URL: 'https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
+  NEXT_PUBLIC_SITE_URL: 'https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
+  NEXT_PUBLIC_API_URL: 'https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
   # for pi?
 
 jobs:

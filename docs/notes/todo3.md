@@ -59,4 +59,6 @@ parsed PROCESS_ENV: // on rpi, this is called in instrumentation.ts, wtf
 ├─ NEXT_PUBLIC_SITE_URL: https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
 └─ NEXT_PUBLIC_API_URL: https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
 load runtime env vars in instrumentation.ts
+----
+runtime env var must be server only var, without NEXT_PUBLIC_
 ```
