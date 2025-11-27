@@ -29,6 +29,8 @@ def set_auth_cookie(
     subject: str | Any, expires_delta: timedelta, response: Response
 ) -> Response:
     access_token = create_access_token(subject, expires_delta)
+    samesite = "none" if is_prod else "lax"
+
     response.set_cookie(
         key=settings.AUTH_COOKIE,
         value=access_token,
@@ -37,7 +39,7 @@ def set_auth_cookie(
         # ! Cookie expiration must be in seconds
         max_age=int(expires_delta.total_seconds()),
         expires=int(expires_delta.total_seconds()),
-        samesite="lax",
+        samesite=samesite,
         secure=is_prod,
         domain=None,
     )
