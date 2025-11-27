@@ -9,6 +9,9 @@ import { PROCESS_ENV } from '@/config/process-env';
 
 import type { FC } from 'react';
 
+// For runtime env vars
+export const dynamic = 'force-dynamic';
+
 interface Props {
   className?: string;
 }

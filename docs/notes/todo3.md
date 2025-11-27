@@ -49,4 +49,12 @@ env:
   NEXT_PUBLIC_API_URL: 'https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
   # for pi?
 next.js should serve this api endpoint, its frontend runtime config
+runtime, buildtime, public, private, server, client
+https://nextjs.org/docs/app/guides/environment-variables#runtime-environment-variables
+----
+even client baseUrl is wrong
+parsed PROCESS_ENV: // on rpi
+├─ NODE_ENV: production
+├─ NEXT_PUBLIC_SITE_URL: https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
+└─ NEXT_PUBLIC_API_URL: https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
 ```
