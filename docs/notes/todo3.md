@@ -54,8 +54,9 @@ https://nextjs.org/docs/app/guides/environment-variables#runtime-environment-var
 ----
 even client baseUrl is wrong
 maybe thats why cross domain cookie failed, it fetches wrong backend
-parsed PROCESS_ENV: // on rpi
+parsed PROCESS_ENV: // on rpi, this is called in instrumentation.ts, wtf
 ├─ NODE_ENV: production
 ├─ NEXT_PUBLIC_SITE_URL: https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
 └─ NEXT_PUBLIC_API_URL: https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
+load runtime env vars in instrumentation.ts
 ```
