@@ -9,27 +9,29 @@ table horizontal scroll shadcn import { ScrollArea } from "@/components/ui/scrol
 git tags to docker images
         rename to full-stack-fastapi-template-nextjs, Full stack FastAPI template Next.js
 update readme
-pre-commit hook yaml file messes up staging files for commit `.pre-commit-config.yaml`
+        pre-commit hook yaml file messes up staging files for commit `.pre-commit-config.yaml` // deleted hook from .git folder
 refresh token - not present, password reset and emails
 @router.post("/password-recovery/{email}")
 @router.post("/reset-password/")
 -------
 fix backend tests, add frontend vitest unit, playwright e2e
-add register form, user/pass and github
-GITHUB login should be on login page
+        add register form, user/pass and github
+        GITHUB login should be on login page
 ------
         unify env vars
         frontend NEXT_PUBLIC_SITE_URL and FRONTEND_HOST 
         backend NEXT_PUBLIC_API_URL and DOMAIN
 -------
-handle profile password form for Github user
-user avatar
-use same columns for both password user and OAuth user, just add 'provider' column
-before testing github login check if database is connected, volume path renamed githubcities
+        handle profile password form for Github user
+        user avatar, no
+        use same columns for both password user and OAuth user, just add 'provider' and 'oauth_id' columns
+        before testing github login check if database is connected, volume path renamed githubcities
 ---------
-this should fix rpi and opi login
+this should fix rpi and opi login // todo: test
 BACKEND_CORS_ORIGINS="...https://full-stack-fastapi-template-nextjs.rpi.nemanjamitic.com,https://full-stack-fastapi-template-nextjs.opi.nemanjamitic.com"
 
 ---------
 git checkout -b feat/register-page
+---------
+regular user cant edit his profile name, fix permissions
 ```
