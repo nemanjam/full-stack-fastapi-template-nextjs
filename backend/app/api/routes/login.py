@@ -152,8 +152,10 @@ async def login_github(request: Request):
     Must initiate OAuth flow from backend
     """
     scheme = "https" if is_prod else "http"
+    redirect_uri = request.url_for("github_callback", _scheme=scheme, _external=True)
 
-    redirect_uri = request.url_for("github_callback", _scheme=scheme)
+    logger.info(f"redirect_uri: {redirect_uri}")
+
     return await security.oauth.github.authorize_redirect(request, redirect_uri)
 
 
