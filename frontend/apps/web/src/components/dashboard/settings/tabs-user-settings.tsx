@@ -19,25 +19,32 @@ interface Props {
 }
 
 const TabsUserSettings: FC<Props> = ({ currentUser }) => {
-  const isSuperuser = currentUser?.is_superuser ?? false;
+  const isSuperuser = currentUser.is_superuser ?? false;
+  const isOAuthUser = currentUser.provider !== 'email';
 
   return (
     <>
       <Tabs defaultValue="profile" className="space-y-6">
         <TabsList
           className={cn('grid w-full', {
-            'grid-cols-2': isSuperuser,
-            'grid-cols-3': !isSuperuser,
+            'grid-cols-3': !isSuperuser && !isOAuthUser,
+            'grid-cols-2': isSuperuser || (isOAuthUser && !isSuperuser),
+            'grid-cols-1': isSuperuser && isOAuthUser,
           })}
         >
           <TabsTrigger value="profile" className="flex items-center space-x-2">
             <User className="h-4 w-4" />
             <span>My Profile</span>
           </TabsTrigger>
-          <TabsTrigger value="password" className="flex items-center space-x-2">
-            <Lock className="h-4 w-4" />
-            <span>Password</span>
-          </TabsTrigger>
+
+          {/* OAuth user doesn't have password */}
+          {!isOAuthUser && (
+            <TabsTrigger value="password" className="flex items-center space-x-2">
+              <Lock className="h-4 w-4" />
+              <span>Password</span>
+            </TabsTrigger>
+          )}
+
           {/* Admin can't delete account */}
           {!isSuperuser && (
             <TabsTrigger value="danger" className="flex items-center space-x-2">
@@ -51,9 +58,11 @@ const TabsUserSettings: FC<Props> = ({ currentUser }) => {
           <TabProfile currentUser={currentUser} />
         </TabsContent>
 
-        <TabsContent value="password">
-          <TabPassword />
-        </TabsContent>
+        {!isOAuthUser && (
+          <TabsContent value="password">
+            <TabPassword />
+          </TabsContent>
+        )}
 
         {!isSuperuser && (
           <TabsContent value="danger">

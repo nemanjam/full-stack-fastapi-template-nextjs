@@ -27,7 +27,7 @@ Unstable, work in progress.
 
 ## Todo
 
-- [ ] Register page, Github login
+- [x] Register page, Github login
 - [ ] Migrate Playwright tests
 - [ ] Unit tests with Vitest, Testing Library
 - [ ] Tag Docker images
