@@ -5,6 +5,16 @@ export type ClientOptions = {
 };
 
 /**
+ * AuthProvider
+ */
+export const AuthProvider = { EMAIL: 'email', GITHUB: 'github' } as const;
+
+/**
+ * AuthProvider
+ */
+export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider];
+
+/**
  * Body_login-login_access_token
  */
 export type BodyLoginLoginAccessToken = {
@@ -155,20 +165,6 @@ export type PrivateUserCreate = {
 };
 
 /**
- * Token
- */
-export type Token = {
-  /**
-   * Access Token
-   */
-  access_token: string;
-  /**
-   * Token Type
-   */
-  token_type?: string;
-};
-
-/**
  * UpdatePassword
  */
 export type UpdatePassword = {
@@ -190,18 +186,11 @@ export type UserCreate = {
    * Email
    */
   email: string;
+  provider?: AuthProvider;
   /**
-   * Github Id
+   * Oauth Id
    */
-  github_id?: number | null;
-  /**
-   * Github Login
-   */
-  github_login?: string | null;
-  /**
-   * Github Avatar Url
-   */
-  github_avatar_url?: string | null;
+  oauth_id?: string | null;
   /**
    * Is Active
    */
@@ -228,18 +217,11 @@ export type UserPublic = {
    * Email
    */
   email: string;
+  provider?: AuthProvider;
   /**
-   * Github Id
+   * Oauth Id
    */
-  github_id?: number | null;
-  /**
-   * Github Login
-   */
-  github_login?: string | null;
-  /**
-   * Github Avatar Url
-   */
-  github_avatar_url?: string | null;
+  oauth_id?: string | null;
   /**
    * Is Active
    */
@@ -284,18 +266,11 @@ export type UserUpdate = {
    * Email
    */
   email?: string | null;
+  provider?: AuthProvider;
   /**
-   * Github Id
+   * Oauth Id
    */
-  github_id?: number | null;
-  /**
-   * Github Login
-   */
-  github_login?: string | null;
-  /**
-   * Github Avatar Url
-   */
-  github_avatar_url?: string | null;
+  oauth_id?: string | null;
   /**
    * Is Active
    */
@@ -529,10 +504,8 @@ export type LoginAuthGithubResponses = {
   /**
    * Successful Response
    */
-  200: Token;
+  200: unknown;
 };
-
-export type LoginAuthGithubResponse = LoginAuthGithubResponses[keyof LoginAuthGithubResponses];
 
 export type UsersReadUsersData = {
   body?: never;
@@ -592,6 +565,32 @@ export type UsersCreateUserResponses = {
 };
 
 export type UsersCreateUserResponse = UsersCreateUserResponses[keyof UsersCreateUserResponses];
+
+export type UsersRegisterUserData = {
+  body: UserRegister;
+  path?: never;
+  query?: never;
+  url: '/api/v1/users/signup';
+};
+
+export type UsersRegisterUserErrors = {
+  /**
+   * Validation Error
+   */
+  422: HttpValidationError;
+};
+
+export type UsersRegisterUserError = UsersRegisterUserErrors[keyof UsersRegisterUserErrors];
+
+export type UsersRegisterUserResponses = {
+  /**
+   * Successful Response
+   */
+  200: UserPublic;
+};
+
+export type UsersRegisterUserResponse =
+  UsersRegisterUserResponses[keyof UsersRegisterUserResponses];
 
 export type UsersDeleteUserMeData = {
   body?: never;
@@ -678,32 +677,6 @@ export type UsersUpdatePasswordMeResponses = {
 
 export type UsersUpdatePasswordMeResponse =
   UsersUpdatePasswordMeResponses[keyof UsersUpdatePasswordMeResponses];
-
-export type UsersRegisterUserData = {
-  body: UserRegister;
-  path?: never;
-  query?: never;
-  url: '/api/v1/users/signup';
-};
-
-export type UsersRegisterUserErrors = {
-  /**
-   * Validation Error
-   */
-  422: HttpValidationError;
-};
-
-export type UsersRegisterUserError = UsersRegisterUserErrors[keyof UsersRegisterUserErrors];
-
-export type UsersRegisterUserResponses = {
-  /**
-   * Successful Response
-   */
-  200: UserPublic;
-};
-
-export type UsersRegisterUserResponse =
-  UsersRegisterUserResponses[keyof UsersRegisterUserResponses];
 
 export type UsersDeleteUserData = {
   body?: never;

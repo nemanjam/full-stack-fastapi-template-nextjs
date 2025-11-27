@@ -162,11 +162,9 @@ async def auth_github(request: Request, session: SessionDep) -> RedirectResponse
     # Exchange code for access token
     token = await security.oauth.github.authorize_access_token(request)
 
-    # Get user info GitHub API
+    # Get user profile GitHub API
     user_info = await security.oauth.github.get("user", token=token)
     profile = user_info.json()
-
-    full_name = profile.get("name") or profile.get("login")
 
     # Get primary email GitHub API
     emails = await security.oauth.github.get("user/emails", token=token)
@@ -177,9 +175,8 @@ async def auth_github(request: Request, session: SessionDep) -> RedirectResponse
     # Authenticate or create user
     user = crud.authenticate_github(
         session=session,
-        github_id=profile["id"],
+        primary_email=primary_email,
         profile=profile,
-        email=primary_email,
     )
 
     # Backend must redirect to absolute FRONTEND url

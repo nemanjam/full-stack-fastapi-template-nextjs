@@ -45,20 +45,26 @@ def authenticate(*, session: Session, email: str, password: str) -> User | None:
         return None
     return db_user
 
-# Todo: improve this
 def authenticate_github(
-    *, session: Session, github_id: int, profile: dict, email: str | None
+    *, session: Session, primary_email: str | None, profile: dict
 ) -> User:
-    user = session.exec(select(User).where(User.github_id == github_id)).first()
 
-    # Todo: I have separate columns for Github data, fix this
-    # use same columns for both password user and OAuth user, just add 'provider' column
+    # Get profile data
+    github_full_name = profile.get("name")
+    github_username = profile.get("login")
+    github_id_str = str(profile.get("id"))
+
+    # Find or create user
+    user = session.exec(select(User).where(User.oauth_id == github_id_str)).first()
+    
     if not user:
+        fallback_email = f"{github_username or github_id_str}-{uuid.uuid4().hex[:8]}@github.local",
+
         user = User(
-            github_id=github_id,
-            github_login=profile.get("login"),
-            github_avatar_url=profile.get("avatar_url"),
-            email=email or f"{github_id}-{uuid.uuid4().hex[:8]}@github.local",  # Todo: improve this
+            provider="github",
+            oauth_id=github_id_str,
+            full_name=github_full_name or github_username,
+            email=primary_email or fallback_email, 
             is_active=True,
         )
         session.add(user)

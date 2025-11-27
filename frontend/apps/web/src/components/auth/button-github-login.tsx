@@ -25,7 +25,7 @@ const ButtonGithubLogin: FC<Props> = ({ className }) => (
   <Button
     asChild
     className={cn(
-      'w-full h-12 flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-medium',
+      'w-full h-12 flex items-center justify-center gap-2 rounded-md font-medium text-white bg-green-600 hover:bg-green-700 active:bg-green-800 transition-colors',
       className
     )}
   >
