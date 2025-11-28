@@ -7,20 +7,13 @@ import type { CreateClientConfig } from '@/client/client.gen';
 
 const { NEXT_PUBLIC_API_URL } = PROCESS_ENV;
 
-/** Runtime config. Works both on server and in browser. */
-export const createClientConfig: CreateClientConfig = (config) => {
-  const clientConfig: ReturnType<CreateClientConfig> = {
-    ...config,
-    baseUrl: NEXT_PUBLIC_API_URL,
-    credentials: 'include',
-    ...(isServer() ? { fetch: serverFetch } : {}),
-  };
-
-  console.log('NEXT_PUBLIC_API_URL', NEXT_PUBLIC_API_URL);
-  console.log('clientConfig', clientConfig);
-
-  return clientConfig;
-};
+/** Runtime config. Runs and imported both on server and in browser. */
+export const createClientConfig: CreateClientConfig = (config) => ({
+  ...config,
+  baseUrl: NEXT_PUBLIC_API_URL,
+  credentials: 'include',
+  ...(isServer() ? { fetch: serverFetch } : {}),
+});
 
 const serverFetch: typeof fetch = async (input, init = {}) => {
   // Note: Dynamic import to avoid bundling 'next/headers' on client

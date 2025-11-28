@@ -15,7 +15,7 @@ const LoginPage: FC = async () => {
       {/* debug */}
 
       <pre className="whitespace-pre-wrap wrap-break-word">
-        {JSON.stringify(global.process.env, null, 2)}
+        {JSON.stringify(process.env, null, 2)}
       </pre>
 
       {/* Card */}
