@@ -61,6 +61,7 @@ parsed PROCESS_ENV: // on rpi, this is called in instrumentation.ts, wtf
 load runtime env vars in instrumentation.ts
 ----
 runtime env var must be server only var, without NEXT_PUBLIC_
+must use 'docker compose pull' before testing
 -----
 // api exposes runtime vars
 // frontend/apps/web/src/app/config/route.ts
@@ -69,5 +70,5 @@ export async function GET() {
     processEnv: process.env,
   });
 }
-
+server action for config api?
 ```

@@ -6,7 +6,11 @@ import FormLogin from '@/components/auth/form-login';
 import type { FC } from 'react';
 
 const LoginPage: FC = async () => (
-  <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+  <div className="min-h-screen flex flex-col items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    {/* debug */}
+
+    <pre>{JSON.stringify(global.process.env, null, 2)}</pre>
+
     {/* Card */}
     <Card className="w-full max-w-md shadow-xl border-0 bg-white/80 backdrop-blur-sm dark:bg-slate-900/80">
       <CardHeader className="flex-row items-center justify-center mb-6">
