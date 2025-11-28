@@ -1,5 +1,3 @@
-// import 'server-only';
-
 import { isServer } from '@/utils/runtime';
 import { PROCESS_ENV } from '@/config/process-env';
 

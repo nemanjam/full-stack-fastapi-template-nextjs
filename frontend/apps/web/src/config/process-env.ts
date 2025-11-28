@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { processEnvSchema } from '@/schemas/config';
 import { validateData } from '@/utils/validation';
 
