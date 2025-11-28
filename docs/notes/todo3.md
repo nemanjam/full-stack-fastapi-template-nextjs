@@ -71,4 +71,5 @@ export async function GET() {
   });
 }
 server action for config api?
+global.process.env same as_ process.env, nebuloza
 ```
