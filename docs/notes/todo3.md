@@ -72,4 +72,42 @@ export async function GET() {
 }
 server action for config api?
 global.process.env same as_ process.env, nebuloza
+------
+// https://nextjs.org/docs/app/guides/environment-variables
+setup local prod with different env vars for local testing
+// remove NEXT_PUBLIC_ prefix, it just creates build time env vars
+rename to SITE_URL, API_URL
+------
+// load priorities next.js v16
+// .env.development, .env.development.local
+// NODE_ENV = development, production, test 
+// NODE_ENV === undefined for next dev default development, production for all other next commands
+1. process.env
+2. .env.$(NODE_ENV).local
+3. .env.local (Not checked when NODE_ENV is test.)
+4. .env.$(NODE_ENV)
+5. .env
+----------
+set NODE_ENV=development|production and load .env.* files explicitly
+commit public in .env.development, .env.production
+create .env.development.local.example, .env.production.local.example for private vars for git
+------------
+// API_URL can be undefined at build time or fallback?
+// on server
+Allowed but code must handle undefined 
+// on client
+will always be undefined // don't read it, either props or window.__ENV
+------------
+// plan:
+git checkout -b feat/runtime-env-vars
+use @t3-oss/env-nextjs for Zod validation (at runtime)
+rename NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_API_URL to SITE_URL, API_URL
+set <RuntimeEnv /> with await connection() and dangerouslySetInnerHtml(window.__ENV) in root layout
+call validate and log in <RuntimeEnv />, will validate both server and client at runtime
+on client pass as props or use window.__ENV
+context cant use in .ts files, window.__ENV can
+-------
+// Todo: review these Next.js apps
+https://github.com/xclusive36/MarkItUp/
+https://github.com/arhamkhnz/next-shadcn-admin-dashboard/
 ```
