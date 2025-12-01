@@ -74,7 +74,7 @@ server action for config api?
 global.process.env same as_ process.env, nebuloza
 ------
 // https://nextjs.org/docs/app/guides/environment-variables
-setup local prod with different env vars for local testing
+setup local prod with different env vars for local testing // build Docker locally
 // remove NEXT_PUBLIC_ prefix, it just creates build time env vars
 rename to SITE_URL, API_URL
 ------
@@ -107,7 +107,5 @@ call validate and log in <RuntimeEnv />, will validate both server and client at
 on client pass as props or use window.__ENV
 context cant use in .ts files, window.__ENV can
 -------
-// Todo: review these Next.js apps
-https://github.com/xclusive36/MarkItUp/
-https://github.com/arhamkhnz/next-shadcn-admin-dashboard/
+
 ```
