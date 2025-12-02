@@ -3,7 +3,7 @@ from datetime import timedelta
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from starlette.requests import Request
 
@@ -161,9 +161,7 @@ async def login_github(request: Request):
 
 
 @router.get("/auth/github/callback")
-async def auth_github_callback(
-    request: Request, session: SessionDep
-) -> RedirectResponse:
+async def auth_github_callback(request: Request, session: SessionDep) -> HTMLResponse:
     """
     GitHub OAuth callback, GitHub will call this endpoint
     """
@@ -187,11 +185,27 @@ async def auth_github_callback(
         profile=profile,
     )
 
-    # Backend must redirect to absolute FRONTEND url
+    # Must use absolute url, redirect from api-domain.com to domain.com
     redirect_url = f"{settings.SITE_URL}/dashboard"
-    response = RedirectResponse(url=redirect_url, status_code=302)
 
-    # Set JWT in HttpOnly cookie
+    # Can't redirect from api-domain.com to domain.com on backend and set cookie
+    # Land on frontend domain, set cookie and redirect with JavaScript
+    response = HTMLResponse(
+        f"""
+        <html>
+            <head>
+                <meta charset="UTF-8" />
+                <title>Redirecting...</title>
+            </head>
+            <body>
+                <script>
+                    window.location.href = "{redirect_url}";
+                </script>
+            </body>
+        </html>
+        """
+    )
+
     access_token_expires = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
     response = security.set_auth_cookie(user.id, access_token_expires, response)
 
