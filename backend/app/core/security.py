@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any
 from urllib.parse import urlparse
@@ -17,6 +18,9 @@ from app.utils import is_prod
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 ALGORITHM = "HS256"
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
@@ -45,6 +49,8 @@ def set_auth_cookie(
         # Exact frontend domain with full subdomain
         parsed = urlparse(settings.SITE_URL)
         domain = parsed.hostname
+
+    logger.info(f"domain: {domain}")
 
     response.set_cookie(
         key=settings.AUTH_COOKIE,
