@@ -1,15 +1,13 @@
-// import 'server-only'; // should be for runtime env vars
+import { createPublicEnv } from 'next-public-env';
 
-import { processEnvSchema } from '@/schemas/config';
-import { validateData } from '@/utils/validation';
+import { getProcessEnvSchemaObject } from '@/schemas/config';
 
-import { ProcessEnvType } from '@/types/config';
-
-// Note: maybe function for runtime vars
-const processEnvData: ProcessEnvType = {
-  NODE_ENV: process.env.NODE_ENV,
-  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-  NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-};
-
-export const PROCESS_ENV = validateData(processEnvData, processEnvSchema);
+/** Exports RUNTIME env. Must NOT call getPublicEnv() in global scope. */
+export const { getPublicEnv, PublicEnv } = createPublicEnv(
+  {
+    NODE_ENV: process.env.NODE_ENV,
+    SITE_URL: process.env.SITE_URL,
+    API_URL: process.env.API_URL,
+  },
+  { schema: (z) => getProcessEnvSchemaObject(z) }
+);

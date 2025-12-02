@@ -107,5 +107,8 @@ call validate and log in <RuntimeEnv />, will validate both server and client at
 on client pass as props or use window.__ENV
 context cant use in .ts files, window.__ENV can
 -------
+t3-env
+prevents server env leak in browser bundle, throws exception instead of next.js default undefined
+API_URL also breaks build in client component, even when defined
 
 ```

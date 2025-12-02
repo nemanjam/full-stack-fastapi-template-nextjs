@@ -22,8 +22,6 @@ import { cn } from '@workspace/ui/lib/utils';
 import DialogItemCreate from '@/components/dashboard/items/dialog-item-create';
 import DialogItemUpdate from '@/components/dashboard/items/dialog-item-update';
 import DropdownItem from '@/components/dashboard/items/dropdown-item';
-import { ItemsService } from '@/client/sdk.gen';
-import { throwIfApiError } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 
