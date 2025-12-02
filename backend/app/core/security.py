@@ -43,7 +43,7 @@ def set_auth_cookie(
         samesite = "none"
         # Note: important for cross-site cookies in prod to succeed, api.example.com and example.com
         # Exact frontend domain with full subdomain
-        parsed = urlparse(settings.NEXT_PUBLIC_SITE_URL)
+        parsed = urlparse(settings.SITE_URL)
         domain = parsed.hostname
 
     response.set_cookie(

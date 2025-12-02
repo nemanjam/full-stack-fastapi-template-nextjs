@@ -188,7 +188,7 @@ async def auth_github_callback(
     )
 
     # Backend must redirect to absolute FRONTEND url
-    redirect_url = f"{settings.NEXT_PUBLIC_SITE_URL}/dashboard"
+    redirect_url = f"{settings.SITE_URL}/dashboard"
     response = RedirectResponse(url=redirect_url, status_code=302)
 
     # Set JWT in HttpOnly cookie

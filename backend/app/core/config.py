@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     # Cookie expiration and JWT expiration match
     # 24 hours * 8 days = 192 hours
     ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 8
-    NEXT_PUBLIC_SITE_URL: str = "http://localhost:3000"
+    SITE_URL: str = "changethis"
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
 
     # my
@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     @property
     def all_cors_origins(self) -> list[str]:
         return [str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS] + [
-            self.NEXT_PUBLIC_SITE_URL
+            self.SITE_URL
         ]
 
     PROJECT_NAME: str
