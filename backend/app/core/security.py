@@ -46,7 +46,7 @@ def set_auth_cookie(
     if is_prod:
         samesite = "none"
         # Note: important for cross-site cookies in prod to succeed
-        # api-site.rpi.example.com and rpi.example.com
+        # api-site.rpi.example.com and site.rpi.example.com
         parsed = urlparse(settings.SITE_URL)
         domain = parsed.hostname  # full domain
 
