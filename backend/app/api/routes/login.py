@@ -188,6 +188,7 @@ async def auth_github_callback(
     )
 
     # Backend must redirect to absolute FRONTEND url
+    # For server redirect must set cookie domain to common subdomain of frontend and backend
     redirect_url = f"{settings.SITE_URL}/dashboard"
     response = RedirectResponse(url=redirect_url, status_code=302)
 
