@@ -1,6 +1,6 @@
 import { createPublicEnv } from 'next-public-env';
 
-import { getProcessEnvSchemaObject } from '@/schemas/config';
+import { getProcessEnvSchemaProps } from '@/schemas/config';
 
 /** Exports RUNTIME env. Must NOT call getPublicEnv() in global scope. */
 export const { getPublicEnv, PublicEnv } = createPublicEnv(
@@ -9,5 +9,5 @@ export const { getPublicEnv, PublicEnv } = createPublicEnv(
     SITE_URL: process.env.SITE_URL,
     API_URL: process.env.API_URL,
   },
-  { schema: (z) => getProcessEnvSchemaObject(z) }
+  { schema: (z) => getProcessEnvSchemaProps(z) }
 );

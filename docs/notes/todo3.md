@@ -110,5 +110,5 @@ context cant use in .ts files, window.__ENV can
 t3-env
 prevents server env leak in browser bundle, throws exception instead of next.js default undefined
 API_URL also breaks build in client component, even when defined
-
+.env.production files update in docker-compose.yml
 ```
