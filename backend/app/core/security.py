@@ -45,10 +45,17 @@ def set_auth_cookie(
     # Prod overrides
     if is_prod:
         samesite = "none"
-        # Note: important for cross-site cookies in prod to succeed, api.example.com and example.com
-        # Exact frontend domain with full subdomain
+        # Note: important for cross-site cookies in prod to succeed
+        # api-site.rpi.example.com and rpi.example.com
         parsed = urlparse(settings.SITE_URL)
-        domain = parsed.hostname
+        full_domain = parsed.hostname
+
+        # whitelist cookie for "1 level less" subdomain, rpi.example.com
+        host_segments = full_domain.split(".")
+        if len(host_segments) > 2:
+            domain = ".".join(host_segments[1:])  # remove the first segment (head)
+        else:
+            domain = full_domain
 
     logger.info(f"domain: {domain}")
 
