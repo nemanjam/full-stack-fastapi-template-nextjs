@@ -13,7 +13,7 @@ htmlcov
 .venv
 
 # environment variables
-.env
+.env*
 
 # data - database, logs, cache
 
