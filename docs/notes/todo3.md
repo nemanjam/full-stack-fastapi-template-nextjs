@@ -113,4 +113,7 @@ API_URL also breaks build in client component, even when defined
 .env.production files update in docker-compose.yml
 --------
 maybe separate docker-compose.yml env_files to .env.frontend and .env.backend
+--------
+forgot-password page, form and action
+
 ```

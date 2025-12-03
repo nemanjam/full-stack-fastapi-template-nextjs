@@ -109,6 +109,8 @@ const FormLogin: FC = () => {
           <Link
             href={FORGOT_PASSWORD}
             className="text-sm text-teal-600 hover:text-teal-700 hover:underline"
+            // Todo: create this page, form and action
+            prefetch={false}
           >
             Forgot password?
           </Link>
