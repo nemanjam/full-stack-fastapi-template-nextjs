@@ -20,7 +20,7 @@ export const ROUTES = {
    *
    * MUST point to backend, must use absolute URL
    *
-   * @example: `${PROCESS_ENV.NEXT_PUBLIC_API_URL}${GITHUB_LOGIN}`
+   * @example: `${process.env.API_URL}${GITHUB_LOGIN}`
    */
   API: {
     LOGIN_GITHUB: '/api/v1/login/github/',

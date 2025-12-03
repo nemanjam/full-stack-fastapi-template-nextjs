@@ -8,9 +8,8 @@
 **/.turbo/
 **/dist/
 
-# Env vars
-**/.env
-**/.env*.local
+# Ignore all env files, env vars are passed into container explicitly
+**/.env*
 
 # Tests
 **/test-results/

@@ -78,7 +78,7 @@ const config: HeyApiConfig = defineConfig({
     {
       name: '@hey-api/client-next',
       // relative from src/client/ folder
-      runtimeConfigPath: '../lib/hey-api', // sets NEXT_PUBLIC_API_URL, auth...
+      runtimeConfigPath: '../lib/hey-api', // sets API_URL, auth...
     },
   ],
 });

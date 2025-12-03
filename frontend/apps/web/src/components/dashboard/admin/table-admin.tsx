@@ -23,8 +23,6 @@ import { cn } from '@workspace/ui/lib/utils';
 import DialogUserCreate from '@/components/dashboard/admin/dialog-user-create';
 import DialogUserUpdate from '@/components/dashboard/admin/dialog-user-update';
 import DropdownUser from '@/components/dashboard/admin/dropdown-user';
-import { UsersService } from '@/client/sdk.gen';
-import { throwIfApiError } from '@/utils/error';
 import { ROUTES } from '@/constants/routes';
 import { CONFIG_CLIENT } from '@/config/client';
 

@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any
 from urllib.parse import urlparse
@@ -17,6 +18,9 @@ from app.utils import is_prod
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 ALGORITHM = "HS256"
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
@@ -41,10 +45,17 @@ def set_auth_cookie(
     # Prod overrides
     if is_prod:
         samesite = "none"
-        # Note: important for cross-site cookies in prod to succeed, api.example.com and example.com
-        # Exact frontend domain with full subdomain
-        parsed = urlparse(settings.NEXT_PUBLIC_SITE_URL)
-        domain = parsed.hostname
+        # Note: important for cross-site cookies in prod to succeed
+        # api-site.rpi.example.com and site.rpi.example.com
+        parsed = urlparse(settings.SITE_URL)
+        domain = parsed.hostname  # full domain
+
+        # if it has subdomains whitelist cookie for "1 level less" subdomain, rpi.example.com
+        host_segments = domain.split(".")
+        if len(host_segments) > 2:
+            domain = ".".join(host_segments[1:])  # remove the first segment (head)
+
+    logger.info(f"domain: {domain}")
 
     response.set_cookie(
         key=settings.AUTH_COOKIE,

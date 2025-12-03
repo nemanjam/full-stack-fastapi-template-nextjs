@@ -1,18 +1,20 @@
 import { MetadataRoute } from 'next';
 
-import { PROCESS_ENV } from '@/config/process-env';
+import { getPublicEnv } from '@/config/process-env';
 
 export const dynamic = 'force-static';
 
-const { NEXT_PUBLIC_SITE_URL } = PROCESS_ENV;
+const robots = (): MetadataRoute.Robots => {
+  const { SITE_URL } = getPublicEnv();
 
-const robots = (): MetadataRoute.Robots => ({
-  rules: {
-    userAgent: '*',
-    allow: '/',
-  },
-  sitemap: `${NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
-  host: NEXT_PUBLIC_SITE_URL,
-});
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
+  };
+};
 
 export default robots;

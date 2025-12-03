@@ -174,6 +174,7 @@ https://github.com/midday-ai/v1 // useless
 tailwind 3, biome, next 14, supabase function_
 server actions, next-safe-action for ts
 @t3-oss/env-nextjs - validating env vars with zod, server, client, runtime // good point
+t3 env unused, nonsense
 not big, nothing special
 -----
 https://github.com/codersaadi/turborepo-shadcn // mess, relative paths, big project
@@ -218,4 +219,11 @@ https://github.com/eslam5464/Fastapi-Template
 // example how to deploy fastapi to vercel
 no database, no code to deploy to vercel, rewriting open-ai stream to vercel ai-sdk stream
 https://github.com/vercel-labs/ai-sdk-preview-python-streaming/
+
+// next 16, shadcn, useless
+https://github.com/arhamkhnz/next-shadcn-admin-dashboard/
+
+https://github.com/xclusive36/MarkItUp/
+// obsidian, markdown, next 16, useful for githubcities
+tailwind 4, eslint 9, zustand good, llm apis, drizzle, sqlite, auth, Playwright ci
 ```

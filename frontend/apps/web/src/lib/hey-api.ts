@@ -1,19 +1,23 @@
 import { isServer } from '@/utils/runtime';
-import { PROCESS_ENV } from '@/config/process-env';
+import { getPublicEnv } from '@/config/process-env';
 
 // import { waitMs } from '@/utils/wait';
 
 import type { CreateClientConfig } from '@/client/client.gen';
 
-const { NEXT_PUBLIC_API_URL } = PROCESS_ENV;
-
 /** Runtime config. Runs and imported both on server and in browser. */
-export const createClientConfig: CreateClientConfig = (config) => ({
-  ...config,
-  baseUrl: NEXT_PUBLIC_API_URL,
-  credentials: 'include',
-  ...(isServer() ? { fetch: serverFetch } : {}),
-});
+export const createClientConfig: CreateClientConfig = (config) => {
+  const { API_URL } = getPublicEnv();
+
+  console.log('createClientConfig API_URL:', API_URL);
+
+  return {
+    ...config,
+    baseUrl: API_URL,
+    credentials: 'include',
+    ...(isServer() ? { fetch: serverFetch } : {}),
+  };
+};
 
 const serverFetch: typeof fetch = async (input, init = {}) => {
   // Note: Dynamic import to avoid bundling 'next/headers' on client

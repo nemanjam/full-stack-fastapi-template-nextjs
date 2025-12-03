@@ -45,17 +45,6 @@ RUN pnpm install --frozen-lockfile
 # Build the project
 COPY --from=builder /app/out/full/ .
 
-ARG ARG_NEXT_PUBLIC_SITE_URL
-ENV NEXT_PUBLIC_SITE_URL=$ARG_NEXT_PUBLIC_SITE_URL
-RUN echo "NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL"
-
-ARG ARG_NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$ARG_NEXT_PUBLIC_API_URL
-RUN echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL"
-
-# todo: use these args
-# ARG_SITE_URL_ARM64, ARG_SITE_URL_AMD64
-
 # Uncomment and use build args to enable remote caching
 # ARG TURBO_TEAM
 # ENV TURBO_TEAM=$TURBO_TEAM

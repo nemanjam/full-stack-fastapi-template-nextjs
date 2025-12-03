@@ -14,3 +14,7 @@ app.egg-info
 # Tests
 .coverage
 htmlcov
+
+# Env vars
+.env*
+

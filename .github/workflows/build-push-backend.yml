@@ -14,8 +14,6 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.event.repository.name }}-backend
-  # SITE_URL_ARM64: 'https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com'
-  # SITE_URL_AMD64: 'https://full-stack-fastapi-template-nextjs.local.nemanjamitic.com'
 
 jobs:
   build:
@@ -67,9 +65,6 @@ jobs:
           # cant use matrix, must pass platforms like this
           platforms: linux/amd64,linux/arm64
           progress: plain
-          # build-args: |
-          #   "ARG_SITE_URL_ARM64=${{ env.SITE_URL_ARM64 }}"
-          #   "ARG_SITE_URL_AMD64=${{ env.SITE_URL_AMD64 }}"
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
           # cache-to: type=inline
