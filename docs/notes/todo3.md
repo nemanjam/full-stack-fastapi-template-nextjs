@@ -111,4 +111,6 @@ t3-env
 prevents server env leak in browser bundle, throws exception instead of next.js default undefined
 API_URL also breaks build in client component, even when defined
 .env.production files update in docker-compose.yml
+--------
+maybe separate docker-compose.yml env_files to .env.frontend and .env.backend
 ```
