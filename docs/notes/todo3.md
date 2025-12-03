@@ -100,7 +100,7 @@ will always be undefined // don't read it, either props or window.__ENV
 ------------
 // plan:
 git checkout -b feat/runtime-env-vars
-use @t3-oss/env-nextjs for Zod validation (at runtime)
+use @t3-oss/env-nextjs for Zod validation (at runtime) // useless
 rename NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_API_URL to SITE_URL, API_URL
 set <RuntimeEnv /> with await connection() and dangerouslySetInnerHtml(window.__ENV) in root layout
 call validate and log in <RuntimeEnv />, will validate both server and client at runtime
@@ -113,6 +113,7 @@ API_URL also breaks build in client component, even when defined
 .env.production files update in docker-compose.yml
 --------
 maybe separate docker-compose.yml env_files to .env.frontend and .env.backend
+docker-compose.yml cant see it
 --------
 forgot-password page, form and action
 

@@ -34,8 +34,8 @@ Unstable, work in progress.
 - [ ] API sort params
 - [ ] Support emails, Sentry from the original repo
 - [ ] no-monorepo branch
-- [ ] Env vars with [t3-oss/t3-env](https://github.com/t3-oss/t3-env)
-- [ ] Runtime only env vars, reusable build
+- [x] Runtime only env vars, reusable build
+- [x] Env vars with [alizeait/next-public-env](https://github.com/alizeait/next-public-env)
 - [ ] Versioning with [changesets/changesets](https://github.com/changesets/changesets) or [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
 - [ ] API internationalization
 - [ ] Update Python
