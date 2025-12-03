@@ -6,6 +6,6 @@ export const register = async () => {
     const { prettyPrintObject } = await import('@/utils/log');
     const { getPublicEnv } = await import('@/config/process-env');
 
-    prettyPrintObject(getPublicEnv(), 'maybe runtime process.env');
+    prettyPrintObject(getPublicEnv(), 'Runtime process.env');
   }
 };

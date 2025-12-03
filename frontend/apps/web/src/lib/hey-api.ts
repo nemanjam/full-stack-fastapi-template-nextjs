@@ -9,8 +9,6 @@ import type { CreateClientConfig } from '@/client/client.gen';
 export const createClientConfig: CreateClientConfig = (config) => {
   const { API_URL } = getPublicEnv();
 
-  console.log('createClientConfig API_URL:', API_URL);
-
   return {
     ...config,
     baseUrl: API_URL,
