@@ -56,11 +56,11 @@ https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com
 
 # Backend
 http://localhost:8000/docs
-https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com/docs
+https://api-full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com/docs
 
 # openapi.json
 http://localhost:8000/api/v1/openapi.json
-https://api.full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com/api/v1/openapi.json
+https://api-full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com/api/v1/openapi.json
 ```
 
 ## License
