@@ -226,4 +226,15 @@ https://github.com/arhamkhnz/next-shadcn-admin-dashboard/
 https://github.com/xclusive36/MarkItUp/
 // obsidian, markdown, next 16, useful for githubcities
 tailwind 4, eslint 9, zustand good, llm apis, drizzle, sqlite, auth, Playwright ci
+
+// Todo: review, fastapi only
+https://github.com/manjurulhoque/edu-pulse
+// django style
+https://github.com/AGTGreg/Djast
+// next-auth, review this:
+https://www.david-crimi.com/blog/user-auth
+// packages
+https://github.com/nfraxio/svc-infra
+// maybe bad 
+https://github.com/manjurulhoque/edu-pulse
 ```
