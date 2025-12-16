@@ -237,4 +237,10 @@ https://www.david-crimi.com/blog/user-auth
 https://github.com/nfraxio/svc-infra
 // maybe bad 
 https://github.com/manjurulhoque/edu-pulse
+-----------
+// todo: next.js
+https://github.com/Rovis91/saas-builder
+// big, nextjs, prisma
+https://github.com/boxyhq/saas-starter-kit
+
 ```
