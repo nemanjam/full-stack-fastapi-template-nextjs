@@ -242,5 +242,7 @@ https://github.com/manjurulhoque/edu-pulse
 https://github.com/Rovis91/saas-builder
 // big, nextjs, prisma
 https://github.com/boxyhq/saas-starter-kit
+// review this, looks promising
+https://github.com/vstorm-co/full-stack-fastapi-nextjs-llm-template
 
 ```
