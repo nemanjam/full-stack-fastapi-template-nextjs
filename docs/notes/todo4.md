@@ -36,6 +36,8 @@ https://vercel.com/docs/frameworks/backend/fastapi
 // without dev deps
 /backend # du -sh .
 149.1M  .
+// debug, 3 level, sort desc
+du -h -d 3 . | sort -hr
 -------
 remove dev dependencies from Dockerfile
 
