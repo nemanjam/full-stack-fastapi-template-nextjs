@@ -33,6 +33,9 @@ https://vercel.com/docs/frameworks/backend/fastapi
 // 250mb limit
 /backend # du -sh .
 213.2M  .
+// without dev deps
+/backend # du -sh .
+149.1M  .
 -------
 remove dev dependencies from Dockerfile
 
