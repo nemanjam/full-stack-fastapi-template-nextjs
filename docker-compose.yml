@@ -1,5 +1,7 @@
 name: full-stack-fastapi-template-nextjs
 
+# development environment
+
 services:
 
   # Todo: improve frontend and test it
@@ -19,7 +21,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: full-stack-fastapi-template-nextjs-backend
     restart: unless-stopped
     # don't mount alembic as volume

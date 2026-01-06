@@ -29,4 +29,11 @@ https://github.com/vercel-labs/ai-sdk-preview-python-streaming
 https://vercel.com/marketplace/category/storage?category=storage&search=postgres
 -----
 https://vercel.com/docs/frameworks/backend/fastapi
+----
+// 250mb limit
+/backend # du -sh .
+213.2M  .
+-------
+remove dev dependencies from Dockerfile
+
 ```
