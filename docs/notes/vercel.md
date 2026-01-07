@@ -50,5 +50,13 @@ https://api-full-stack-fastapi-template-nextjs.vercel.app    → FastAPI
 
 
 // must create Neon database first
-// vercel exclude
+// vercel exclude, .vercelignore
+
+vercel --local-config backend/vercel.json --prod
+vercel --local-config frontend/vercel.json --prod
+
+"name": "api-full-stack-fastapi-template-nextjs",
+"name": "full-stack-fastapi-template-nextjs",
+
+
 ```

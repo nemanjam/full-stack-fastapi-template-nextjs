@@ -1,5 +1,5 @@
 {
-  "name": "api-full-stack-fastapi-template-nextjs",
+  "version": 3,
   "builds": [
     {
       "src": "backend/app/api/index.py",
@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "backend/app/api/index.py"
     }
-  ],
-    "functions": {
-    "backend/app/api/**": {
-      "excludeFiles": "{.venv,node_modules,__pycache__,*.pyc,.pytest_cache,tests,docs,htmlcov,.coverage,.env,data}/**"
-    }
-  }
+  ]
 }
