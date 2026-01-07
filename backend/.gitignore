@@ -31,3 +31,4 @@ data/cache/*
 !data/logs
 data/logs/*
 !data/logs/.gitkeep
+.vercel

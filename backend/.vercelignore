@@ -1,11 +1,26 @@
-.venv/
-node_modules/
-__pycache__/
-*.pyc
-.pytest_cache/
-tests/
-docs/
-htmlcov/
-.coverage
-.env*
-data/
+
+# Python virtual environments
+app/.venv/
+app/env/
+app/__pycache__/
+app/*.pyc
+
+# Test caches
+app/.pytest_cache/
+app/.ruff_cache/
+
+# Documentation and coverage
+app/docs/
+app/htmlcov/
+app/.coverage
+
+# Data files and DB
+app/data/
+
+# Git and config
+app/.git/
+app/.gitignore
+app/.python-version
+
+# Optional: hatch/build artifacts
+app/.hatch/

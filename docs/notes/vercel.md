@@ -61,5 +61,8 @@ vercel --prod
 "name": "api-full-stack-fastapi-template-nextjs",
 "name": "full-stack-fastapi-template-nextjs",
 
+// test ignore
+vercel --prebuilt --dry-run
+
 
 ```
