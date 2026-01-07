@@ -11,6 +11,8 @@ app.egg-info
 .coverage
 htmlcov
 
+Dockerfile*
+
 # ignore database
 !data/database
 data/database/*
