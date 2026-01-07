@@ -20,6 +20,6 @@ https://myapp-web.vercel.app    → Next.js UI
 https://myapp-api.vercel.app    → FastAPI
 
 
-
+// must create database first
 
 ```

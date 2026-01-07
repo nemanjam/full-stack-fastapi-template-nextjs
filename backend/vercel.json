@@ -1,4 +1,5 @@
 {
+  "name": "api-full-stack-fastapi-template-nextjs",
   "builds": [
     {
       "src": "backend/app/api/index.py",

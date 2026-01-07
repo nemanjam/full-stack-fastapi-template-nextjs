@@ -1,4 +1,5 @@
 {
+  "name": "full-stack-fastapi-template-nextjs",
   "framework": "nextjs",
   "installCommand": "pnpm install",
   "buildCommand": "pnpm turbo run build --filter=web",
