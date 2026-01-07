@@ -11,5 +11,10 @@
       "src": "/(.*)",
       "dest": "backend/app/api/index.py"
     }
-  ]
+  ],
+    "functions": {
+    "backend/app/api/**": {
+      "excludeFiles": "{.venv,node_modules,__pycache__,*.pyc,.pytest_cache,tests,docs,htmlcov,.coverage,.env,data}/**"
+    }
+  }
 }

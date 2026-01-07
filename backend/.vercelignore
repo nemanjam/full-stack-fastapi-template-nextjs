@@ -1,0 +1,11 @@
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/
+docs/
+htmlcov/
+.coverage
+.env*
+data/
