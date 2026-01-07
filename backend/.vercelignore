@@ -1,26 +1,17 @@
+# Python
+.venv/
+__pycache__/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+app.egg-info
+*.pyc
 
-# Python virtual environments
-app/.venv/
-app/env/
-app/__pycache__/
-app/*.pyc
+# Tests
+.coverage
+htmlcov
 
-# Test caches
-app/.pytest_cache/
-app/.ruff_cache/
-
-# Documentation and coverage
-app/docs/
-app/htmlcov/
-app/.coverage
-
-# Data files and DB
-app/data/
-
-# Git and config
-app/.git/
-app/.gitignore
-app/.python-version
-
-# Optional: hatch/build artifacts
-app/.hatch/
+# ignore database
+!data/database
+data/database/*
+!data/database/.gitkeep

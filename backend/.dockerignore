@@ -18,3 +18,8 @@ htmlcov
 # Env vars
 .env*
 
+# ignore database
+!data/database
+data/database/*
+!data/database/.gitkeep
+
