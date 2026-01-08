@@ -165,6 +165,24 @@ export type PrivateUserCreate = {
 };
 
 /**
+ * Token
+ */
+export type Token = {
+  /**
+   * Access Token
+   */
+  access_token: string;
+  /**
+   * Max Age
+   */
+  max_age: number;
+  /**
+   * Expires
+   */
+  expires: number;
+};
+
+/**
  * UpdatePassword
  */
 export type UpdatePassword = {
@@ -356,8 +374,11 @@ export type LoginLoginAccessTokenResponses = {
   /**
    * Successful Response
    */
-  200: unknown;
+  200: Token;
 };
+
+export type LoginLoginAccessTokenResponse =
+  LoginLoginAccessTokenResponses[keyof LoginLoginAccessTokenResponses];
 
 export type LoginTestTokenData = {
   body?: never;

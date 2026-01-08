@@ -4,15 +4,15 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { LoginService, UsersService } from '@/client/sdk.gen';
-import { forwardCookiesFromResponse } from '@/utils/auth';
-import { COOKIES } from '@/constants/auth';
+import { isSuccessApiResult } from '@/utils/api';
+import { AUTH_COOKIE } from '@/constants/auth';
 import { ROUTES } from '@/constants/routes';
+import { getPublicEnv } from '@/config/process-env';
 
 import type { BodyLoginLoginAccessToken, UserRegister } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 const { LOGIN } = ROUTES;
-const { AUTH_COOKIE } = COOKIES;
 
 /**
  * Reuses FastApi types from client. Just forwards, doesn't validate.
@@ -21,12 +21,38 @@ export const loginAction = async (
   _prevState: ApiResult,
   formData: FormData
 ): Promise<ApiResult> => {
+  const { NODE_ENV } = getPublicEnv();
+
   const body = Object.fromEntries(formData) as BodyLoginLoginAccessToken;
   const apiResponse = await LoginService.loginAccessToken({ body });
 
-  const { response, ...result } = apiResponse;
-  await forwardCookiesFromResponse(response);
+  const { response: _, ...result } = apiResponse;
 
+  const isSuccess = isSuccessApiResult(result);
+  // UI will display backend error
+  if (!isSuccess) return result;
+
+  const { access_token, max_age, expires } = result.data;
+  const isProd = NODE_ENV === 'production';
+
+  const cookieStore = await cookies();
+
+  cookieStore.set({
+    name: AUTH_COOKIE,
+    // args
+    value: access_token,
+    expires,
+    maxAge: max_age,
+    // local
+    httpOnly: true,
+    secure: isProd,
+    // host-only for exact frontend domain
+    path: '/',
+    sameSite: 'lax',
+    domain: undefined,
+  });
+
+  // success result is ignored, just for type
   return result;
 };
 
