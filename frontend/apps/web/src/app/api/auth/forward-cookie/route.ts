@@ -4,6 +4,7 @@ import setCookieParser from 'set-cookie-parser';
 
 import { COOKIES } from '@/constants/auth';
 import { ROUTES } from '@/constants/routes';
+import { getPublicEnv } from '@/config/process-env';
 
 // unset cookie endpoint is not needed, server action can unset it directly
 
@@ -11,6 +12,8 @@ const { AUTH_COOKIE, AUTH_COOKIE_FORWARDED } = COOKIES;
 const { LOGIN, DASHBOARD } = ROUTES;
 
 export const GET = async (request: Request) => {
+  const { SITE_URL } = getPublicEnv();
+
   // Read from request
   const cookieHeader = request.headers.get('cookie') || '';
 
@@ -25,10 +28,12 @@ export const GET = async (request: Request) => {
 
   if (!authToken) {
     // Todo: handle on frontend on login page
-    return NextResponse.redirect(`${LOGIN}?error=missing_auth_token`, { status: 302 });
+    const loginUrl = new URL(`${LOGIN}?error=missing_auth_token`, SITE_URL);
+    return NextResponse.redirect(loginUrl, { status: 302 });
   }
 
-  const response = NextResponse.redirect(DASHBOARD, { status: 302 });
+  const dashboardUrl = new URL(DASHBOARD, SITE_URL);
+  const response = NextResponse.redirect(dashboardUrl, { status: 302 });
 
   // Forward all cookies except the auth_cookie_forwarded cookie
   for (const c of parsed) {
