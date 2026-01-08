@@ -1,6 +1,6 @@
 ```ts
 
-git checkout -b feature/vercel-deploy
+git checkout -b vercel-deploy
 
 ------
 // vercel deploy and submit template
@@ -63,6 +63,12 @@ vercel --prod
 
 // test ignore
 vercel --prebuilt --dry-run
-
+---------
+next.js app should set cookie in browser because its on same domain
+fastapi should pass cookie to next.js server that will set cookie in browser
+but github redirects to fastapi callback endpoint
+must have unset cookie next.js api endpoint too
+// callback url
+https://api-full-stack-fastapi-template-nextjs.vercel.app/api/v1/auth/github/callback
 
 ```
