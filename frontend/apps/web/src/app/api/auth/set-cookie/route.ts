@@ -13,16 +13,14 @@ export const GET = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
 
   const accessToken = url.searchParams.get('access_token');
-  const maxAgeParam = url.searchParams.get('max_age');
   const expiresParam = url.searchParams.get('expires');
 
-  const hasAllData = accessToken && maxAgeParam && expiresParam;
+  const hasAllData = accessToken && expiresParam;
   if (!hasAllData) {
     const loginUrl = new URL(`${LOGIN}?error=missing_auth_token`, SITE_URL);
     return NextResponse.redirect(loginUrl, { status: 302 });
   }
 
-  const maxAge = Number(maxAgeParam);
   const expires = new Date(Number(expiresParam) * 1000); // FastAPI sends seconds
 
   const redirectUrl = new URL(DASHBOARD, SITE_URL);
@@ -30,10 +28,9 @@ export const GET = async (request: Request): Promise<Response> => {
 
   response.cookies.set({
     name: AUTH_COOKIE,
-    value: accessToken,
 
     // passed from backend
-    maxAge,
+    value: accessToken,
     expires,
 
     // frontend-specific

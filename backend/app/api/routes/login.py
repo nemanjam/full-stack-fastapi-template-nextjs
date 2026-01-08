@@ -48,7 +48,6 @@ def login_access_token(
         raise HTTPException(status_code=400, detail="Inactive user")
 
     expires_delta = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
-    expires_in_seconds = int(expires_delta.total_seconds())
 
     access_token = security.create_access_token(user.id, expires_delta)
 
@@ -58,7 +57,6 @@ def login_access_token(
 
     token = Token(
         access_token=access_token,
-        max_age=expires_in_seconds,
         expires=expires_timestamp,
     )
 
@@ -201,7 +199,6 @@ async def auth_github_callback(
     )
 
     expires_delta = timedelta(hours=settings.ACCESS_TOKEN_EXPIRE_HOURS)
-    expires_in_seconds = int(expires_delta.total_seconds())
 
     access_token = security.create_access_token(user.id, expires_delta)
 
@@ -214,7 +211,6 @@ async def auth_github_callback(
     query = urlencode(
         {
             "access_token": access_token,
-            "max_age": expires_in_seconds,
             "expires": expires_timestamp,
         }
     )

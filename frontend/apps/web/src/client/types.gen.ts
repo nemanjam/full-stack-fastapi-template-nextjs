@@ -173,10 +173,6 @@ export type Token = {
    */
   access_token: string;
   /**
-   * Max Age
-   */
-  max_age: number;
-  /**
    * Expires
    */
   expires: number;

@@ -110,9 +110,7 @@ class Message(SQLModel):
 # JSON payload containing access token
 class Token(SQLModel):
     access_token: str
-    # Seconds from now
-    max_age: int
-    # Absolute Date, timestamp
+    # Absolute Date, timestamp, sufficient
     expires: int
 
 

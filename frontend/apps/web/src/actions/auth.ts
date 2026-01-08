@@ -32,7 +32,7 @@ export const loginAction = async (
   // UI will display backend error
   if (!isSuccess) return result;
 
-  const { access_token, max_age, expires } = result.data;
+  const { access_token, expires } = result.data;
   const isProd = NODE_ENV === 'production';
 
   const cookieStore = await cookies();
@@ -42,7 +42,6 @@ export const loginAction = async (
     // args
     value: access_token,
     expires,
-    maxAge: max_age,
     // local
     httpOnly: true,
     secure: isProd,
