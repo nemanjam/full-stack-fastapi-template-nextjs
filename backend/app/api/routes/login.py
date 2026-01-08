@@ -213,7 +213,7 @@ async def auth_github_callback(
     base_url = f"{settings.SITE_URL}/api/auth/set-cookie"
     query = urlencode(
         {
-            "token": access_token,
+            "access_token": access_token,
             "max_age": expires_in_seconds,
             "expires": expires_timestamp,
         }
