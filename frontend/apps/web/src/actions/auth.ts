@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { LoginService, UsersService } from '@/client/sdk.gen';
-import { forwardCookiesFromResponse } from '@/utils/actions';
+import { forwardCookiesFromResponse } from '@/utils/auth';
 import { COOKIES } from '@/constants/auth';
 import { ROUTES } from '@/constants/routes';
 
