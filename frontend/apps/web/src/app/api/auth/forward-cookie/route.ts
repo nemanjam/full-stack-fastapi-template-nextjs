@@ -25,13 +25,10 @@ export const GET = async (request: Request) => {
 
   if (!authToken) {
     // Todo: handle on frontend on login page
-    const loginUrl = new URL(`${LOGIN}?error=missing_auth_token`, request.url);
-
-    return NextResponse.redirect(loginUrl, { status: 302 });
+    return NextResponse.redirect(`${LOGIN}?error=missing_auth_token`, { status: 302 });
   }
 
-  const dashboardUrl = new URL(DASHBOARD, request.url);
-  const response = NextResponse.redirect(dashboardUrl, { status: 302 });
+  const response = NextResponse.redirect(DASHBOARD, { status: 302 });
 
   // Forward all cookies except the auth_cookie_forwarded cookie
   for (const c of parsed) {
