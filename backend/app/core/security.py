@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -8,16 +7,9 @@ from passlib.context import CryptContext
 
 from app.core.config import settings
 
-# Note:
-# The secure flag on cookies ensures they're only sent over encrypted HTTPS connections.
-# For local development (HTTP) set it to False.
-
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 ALGORITHM = "HS256"
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
