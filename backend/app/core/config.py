@@ -32,7 +32,9 @@ class Settings(BaseSettings):
         extra="ignore",
     )
     API_V1_STR: str = "/api/v1"
+    # both cookie names replicated on frontend
     AUTH_COOKIE: str = "auth_cookie"
+    AUTH_COOKIE_FORWARDED: str = "auth_cookie_forwarded"
     # default value if no env
     JWT_SECRET_KEY: str = secrets.token_urlsafe(32)
     SESSION_SECRET_KEY: str = secrets.token_urlsafe(32)

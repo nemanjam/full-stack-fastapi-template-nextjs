@@ -5,13 +5,14 @@ import { redirect } from 'next/navigation';
 
 import { LoginService, UsersService } from '@/client/sdk.gen';
 import { forwardCookiesFromResponse } from '@/utils/actions';
-import { AUTH_COOKIE } from '@/constants/auth';
+import { COOKIES } from '@/constants/auth';
 import { ROUTES } from '@/constants/routes';
 
 import type { BodyLoginLoginAccessToken, UserRegister } from '@/client/types.gen';
 import type { ApiResult } from '@/types/api';
 
 const { LOGIN } = ROUTES;
+const { AUTH_COOKIE } = COOKIES;
 
 /**
  * Reuses FastApi types from client. Just forwards, doesn't validate.

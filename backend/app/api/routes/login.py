@@ -188,8 +188,9 @@ async def auth_github_callback(
     )
 
     # Backend must redirect to absolute FRONTEND url
-    # For server redirect must set cookie domain to common subdomain of frontend and backend
-    redirect_url = f"{settings.SITE_URL}/dashboard"
+    # Deprecated: For server redirect must set cookie domain to common subdomain of frontend and backend
+    # Redirect to Next.js api endpoint that will set cookie because it is on SAME domain
+    redirect_url = f"{settings.SITE_URL}/api/auth/forward-cookie"
     response = RedirectResponse(url=redirect_url, status_code=302)
 
     # Set JWT in HttpOnly cookie

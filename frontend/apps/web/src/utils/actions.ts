@@ -20,8 +20,8 @@ export const forwardCookiesFromResponse = async (response: Response): Promise<vo
       value: c.value,
       httpOnly: c.httpOnly,
       secure: c.secure,
-      path: c.path ?? '/',
-      sameSite: c.sameSite as any,
+      path: c.path,
+      sameSite: c.sameSite as CookieSameSite,
       expires: c.expires,
     });
   }

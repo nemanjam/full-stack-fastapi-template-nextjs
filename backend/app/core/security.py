@@ -33,6 +33,11 @@ def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
 def set_auth_cookie(
     subject: str | Any, expires_delta: timedelta, response: Response
 ) -> Response:
+    """
+    Sets cookie for level-1 parent (sub) domain.
+    api-site.rpi.example.com and site.rpi.example.com
+    api-site.vercel.app and site.vercel.app
+    """
     # Cookie expiration and JWT expiration match
     # Note: cookie expiration must be in seconds
     expires_in_seconds = int(expires_delta.total_seconds())
@@ -58,7 +63,7 @@ def set_auth_cookie(
     logger.info(f"domain: {domain}")
 
     response.set_cookie(
-        key=settings.AUTH_COOKIE,
+        key=settings.AUTH_COOKIE_FORWARDED,
         value=access_token,
         httponly=True,
         max_age=expires_in_seconds,
@@ -70,6 +75,7 @@ def set_auth_cookie(
     return response
 
 
+# unused, not on frontend domain, Next.js does this
 def delete_auth_cookie() -> JSONResponse:
     response = JSONResponse(content={"message": "Logout successful"})
     response.delete_cookie(
