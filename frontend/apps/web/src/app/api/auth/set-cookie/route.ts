@@ -21,7 +21,8 @@ export const GET = async (request: Request): Promise<Response> => {
     return NextResponse.redirect(loginUrl, { status: 302 });
   }
 
-  const expires = new Date(Number(expiresParam) * 1000); // FastAPI sends seconds
+  // Convert Unix timestamp (seconds) to a JS Date object
+  const expiresDate = new Date(Number(expiresParam) * 1000);
 
   const redirectUrl = new URL(DASHBOARD, SITE_URL);
   const response = NextResponse.redirect(redirectUrl, { status: 302 });
@@ -31,7 +32,7 @@ export const GET = async (request: Request): Promise<Response> => {
 
     // passed from backend
     value: accessToken,
-    expires,
+    expires: expiresDate,
 
     // frontend-specific
     httpOnly: true,

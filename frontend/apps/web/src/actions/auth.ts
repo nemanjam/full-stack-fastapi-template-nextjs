@@ -35,13 +35,16 @@ export const loginAction = async (
   const { access_token, expires } = result.data;
   const isProd = NODE_ENV === 'production';
 
+  // Convert Unix timestamp (seconds) to a JS Date object
+  const expiresDate = new Date(Number(expires) * 1000);
+
   const cookieStore = await cookies();
 
   cookieStore.set({
     name: AUTH_COOKIE,
     // args
     value: access_token,
-    expires,
+    expires: expiresDate,
     // local
     httpOnly: true,
     secure: isProd,
