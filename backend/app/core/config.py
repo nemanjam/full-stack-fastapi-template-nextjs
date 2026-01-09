@@ -37,8 +37,8 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = secrets.token_urlsafe(32)
     SESSION_SECRET_KEY: str = secrets.token_urlsafe(32)
     # Cookie expiration and JWT expiration match
-    # 24 hours * 8 days = 192 hours
-    ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 8
+    # 24 hours * 7 days = 168 hours
+    ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 7
     SITE_URL: str = "changethis"
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
 
