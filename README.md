@@ -47,6 +47,22 @@ Unstable, work in progress.
 
 Docs: [docs/running.md](docs/running.md)
 
+## Vercel environment variables
+
+```bash
+
+PROJECT_NAME="Full stack FastAPI template Next.js"
+SITE_URL=my-frontend-url.vercel.app
+BACKEND_CORS_ORIGINS="https://my-frontend-url.vercel.app"
+
+FIRST_SUPERUSER=admin@example.com
+FIRST_SUPERUSER_PASSWORD=password
+
+# Format: postgresql://<username>:<password>@<host>/<database>?<query>
+# Example: postgresql://neondb_owner:npg_someHash@ep-solitary-moon-some-hash-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require
+DATABASE_URL=
+```
+
 ## Routes
 
 ```bash

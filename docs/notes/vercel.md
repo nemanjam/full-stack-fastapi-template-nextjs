@@ -70,5 +70,28 @@ but github redirects to fastapi callback endpoint
 must have unset cookie next.js api endpoint too
 // callback url
 https://api-full-stack-fastapi-template-nextjs.vercel.app/api/v1/auth/github/callback
+---------
+// remaining
+deploy button
+thumbnail 1200x630 px
+docs
+--------------------
+// deploy button, neon
+`
+https://vercel.com/new/clone?
+demo-description=A minimal template for building full-stack React applications using Next.js, Vercel, and Neon.
+&demo-image=//images.ctfassets.net/e5382hct74si/1C5qjoXApiKj8hFdKy55bp/bcf64203cf35dccf71e0a59f7535876d/home.png
+&demo-title=Vercel with Neon Postgres
+&demo-url=https://vercel-marketplace-neon.vercel.app/
+&from=templates
+&products=[{"type":"integration","protocol":"storage","productSlug":"neon","integrationSlug":"neon"}]
+&project-name=Vercel with Neon Postgres
+&repository-name=vercel-with-neon-postgres
+&repository-url=https://github.com/neondatabase-labs/vercel-marketplace-neon
+&skippable-integrations=1
+&teamSlug=nemanjas-projects-5a2a285a
+`
+&repository-url=https://github.com/neondatabase-labs/vercel-marketplace-neon
+&repository-branch=main
 
 ```

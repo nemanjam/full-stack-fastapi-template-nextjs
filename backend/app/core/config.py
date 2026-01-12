@@ -40,6 +40,7 @@ class Settings(BaseSettings):
     # 24 hours * 7 days = 168 hours
     ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 7
     SITE_URL: str = "changethis"
+    VERCEL_ENV: str | None = None
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
 
     # my
@@ -64,10 +65,15 @@ class Settings(BaseSettings):
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str = ""
     POSTGRES_DB: str = ""
+    # for Vercel and Neon
+    DATABASE_URL: PostgresDsn | None = None
 
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
+        if self.DATABASE_URL:
+            return self.DATABASE_URL
+
         return MultiHostUrl.build(
             scheme="postgresql+psycopg",
             username=self.POSTGRES_USER,
@@ -123,6 +129,15 @@ class Settings(BaseSettings):
             "FIRST_SUPERUSER_PASSWORD", self.FIRST_SUPERUSER_PASSWORD
         )
 
+        return self
+
+    @model_validator(mode="after")
+    def resolve_environment(self) -> "Settings":
+        if self.VERCEL_ENV == "production":
+            self.ENVIRONMENT = "production"
+        elif self.VERCEL_ENV == "preview":
+            self.ENVIRONMENT = "staging"
+        # else: keep whatever ENVIRONMENT was set from OS/.env
         return self
 
 
