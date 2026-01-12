@@ -80,6 +80,8 @@ docs
 --------------------
 // todo:
 in frontend set VERCEL_URL  fallback for SITE_URL
+frontend custom build commands, are in vercel.json
+
 --------------------
 // deploy button, neon
 `
