@@ -10,7 +10,7 @@ Unstable, work in progress.
 
 ## Screenshot
 
-![Dashboard screenshot](docs/screenshots/dashboard-screenshot.png)
+![Frontend screenshot](docs/screenshots/frontend-screenshot.png)
 
 ## Credits
 
