@@ -22,9 +22,13 @@ Unstable, work in progress.
 
 ### Frontend
 
+Docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
+
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
 
 ### Backend
+
+Docs: [docs/vercel-deployment-backend.md](docs/vercel-deployment-backend.md)
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
 
@@ -60,22 +64,6 @@ Unstable, work in progress.
 ## Installation and running
 
 Docs: [docs/running.md](docs/running.md)
-
-## Vercel environment variables
-
-```bash
-
-PROJECT_NAME="Full stack FastAPI template Next.js"
-SITE_URL=my-frontend-url.vercel.app
-BACKEND_CORS_ORIGINS="https://my-frontend-url.vercel.app"
-
-FIRST_SUPERUSER=admin@example.com
-FIRST_SUPERUSER_PASSWORD=password
-
-# Format: postgresql://<username>:<password>@<host>/<database>?<query>
-# Example: postgresql://neondb_owner:npg_someHash@ep-solitary-moon-some-hash-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require
-DATABASE_URL=
-```
 
 ## Routes
 
