@@ -71,10 +71,15 @@ must have unset cookie next.js api endpoint too
 // callback url
 https://api-full-stack-fastapi-template-nextjs.vercel.app/api/v1/auth/github/callback
 ---------
+for frontend run vercel cli from `frontend/` (path of `.vercelignore`) but set root dir to `apps/web/` (path of `vercel.json`)
+---------
 // remaining
 deploy button
 thumbnail 1200x630 px
 docs
+--------------------
+// todo:
+in frontend set VERCEL_URL  fallback for SITE_URL
 --------------------
 // deploy button, neon
 `
