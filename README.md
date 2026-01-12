@@ -81,8 +81,6 @@ https://api-full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com/docs
 # openapi.json
 http://localhost:8000/api/v1/openapi.json
 https://api-full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com/api/v1/openapi.json
-
-vercel --local-config backend/vercel.json --prod
 ```
 
 ## License

@@ -31,6 +31,10 @@ class Settings(BaseSettings):
         env_ignore_empty=True,
         extra="ignore",
     )
+
+    # Vercel default vars
+    VERCEL_ENV: str | None = None
+
     API_V1_STR: str = "/api/v1"
     AUTH_COOKIE: str = "auth_cookie"
     # default value if no env
@@ -40,7 +44,6 @@ class Settings(BaseSettings):
     # 24 hours * 7 days = 168 hours
     ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 7
     SITE_URL: str = "changethis"
-    VERCEL_ENV: str | None = None
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
 
     # my
@@ -121,6 +124,16 @@ class Settings(BaseSettings):
                 raise ValueError(message)
 
     @model_validator(mode="after")
+    def resolve_environment(self) -> Self:
+        if self.VERCEL_ENV == "production":
+            self.ENVIRONMENT = "production"
+        elif self.VERCEL_ENV == "preview":
+            self.ENVIRONMENT = "staging"
+        # else: keep whatever ENVIRONMENT was set from OS/.env
+        return self
+
+    # Must run at end
+    @model_validator(mode="after")
     def _enforce_non_default_secrets(self) -> Self:
         self._check_default_secret("JWT_SECRET_KEY", self.JWT_SECRET_KEY)
         self._check_default_secret("SESSION_SECRET_KEY", self.SESSION_SECRET_KEY)
@@ -129,15 +142,6 @@ class Settings(BaseSettings):
             "FIRST_SUPERUSER_PASSWORD", self.FIRST_SUPERUSER_PASSWORD
         )
 
-        return self
-
-    @model_validator(mode="after")
-    def resolve_environment(self) -> "Settings":
-        if self.VERCEL_ENV == "production":
-            self.ENVIRONMENT = "production"
-        elif self.VERCEL_ENV == "preview":
-            self.ENVIRONMENT = "staging"
-        # else: keep whatever ENVIRONMENT was set from OS/.env
         return self
 
 

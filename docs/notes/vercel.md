@@ -101,7 +101,7 @@ https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnemanjam%
 
 `
 https://vercel.com/new/clone
-repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy
+repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs&root-directory=backend&git-branch=vercel-deploy
 env=PROJECT_NAME,SITE_URL,BACKEND_CORS_ORIGINS,FIRST_SUPERUSER,FIRST_SUPERUSER_PASSWORD,DATABASE_URL
 envDefaults={
   "PROJECT_NAME": "Full stack FastAPI template Next.js",
@@ -111,10 +111,10 @@ envDefaults={
 }
 envDescription=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy#vercel-environment-variables
 envLink=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/vercel-deploy/.env.vercel.example
-project-name=full-stack-fastapi-template-nextjs
-repository-name=full-stack-fastapi-template-nextjs
-demo-title=Full stack FastAPI template Next.js
-demo-description=Next.js fork of the official "fastapi/full-stack-fastapi-template" template.
+project-name=api-full-stack-fastapi-template-nextjs
+repository-name=api-full-stack-fastapi-template-nextjs
+demo-title=Backend of the full stack FastAPI template Next.js
+demo-description=Backend of the Next.js fork of the official "fastapi/full-stack-fastapi-template" template.
 demo-url=https://full-stack-fastapi-template-nextjs.vercel.app
 demo-image=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/raw/vercel-deploy/docs/screenshots/dashboard-screenshot.png
 products=[
@@ -126,4 +126,8 @@ products=[
   }
 ]
 `
+
+// select branch and folder
+repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs&root-directory=backend&git-branch=vercel-deploy
+
 ```
