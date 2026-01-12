@@ -6,7 +6,7 @@
 
 ## Screenshot
 
-![Frontend screenshot](docs/screenshots/frontend-screenshot.png)
+![Frontend screenshot](screenshots/frontend-screenshot.png)
 
 ## Environment variables
 

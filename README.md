@@ -18,6 +18,16 @@ Unstable, work in progress.
 - Next.js client side rendered PR: https://github.com/fastapi/full-stack-fastapi-template/pull/1733
 - HttpOnly cookie PR: https://github.com/fastapi/full-stack-fastapi-template/pull/1606
 
+## Deploy to Vercel
+
+### Frontend
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
+
+### Backend
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
+
 ## Features
 
 - [x] Next.js v16, server components
