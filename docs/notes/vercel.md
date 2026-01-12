@@ -94,4 +94,36 @@ demo-description=A minimal template for building full-stack React applications u
 &repository-url=https://github.com/neondatabase-labs/vercel-marketplace-neon
 &repository-branch=main
 
+// my backend url, in progress:
+
+https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Ftree%2Fvercel-deploy&env=PROJECT_NAME,SITE_URL,BACKEND_CORS_ORIGINS,FIRST_SUPERUSER,FIRST_SUPERUSER_PASSWORD,DATABASE_URL&envDefaults=%7B%22PROJECT_NAME%22%3A%22Full%20stack%20FastAPI%20template%20Next.js%22%2C%22SITE_URL%22%3A%22https%3A%2F%2Fmy-frontend-url.vercel.app%22%2C%22BACKEND_CORS_ORIGINS%22%3A%22https%3A%2F%2Fmy-frontend-url.vercel.app%22%2C%22FIRST_SUPERUSER%22%3A%22admin%40example.com%22%7D&envDescription=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Ftree%2Fvercel-deploy%23vercel-environment-variables&envLink=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Fblob%2Fvercel-deploy%2F.env.vercel.example&project-name=full-stack-fastapi-template-nextjs&repository-name=full-stack-fastapi-template-nextjs&demo-title=Full%20stack%20FastAPI%20template%20Next.js&demo-description=Next.js%20fork%20of%20the%20official%20%22fastapi%2Ffull-stack-fastapi-template%22%20template.%20&demo-url=https%3A%2F%2Ffull-stack-fastapi-template-nextjs.vercel.app&demo-image=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Fraw%2Fvercel-deploy%2Fdocs%2Fscreenshots%2Fdashboard-screenshot.png&products=%5B%7B%22type%22%3A%22integration%22%2C%22integrationSlug%22%3A%22neon%22%2C%22productSlug%22%3A%22neon%22%2C%22protocol%22%3A%22storage%22%7D%5D
+
+
+`
+https://vercel.com/new/clone
+repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy
+env=PROJECT_NAME,SITE_URL,BACKEND_CORS_ORIGINS,FIRST_SUPERUSER,FIRST_SUPERUSER_PASSWORD,DATABASE_URL
+envDefaults={
+  "PROJECT_NAME": "Full stack FastAPI template Next.js",
+  "SITE_URL": "https://my-frontend-url.vercel.app",
+  "BACKEND_CORS_ORIGINS": "https://my-frontend-url.vercel.app",
+  "FIRST_SUPERUSER": "admin@example.com"
+}
+envDescription=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy#vercel-environment-variables
+envLink=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/vercel-deploy/.env.vercel.example
+project-name=full-stack-fastapi-template-nextjs
+repository-name=full-stack-fastapi-template-nextjs
+demo-title=Full stack FastAPI template Next.js
+demo-description=Next.js fork of the official "fastapi/full-stack-fastapi-template" template.
+demo-url=https://full-stack-fastapi-template-nextjs.vercel.app
+demo-image=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/raw/vercel-deploy/docs/screenshots/dashboard-screenshot.png
+products=[
+  {
+    "type": "integration",
+    "integrationSlug": "neon",
+    "productSlug": "neon",
+    "protocol": "storage"
+  }
+]
+`
 ```
