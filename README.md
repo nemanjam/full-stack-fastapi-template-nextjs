@@ -8,6 +8,10 @@ Unstable, work in progress.
 
 **[https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
 
+## Screenshot
+
+[!Dashboard screenshot](docs/screenshots/dashboard-screenshot.png)
+
 ## Credits
 
 - The original repository: [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
