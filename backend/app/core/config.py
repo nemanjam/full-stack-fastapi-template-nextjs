@@ -79,7 +79,13 @@ class Settings(BaseSettings):
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
         # Vercel + Neon
         if self.DATABASE_URL:
-            return self.DATABASE_URL
+            database_url = str(self.DATABASE_URL)
+            # Force SQLAlchemy to use psycopg v3 on Vercel (Neon provides postgresql:// by default)
+            if database_url.startswith("postgresql://"):
+                database_url = database_url.replace(
+                    "postgresql://", "postgresql+psycopg://"
+                )
+            return database_url
 
         # Local / Docker
         if not all(
