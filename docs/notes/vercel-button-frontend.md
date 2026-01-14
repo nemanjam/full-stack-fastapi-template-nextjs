@@ -4,7 +4,7 @@
 `
 https://vercel.com/new/clone
 repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy
-root-directory=frontend
+root-directory=frontend/apps/web
 env=API_URL
 envDefaults={
   "API_URL": "https://my-backend-url.vercel.app",
