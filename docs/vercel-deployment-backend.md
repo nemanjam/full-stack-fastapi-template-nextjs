@@ -75,7 +75,7 @@ DATABASE_URL=
 
 ## Deploy using `Vercel Deploy button`
 
-Go to [README.md](../README.md#deploy-to-vercel), and in the `Deploy to Vercel -> Backend` section, click the `Deploy` button. You will be redirected to the Vercel form, where you need to specify your repository name, add the Neon integration, and set the required environment variables. If you don't have the values already prepared, just deploy with the supplied defaults and later edit them (along with any additional optional variables) in the `Environment` tab in the dashboard. Redeploy to apply the new values for the variables.
+Go to [README.md](../README.md#deploy-to-vercel), and in the `Deploy to Vercel -> Backend` section, click the `Deploy` button. You will be redirected to the Vercel form, where you need to specify the name of your cloned repository, add the Neon integration, and set the required environment variables. If you don't have the values already prepared, just deploy with the supplied defaults and later edit them (along with any additional optional variables) in the `Environment` tab in the dashboard. Redeploy to apply the new values for the variables.
 
 **Note:** `DATABASE_URL` is a required variable. The Neon integration will set it by default, which is why it is omitted from the form in the wizard.
 
