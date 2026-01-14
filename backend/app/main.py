@@ -22,7 +22,7 @@ if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
 
 
 @asynccontextmanager
-async def lifespan():
+async def lifespan(_app: FastAPI):
     """
     Migrate and seed DB at app startup.
     """
