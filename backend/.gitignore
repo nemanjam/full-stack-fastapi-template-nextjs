@@ -31,3 +31,6 @@ data/cache/*
 !data/logs
 data/logs/*
 !data/logs/.gitkeep
+
+# Vercel files from vercel-deploy branch
+.vercel/

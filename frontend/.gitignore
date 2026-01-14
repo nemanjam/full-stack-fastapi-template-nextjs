@@ -15,8 +15,8 @@ coverage
 # Turbo
 .turbo
 
-# Vercel
-.vercel
+# Vercel files from vercel-deploy branch
+.vercel/
 
 # Build Outputs
 .next/

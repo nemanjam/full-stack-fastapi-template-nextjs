@@ -6,7 +6,13 @@ Unstable, work in progress.
 
 ## Demo
 
-**[https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
+**Docker: [https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
+
+**Vercel: [https://full-stack-fastapi-template-nextjs.vercel.app](https://full-stack-fastapi-template-nextjs.vercel.app)**
+
+## Screenshot
+
+![Frontend screenshot](docs/screenshots/frontend-screenshot-1200x630.png)
 
 ## Credits
 
@@ -46,6 +52,20 @@ Unstable, work in progress.
 ## Installation and running
 
 Docs: [docs/running.md](docs/running.md)
+
+## Deploy to Vercel
+
+### Frontend
+
+Docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
+
+### Backend
+
+Docs: [docs/vercel-deployment-backend.md](docs/vercel-deployment-backend.md)
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
 
 ## Routes
 

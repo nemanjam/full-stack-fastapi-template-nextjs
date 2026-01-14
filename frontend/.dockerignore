@@ -16,3 +16,6 @@
 **/playwright-report/
 **/blob-report/
 **/playwright/.cache/
+
+# Vercel files from vercel-deploy branch
+.vercel/
