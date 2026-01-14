@@ -143,5 +143,9 @@ products=[
 
 // select branch and folder
 repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy?root-directory=backend
+--------------
+// todo: 
+migrate and seed db backend postbuild
+https://vercel.com/docs/frameworks/backend/fastapi#startup-and-shutdown
 
 ```

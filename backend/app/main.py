@@ -1,3 +1,7 @@
+import os
+import subprocess
+from contextlib import asynccontextmanager
+
 import sentry_sdk
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
@@ -6,7 +10,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.api.main import api_router
 from app.core.config import settings
-from app.utils import log_settings
+from app.utils import is_prod, log_settings
 
 
 def custom_generate_unique_id(route: APIRoute) -> str:
@@ -16,11 +20,35 @@ def custom_generate_unique_id(route: APIRoute) -> str:
 if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
     sentry_sdk.init(dsn=str(settings.SENTRY_DSN), enable_tracing=True)
 
+
+@asynccontextmanager
+async def lifespan():
+    """
+    Migrate and seed DB at app startup.
+    """
+    # onAppStart
+
+    # Only in prod
+    if is_prod:
+        script_path = os.path.join(
+            os.path.dirname(__file__), "..", "scripts", "prestart.sh"
+        )
+        subprocess.run(["bash", script_path], check=True)
+
+    # Yield control to let FastAPI run
+    yield
+
+    # onAppShutDown
+    print("Application is shutting down")
+
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     generate_unique_id_function=custom_generate_unique_id,
+    lifespan=lifespan,
 )
+
 
 # Set all CORS enabled origins
 if settings.all_cors_origins:
