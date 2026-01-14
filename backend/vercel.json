@@ -10,5 +10,6 @@
       "src": "/(.*)",
       "dest": "app/api/index.py"
     }
-  ]
+  ],
+  "buildCommand": "python scripts/prestart.py"
 }
