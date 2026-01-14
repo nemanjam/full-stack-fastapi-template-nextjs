@@ -6,7 +6,6 @@ from pydantic import (
     AnyUrl,
     BeforeValidator,
     EmailStr,
-    HttpUrl,
     PostgresDsn,
     computed_field,
     model_validator,
@@ -61,21 +60,35 @@ class Settings(BaseSettings):
             self.SITE_URL
         ]
 
-    PROJECT_NAME: str
-    SENTRY_DSN: HttpUrl | None = None
-    POSTGRES_SERVER: str
-    POSTGRES_PORT: int = 5432
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str = ""
-    POSTGRES_DB: str = ""
     # for Vercel and Neon
     DATABASE_URL: PostgresDsn | None = None
+
+    # Local / Docker fallback
+    POSTGRES_SERVER: str | None = None
+    POSTGRES_PORT: int = 5432
+    POSTGRES_USER: str | None = None
+    POSTGRES_PASSWORD: str | None = None
+    POSTGRES_DB: str | None = None
 
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
+        # Vercel + Neon
         if self.DATABASE_URL:
             return self.DATABASE_URL
+
+        # Local / Docker
+        if not all(
+            [
+                self.POSTGRES_SERVER,
+                self.POSTGRES_USER,
+                self.POSTGRES_PASSWORD,
+                self.POSTGRES_DB,
+            ]
+        ):
+            raise ValueError(
+                "Either DATABASE_URL (Vercel/Neon) or POSTGRES_* variables must be set"
+            )
 
         return MultiHostUrl.build(
             scheme="postgresql+psycopg",
@@ -137,7 +150,7 @@ class Settings(BaseSettings):
     def _enforce_non_default_secrets(self) -> Self:
         self._check_default_secret("JWT_SECRET_KEY", self.JWT_SECRET_KEY)
         self._check_default_secret("SESSION_SECRET_KEY", self.SESSION_SECRET_KEY)
-        self._check_default_secret("POSTGRES_PASSWORD", self.POSTGRES_PASSWORD)
+        # self._check_default_secret("POSTGRES_PASSWORD", self.POSTGRES_PASSWORD)
         self._check_default_secret(
             "FIRST_SUPERUSER_PASSWORD", self.FIRST_SUPERUSER_PASSWORD
         )
