@@ -13,9 +13,6 @@
 #### Minimal required environment variables
 
 ```bash
-# Used in email templates and OpenAPI docs
-PROJECT_NAME="Full stack FastAPI template Next.js"
-
 # Frontend url
 # Used by the backend to generate links in emails to the frontend
 SITE_URL=my-frontend-url.vercel.app

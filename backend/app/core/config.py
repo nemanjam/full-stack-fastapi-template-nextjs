@@ -6,6 +6,7 @@ from pydantic import (
     AnyUrl,
     BeforeValidator,
     EmailStr,
+    HttpUrl,
     PostgresDsn,
     computed_field,
     model_validator,
@@ -59,6 +60,9 @@ class Settings(BaseSettings):
         return [str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS] + [
             self.SITE_URL
         ]
+
+    PROJECT_NAME: str = "Full stack FastAPI template Next.js"
+    SENTRY_DSN: HttpUrl | None = None
 
     # for Vercel and Neon
     DATABASE_URL: PostgresDsn | None = None
