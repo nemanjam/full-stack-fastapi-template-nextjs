@@ -59,7 +59,7 @@ Docs: [docs/running.md](docs/running.md)
 
 Docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Ftree%2Fvercel-deploy&root-directory=frontend&env=API_URL&envDefaults=%7B%0A%20%20%22API_URL%22%3A%20%22https%3A%2F%2Fmy-backend-url.vercel.app%22%0A%7D&envDescription=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Ftree%2Fvercel-deploy%2Fdocs%2Fvercel-deployment-frontend.md%23environment-variables&envLink=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Fblob%2Fvercel-deploy%2Ffrontend%2Fapps%2Fweb%2F.env.vercel.example&project-name=full-stack-fastapi-template-nextjs&repository-name=full-stack-fastapi-template-nextjs&demo-title=Frontend%20of%20the%20full%20stack%20FastAPI%20template%20Next.js&demo-description=Frontend%20of%20the%20Next.js%20fork%20of%20the%20official%20%22fastapi%2Ffull-stack-fastapi-template%22%20template.&demo-url=https%3A%2F%2Ffull-stack-fastapi-template-nextjs.vercel.app&demo-image=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Fraw%2Fvercel-deploy%2Fdocs%2Fscreenshots%2Ffrontend-screenshot-1200x630.png)
 
 ### Backend
 

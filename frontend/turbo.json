@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalEnv": ["NODE_ENV", "SITE_URL", "API_URL", "NEXT_RUNTIME"],
+  "globalEnv": ["NODE_ENV", "SITE_URL", "API_URL", "NEXT_RUNTIME", "VERCEL_PROJECT_PRODUCTION_URL"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

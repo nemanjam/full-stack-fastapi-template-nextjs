@@ -6,7 +6,7 @@ import { getProcessEnvSchemaProps } from '@/schemas/config';
 export const { getPublicEnv, PublicEnv } = createPublicEnv(
   {
     NODE_ENV: process.env.NODE_ENV,
-    SITE_URL: process.env.SITE_URL,
+    SITE_URL: process.env.SITE_URL || `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
     API_URL: process.env.API_URL,
   },
   { schema: (z) => getProcessEnvSchemaProps(z) }

@@ -24,7 +24,7 @@ API_URL=https://my-backend-url.vercel.app
 API_URL=https://my-backend-url.vercel.app
 
 # Frontend url
-# If omitted defaults to VERCEL_URL
+# If omitted defaults to https:// + VERCEL_PROJECT_PRODUCTION_URL
 SITE_URL=https://my-frontend-url.vercel.app
 ```
 

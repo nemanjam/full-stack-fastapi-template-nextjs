@@ -79,7 +79,14 @@ thumbnail 1200x630 px
 docs
 --------------------
 // todo:
-in frontend set VERCEL_URL  fallback for SITE_URL
+in frontend set VERCEL_URL  fallback for SITE_URL // no
+{
+  "url": "full-stack-fastapi-template-nextjs-cjyjqp5nb.vercel.app", // VERCEL_URL, useless
+  "aliases": [
+    "full-stack-fastapi-template-nextjs.vercel.app", // this one, VERCEL_PROJECT_PRODUCTION_URL
+    "full-stack-fastapi-template-nextjs-nemanjas-projects-5a2a285a.vercel.app"
+  ]
+}
 frontend custom build commands, are in vercel.json
 
 --------------------
@@ -135,6 +142,6 @@ products=[
 `
 
 // select branch and folder
-repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs&root-directory=backend&git-branch=vercel-deploy
+repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy?root-directory=backend
 
 ```

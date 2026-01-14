@@ -7,5 +7,8 @@ export const register = async () => {
     const { getPublicEnv } = await import('@/config/process-env');
 
     prettyPrintObject(getPublicEnv(), 'Runtime process.env');
+
+    // Log everything Vercel injected (debug only)
+    prettyPrintObject(process.env, 'Runtime full process.env');
   }
 };
