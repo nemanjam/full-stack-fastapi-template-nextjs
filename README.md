@@ -12,7 +12,7 @@ Unstable, work in progress.
 
 ## Screenshot
 
-![Frontend screenshot](docs/screenshots/frontend-screenshot.png)
+![Frontend screenshot](docs/screenshots/frontend-screenshot-1200x630.png)
 
 ## Credits
 
