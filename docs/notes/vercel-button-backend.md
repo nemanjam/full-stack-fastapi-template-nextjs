@@ -9,7 +9,7 @@ root-directory=backend
 env=PROJECT_NAME,SITE_URL,FIRST_SUPERUSER,FIRST_SUPERUSER_PASSWORD,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET
 envDefaults={
   "PROJECT_NAME": "Full stack FastAPI template Next.js",
-  "SITE_URL": "my-frontend-url.vercel.app",
+  "SITE_URL": "https://my-frontend-url.vercel.app",
   "FIRST_SUPERUSER": "admin@example.com",
   "FIRST_SUPERUSER_PASSWORD": "password"
   "GITHUB_CLIENT_ID": "my-github-app-client-id"
