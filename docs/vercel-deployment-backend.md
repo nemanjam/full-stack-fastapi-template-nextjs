@@ -17,6 +17,10 @@
 # Used by the backend to generate links in emails to the frontend
 SITE_URL=my-frontend-url.vercel.app
 
+# Auth
+JWT_SECRET_KEY=my-secret
+SESSION_SECRET_KEY=my-secret
+
 # Superuser email and password
 FIRST_SUPERUSER=admin@example.com
 FIRST_SUPERUSER_PASSWORD=password
@@ -44,10 +48,6 @@ BACKEND_CORS_ORIGINS="http://localhost,https://localhost,http://localhost:3000,h
 # If omitted defaults to VERCEL_ENV
 ENVIRONMENT=production
 
-# Auth
-# If omitted defaults to random base64 string
-JWT_SECRET_KEY=secret
-SESSION_SECRET_KEY=secret
 # If omitted defaults to 7 days = 24 * 8 = 168 hours
 ACCESS_TOKEN_EXPIRE_HOURS=168
 

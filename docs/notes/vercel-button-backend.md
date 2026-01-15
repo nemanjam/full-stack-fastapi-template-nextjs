@@ -6,9 +6,11 @@ neon will add and set DATABASE_URL variable
 https://vercel.com/new/clone
 repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy
 root-directory=backend
-env=SITE_URL,FIRST_SUPERUSER,FIRST_SUPERUSER_PASSWORD,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET
+env=SITE_URL,JWT_SECRET_KEY,SESSION_SECRET_KEY,FIRST_SUPERUSER,FIRST_SUPERUSER_PASSWORD,GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET
 envDefaults={
   "SITE_URL": "https://my-frontend-url.vercel.app",
+  "JWT_SECRET_KEY": "my-secret",
+  "SESSION_SECRET_KEY": "my-secret",
   "FIRST_SUPERUSER": "admin@example.com",
   "FIRST_SUPERUSER_PASSWORD": "password"
   "GITHUB_CLIENT_ID": "my-github-app-client-id"
