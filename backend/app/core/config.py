@@ -55,7 +55,7 @@ class Settings(BaseSettings):
             self.SITE_URL
         ]
 
-    PROJECT_NAME: str
+    PROJECT_NAME: str = "Full stack FastAPI template Next.js"
     SENTRY_DSN: HttpUrl | None = None
     POSTGRES_SERVER: str
     POSTGRES_PORT: int = 5432
