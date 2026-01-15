@@ -54,6 +54,16 @@ Docs: [docs/running.md](docs/running.md)
 
 ## Deploy to Vercel
 
+If you want to deploy with Docker, use the `main` branch. If you want to deploy with Vercel, use the `vercel-deploy` branch.
+
+```bash
+# Docker
+git checkout main
+
+# Vercel
+git checkout vercel-deploy
+```
+
 Similarly to how you need two separate containers to deploy the app with Docker, you also need two separate deployments in Vercel to deploy the frontend and backend. You will configure them to be aware of each other using `SITE_URL` and `API_URL`, which they use to communicate with each other.
 
 You can use the **Vercel deploy** buttons below to create these deployments.
