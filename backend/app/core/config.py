@@ -1,4 +1,3 @@
-import secrets
 import warnings
 from typing import Annotated, Any, Literal
 
@@ -33,9 +32,8 @@ class Settings(BaseSettings):
     )
     API_V1_STR: str = "/api/v1"
     AUTH_COOKIE: str = "auth_cookie"
-    # default value if no env
-    JWT_SECRET_KEY: str = secrets.token_urlsafe(32)
-    SESSION_SECRET_KEY: str = secrets.token_urlsafe(32)
+    JWT_SECRET_KEY: str = "changethis"
+    SESSION_SECRET_KEY: str = "changethis"
     # Cookie expiration and JWT expiration match
     # 24 hours * 7 days = 168 hours
     ACCESS_TOKEN_EXPIRE_HOURS: int = 24 * 7
@@ -62,7 +60,7 @@ class Settings(BaseSettings):
     POSTGRES_SERVER: str
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str
-    POSTGRES_PASSWORD: str = ""
+    POSTGRES_PASSWORD: str = "changethis"
     POSTGRES_DB: str = ""
 
     @computed_field  # type: ignore[prop-decorator]
@@ -101,7 +99,7 @@ class Settings(BaseSettings):
 
     EMAIL_TEST_USER: EmailStr = "test@example.com"
     FIRST_SUPERUSER: EmailStr
-    FIRST_SUPERUSER_PASSWORD: str
+    FIRST_SUPERUSER_PASSWORD: str = "changethis"
 
     def _check_default_secret(self, var_name: str, value: str | None) -> None:
         if value == "changethis":
