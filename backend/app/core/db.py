@@ -49,7 +49,7 @@ def init_db(session: Session) -> None:
             is_superuser=is_super,
             full_name=full_name,
         )
-        created = crud.create_user(session=session, user_create=user_in, should_commit=False)
+        created = crud.create_user(session=session, user_create=user_in)
         users.append(created)
 
     # Create N items per each user
@@ -63,7 +63,6 @@ def init_db(session: Session) -> None:
                 session=session,
                 item_in=item_in,
                 owner_id=user.id,
-                should_commit=False,
             )
 
     session.commit()

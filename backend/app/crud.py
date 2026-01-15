@@ -7,19 +7,13 @@ from app.core.security import get_password_hash, verify_password
 from app.models import Item, ItemCreate, User, UserCreate, UserUpdate
 
 
-def create_user(*, session: Session, user_create: UserCreate, should_commit: bool = True) -> User:
+def create_user(*, session: Session, user_create: UserCreate) -> User:
     db_obj = User.model_validate(
         user_create, update={"hashed_password": get_password_hash(user_create.password)}
     )
     session.add(db_obj)
-
-    if should_commit:
-        session.commit()
-        session.refresh(db_obj)
-    else:
-        # Get the ID without committing
-        session.flush()  
-    
+    session.commit()
+    session.refresh(db_obj)
     return db_obj
 
 
@@ -51,10 +45,10 @@ def authenticate(*, session: Session, email: str, password: str) -> User | None:
         return None
     return db_user
 
+
 def authenticate_github(
     *, session: Session, primary_email: str | None, profile: dict
 ) -> User:
-
     # Get profile data
     github_full_name = profile.get("name")
     github_username = profile.get("login")
@@ -62,15 +56,17 @@ def authenticate_github(
 
     # Find or create user
     user = session.exec(select(User).where(User.oauth_id == github_id_str)).first()
-    
+
     if not user:
-        fallback_email = f"{github_username or github_id_str}-{uuid.uuid4().hex[:8]}@github.local",
+        fallback_email = (
+            f"{github_username or github_id_str}-{uuid.uuid4().hex[:8]}@github.local",
+        )
 
         user = User(
             provider="github",
             oauth_id=github_id_str,
             full_name=github_full_name or github_username,
-            email=primary_email or fallback_email, 
+            email=primary_email or fallback_email,
             is_active=True,
         )
         session.add(user)
@@ -80,14 +76,9 @@ def authenticate_github(
     return user
 
 
-def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID, should_commit: bool = True) -> Item:
+def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID) -> Item:
     db_item = Item.model_validate(item_in, update={"owner_id": owner_id})
     session.add(db_item)
-
-    if should_commit:
-        session.commit()
-        session.refresh(db_item)
-    else:
-        session.flush() 
-    
+    session.commit()
+    session.refresh(db_item)
     return db_item
