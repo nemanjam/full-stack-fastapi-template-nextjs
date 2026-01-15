@@ -144,8 +144,10 @@ products=[
 // select branch and folder
 repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy?root-directory=backend
 --------------
-// todo: 
-migrate and seed db backend postbuild
+// ! DONT migrate and seed in postbuild or appStart, makes no sense to drop db in reality
+// serverless runs many instance, will truncate and seed many times, recreates each time after cold start too
+migrate and seed db backend postbuild // NO
 https://vercel.com/docs/frameworks/backend/fastapi#startup-and-shutdown
+--------------
 
 ```
