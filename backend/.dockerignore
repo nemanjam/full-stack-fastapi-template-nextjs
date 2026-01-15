@@ -23,3 +23,6 @@ htmlcov
 data/database/*
 !data/database/.gitkeep
 
+# Vercel files from vercel-deploy branch
+.vercel/
+
