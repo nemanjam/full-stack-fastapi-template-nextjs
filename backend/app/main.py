@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
-from sqlmodel import Session
+from sqlmodel import Session, text
 
 from app.core.db import engine
 from app.api.main import api_router
@@ -28,36 +28,39 @@ if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    """
-    Migrate and seed DB at app startup.
-    """
-    # onAppStart
-
-    # Only in prod
     if is_prod:
-        # Run Alembic migrations
-        logger.info("Running database migrations...")
-
         from alembic.config import Config
         from alembic import command
-        
-        alembic_cfg = Config("alembic.ini")
-        command.upgrade(alembic_cfg, "head")
+        from app.core.db import init_db, engine
+        from app.core.db_lock import acquire_lock, release_lock
 
-        # Seed the database
-        from app.core.db import init_db
+        logger.info("Attempting startup DB lock...")
 
-        logger.info("Seeding database...")
         with Session(engine) as session:
-            init_db(session)
+            if not acquire_lock(session):
+                logger.info("Another instance is running migrations, skipping.")
+                yield
+                return
 
-        logger.info("Database seeding completed")
+            try:
+                logger.info("Acquired startup lock. Running migrations...")
+                alembic_cfg = Config("alembic.ini")
+                command.upgrade(alembic_cfg, "head")
+
+                logger.info("Seeding database...")
+                init_db(session)
+
+                logger.info("Startup DB init completed.")
+            finally:
+                release_lock(session)
+                logger.info("Released startup DB lock.")
+
 
     # Yield control to let FastAPI run
     yield
 
     # onAppShutDown
-    print("Application is shutting down")
+    print("Application is shutting down.")
 
 
 app = FastAPI(
