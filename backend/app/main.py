@@ -1,5 +1,4 @@
-import os
-import subprocess
+import logging
 from contextlib import asynccontextmanager
 
 import sentry_sdk
@@ -7,10 +6,16 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
+from sqlmodel import Session
 
+from app.core.db import engine
 from app.api.main import api_router
 from app.core.config import settings
 from app.utils import is_prod, log_settings
+
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def custom_generate_unique_id(route: APIRoute) -> str:
@@ -30,10 +35,23 @@ async def lifespan(_app: FastAPI):
 
     # Only in prod
     if is_prod:
-        script_path = os.path.join(
-            os.path.dirname(__file__), "..", "scripts", "prestart.sh"
-        )
-        subprocess.run(["bash", script_path], check=True)
+        # Run Alembic migrations
+        logger.info("Running database migrations...")
+
+        from alembic.config import Config
+        from alembic import command
+        
+        alembic_cfg = Config("alembic.ini")
+        command.upgrade(alembic_cfg, "head")
+
+        # Seed the database
+        from app.core.db import init_db
+
+        logger.info("Seeding database...")
+        with Session(engine) as session:
+            init_db(session)
+
+        logger.info("Database seeding completed")
 
     # Yield control to let FastAPI run
     yield

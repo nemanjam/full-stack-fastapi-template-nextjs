@@ -16,7 +16,7 @@ USERS_COUNT = 10
 ITEMS_PER_USER = 10
 
 
-def init_db() -> None:
+def init_db(session: Session) -> None:
     # Tables should be created with Alembic migrations
     # But if you don't want to use migrations, create
     # the tables un-commenting the next lines
@@ -28,46 +28,45 @@ def init_db() -> None:
     users: list[User] = []
 
     # Wipe everything
-    with Session(engine) as session:
-        truncate_all_tables(session)
+    truncate_all_tables(session)
 
     # Create N users: superuser at i=0, regular users at i=1..9
-    with Session(engine) as session:
-        for i in range(0, USERS_COUNT):
-            if i == 0:
-                email = settings.FIRST_SUPERUSER
-                password = settings.FIRST_SUPERUSER_PASSWORD
-                is_super = True
-                full_name = "Admin Name"
-            else:
-                email = f"user{i}@example.com"
-                password = settings.FIRST_SUPERUSER_PASSWORD
-                is_super = False
-                full_name = f"User{i} Name"
+    for i in range(0, USERS_COUNT):
+        if i == 0:
+            email = settings.FIRST_SUPERUSER
+            password = settings.FIRST_SUPERUSER_PASSWORD
+            is_super = True
+            full_name = "Admin Name"
+        else:
+            email = f"user{i}@example.com"
+            password = settings.FIRST_SUPERUSER_PASSWORD
+            is_super = False
+            full_name = f"User{i} Name"
 
-            user_in = UserCreate(
-                email=email,
-                password=password,
-                is_superuser=is_super,
-                full_name=full_name,
+        user_in = UserCreate(
+            email=email,
+            password=password,
+            is_superuser=is_super,
+            full_name=full_name,
+        )
+        created = crud.create_user(session=session, user_create=user_in, should_commit=False)
+        users.append(created)
+
+    # Create N items per each user
+    for user in users:
+        for i in range(1, 1 + ITEMS_PER_USER):
+            item_in = ItemCreate(
+                title=f"Item {i}",
+                description=f"Seeded item {i} for {user.email}",
             )
-            created = crud.create_user(session=session, user_create=user_in)
-            users.append(created)
+            crud.create_item(
+                session=session,
+                item_in=item_in,
+                owner_id=user.id,
+                should_commit=False,
+            )
 
-        # Create N items per each user
-        for user in users:
-            for i in range(1, 1 + ITEMS_PER_USER):
-                item_in = ItemCreate(
-                    title=f"Item {i}",
-                    description=f"Seeded item {i} for {user.email}",
-                )
-                crud.create_item(
-                    session=session,
-                    item_in=item_in,
-                    owner_id=user.id,
-                )
-
-        session.commit()
+    session.commit()
 
 
 def truncate_all_tables(session: Session) -> None:

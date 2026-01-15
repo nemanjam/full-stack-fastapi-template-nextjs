@@ -7,13 +7,19 @@ from app.core.security import get_password_hash, verify_password
 from app.models import Item, ItemCreate, User, UserCreate, UserUpdate
 
 
-def create_user(*, session: Session, user_create: UserCreate) -> User:
+def create_user(*, session: Session, user_create: UserCreate, should_commit: bool = True) -> User:
     db_obj = User.model_validate(
         user_create, update={"hashed_password": get_password_hash(user_create.password)}
     )
     session.add(db_obj)
-    session.commit()
-    session.refresh(db_obj)
+
+    if should_commit:
+        session.commit()
+        session.refresh(db_obj)
+    else:
+        # Get the ID without committing
+        session.flush()  
+    
     return db_obj
 
 
@@ -74,9 +80,14 @@ def authenticate_github(
     return user
 
 
-def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID) -> Item:
+def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID, should_commit: bool = True) -> Item:
     db_item = Item.model_validate(item_in, update={"owner_id": owner_id})
     session.add(db_item)
-    session.commit()
-    session.refresh(db_item)
+
+    if should_commit:
+        session.commit()
+        session.refresh(db_item)
+    else:
+        session.flush() 
+    
     return db_item
