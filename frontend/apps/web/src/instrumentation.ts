@@ -9,6 +9,6 @@ export const register = async () => {
     prettyPrintObject(getPublicEnv(), 'Runtime process.env');
 
     // Log everything Vercel injected (debug only)
-    prettyPrintObject(process.env, 'Runtime full process.env');
+    // prettyPrintObject(process.env, 'Runtime full process.env');
   }
 };

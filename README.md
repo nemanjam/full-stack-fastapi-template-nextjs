@@ -2,8 +2,6 @@
 
 Next.js v16 fork of the official [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) template. Server components, server actions, HttpOnly cookie auth, ShadcnUI with TailwindCSS v4, simplified local development environment and Docker production.
 
-Unstable, work in progress.
-
 ## Demo
 
 **Docker: [https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com](https://full-stack-fastapi-template-nextjs.arm1.nemanjamitic.com)**
@@ -48,12 +46,17 @@ Unstable, work in progress.
 - [ ] Open graph, SEO, analytics
 - [ ] Tailscale Github Actions
 - [ ] Integration tests frontend and backend
+- [x] Deploy with Vercel
 
 ## Installation and running
 
 Docs: [docs/running.md](docs/running.md)
 
 ## Deploy to Vercel
+
+Similarly to how you need two separate containers to deploy the app with Docker, you also need two separate deployments in Vercel to deploy the frontend and backend. You will configure them to be aware of each other using `SITE_URL` and `API_URL`, which they use to communicate with each other.
+
+You can use the **Vercel deploy** buttons below to create these deployments.
 
 ### Frontend
 
