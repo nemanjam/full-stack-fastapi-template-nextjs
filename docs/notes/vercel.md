@@ -149,5 +149,8 @@ repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tr
 migrate and seed db backend postbuild // NO
 https://vercel.com/docs/frameworks/backend/fastapi#startup-and-shutdown
 --------------
+// submit template form
+Build full-stack apps with Next.js and FastAPI. A Next.js fork of the official "fastapi/full-stack-fastapi-template" template.
 
+[{"type": "integration","integrationSlug": "neon","productSlug": "neon","protocol": "storage"}]
 ```
