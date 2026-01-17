@@ -24,6 +24,7 @@ demo-title=Backend of the full stack FastAPI template Next.js
 demo-description=Backend of the Next.js fork of the official "fastapi/full-stack-fastapi-template" template.
 demo-url=https://full-stack-fastapi-template-nextjs.vercel.app
 demo-image=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/raw/vercel-deploy/docs/screenshots/frontend-screenshot-1200x630.png
+skippable-integrations=1
 products=[
   {
     "type": "integration",
