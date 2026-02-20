@@ -150,7 +150,7 @@ DATABASE_URL=postgresql://neondb_owner:npg_some-slug@ep-rough-cherry-some-slug-p
 
 ```
 
-Then, run the migrations and seed the database the same way as described in [docs/running.md#database](docs/running.md#database):
+Then, run the migrations and seed the database the same way as described in [running.md#database](running.md#database):
 
 ```bash
 # From /backend
