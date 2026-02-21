@@ -28,6 +28,14 @@ API_URL=https://my-backend-url.vercel.app
 SITE_URL=https://my-frontend-url.vercel.app
 ```
 
+## Deploy using `Vercel Deploy button`
+
+Go to [README.md](../README.md#deploy-to-vercel), and in the `Deploy to Vercel -> Frontend` section, click the `Deploy` button. You will be redirected to the Vercel form wizard, where you should specify the name of your cloned repository and set the required environment variable `API_URL` pointing to the backend.
+
+If you omit the `SITE_URL` variable, it will fall back to `VERCEL_PROJECT_PRODUCTION_URL`. If you set `SITE_URL` explicitly, remember to redeploy the project to apply the changes.
+
+That’s it, your application is now fully deployed and publicly accessible.
+
 ## Deploy using Vercel CLI
 
 Checkout `vercel-deploy` branch. This branch has the required configuration files: `frontend/apps/web/vercel.json`, `frontend/.vercelignore`.
