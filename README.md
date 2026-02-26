@@ -66,6 +66,8 @@ git checkout vercel-deploy
 
 Similarly to how you need two separate containers to deploy the app with Docker, you also need two separate deployments in Vercel to deploy the frontend and backend. You will configure them to be aware of each other using `SITE_URL` and `API_URL`, which they use to communicate with each other.
 
+**Detailed tutorial:** https://nemanjamitic.com/blog/2026-02-22-vercel-deploy-fastapi-nextjs
+
 You can use the **Vercel deploy** buttons below to create these deployments.
 
 ### Frontend
