@@ -52,3 +52,22 @@ https://full-stack-fastapi-backend.vercel.app/
     &demo-image=https://raw.githubusercontent.com/nemanjam/nemanjam.github.io/refs/heads/main/docs/screenshots/developer-blog-screenshot-1200x630.png
     &skippable-integrations=1
 )
+
+```ts
+// config.py, add VERCEL === 1 condition, to detect vercel or local
+// backend log
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+FIRST_SUPERUSER // ovo je greska
+Field required [type=missing, input_value={'VERCEL_ENV': 'production'}, input_type=dict] //  a ne ovo
+
+// local backend and frontend /me
+INFO:     127.0.0.1:35074 - "GET /api/v1/users/me HTTP/1.1" 403 Forbidden
+
+// no env vars defined for both frontend and backend, not even neon
+
+next.js add warning logs on build
+detect vercel in both frontend and backend
+backend config.py vercel conditional logic
+database migrations stays, check neon demo
+from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
+```

@@ -2,7 +2,9 @@
 
 neon will add and set DATABASE_URL variable
 
-`
+```
+
+```bash
 https://vercel.com/new/clone
 repository-url=https://github.com/nemanjam/full-stack-fastapi-template-nextjs/tree/vercel-deploy
 root-directory=backend
@@ -33,5 +35,4 @@ products=[
     "protocol": "storage"
   }
 ]
-`
 ```
