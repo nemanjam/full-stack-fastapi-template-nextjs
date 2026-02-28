@@ -10,3 +10,5 @@ export const API_ERROR_MESSAGE = {
   /** Internal server error / Unexpected failure. */
   _500: 'Something went wrong.',
 } as const;
+
+export const ENV_ERROR_TYPE = 'ENV_ERROR' as const;

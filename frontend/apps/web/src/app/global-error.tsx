@@ -6,6 +6,7 @@ import { RefreshCcw, Settings } from 'lucide-react';
 
 import { Button } from '@workspace/ui/components/ui/button';
 
+import { ENV_ERROR_TYPE } from '@/constants/error';
 import { ROUTES } from '@/constants/routes';
 
 import type { FC } from 'react';
@@ -46,6 +47,8 @@ const GlobalError: FC<Props> = ({ error, reset }) => (
             </Button>
           </div>
 
+          <AlertEnv error={error} />
+
           {error.digest && (
             <p className="text-sm text-muted-foreground">Error ID: {error.digest}</p>
           )}
@@ -54,5 +57,31 @@ const GlobalError: FC<Props> = ({ error, reset }) => (
     </body>
   </html>
 );
+
+interface AlertEnvProps {
+  error: Error & { digest?: string };
+}
+
+const AlertEnv: FC<AlertEnvProps> = ({ error }) => {
+  const isEnvError = (error as any)?.type === ENV_ERROR_TYPE;
+
+  if (!isEnvError) return null;
+
+  return (
+    <div>
+      <p className="font-bold text-red-500 bg-gray-100 rounded p-2">{error.message}</p>
+      <p className="text-muted-foreground mt-2">
+        <span>See the full list of environment variables on this link: </span>
+        <Link
+          target="_blank"
+          className="text-teal-600 hover:text-teal-700 hover:underline"
+          href="https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/docs/vercel-deployment-frontend.md#environment-variables"
+        >
+          environment variables
+        </Link>
+      </p>
+    </div>
+  );
+};
 
 export default GlobalError;

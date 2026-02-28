@@ -9,8 +9,11 @@ type ZodType = typeof z;
 /** For runtime env. */
 export const getProcessEnvSchemaProps = (z: ZodType) => ({
   NODE_ENV: z.enum(nodeEnvValues),
-  SITE_URL: z.url().regex(/[^/]$/, 'SITE_URL should not end with a slash "/"'),
-  API_URL: z.url().regex(/[^/]$/, 'API_URL should not end with a slash "/"'),
+  // Note: these are actually REQUIRED variables but declared optional for logging in global-error.tsx.
+  // Propagate exception to rendering phase and handle it in src/app/page.tsx, where it's again enforced as required.
+  // This is done for better dev experience during initial deployment from Vercel templates.
+  SITE_URL: z.url().regex(/[^/]$/, 'SITE_URL should not end with a slash "/"').optional(),
+  API_URL: z.url().regex(/[^/]$/, 'API_URL should not end with a slash "/"').optional(),
 });
 
 /** For schema type. */

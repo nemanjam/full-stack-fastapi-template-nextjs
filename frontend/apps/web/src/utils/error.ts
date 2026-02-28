@@ -1,5 +1,5 @@
 import { isErrorApiResult } from '@/utils/api';
-import { API_ERROR_MESSAGE } from '@/constants/error';
+import { API_ERROR_MESSAGE, ENV_ERROR_TYPE } from '@/constants/error';
 
 import type { ApiResult } from '@/types/api';
 
@@ -23,3 +23,12 @@ export const throwIfApiError = (result: ApiResult): void => {
   const isError = isErrorApiResult(result);
   if (isError) throw new Error(getApiErrorMessage(result.error));
 };
+
+export class EnvError extends Error {
+  type = ENV_ERROR_TYPE;
+
+  constructor(message: string) {
+    super(message);
+    Object.setPrototypeOf(this, EnvError.prototype);
+  }
+}

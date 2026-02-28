@@ -4,9 +4,12 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { UsersService } from '@/client/sdk.gen';
+import { EnvError } from '@/utils/error';
+import { isNextBuild } from '@/utils/runtime';
 import { waitMs } from '@/utils/wait';
 import { DELAY } from '@/constants/delay';
 import { ROUTES } from '@/constants/routes';
+import { getPublicEnv } from '@/config/process-env';
 
 import type { FC } from 'react';
 
@@ -19,6 +22,15 @@ const { HOME_PAGE_REDIRECT } = DELAY;
 
 const HomePage: FC = () => {
   const router = useRouter();
+
+  const { SITE_URL, API_URL } = getPublicEnv();
+  const isBuildPhase = isNextBuild();
+
+  // let the build succeed without env vars
+  if (!isBuildPhase) {
+    if (!API_URL) throw new EnvError('Missing environment variable in frontend: API_URL');
+    if (!SITE_URL) throw new EnvError('Missing environment variable in frontend: SITE_URL');
+  }
 
   useEffect(() => {
     const redirect = async () => {

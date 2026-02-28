@@ -31,7 +31,14 @@ ovo ce biti url-ovi &project-names=full-stack-fastapi-frontend,full-stack-fastap
 https://full-stack-fastapi-frontend.vercel.app/
 https://full-stack-fastapi-backend.vercel.app/
 
+// monorepo flow
+monorepo=1
+totalProjects=2
+project-names=frontend,backend
+root-directories=frontend/apps/web,backend
 
+// template flow - undocumented
+-------------------
 
 [![Deploy to Vercel](https://vercel.com/button)](
   https://vercel.com/new/clone
@@ -70,4 +77,8 @@ detect vercel in both frontend and backend
 backend config.py vercel conditional logic
 database migrations stays, check neon demo
 from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
+pregledaj postojece monorepo full stack templejte
+template md: 1. local installation, 2. vercel deploy
+
+Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?
 ```
