@@ -26,10 +26,16 @@ const HomePage: FC = () => {
   const { SITE_URL, API_URL } = getPublicEnv();
   const isBuildPhase = isNextBuild();
 
-  // let the build succeed without env vars
   if (!isBuildPhase) {
-    if (!API_URL) throw new EnvError('Missing environment variable in frontend: API_URL');
-    if (!SITE_URL) throw new EnvError('Missing environment variable in frontend: SITE_URL');
+    const requiredVars = { API_URL, SITE_URL };
+
+    const missingVars = Object.keys(requiredVars).filter(
+      (key) => !requiredVars[key as keyof typeof requiredVars]
+    );
+
+    if (missingVars.length > 0) {
+      throw new EnvError(`Missing environment variables in frontend: ${missingVars.join(', ')}.`);
+    }
   }
 
   useEffect(() => {

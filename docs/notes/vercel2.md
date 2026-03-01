@@ -79,6 +79,9 @@ database migrations stays, check neon demo
 from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
 pregledaj postojece monorepo full stack templejte
 template md: 1. local installation, 2. vercel deploy
+regenerate client
+redeploy
+merge into main branch
 
 Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?
 ```
