@@ -5,7 +5,11 @@ from app import crud
 from app.core.config import settings
 from app.models import ItemCreate, User, UserCreate
 
-engine = create_engine(str(settings.SQLALCHEMY_DATABASE_URI))
+if settings.SQLALCHEMY_DATABASE_URI:
+    engine = create_engine(str(settings.SQLALCHEMY_DATABASE_URI))
+else:
+    # placeholder, to prevent exceptions for None
+    engine = create_engine("sqlite:///:memory:")
 
 
 # make sure all SQLModel models are imported (app.models) before initializing DB

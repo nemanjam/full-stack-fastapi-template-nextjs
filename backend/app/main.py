@@ -4,7 +4,7 @@ from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
-from app.api.main import api_router
+from app.api.main import api_router, root_router
 from app.core.config import settings
 from app.utils import log_settings
 
@@ -37,6 +37,7 @@ if settings.all_cors_origins:
 # For Github login Request object
 app.add_middleware(SessionMiddleware, secret_key=settings.SESSION_SECRET_KEY)
 
+app.include_router(root_router)
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 log_settings(settings)

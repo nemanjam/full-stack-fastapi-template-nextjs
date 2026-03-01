@@ -67,17 +67,23 @@ const AlertEnv: FC<AlertEnvProps> = ({ error }) => {
 
   if (!isEnvError) return null;
 
+  const infoText = 'See the full list of environment variables on this link:';
+  const docsUrl = `https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/docs/vercel-deployment-frontend.md#environment-variables`;
+
+  const consoleMessage = `${error.message} ${infoText} ${docsUrl}`;
+  console.error(consoleMessage);
+
   return (
     <div>
       <p className="font-bold text-red-500 bg-gray-100 rounded p-2">{error.message}</p>
       <p className="text-muted-foreground mt-2">
-        <span>See the full list of environment variables on this link: </span>
+        <span className="mr-2">{infoText}</span>
         <Link
           target="_blank"
           className="text-teal-600 hover:text-teal-700 hover:underline"
-          href="https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/docs/vercel-deployment-frontend.md#environment-variables"
+          href={docsUrl}
         >
-          environment variables
+          Environment variables
         </Link>
       </p>
     </div>

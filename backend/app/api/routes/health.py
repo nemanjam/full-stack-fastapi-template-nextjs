@@ -1,8 +1,11 @@
-from fastapi import APIRouter
-from app.core.config import settings
+import logging
 
+from fastapi import APIRouter
+
+from app.core.config import settings
 from app.models import Message
 
+logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["health"])
 
@@ -10,6 +13,7 @@ DOCS_URL = (
     "https://github.com/nemanjam/full-stack-fastapi-template-nextjs/"
     "blob/main/docs/vercel-deployment-backend.md#environment-variables"
 )
+
 
 @router.get("/", response_model=Message)
 def health():
@@ -29,5 +33,6 @@ def health():
             f"Missing required environment variables: {', '.join(missing_vars)}. "
             f"See documentation: {DOCS_URL}"
         )
+        logger.error(message)
 
     return Message(message=message)

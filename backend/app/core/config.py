@@ -14,8 +14,8 @@ from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing_extensions import Self
 
-
 DEFAULT_SECRET_VALUE: str = "changethis"
+
 
 def parse_cors(v: Any) -> list[str] | str:
     if isinstance(v, str) and not v.startswith("["):
@@ -36,12 +36,15 @@ class Settings(BaseSettings):
 
     # ------- Required variables -------
 
-    # Frontend url 
-    SITE_URL: str
+    # Note: SITE_URL and database are actually REQUIRED variables but made optional
+    # Note: to display dev friendly message in root route for Vercel deployments without env vars set
 
-    # DATABASE_URL | POSTGRES_*
+    # Frontend url
+    SITE_URL: str | None = None  # truly required
 
-    # For Vercel and Neon
+    # DATABASE_URL | POSTGRES_* # truly required
+
+    # Vercel and Neon
     DATABASE_URL: PostgresDsn | None = None
 
     # Local / Docker fallback
@@ -53,7 +56,7 @@ class Settings(BaseSettings):
 
     # ------- Optional variables -------
 
-    # Secrets 
+    # Secrets
     JWT_SECRET_KEY: str = DEFAULT_SECRET_VALUE
     SESSION_SECRET_KEY: str = DEFAULT_SECRET_VALUE
 
@@ -106,7 +109,10 @@ class Settings(BaseSettings):
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
-        # Vercel + Neon
+        # 1. Default None, no exception, SQLite in-memory placeholder
+        connection = None
+
+        # 2. DATABASE_URL (Vercel, Neon)
         if self.DATABASE_URL:
             database_url = str(self.DATABASE_URL)
             # Force SQLAlchemy to use psycopg v3 on Vercel (Neon provides postgresql:// by default)
@@ -114,23 +120,28 @@ class Settings(BaseSettings):
                 database_url = database_url.replace(
                     "postgresql://", "postgresql+psycopg://"
                 )
-            return database_url
+            connection = database_url
 
-        # Local / Docker
-        if not all([self.POSTGRES_SERVER, self.POSTGRES_USER, self.POSTGRES_PASSWORD, self.POSTGRES_DB]):
-            raise ValueError(
-                "Either DATABASE_URL or POSTGRES_* variables must be set"
+        postgres_vars = [
+            self.POSTGRES_SERVER,
+            self.POSTGRES_USER,
+            self.POSTGRES_PASSWORD,
+            self.POSTGRES_DB,
+        ]
+
+        # 3. POSTGRES_* (local development, Docker)
+        if not connection and all(postgres_vars):
+            connection = MultiHostUrl.build(
+                scheme="postgresql+psycopg",
+                username=self.POSTGRES_USER,
+                password=self.POSTGRES_PASSWORD,
+                host=self.POSTGRES_SERVER,
+                port=self.POSTGRES_PORT,
+                path=self.POSTGRES_DB,
             )
 
-        return MultiHostUrl.build(
-            scheme="postgresql+psycopg",
-            username=self.POSTGRES_USER,
-            password=self.POSTGRES_PASSWORD,
-            host=self.POSTGRES_SERVER,
-            port=self.POSTGRES_PORT,
-            path=self.POSTGRES_DB,
-        )
-    
+        return connection
+
     @computed_field  # type: ignore[prop-decorator]
     @property
     def emails_enabled(self) -> bool:
@@ -147,13 +158,15 @@ class Settings(BaseSettings):
     @model_validator(mode="after")
     def resolve_environment(self) -> Self:
         self.ENVIRONMENT = (
-            "production" if self.VERCEL_ENV == "production" 
-            else "staging" if self.VERCEL_ENV == "preview" 
-            else self.ENVIRONMENT # else, keep whatever ENVIRONMENT was set from OS/.env
+            "production"
+            if self.VERCEL_ENV == "production"
+            else "staging"
+            if self.VERCEL_ENV == "preview"
+            else self.ENVIRONMENT  # else, keep whatever ENVIRONMENT was set from OS/.env
         )
         return self
 
-    # Must run at end 
+    # Must run at end
     @model_validator(mode="after")
     def _enforce_non_default_secrets(self) -> Self:
         # required vars
@@ -166,17 +179,15 @@ class Settings(BaseSettings):
         return self
 
     # ------- Utilities -------
-    
+
     def _check_default_secret(self, var_name: str, value: str | None) -> None:
         if value == DEFAULT_SECRET_VALUE:
             message = (
-                f'The value of {var_name} is {DEFAULT_SECRET_VALUE}, '
+                f"The value of {var_name} is {DEFAULT_SECRET_VALUE}, "
                 "for security, please change it, at least for deployments."
             )
-            if self.ENVIRONMENT == "local":
-                warnings.warn(message, stacklevel=1)
-            else:
-                raise ValueError(message)
+            # prevent exceptions for Vercel deployments
+            warnings.warn(message, stacklevel=1)
+
 
 settings = Settings()  # type: ignore
-
