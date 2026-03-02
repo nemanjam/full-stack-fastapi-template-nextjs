@@ -13,7 +13,6 @@ versioning with changesets/changesets or semantic-release/semantic-release, read
 backend constants
 ------
 must run local prod, edit .env, maybe docker on ports or traefik
-------
 
 
 ```
