@@ -83,6 +83,7 @@ template md: 1. local installation, 2. vercel deploy
 redeploy docker from main
 merge into main branch
         log env vars errors in console, both frontend and backend
+regenerate single deploy button
 update readme and md, check readme examples
 write template.md
 
