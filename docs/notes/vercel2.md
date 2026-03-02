@@ -78,12 +78,11 @@ INFO:     127.0.0.1:35074 - "GET /api/v1/users/me HTTP/1.1" 403 Forbidden
         from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
         pregledaj postojece monorepo full stack templejte
 template md: 1. local installation, 2. vercel deploy
-regenerate client
-redeploy vercel and docker from main
+        regenerate client
+        redeploy vercel 
+redeploy docker from main
 merge into main branch
         log env vars errors in console, both frontend and backend
-merge to main
-redeploy
 update readme and md, check readme examples
 write template.md
 

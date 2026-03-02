@@ -61,3 +61,7 @@ openapi-ts-*.log
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Vercel files
+.vercel
+.env*.local
