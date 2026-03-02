@@ -72,20 +72,19 @@ INFO:     127.0.0.1:35074 - "GET /api/v1/users/me HTTP/1.1" 403 Forbidden
 
 // no env vars defined for both frontend and backend, not even neon
 
-next.js add warning logs on build
-detect vercel in both frontend and backend
-backend config.py vercel conditional logic
-database migrations stays, check neon demo
-from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
-pregledaj postojece monorepo full stack templejte
+        detect vercel in both frontend and backend
+        backend config.py vercel conditional logic
+        database migrations stays, check neon demo
+        from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
+        pregledaj postojece monorepo full stack templejte
 template md: 1. local installation, 2. vercel deploy
 regenerate client
-redeploy
+redeploy vercel and docker from main
 merge into main branch
-log env vars errors in console, both frontend and backend
+        log env vars errors in console, both frontend and backend
 merge to main
 redeploy
-update readme and md
+update readme and md, check readme examples
 write template.md
 
 Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?

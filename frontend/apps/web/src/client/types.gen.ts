@@ -349,6 +349,22 @@ export type ValidationError = {
   type: string;
 };
 
+export type HealthHealthData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: '/';
+};
+
+export type HealthHealthResponses = {
+  /**
+   * Successful Response
+   */
+  200: Message;
+};
+
+export type HealthHealthResponse = HealthHealthResponses[keyof HealthHealthResponses];
+
 export type LoginLoginAccessTokenData = {
   body: BodyLoginLoginAccessToken;
   path?: never;

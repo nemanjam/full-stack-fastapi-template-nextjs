@@ -3,6 +3,8 @@ import { client } from './client.gen';
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import type {
+  HealthHealthData,
+  HealthHealthResponses,
   ItemsCreateItemData,
   ItemsCreateItemErrors,
   ItemsCreateItemResponses,
@@ -94,6 +96,20 @@ export type Options<
    */
   meta?: Record<string, unknown>;
 };
+
+export class HealthService {
+  /**
+   * Health
+   */
+  public static health<ThrowOnError extends boolean = false>(
+    options?: Options<HealthHealthData, ThrowOnError>
+  ) {
+    return (options?.client ?? client).get<HealthHealthResponses, unknown, ThrowOnError>({
+      url: '/',
+      ...options,
+    });
+  }
+}
 
 export class LoginService {
   /**
