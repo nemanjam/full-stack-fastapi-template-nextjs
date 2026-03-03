@@ -20,11 +20,30 @@ API_URL=https://my-backend-url.vercel.app
 SITE_URL=https://my-frontend-url.vercel.app
 ```
 
-## Deploy using `Vercel Deploy button`
+## Deploy using "Vercel Deploy" button
 
-Go to [README.md](../README.md#deploy-to-vercel), and in the `Deploy to Vercel -> Frontend` section, click the `Deploy` button. You will be redirected to the Vercel form wizard, where you should specify the name of your cloned repository and set the required environment variables `API_URL` pointing to the backend and `SITE_URL` pointing to the frontend itself.
+If you haven't already, click the `Vercel Deploy` button and go through the setup wizard as described in the backend documentation: [Deploy using "Vercel deploy" button](vercel-deployment-backend#deploy-using-vercel-deploy-button).
 
-That’s it, your application is now fully deployed and publicly accessible.
+Once the wizard is complete and you have configured and deployed the backend project, the only remaining step is to set the required environment variables for the frontend.
+
+screenshot
+
+### Set the environment variables
+
+The frontend has only two environment variables, and **both are required**. In your frontend project dashboard on Vercel, set:
+
+- `API_URL` to the URL of your backend deployment.
+- `SITE_URL` to the URL of the frontend deployment itself.
+
+```bash
+# Backend url
+API_URL=https://full-stack-fastapi-backend-my-slug.vercel.app
+
+# Frontend url
+SITE_URL=https://full-stack-fastapi-frontend-my-slug.vercel.app
+```
+
+Redeploy the project to apply the new environment variables, and that’s it - your application is now fully deployed and publicly accessible.
 
 ## Deploy using Vercel CLI
 

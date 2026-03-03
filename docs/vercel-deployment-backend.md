@@ -73,7 +73,7 @@ DATABASE_URL=
 
 If you haven’t already, go to [README.md](../README.md#vercel-button) and, in the `Vercel button` section, click the `Deploy` button. You should click this button only once, as it will create both the backend and frontend projects at the same time.
 
-### Initial wizard
+### Setup wizard
 
 You will be redirected to the Vercel setup form, which will:
 
@@ -86,7 +86,10 @@ screenshot
 
 ### Set the environment variables
 
-`SITE_URL` and `DATABASE_URL` are the only two required environment variables for the backend. The `DATABASE_URL` is automatically set by the Neon integration. Go to your backend project dashboard on Vercel and navigate to `Project → Settings → Environment Variables`. There, set the `SITE_URL` variable to the URL of your frontend deployment.
+`SITE_URL` and `DATABASE_URL` are the only two required environment variables for the backend. In your backend project dashboard on Vercel navigate to `Project -> Settings -> Environment Variables` and set:
+
+- `DATABASE_URL` is automatically set by the Neon integration, no action needed. 
+- `SITE_URL` to the URL of your frontend deployment.
 
 ```bash
 # Example
