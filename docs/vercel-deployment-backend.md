@@ -10,7 +10,7 @@
 
 ## Environment variables
 
-#### Minimal required environment variables
+### Minimal required environment variables
 
 ```bash
 # Frontend url
@@ -22,7 +22,7 @@ SITE_URL=my-frontend-url.vercel.app
 DATABASE_URL=
 ```
 
-#### All available environment variables
+### All available environment variables
 
 ```bash
 # Used in email templates and OpenAPI docs

@@ -10,7 +10,7 @@
 
 ## Environment variables
 
-#### Required environment variables
+### Required environment variables
 
 ```bash
 # Backend url
