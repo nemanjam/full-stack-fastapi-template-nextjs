@@ -22,7 +22,7 @@ SITE_URL=https://my-frontend-url.vercel.app
 
 ## Deploy using "Vercel Deploy" button
 
-If you haven't already, click the `Vercel Deploy` button and go through the setup wizard as described in the backend documentation: [Deploy using "Vercel deploy" button](vercel-deployment-backend#deploy-using-vercel-deploy-button).
+If you haven't already, click the `Vercel Deploy` button and go through the setup wizard as described in the backend documentation: [Deploy using "Vercel deploy" button](vercel-deployment-backend.md#deploy-using-vercel-deploy-button).
 
 Once the wizard is complete and you have configured and deployed the backend project, the only remaining step is to set the required environment variables for the frontend.
 
@@ -36,6 +36,8 @@ The frontend has only two environment variables, and **both are required**. In y
 - `SITE_URL` to the URL of the frontend deployment itself.
 
 ```bash
+# Example
+
 # Backend url
 API_URL=https://full-stack-fastapi-backend-my-slug.vercel.app
 
