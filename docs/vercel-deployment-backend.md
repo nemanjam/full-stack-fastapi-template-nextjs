@@ -17,14 +17,6 @@
 # Used by the backend to generate links in emails to the frontend
 SITE_URL=my-frontend-url.vercel.app
 
-# Auth
-JWT_SECRET_KEY=my-secret
-SESSION_SECRET_KEY=my-secret
-
-# Superuser email and password
-FIRST_SUPERUSER=admin@example.com
-FIRST_SUPERUSER_PASSWORD=password
-
 # Postgres database, e.g. Neon
 # Format: postgresql://<username>:<password>@<host>/<database>?<query>
 DATABASE_URL=
@@ -77,15 +69,43 @@ POSTGRES_PASSWORD=password
 DATABASE_URL=
 ```
 
-## Deploy using `Vercel Deploy button`
+## Deploy using "Vercel deploy" button
 
-Go to [README.md](../README.md#deploy-to-vercel), and in the `Deploy to Vercel -> Backend` section, click the `Deploy` button. You will be redirected to the Vercel form, where you need to specify the name of your cloned repository, add the Neon integration, and set the required environment variables. If you don't have the values already prepared, just deploy with the supplied defaults and later edit them (along with any additional optional variables) in the `Environment` tab in the dashboard. Redeploy to apply the new values for the variables.
+If you haven’t already, go to [README.md](../README.md#vercel-button) and, in the `Vercel button` section, click the `Deploy` button. You should click this button only once, as it will create both the backend and frontend projects at the same time.
 
-This is especially true for `SITE_URL` if you don’t have the frontend deployed yet. Once you do, you should set it to your frontend URL, for example `SITE_URL=https://full-stack-fastapi-template-nextjs-my-slug.vercel.app`, and redeploy.
+### Initial wizard
 
-**Note:** `DATABASE_URL` is a required variable. The Neon integration will set it by default, which is why it is omitted from the form in the wizard.
+You will be redirected to the Vercel setup form, which will:
 
-After a successful deployment, proceed to migrate and seed the database as described in the [Migrate and seed database](#migrate-and-seed-database) section.
+- Create a single cloned repository on Github. You can provide a custom name or keep the default.
+- Prompt you to add a Neon integration to provision **a blank** Postgres database. Add the integration and select the **backend** project as the target. This will automatically set the `DATABASE_URL` environment variable for the backend project.
+
+After Vercel builds and deploys both projects, **they will not run correctly yet**, because the required environment variables are not configured and the database has not been migrated or seeded. You will need to complete these steps manually.
+
+screenshot
+
+### Set the environment variables
+
+`SITE_URL` and `DATABASE_URL` are the only two required environment variables for the backend. The `DATABASE_URL` is automatically set by the Neon integration. Go to your backend project dashboard on Vercel and navigate to `Project → Settings → Environment Variables`. There, set the `SITE_URL` variable to the URL of your frontend deployment.
+
+```bash
+# Example
+
+# Set manually, point to your frontend URL
+SITE_URL=https://full-stack-fastapi-frontend-my-slug.vercel.app
+
+# Already set by Neon integration
+DATABASE_URL=postgresql://neondb_owner:npg_some-slug@ep-rough-cherry-some-slug-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require
+```
+Additionally, you can configure any other optional environment variables listed above in [All available environment variables](#all-available-environment-variables).
+
+After updating the environment variables, make sure to **redeploy the backend project** for the changes to take effect.
+
+### Migrate and seed the Neon database
+
+The Neon integration provisions **a blank** Postgres database. You need to create the database tables and seed the initial data.
+
+This process is the same as when deploying with the Vercel CLI and is described in the section below: [Migrate and seed database](#migrate-and-seed-database).
 
 ## Deploy using Vercel CLI
 
@@ -150,7 +170,7 @@ DATABASE_URL=postgresql://neondb_owner:npg_some-slug@ep-rough-cherry-some-slug-p
 
 ```
 
-Then, run the migrations and seed the database the same way as described in [running.md#database](running.md#database):
+Then, run the migrations and seed the database using commands listed bellow. This process is also described in [running.md#database](running.md#database):
 
 ```bash
 # From /backend
@@ -172,4 +192,5 @@ uv sync
 # Be patient and do not interrupt it
 bash scripts/prestart.sh
 ```
+
 Verify in Neon's dashboard that the `user` and `item` tables exist and are populated with data.

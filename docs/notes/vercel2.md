@@ -87,6 +87,7 @@ regenerate single deploy button
 try to deploy and make screenshots of UI errors
 update readme and md, check readme examples
 write template.md for both fastapi-nextjs and astro
+make screenshots ui errors
 
 Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?
 ```
