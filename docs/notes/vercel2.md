@@ -80,12 +80,13 @@ INFO:     127.0.0.1:35074 - "GET /api/v1/users/me HTTP/1.1" 403 Forbidden
 template md: 1. local installation, 2. vercel deploy
         regenerate client
         redeploy vercel 
-redeploy docker from main
-merge into main branch
+        redeploy docker from main
+        merge into main branch, 2 times
         log env vars errors in console, both frontend and backend
 regenerate single deploy button
+try to deploy and make screenshots of UI errors
 update readme and md, check readme examples
-write template.md
+write template.md for both fastapi-nextjs and astro
 
 Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?
 ```

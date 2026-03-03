@@ -85,7 +85,7 @@ This is especially true for `SITE_URL` if you don’t have the frontend deployed
 
 **Note:** `DATABASE_URL` is a required variable. The Neon integration will set it by default, which is why it is omitted from the form in the wizard.
 
-After a successful deployment, proceed to migrate and seed the database as described in the [Migrate and Seed Database](#migrate-and-seed-database) section.
+After a successful deployment, proceed to migrate and seed the database as described in the [Migrate and seed database](#migrate-and-seed-database) section.
 
 ## Deploy using Vercel CLI
 
