@@ -65,6 +65,8 @@ POSTGRES_DB=app
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
 
+# Set either DATABASE_URL or POSTGRES_* variables, not both. DATABASE_URL overrides POSTGRES_* variables if both are set
+# Use DATABASE_URL for Neon.
 # Format: postgresql://<username>:<password>@<host>/<database>?<query>
 DATABASE_URL=
 ```
