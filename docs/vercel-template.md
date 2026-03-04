@@ -15,17 +15,17 @@ Next.js v16 fork of the official [fastapi/full-stack-fastapi-template](https://g
 
 # Features
 
-- [x] Next.js v16, server components
-- [x] React Hook Form and server actions for forms
-- [x] HttpOnly cookie auth, enables SSR
-- [x] Hey Api with client-next
-- [x] Suspense, error boundaries
-- [x] Turborepo monorepo, TailwindCSS v4, ShadcnUI
-- [x] Register page, Github login
-- [x] Validated env vars with Zod
-- [x] Runtime only env vars with [alizeait/next-public-env](https://github.com/alizeait/next-public-env), reusable build
-- [x] Deploy with Vercel and Docker
-- [x] Simple local dev environment, simplified Docker production
+- Next.js v16, server components
+- React Hook Form and server actions for forms
+- HttpOnly cookie auth, enables SSR
+- Hey Api with client-next
+- Suspense, error boundaries
+- Turborepo monorepo, TailwindCSS v4, ShadcnUI
+- Register page, Github login
+- Validated env vars with Zod
+- Runtime only env vars with [alizeait/next-public-env](https://github.com/alizeait/next-public-env), reusable build
+- Deploy with Vercel and Docker
+- Simple local dev environment, simplified Docker production
 
 # Running locally
 
