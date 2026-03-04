@@ -2,6 +2,25 @@
 
 Install and run project locally for development.
 
+## Environment variables
+
+Clone the repository, create `.env` files for backend and frontend and populate them. Available environment variables: 
+
+- Backend [.env.example](.env.example).
+- Frontend [frontend/apps/web/.env.example](frontend/apps/web/.env.example).
+
+```bash
+# Clone repository
+git clone git@github.com:nemanjam/full-stack-fastapi-template-nextjs.git
+
+# Create backend .env file
+cp .env.example .env
+
+# Create frontend .env file
+cd frontend/apps/web
+cp .env.example .env
+```
+
 ## Backend
 
 Create and activate virtual environment, install dependencies and run FastAPI dev server.
