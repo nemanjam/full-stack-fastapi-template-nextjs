@@ -77,21 +77,23 @@ INFO:     127.0.0.1:35074 - "GET /api/v1/users/me HTTP/1.1" 403 Forbidden
         database migrations stays, check neon demo
         from templates database_url and neon vars undefined??? // fora je 2 projekta, mora posle u integrations da poveze integraciju za backend projekat
         pregledaj postojece monorepo full stack templejte
-template md: 1. local installation, 2. vercel deploy
+        template md: 1. local installation, 2. vercel deploy
         regenerate client
         redeploy vercel 
         redeploy docker from main
         merge into main branch, 2 times
         log env vars errors in console, both frontend and backend
         regenerate single deploy button
-try to deploy and make screenshots of UI errors
+        try to deploy and make screenshots of UI errors
         update readme and md
-check readme templates examples
+        check readme templates examples
 write template.md for both fastapi-nextjs and astro
-make screenshots ui errors
-create buttons for her, additional params and image url
+        make screenshots ui errors
+        create buttons for her, additional params and image url
 
-site url api url no trailing slash, add ui exceptions in deploy docs
+        site url api url no trailing slash, add ui exceptions in deploy docs
+
+git checkout origin/main -- docs/vercel-template.md
 
 Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?
 ```
