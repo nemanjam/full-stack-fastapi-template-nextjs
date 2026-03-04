@@ -91,5 +91,7 @@ write template.md for both fastapi-nextjs and astro
 make screenshots ui errors
 create buttons for her, additional params and image url
 
+site url api url no trailing slash, add ui exceptions in deploy docs
+
 Can you update your template to catch the error and let the dev know which variable needs to be set to make the frontend and backend communicate?
 ```

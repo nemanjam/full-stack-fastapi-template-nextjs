@@ -15,6 +15,7 @@
 ```bash
 # Frontend url
 # Used by the backend to generate links in emails to the frontend
+# Must NOT end with trailing slash `/`.
 SITE_URL=my-frontend-url.vercel.app
 
 # Postgres database, e.g. Neon
@@ -30,6 +31,7 @@ PROJECT_NAME="Full stack FastAPI template Next.js"
 
 # Frontend url
 # Used by the backend to generate links in emails to the frontend
+# Must NOT end with trailing slash `/`.
 SITE_URL=my-frontend-url.vercel.app
 
 # Whitelisted frontend urls
@@ -84,14 +86,14 @@ You will be redirected to the Vercel setup form, which will:
 
 After Vercel builds and deploys both projects, **they will not run correctly yet**, because the required environment variables are not configured and the database has not been migrated or seeded. You will need to complete these steps manually.
 
-screenshot
+![Backend page 500 screenshot](screenshots/backend-page-500.png)
 
 ### Set the environment variables
 
 `SITE_URL` and `DATABASE_URL` are the only two required environment variables for the backend. In your backend project dashboard on Vercel navigate to `Project -> Settings -> Environment Variables` and set:
 
 - `DATABASE_URL` is automatically set by the Neon integration, no action needed. 
-- `SITE_URL` to the URL of your frontend deployment.
+- `SITE_URL` to the URL of your frontend deployment. Must NOT end with trailing slash `/`.
 
 ```bash
 # Example

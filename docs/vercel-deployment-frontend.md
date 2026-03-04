@@ -14,9 +14,11 @@
 
 ```bash
 # Backend url
+# Must NOT end with trailing slash `/`.
 API_URL=https://my-backend-url.vercel.app
 
 # Frontend url
+# Must NOT end with trailing slash `/`.
 SITE_URL=https://my-frontend-url.vercel.app
 ```
 
@@ -24,16 +26,16 @@ SITE_URL=https://my-frontend-url.vercel.app
 
 If you haven't already, click the `Vercel Deploy` button and go through the setup wizard as described in the backend documentation: [Deploy using "Vercel deploy" button](vercel-deployment-backend.md#deploy-using-vercel-deploy-button).
 
-Once the wizard is complete and you have configured and deployed the backend project, the only remaining step is to set the required environment variables for the frontend.
+Once the wizard is complete and you have configured and deployed the backend project, **the frontend still won’t run correctly**. You also need to configure the required environment variables for the frontend.
 
-screenshot
+![Frontend page 500 screenshot](screenshots/frontend-page-500.png)
 
 ### Set the environment variables
 
 The frontend has only two environment variables, and **both are required**. In your frontend project dashboard on Vercel, set:
 
-- `API_URL` to the URL of your backend deployment.
-- `SITE_URL` to the URL of the frontend deployment itself.
+- `API_URL` to the URL of your backend deployment. Must NOT end with trailing slash `/`.
+- `SITE_URL` to the URL of the frontend deployment itself. Must NOT end with trailing slash `/`.
 
 ```bash
 # Example
