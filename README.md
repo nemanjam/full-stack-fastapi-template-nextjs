@@ -65,11 +65,7 @@ git checkout vercel-deploy
 ```
 Similarly to how you need two separate containers to deploy the app with Docker, you also need two separate deployments in Vercel to deploy the frontend and backend. You will configure them to be aware of each other using `SITE_URL` and `API_URL`, which they use to communicate with each other.
 
-You can deploy to Vercel either using "Vercel button" or Vercel CLI method. You can find more details about deploying using both methods in the documentation linked bellow.
-
-Backend docs: [docs/vercel-deployment-backend.md](docs/vercel-deployment-backend.md)
-
-Frontend docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
+You can deploy to Vercel either using "Vercel button" or Vercel CLI method.
 
 ### Vercel button
 
@@ -82,6 +78,14 @@ No environment variables will be set automatically, you will need to configure t
 ### Vercel CLI
 
 You can also deploy to Vercel from you local development environment using Vercel CLI. 
+
+### Documentation
+
+You can find more details about deploying using both "Vercel button" and Vercel CLI methods in the documentation linked bellow.
+
+Frontend docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
+
+Backend docs: [docs/vercel-deployment-backend.md](docs/vercel-deployment-backend.md)
 
 ## Routes
 
