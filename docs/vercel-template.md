@@ -35,8 +35,8 @@ Install and run project locally for development.
 
 Clone the repository, create `.env` files for backend and frontend and populate them. Available environment variables: 
 
-- Backend [.env.example](https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/.env.example).
-- Frontend [frontend/apps/web/.env.example](https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/frontend/apps/web/.env.example).
+- Backend: [.env.example](https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/.env.example).
+- Frontend: [frontend/apps/web/.env.example](https://github.com/nemanjam/full-stack-fastapi-template-nextjs/blob/main/frontend/apps/web/.env.example).
 
 ```bash
 # Clone repository
