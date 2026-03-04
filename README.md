@@ -67,6 +67,10 @@ Similarly to how you need two separate containers to deploy the app with Docker,
 
 You can deploy to Vercel either using "Vercel button" or Vercel CLI method.
 
+Backend docs: [docs/vercel-deployment-backend.md](docs/vercel-deployment-backend.md)
+
+Frontend docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
+
 ### Vercel button
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-description=Build%20full-stack%20apps%20with%20Next.js%20and%20FastAPI.&demo-image=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Fraw%2Fmain%2Fdocs%2Fscreenshots%2Ffrontend-screenshot-1200x630.png&demo-title=Full%20stack%20FastAPI%20template%20with%20Next.js&demo-url=https%3A%2F%2Ffull-stack-fastapi-template-nextjs.vercel.app&project-name=Full%20stack%20FastAPI%20template%20with%20Next.js&repository-name=full-stack-fastapi-template-with-next-js&repository-url=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Ftree%2Fvercel-deploy&project-names=full-stack-fastapi-frontend%2Cfull-stack-fastapi-backend&root-directories=frontend%2Fapps%2Fweb%2Cbackend&monorepo=1&totalProjects=2&skippable-integrations=1&products=%5B%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22storage%22%2C%22productSlug%22%3A%22neon%22%2C%22integrationSlug%22%3A%22neon%22%7D%5D)
@@ -78,10 +82,6 @@ Clicking the "Deploy" button above will take you to the Vercel deployment wizard
 You can also deploy to Vercel from you local development environment using Vercel CLI. 
 
 You can find more details about deploying using both "Vercel button" and Vercel CLI methods in the documentation linked bellow.
-
-Frontend docs: [docs/vercel-deployment-frontend.md](docs/vercel-deployment-frontend.md)
-
-Backend docs: [docs/vercel-deployment-backend.md](docs/vercel-deployment-backend.md)
 
 ## Routes
 
