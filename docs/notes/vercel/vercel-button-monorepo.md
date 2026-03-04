@@ -67,3 +67,8 @@ https://vercel.com/new/clone
 ]
 
 ```
+
+```md
+https://vercel.com/new/clone?demo-description=Build%20full-stack%20apps%20with%20Next.js%20and%20FastAPI.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F3OFhcgXIeEap6JyvSi3gjA%2Fbc483323972379fc927e8bba00e04f18%2Ffrontend-screenshot-1200x630.png&demo-title=Full%20stack%20FastAPI%20template%20with%20Next.js&demo-url=https%3A%2F%2Ffull-stack-fastapi-template-nextjs.vercel.app&project-name=Full%20stack%20FastAPI%20template%20with%20Next.js&project-names=full-stack-fastapi-frontend%2Cfull-stack-fastapi-backend&repository-name=full-stack-fastapi-template-with-next-js&repository-url=https%3A%2F%2Fgithub.com%2Fnemanjam%2Ffull-stack-fastapi-template-nextjs%2Ftree%2Fvercel-deploy&root-directories=frontend%2Fapps%2Fweb%2Cbackend&from=templates&teamSlug=amy-vtest314&monorepo=1&totalProjects=2&skippable-integrations=1&products=%5B%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22storage%22%2C%22productSlug%22%3A%22neon%22%2C%22integrationSlug%22%3A%22neon%22%7D%5D
+
+```
