@@ -4,7 +4,7 @@ name: full-stack-fastapi-template-nextjs
 
 services:
 
-  # Todo: improve frontend and test it
+# Todo: clean up this and test in dev and update traefik-proxy prod
   frontend:
     build:
       context: ./frontend
