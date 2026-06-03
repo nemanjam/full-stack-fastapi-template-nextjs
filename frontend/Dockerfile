@@ -35,6 +35,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
 RUN corepack prepare pnpm@11.5.1 --activate
+RUN pnpm setup
 
 WORKDIR /app
 
