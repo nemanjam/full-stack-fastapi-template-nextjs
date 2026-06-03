@@ -60,10 +60,10 @@
   // next.js
 
   // Point to the local TypeScript version
-  "typescript.tsdk": "frontend/node_modules/typescript/lib",
+  "js/ts.tsdk.path": "frontend/node_modules/typescript/lib",
 
   // Enable workspace TypeScript version (not VSCode's built-in)
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
 
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -96,6 +96,7 @@
     "oklch"
   ],
   "python-envs.defaultEnvManager": "ms-python.python:venv",
+  "python.terminal.activateEnvironment": false,
   "python-envs.pythonProjects": []
 
 }

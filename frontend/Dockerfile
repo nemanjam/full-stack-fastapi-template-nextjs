@@ -1,4 +1,4 @@
-FROM node:24.7.0-alpine3.22 AS base
+FROM node:24.16.0-alpine3.22 AS base
 
 # from here
 # https://github.com/vercel/turborepo/blob/main/examples/with-docker/apps/web/Dockerfile
@@ -16,7 +16,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
-RUN corepack prepare pnpm@10.12.4 --activate
+RUN corepack prepare pnpm@11.5.1 --activate
 
 # Set working directory
 WORKDIR /app
@@ -34,13 +34,13 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
-RUN corepack prepare pnpm@10.12.4 --activate
+RUN corepack prepare pnpm@11.5.1 --activate
 
 WORKDIR /app
 
 # First install the dependencies (as they change less often)
 COPY --from=builder /app/out/json/ .
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --dangerously-allow-all-builds
 
 # Build the project
 COPY --from=builder /app/out/full/ .
